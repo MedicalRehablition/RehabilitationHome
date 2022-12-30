@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "jc0VDJMyvCTSbU/oRDqAfhRsXK0CNMVlEljV4O9NvD0v1U4NKTLsZx9xs3yD+nQce9Wc8JHoKOCQDozYGbovtg==",
+  "dgSpecHash": "iQu8rTAa67X6riqiWhVOyo4cKzpBw8RpvQrxvzCpYCqJ/0lbwIDbgKzHMd0eUyV/s+T7OD0DL7zYg9ynyK1J2g==",
   "success": true,
-  "projectFilePath": "D:\\資策會上課資料\\期末專區\\RehabilitaiontHome\\slnRehabilitation\\prjRehabilitation\\prjRehabilitation.csproj",
+  "projectFilePath": "D:\\github\\githubClone\\RehabilitationHome\\prjRehabilitation\\prjRehabilitation.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\user\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\microsoft.aspnetcore.diagnostics.entityframeworkcore\\6.0.12\\microsoft.aspnetcore.diagnostics.entityframeworkcore.6.0.12.nupkg.sha512",

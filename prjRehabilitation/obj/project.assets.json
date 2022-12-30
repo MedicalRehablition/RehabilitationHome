@@ -2053,11 +2053,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\資策會上課資料\\期末專區\\RehabilitaiontHome\\slnRehabilitation\\prjRehabilitation\\prjRehabilitation.csproj",
+      "projectUniqueName": "D:\\github\\githubClone\\RehabilitationHome\\prjRehabilitation\\prjRehabilitation.csproj",
       "projectName": "prjRehabilitation",
-      "projectPath": "D:\\資策會上課資料\\期末專區\\RehabilitaiontHome\\slnRehabilitation\\prjRehabilitation\\prjRehabilitation.csproj",
+      "projectPath": "D:\\github\\githubClone\\RehabilitationHome\\prjRehabilitation\\prjRehabilitation.csproj",
       "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-      "outputPath": "D:\\資策會上課資料\\期末專區\\RehabilitaiontHome\\slnRehabilitation\\prjRehabilitation\\obj\\",
+      "outputPath": "D:\\github\\githubClone\\RehabilitationHome\\prjRehabilitation\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
