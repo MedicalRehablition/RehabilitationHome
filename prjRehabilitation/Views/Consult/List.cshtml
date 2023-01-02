@@ -1,0 +1,57 @@
+﻿@model IEnumerable<prjRehabilitation.ViewModel.CPatientsViewModel>
+
+@{
+    ViewData["Title"] = "List";
+}
+
+<h1>List</h1>
+
+<p>
+    <a asp-controller="Treatment" asp-action="Index">回上一頁</a>
+</p>
+<div>
+    @using (Html.BeginForm())
+    {
+        @:關鍵字 @Html.TextBox("txtKeyword") 
+
+        <input type="submit" value="查詢">
+    }
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                序號
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FName)
+            </th>
+           <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            int count = 0;            
+            foreach (var item in Model) {
+                count++;
+        <tr>    
+        <td>
+            @count
+                
+            </td>
+            <td>
+                    @Html.ActionLink(item.FName, "DateList", new { id=item.Fid})
+                
+            </td>
+           
+            @*<td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>*@
+        </tr>
+            }
+        }
+    </tbody>
+</table>
