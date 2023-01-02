@@ -1,4 +1,6 @@
 ﻿using prjRehabilitation.Models;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace prjRehabilitation.ViewModel
 {
@@ -25,6 +27,7 @@ namespace prjRehabilitation.ViewModel
             get { return _patient.Fid; }
             set { _patient.Fid=value; }
         }
+        [DisplayName("姓名")]
         public string? FName
         {
             get { return _patient.FName; }
@@ -105,6 +108,7 @@ namespace prjRehabilitation.ViewModel
             get { return _patient.Status; }
             set { _patient.Status = value; }
         }
+        public IFormFile photo { get; set; }
         public virtual ICollection<Consultation> Consultations { get; set; }
         public virtual ICollection<DiseaseDiagnosis> DiseaseDiagnoses { get; set; }
         public virtual ICollection<EmergenceCaller> EmergenceCallers { get; set; }

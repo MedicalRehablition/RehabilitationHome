@@ -9,6 +9,9 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
+<p>
+    <a asp-action="delete">刪除 New</a>
+</p>
 <form method="post">
 <table class="table">
     <input type="text" name="txtKeyword" />
@@ -80,6 +83,7 @@
                 @count
             </td>
             <td>
+            <img src="~/images/@item.FPicture"width="800"height="600"/>
                 @Html.DisplayFor(modelItem => item.FName)
             </td>
             <td>
