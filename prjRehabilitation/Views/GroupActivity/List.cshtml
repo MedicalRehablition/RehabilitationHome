@@ -1,0 +1,98 @@
+﻿@model IEnumerable<prjRehabilitation.ViewModel.CGroupActivityViewModel>
+
+@{
+    ViewData["Title"] = "List";
+}
+
+<h1>活動記錄一覽表</h1>
+
+<p>
+    <a asp-action="Create">新增一筆資料</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+          
+            <th>
+                @Html.DisplayNameFor(model => model.FGroupActivityId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FEventType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FStartTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FEndTime)
+            </th>
+           
+            <th>
+                @Html.DisplayNameFor(model => model.FClassName)
+            </th>
+         
+            <th>
+                @Html.DisplayNameFor(model => model.FLocation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FPeopleCount)
+            </th>
+         
+            <th>
+                @Html.DisplayNameFor(model => model.FRecorder)
+            </th>
+      
+            <th>
+                @Html.DisplayNameFor(model => model.FFillFormDate)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+       
+            <td>
+                @Html.DisplayFor(modelItem => item.FGroupActivityId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FEventType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FStartTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FEndTime)
+            </td>
+        
+            <td>
+                @Html.DisplayFor(modelItem => item.FClassName)
+            </td>
+         
+            <td>
+                @Html.DisplayFor(modelItem => item.FLocation)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FPeopleCount)
+            </td>
+            
+            <td>
+                @Html.DisplayFor(modelItem => item.FRecorder)
+            </td>
+           
+            <td>
+                @Html.DisplayFor(modelItem => item.FFillFormDate)
+            </td>
+            <td>
+                @Html.ActionLink("編輯", "Edit", new {  id=item.FGroupActivityId }) 
+            
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

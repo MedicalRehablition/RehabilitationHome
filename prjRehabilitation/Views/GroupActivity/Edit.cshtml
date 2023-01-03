@@ -1,0 +1,105 @@
+﻿@model prjRehabilitation.ViewModel.CGroupActivityViewModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>CGroupActivityViewModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" name="FGroupActivityId" value=@Model.FGroupActivityId />
+            
+            <div class="form-group">
+                <label asp-for="FEventType" class="control-label"></label>
+                <input asp-for="FEventType" class="form-control" />
+                <span asp-validation-for="FEventType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FDate" class="control-label"></label>
+                <input asp-for="FDate" class="form-control" />
+                <span asp-validation-for="FDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FStartTime" class="control-label"></label>
+                <input asp-for="FStartTime" class="form-control" />
+                <span asp-validation-for="FStartTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FEndTime" class="control-label"></label>
+                <input asp-for="FEndTime" class="form-control" />
+                <span asp-validation-for="FEndTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FGroupName" class="control-label"></label>
+                <input asp-for="FGroupName" class="form-control" />
+                <span asp-validation-for="FGroupName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FClassName" class="control-label"></label>
+                <input asp-for="FClassName" class="form-control" />
+                <span asp-validation-for="FClassName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FGoal" class="control-label"></label>
+                <input asp-for="FGoal" class="form-control" />
+                <span asp-validation-for="FGoal" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FLocation" class="control-label"></label>
+                <input asp-for="FLocation" class="form-control" />
+                <span asp-validation-for="FLocation" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FPeopleCount" class="control-label"></label>
+                <input asp-for="FPeopleCount" class="form-control" />
+                <span asp-validation-for="FPeopleCount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FLeader" class="control-label"></label>
+                <input asp-for="FLeader" class="form-control" />
+                <span asp-validation-for="FLeader" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FRecorder" class="control-label"></label>
+                <input asp-for="FRecorder" class="form-control" />
+                <span asp-validation-for="FRecorder" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FProcess" class="control-label"></label>
+                <input asp-for="FProcess" class="form-control" />
+                <span asp-validation-for="FProcess" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FAchievement" class="control-label"></label>
+                <input asp-for="FAchievement" class="form-control" />
+                <span asp-validation-for="FAchievement" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FFillFormStaff" class="control-label"></label>
+                <input asp-for="FFillFormStaff" class="form-control" />
+                <span asp-validation-for="FFillFormStaff" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FFillFormDate" class="control-label"></label>
+                <input asp-for="FFillFormDate" class="form-control" />
+                <span asp-validation-for="FFillFormDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="送出" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="List">回列表</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
