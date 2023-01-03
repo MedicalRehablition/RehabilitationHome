@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.FileSystemGlobbing.Internal.PatternContexts;
 using prjRehabilitation.Models;
+using prjRehabilitation.Models.Lin;
 using prjRehabilitation.ViewModel;
-
+using prjRehabilitation.ViewModel.Lin;
+using System.Text.Json;
 namespace prjRehabilitation.Controllers
 {
     public class PatientsController : Controller
@@ -86,7 +88,16 @@ namespace prjRehabilitation.Controllers
             }
             return RedirectToAction("List");
         }
-
+        public IActionResult Create_F(string disease)
+        {
+            var dislist = new List<VMDisease>();
+            if (!string.IsNullOrEmpty(disease))
+            {
+                string json = JsonSerializer.Serialize((new DiseaseCRUD()).search(disease));
+                return Json(json);
+            }
+            return View();
+        }
     }
 
 }
