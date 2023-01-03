@@ -24,7 +24,9 @@ namespace prjRehabilitation.ViewModel
 
         public int? FId { get { return _GroupActivity.FId; } set {_GroupActivity.FId = value; } }
         public bool? FDeleteBool { get { return _GroupActivity.FDeleteBool; } set { _GroupActivity.FDeleteBool = value; } }
+        [DisplayName("記錄編號ID")]
         public int FGroupActivityId { get { return _GroupActivity.FGroupActivityId; } set { _GroupActivity.FGroupActivityId = value; } }
+        [DisplayName("團體計畫")]
         public string FEventType { get { return _GroupActivity.FEventType; } set { _GroupActivity.FEventType = value; } }
         [DisplayName("日期")]
         public string FDate { get { return _GroupActivity.FDate; } set { _GroupActivity.FDate = value; } }

@@ -71,9 +71,7 @@ namespace prjRehabilitation.Controllers
             return RedirectToAction("List");
         }
 
-        public ActionResult aa() {
-            return View();
-        }
+        
 
     }
 }

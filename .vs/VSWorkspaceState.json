@@ -1,7 +1,10 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\prjRehabilitation",
+    "\\prjRehabilitation\\Views",
+    "\\prjRehabilitation\\Views\\Shared"
   ],
-  "SelectedNode": "\\slnRehabilitation.sln",
+  "SelectedNode": "\\prjRehabilitation\\Views\\Shared\\_Layout.cshtml",
   "PreviewInSolutionExplorer": false
 }
