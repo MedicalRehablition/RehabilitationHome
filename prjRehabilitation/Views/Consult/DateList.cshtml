@@ -7,7 +7,7 @@
 <h1>@ViewBag.name 會談紀錄</h1>
 
 <p>
-    <a asp-action="Create">新增會談紀錄</a>
+    <a asp-action="Create" asp-route-id='@Model.FirstOrDefault().PatinetId'>新增會談紀錄</a>
 </p>
 <table class="table">
     <thead>
@@ -42,7 +42,7 @@
                 </td>
 
                 <td>
-                    @Html.ActionLink("編輯", "Edit", new {  id=item.FConsultId }) |
+                    @Html.ActionLink("編輯", "Edit", new {  id=item.FConsultId}) |
                     @Html.ActionLink("查看", "Details", new { id=item.FConsultId }) |
                     @Html.ActionLink("刪除", "Delete", new {  id=item.FConsultId })
                 </td>

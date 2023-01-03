@@ -51,13 +51,15 @@ namespace prjRehabilitation.Controllers
         }
         public ActionResult Create()
         {
+
             return View();
         }
         [HttpPost]
         public ActionResult Create(CConsultationViewModel vm)
-        {
+        {        
             dbClassContext db = new dbClassContext();
-
+            CConsultationViewModel consult = new CConsultationViewModel();
+            consult.PatinetId = vm.PatinetId;
             db.Consultations.Add(vm.Consult);
             db.SaveChanges();
             return RedirectToAction("List");
@@ -65,11 +67,9 @@ namespace prjRehabilitation.Controllers
         }
 
 
+
+
         //先將基本先刪修功能完成，10個類型的刪修可以之後在加到CConsultationViewModel裡面
-
-
-
-
 
     }
 }
