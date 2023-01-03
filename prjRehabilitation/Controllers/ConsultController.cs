@@ -15,7 +15,7 @@ namespace prjRehabilitation.Controllers
             if (Keyword == null)
             {
                 data = from p in db.PatientInfos
-                       select new PatientInfo { FName = p.FName };
+                       select new PatientInfo { FName = p.FName, Fid = p.Fid };
             }
             else
                 data = db.PatientInfos.Where(c => c.FName.Contains(Keyword)).ToList();
@@ -26,22 +26,46 @@ namespace prjRehabilitation.Controllers
                 patient.Patient = c;
                 List.Add(patient);
             }
-            return View(List);         
+            return View(List);
         }
-        public IActionResult DateList(CPatientsViewModel vm)
+        public IActionResult DateList(int? id)
         {
             dbClassContext db = new dbClassContext();
-            IEnumerable<Consultation> datas = null;            
-           datas = db.Consultations.Where(c=>c.PatinetId==vm.Fid).ToList();
+
+            IEnumerable<Consultation> datas = null;
+            datas = db.Consultations.Where(c => c.PatinetId == (int)id).ToList();
+
             List<CConsultationViewModel> list = new List<CConsultationViewModel>();
-            foreach(var c in datas)
+            foreach (var c in datas)
             {
                 CConsultationViewModel consultation = new CConsultationViewModel();
                 consultation.Consult = c;
                 list.Add(consultation);
             }
+            //PatientInfo  pin = db.PatientInfos.FirstOrDefault(t => t.Fid == id);
+            //CPatientsViewModel ptname = new CPatientsViewModel();
+            //ptname.Patient = pin;
+            //ViewBag.name = ptname.Patient.FName;
+
             return View(list);
         }
+        public ActionResult Create()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult Create(CConsultationViewModel vm)
+        {
+            dbClassContext db = new dbClassContext();
+
+            db.Consultations.Add(vm.Consult);
+            db.SaveChanges();
+            return RedirectToAction("List");
+
+        }
+
+
+        //先將基本先刪修功能完成，10個類型的刪修可以之後在加到CConsultationViewModel裡面
 
 
 

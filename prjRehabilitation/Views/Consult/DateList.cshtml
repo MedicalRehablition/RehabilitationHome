@@ -4,62 +4,49 @@
     ViewData["Title"] = "DateList";
 }
 
-<h1>DateList</h1>
+<h1>@ViewBag.name 會談紀錄</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">新增會談紀錄</a>
 </p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.FConsultId)
+                序號
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PatinetId)
-            </th>
+
             <th>
                 @Html.DisplayNameFor(model => model.Date)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Summary)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Assessment)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Result)
-            </th>
+
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.FConsultId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PatinetId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Date)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Summary)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Assessment)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Result)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FConsultId)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Summary)
+                </td>
+
+                <td>
+                    @Html.ActionLink("編輯", "Edit", new {  id=item.FConsultId }) |
+                    @Html.ActionLink("查看", "Details", new { id=item.FConsultId }) |
+                    @Html.ActionLink("刪除", "Delete", new {  id=item.FConsultId })
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

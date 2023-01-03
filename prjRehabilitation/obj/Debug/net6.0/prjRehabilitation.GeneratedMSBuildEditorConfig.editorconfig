@@ -15,6 +15,10 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\githutlab\RehabilitationHome\RehabilitationHome\prjRehabilitation
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/githutlab/RehabilitationHome/RehabilitationHome/prjRehabilitation/Views/Consult/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29uc3VsdFxDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/githutlab/RehabilitationHome/RehabilitationHome/prjRehabilitation/Views/Consult/DateList.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29uc3VsdFxEYXRlTGlzdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
