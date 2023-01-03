@@ -80,8 +80,8 @@ namespace prjRehabilitation.ViewModel
         }
         public string? FAddress
         {
-            get { return _patient.FAddress; }
-            set { _patient.FAddress = value; }
+            get { return _patient.FAddressPermanent; }
+            set { _patient.FAddressPermanent = value; }
         }
         public string? FHos
         {

@@ -19,6 +19,7 @@ namespace prjRehabilitation.Models
         public string? FName { get; set; }
         public string? FSex { get; set; }
         public string? FCheckin { get; set; }
+        public string? FExpireDate { get; set; }
         public string? FIdnum { get; set; }
         public string? FBednum { get; set; }
         public string? FBirthday { get; set; }
@@ -26,7 +27,9 @@ namespace prjRehabilitation.Models
         public string? FPhone { get; set; }
         public string? FEdu { get; set; }
         public string? FMarried { get; set; }
-        public string? FAddress { get; set; }
+        public string? FCountry { get; set; }
+        public string? FAddressPermanent { get; set; }
+        public string? FAddressResidential { get; set; }
         public string? FHos { get; set; }
         public string? FIdy { get; set; }
         public string? FGrant { get; set; }

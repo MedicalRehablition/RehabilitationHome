@@ -45,7 +45,7 @@ namespace prjRehabilitation.Models
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Data Source=medicate.database.windows.net;Initial Catalog=dbClass;User ID=medical;Password=Uxul6yj3;");
+                optionsBuilder.UseSqlServer("Data Source=medicate.database.windows.net;Initial Catalog=dbClass;User ID=medical;Password=Uxul6yj3");
             }
         }
 
@@ -288,9 +288,13 @@ namespace prjRehabilitation.Models
 
                 entity.Property(e => e.Fid).HasColumnName("fid");
 
-                entity.Property(e => e.FAddress)
+                entity.Property(e => e.FAddressPermanent)
                     .HasMaxLength(50)
-                    .HasColumnName("fAddress");
+                    .HasColumnName("fAddressPermanent");
+
+                entity.Property(e => e.FAddressResidential)
+                    .HasMaxLength(50)
+                    .HasColumnName("fAddressResidential");
 
                 entity.Property(e => e.FBednum)
                     .HasMaxLength(50)
@@ -304,9 +308,17 @@ namespace prjRehabilitation.Models
                     .HasMaxLength(50)
                     .HasColumnName("fCheckin");
 
+                entity.Property(e => e.FCountry)
+                    .HasMaxLength(10)
+                    .HasColumnName("fCountry");
+
                 entity.Property(e => e.FEdu)
                     .HasMaxLength(50)
                     .HasColumnName("fEdu");
+
+                entity.Property(e => e.FExpireDate)
+                    .HasMaxLength(50)
+                    .HasColumnName("fExpireDate");
 
                 entity.Property(e => e.FGrant)
                     .HasMaxLength(50)
@@ -397,6 +409,10 @@ namespace prjRehabilitation.Models
                 entity.Property(e => e.FName)
                     .HasMaxLength(50)
                     .HasColumnName("fName");
+
+                entity.Property(e => e.FPhoto)
+                    .HasMaxLength(50)
+                    .HasColumnName("fPhoto");
 
                 entity.Property(e => e.FPrice)
                     .HasColumnType("money")

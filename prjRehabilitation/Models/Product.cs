@@ -9,5 +9,6 @@ namespace prjRehabilitation.Models
         public string? FName { get; set; }
         public int? FQty { get; set; }
         public decimal? FPrice { get; set; }
+        public string? FPhoto { get; set; }
     }
 }
