@@ -28,10 +28,21 @@ namespace prjRehabilitation.Controllers
             }
             return View(List);         
         }
-        //public IActionResult DateList()
-        //{
-        //}
-            
+        public IActionResult DateList(CPatientsViewModel vm)
+        {
+            dbClassContext db = new dbClassContext();
+            IEnumerable<Consultation> datas = null;            
+           datas = db.Consultations.Where(c=>c.PatinetId==vm.Fid).ToList();
+            List<CConsultationViewModel> list = new List<CConsultationViewModel>();
+            foreach(var c in datas)
+            {
+                CConsultationViewModel consultation = new CConsultationViewModel();
+                consultation.Consult = c;
+                list.Add(consultation);
+            }
+            return View(list);
+        }
+
 
 
 

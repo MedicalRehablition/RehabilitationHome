@@ -5,61 +5,64 @@ build_property.UsingMicrosoftNETSdkWeb = true
 build_property.ProjectTypeGuids = 
 build_property.InvariantGlobalization = 
 build_property.PlatformNeutralAssembly = 
-build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = prjRehabilitation
 build_property.RootNamespace = prjRehabilitation
-build_property.ProjectDir = D:\github\githubClone\RehabilitationHome\prjRehabilitation\
+build_property.ProjectDir = C:\githutlab\RehabilitationHome\RehabilitationHome\prjRehabilitation\
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = D:\github\githubClone\RehabilitationHome\prjRehabilitation
+build_property.MSBuildProjectDirectory = C:\githutlab\RehabilitationHome\RehabilitationHome\prjRehabilitation
 build_property._RazorSourceGeneratorDebug = 
 
-[D:/github/githubClone/RehabilitationHome/prjRehabilitation/Views/Consult/List.cshtml]
+[C:/githutlab/RehabilitationHome/RehabilitationHome/prjRehabilitation/Views/Consult/DateList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29uc3VsdFxEYXRlTGlzdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/githutlab/RehabilitationHome/RehabilitationHome/prjRehabilitation/Views/Consult/List.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29uc3VsdFxMaXN0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/github/githubClone/RehabilitationHome/prjRehabilitation/Views/Home/Index.cshtml]
+[C:/githutlab/RehabilitationHome/RehabilitationHome/prjRehabilitation/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/github/githubClone/RehabilitationHome/prjRehabilitation/Views/Home/Privacy.cshtml]
+[C:/githutlab/RehabilitationHome/RehabilitationHome/prjRehabilitation/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/github/githubClone/RehabilitationHome/prjRehabilitation/Views/Patients/Create.cshtml]
+[C:/githutlab/RehabilitationHome/RehabilitationHome/prjRehabilitation/Views/Patients/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGF0aWVudHNcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/github/githubClone/RehabilitationHome/prjRehabilitation/Views/Patients/Edit.cshtml]
+[C:/githutlab/RehabilitationHome/RehabilitationHome/prjRehabilitation/Views/Patients/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGF0aWVudHNcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/github/githubClone/RehabilitationHome/prjRehabilitation/Views/Patients/List.cshtml]
+[C:/githutlab/RehabilitationHome/RehabilitationHome/prjRehabilitation/Views/Patients/List.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGF0aWVudHNcTGlzdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/github/githubClone/RehabilitationHome/prjRehabilitation/Views/Shared/Error.cshtml]
+[C:/githutlab/RehabilitationHome/RehabilitationHome/prjRehabilitation/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/github/githubClone/RehabilitationHome/prjRehabilitation/Views/Shared/_ValidationScriptsPartial.cshtml]
+[C:/githutlab/RehabilitationHome/RehabilitationHome/prjRehabilitation/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/github/githubClone/RehabilitationHome/prjRehabilitation/Views/Treatment/Index.cshtml]
+[C:/githutlab/RehabilitationHome/RehabilitationHome/prjRehabilitation/Views/Treatment/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVHJlYXRtZW50XEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/github/githubClone/RehabilitationHome/prjRehabilitation/Views/_ViewImports.cshtml]
+[C:/githutlab/RehabilitationHome/RehabilitationHome/prjRehabilitation/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/github/githubClone/RehabilitationHome/prjRehabilitation/Views/_ViewStart.cshtml]
+[C:/githutlab/RehabilitationHome/RehabilitationHome/prjRehabilitation/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/github/githubClone/RehabilitationHome/prjRehabilitation/Views/Shared/_Layout.cshtml]
+[C:/githutlab/RehabilitationHome/RehabilitationHome/prjRehabilitation/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-odn5s93s92
