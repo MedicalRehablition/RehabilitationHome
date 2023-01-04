@@ -33,7 +33,7 @@ namespace prjRehabilitation.Controllers
             dbClassContext db = new dbClassContext();
 
             IEnumerable<Consultation> datas = null;
-            datas = db.Consultations.Where(c => c.PatinetId == (int)id).ToList();
+            datas = db.Consultations.Where(c => c.PatinetId == id.Value).ToList();
 
             List<CConsultationViewModel> list = new List<CConsultationViewModel>();
             foreach (var c in datas)
@@ -42,20 +42,19 @@ namespace prjRehabilitation.Controllers
                 consultation.Consult = c;
                 list.Add(consultation);
             }
-            PatientInfo pin = db.PatientInfos.FirstOrDefault(t => t.Fid == id);
+            var pin = db.PatientInfos.FirstOrDefault(t => t.Fid == id);
             CPatientsViewModel ptname = new CPatientsViewModel();
-            ptname.Patient = pin;
-            ViewBag.name = ptname.Patient.FName;
-
+            ptname.Patient = pin != null ? pin:new PatientInfo() ;
+            ViewBag.name = ptname?.Patient?.FName;           
             return View(list);
         }
-        public ActionResult Create(int? id)
+        public ActionResult Create(int id)
         {
-            //CConsultationViewModel consult = new CConsultationViewModel();
-            //consult.PatinetId = vm.PatinetId;
+            CConsultationViewModel consult = new CConsultationViewModel();
+            consult.PatinetId = id;
             ViewBag.pid = id;
 
-            return View(/*consult*/);
+            return View(consult);
         }
         [HttpPost]
         public ActionResult SaveCreate(CConsultationViewModel vm)
