@@ -74,7 +74,17 @@ namespace prjRehabilitation.Controllers
 
         }
 
-
+        public ActionResult Delete(int? id)    //刪除功能
+        {
+            dbClassContext db = new dbClassContext();
+            Consultation consul = db.Consultations.FirstOrDefault(t => t.FConsultId == id);
+            if (consul != null)
+            {
+                db.Consultations.Remove(consul);
+                db.SaveChanges();
+            }
+            return RedirectToAction("DateList");
+        }
 
 
         //先將基本先刪修功能完成，10個類型的刪修可以之後在加到CConsultationViewModel裡面
