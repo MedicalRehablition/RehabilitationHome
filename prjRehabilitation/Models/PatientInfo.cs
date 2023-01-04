@@ -33,8 +33,8 @@ namespace prjRehabilitation.Models
         public string? FHos { get; set; }
         public string? FIdy { get; set; }
         public string? FGrant { get; set; }
-        public byte[]? FPicture { get; set; }
         public bool? Status { get; set; }
+        public string? FPicture { get; set; }
 
         public virtual ICollection<Consultation> Consultations { get; set; }
         public virtual ICollection<DiseaseDiagnosis> DiseaseDiagnoses { get; set; }

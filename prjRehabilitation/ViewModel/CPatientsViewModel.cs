@@ -98,10 +98,10 @@ namespace prjRehabilitation.ViewModel
             get { return _patient.FGrant; }
             set { _patient.FGrant = value; }
         }
-        public byte[]? FPicture 
-        { 
+        public string? FPicture
+        {
             get { return _patient.FPicture; }
-            set { _patient.FPicture = value; } 
+            set { _patient.FPicture = value; }
         }
         public bool? Status
         {

@@ -16,6 +16,7 @@ namespace prjRehabilitation.Models
         {
         }
 
+        public virtual DbSet<Admin> Admins { get; set; } = null!;
         public virtual DbSet<Consultation> Consultations { get; set; } = null!;
         public virtual DbSet<CounsultTypeRecord> CounsultTypeRecords { get; set; } = null!;
         public virtual DbSet<DiseaseDiagnosis> DiseaseDiagnoses { get; set; } = null!;
@@ -52,6 +53,31 @@ namespace prjRehabilitation.Models
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.UseCollation("Chinese_Taiwan_Stroke_CI_AS");
+
+            modelBuilder.Entity<Admin>(entity =>
+            {
+                entity.HasKey(e => e.Fid);
+
+                entity.ToTable("Admin");
+
+                entity.Property(e => e.Fid).HasColumnName("fid");
+
+                entity.Property(e => e.FEmail)
+                    .HasMaxLength(50)
+                    .HasColumnName("fEmail");
+
+                entity.Property(e => e.FName)
+                    .HasMaxLength(50)
+                    .HasColumnName("fName");
+
+                entity.Property(e => e.FPassword)
+                    .HasMaxLength(50)
+                    .HasColumnName("fPassword");
+
+                entity.Property(e => e.FRank)
+                    .HasMaxLength(50)
+                    .HasColumnName("fRank");
+            });
 
             modelBuilder.Entity<Consultation>(entity =>
             {
@@ -354,7 +380,7 @@ namespace prjRehabilitation.Models
                     .HasColumnName("fPhone");
 
                 entity.Property(e => e.FPicture)
-                    .HasColumnType("image")
+                    .HasMaxLength(80)
                     .HasColumnName("fPicture");
 
                 entity.Property(e => e.FSex)
