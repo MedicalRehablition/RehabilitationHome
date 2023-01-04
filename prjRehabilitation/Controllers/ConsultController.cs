@@ -42,27 +42,29 @@ namespace prjRehabilitation.Controllers
                 consultation.Consult = c;
                 list.Add(consultation);
             }
-            //PatientInfo  pin = db.PatientInfos.FirstOrDefault(t => t.Fid == id);
-            //CPatientsViewModel ptname = new CPatientsViewModel();
-            //ptname.Patient = pin;
-            //ViewBag.name = ptname.Patient.FName;
+            PatientInfo pin = db.PatientInfos.FirstOrDefault(t => t.Fid == id);
+            CPatientsViewModel ptname = new CPatientsViewModel();
+            ptname.Patient = pin;
+            ViewBag.name = ptname.Patient.FName;
 
             return View(list);
         }
-        public ActionResult Create()
+        public ActionResult Create(int? id)
         {
+            //CConsultationViewModel consult = new CConsultationViewModel();
+            //consult.PatinetId = vm.PatinetId;
+            ViewBag.pid = id;
 
-            return View();
+            return View(/*consult*/);
         }
         [HttpPost]
-        public ActionResult Create(CConsultationViewModel vm)
+        public ActionResult SaveCreate(CConsultationViewModel vm)
         {        
             dbClassContext db = new dbClassContext();
-            CConsultationViewModel consult = new CConsultationViewModel();
-            consult.PatinetId = vm.PatinetId;
+            
             db.Consultations.Add(vm.Consult);
             db.SaveChanges();
-            return RedirectToAction("List");
+            return RedirectToAction("DateList");
 
         }
 
