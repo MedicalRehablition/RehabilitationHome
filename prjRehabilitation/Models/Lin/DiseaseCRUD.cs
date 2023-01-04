@@ -1,5 +1,6 @@
 ﻿using prjRehabilitation.ViewModel.Lin;
 using prjRehabilitation.Models;
+using System.Text.RegularExpressions;
 
 namespace prjRehabilitation.Models.Lin
 {
@@ -7,9 +8,15 @@ namespace prjRehabilitation.Models.Lin
     {
         public List<VMDisease> search(string search) {
             var db = new dbClassContext();
-            var q = from c in db.DiseaseLists
-                    where c.IdDisease.Contains(search) || c.DiseaseChineseName.Contains(search) 
-                    select c;
+            IQueryable<DiseaseList> q;
+            if (search.All(char.IsAscii))
+            {
+                q = db.DiseaseLists.Where(x => x.IdDisease.Contains(search));
+            }
+            else
+            {
+                q = db.DiseaseLists.Where(x => x.DiseaseChineseName.Contains(search));
+            }
             var list = new List<VMDisease>();
             foreach (var c in q.ToList())
             {

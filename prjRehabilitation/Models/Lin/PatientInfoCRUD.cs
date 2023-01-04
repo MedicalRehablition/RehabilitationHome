@@ -1,29 +1,113 @@
 ﻿using Microsoft.EntityFrameworkCore.Scaffolding.Metadata;
 using prjRehabilitation.ViewModel.Lin;
+using System.Drawing.Text;
+using System.Security.Cryptography.X509Certificates;
 
 namespace prjRehabilitation.Models.Lin
 {
     public class PatientInfoCRUD
     {
+        dbClassContext db = new dbClassContext();
+
         public string c_PatientInfo(VMPatientInfoDetail vm)
         {
-            var db = new dbClassContext();
-            //try
-            //{
-            //    db.PatientInfos.Add(new PatientInfo
-            //    {
-            //        f
-            //    })
-            //}
-            //catch { return false; }
-            //finally
-            //{
-            //}
-            return "";
+            if (string.IsNullOrEmpty(vm.fName)) return"錯誤";
+            var q = db.PatientInfos.FirstOrDefault(x => x.FIdnum == vm.fIdnum);
+            if (q != null) { return "失敗: 該住民已被註冊"; }
 
+            if (!c_BasicInfo(vm))
+            {
+                return "失敗:匯入基本資料時發生錯誤";
+            }
+           
+            if (!c_EmergencyCaller(vm))
+            {
+                return "失敗: 匯入緊急聯絡人時發生錯誤";
+            }
 
+            if (!c_DiseaseInfo(vm))
+            {
+                return "失敗: 匯入疾病資料時發生錯誤";
+            }
+            return "成功";
+        }
+        //TODO: 還沒加try&catch
+        private bool c_DiseaseInfo(VMPatientInfoDetail vm)
+        {
+            //if (vm.DiseaseList == null) return true;
 
+            var p = db.PatientInfos.FirstOrDefault(x => x.FIdnum == vm.fIdnum);
+            var list =new  List<VMDisease>();
+            list.Add(vm.disease1);
+            list.Add(vm.disease2);
+            list.Add(vm.disease3);
+            list.Add(vm.disease4);
+            list.Add(vm.disease5);
 
+            foreach (VMDisease c in list)
+            {
+                if(c==null) { continue; }
+                db.DiseaseDiagnoses.Add(new DiseaseDiagnosis
+                {
+                    Fid = p.Fid,
+                    DiseaseChineseName = c.DiseaseChineseName,
+                    IdDisease = c.ID_Disease,
+                });
+            }
+            db.SaveChanges();
+            return true;
+        }
+
+        private bool c_EmergencyCaller(VMPatientInfoDetail vm)
+        {
+            var p = db.PatientInfos.FirstOrDefault(x => x.FIdnum == vm.fIdnum);
+            db.EmergenceCallers.Add(new EmergenceCaller
+            {
+                FPatientId = p.Fid,
+                FEmergencyName = vm.emerCaller1.FEmergencyName,
+                FPhone = vm.emerCaller1.FPhone,
+                Frelation = vm.emerCaller1.Frelation,
+            });
+            db.EmergenceCallers.Add(new EmergenceCaller
+            {
+                FPatientId = p.Fid,
+                FEmergencyName = vm.emerCaller2.FEmergencyName,
+                FPhone = vm.emerCaller2.FPhone,
+                Frelation = vm.emerCaller2.Frelation,
+            });
+            db.SaveChanges();
+            return true;
+        }
+
+        private bool c_BasicInfo(VMPatientInfoDetail vm)
+        {
+
+                db.PatientInfos.Add(new PatientInfo
+                {
+                    FName = vm.fName,
+                    FSex = vm.fSex,
+                    FCheckin = vm.fCheckin,
+                    FAddressPermanent = vm.fAddressPermanent,
+                    FAddressResidential = vm.fAddressResidential,
+                    FExpireDate = vm.fExpireDate,
+                    FIdnum = vm.fIdnum,
+                    FBednum = vm.fBednum,
+                    FBirthday = vm.fBirthday,
+                    FHomeNum = vm.fHomeNum,
+                    FPhone = vm.fPhone,
+                    FEdu = vm.fEdu,
+                    FMarried = vm.fMarried,
+                    FHos = vm.fHos,
+                    FCountry = vm.fCountry,
+                    FGrant = vm.fGrant,
+                    FIdy = vm.fIDY,
+                    FPicture = vm.fPicture,
+                });
+
+                db.SaveChanges();
+            
+
+            return true;
         }
     }
 }
