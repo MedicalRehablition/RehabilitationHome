@@ -75,7 +75,7 @@ namespace prjRehabilitation.Controllers
                 //    string photoName = Guid.NewGuid().ToString() + ".jpg";
                 //    string path = _environment.WebRootPath + "/images/" + photoName;
                 //    patient.FPicture = photoName;
-                //    vm.photo.CopyTo(new FileStream(path,FileMode.Create));
+                //    vm.photo.CopyTo(new FileStream(path,FileMode.Register));
                 //}
                 patient.Fid = vm.Fid;
                 patient.FHos = vm.FHos;
