@@ -57,9 +57,8 @@ namespace prjRehabilitation.Controllers
         {
             int spid = (int)HttpContext.Session.GetInt32("Pid");
             CConsultationViewModel consult = new CConsultationViewModel();
-            //consult.PatinetId = id;
             consult.PatinetId = spid;
-            ViewBag.pid = spid;
+            ViewBag.pid = spid;   //viewbag.name秀在create的view上，需要用spid抓pationinfo的資料庫的姓名
 
             return View(consult);
         }

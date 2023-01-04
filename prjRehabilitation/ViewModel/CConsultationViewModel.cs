@@ -1,4 +1,5 @@
 ﻿using prjRehabilitation.Models;
+using System.ComponentModel;
 
 namespace prjRehabilitation.ViewModel
 {
@@ -24,21 +25,25 @@ namespace prjRehabilitation.ViewModel
             get { return _consult.PatinetId; }
             set { _consult.PatinetId = value; }
         }
+        [DisplayName("日期")]
         public string? Date
         {
             get { return _consult.Date; }
             set { _consult.Date = value; }
         }
+        [DisplayName("摘要")]
         public string? Summary
         {
             get { return _consult.Summary; }
             set { _consult.Summary = value; }
         }
+        [DisplayName("評估")]
         public string? Assessment
         {
             get { return _consult.Assessment; }
             set { _consult.Assessment = value; }
         }
+        [DisplayName("結果")]
         public string? Result
         {
             get { return _consult.Result; }
