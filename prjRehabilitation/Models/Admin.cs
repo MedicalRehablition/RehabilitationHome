@@ -10,5 +10,8 @@ namespace prjRehabilitation.Models
         public string? FEmail { get; set; }
         public string? FPassword { get; set; }
         public string? FRank { get; set; }
+        public string? Fphoto { get; set; }
+        public string? FSex { get; set; }
+        public string? FBirth { get; set; }
     }
 }
