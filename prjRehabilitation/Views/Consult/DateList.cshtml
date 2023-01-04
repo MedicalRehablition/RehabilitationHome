@@ -2,13 +2,13 @@
 
 @{
     ViewData["Title"] = "DateList";
+    var cc = Model.Where(x => x.PatinetId != null).FirstOrDefault(x => x.PatinetId != null)?.PatinetId;
 }
 
 <h1>@ViewBag.name 會談紀錄</h1>
 
 <p>
-    @*asp-route-Pid='@Model.Where(x => x.PatinetId != null).FirstOrDefault().PatinetId'*@
-    <a asp-action="Create" >新增會談紀錄</a>
+    <a href="/Consult/Create/@Model.Where(x => x.PatinetId != null).FirstOrDefault(x => x.PatinetId != null)?.PatinetId">新增會談紀錄</a>
 </p>
 <table class="table">
     <thead>
