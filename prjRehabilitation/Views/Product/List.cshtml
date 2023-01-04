@@ -3,56 +3,40 @@
 @{
     ViewData["Title"] = "List";
 }
-
+<style>
+    .card-body{
+        text-align: center;
+    }
+    a{
+        color:yellow;
+        font-family: 標楷體;
+    }
+    h5{
+        color:red;
+        font-family:標楷體;
+    }
+</style>
 <h1>List</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                序號
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FQty)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FPrice)
-            </th>
-            <th></th>
-        </tr>
-        
-    </thead>
-    <tbody>
-        @{
-            int count = 0;
-            foreach (var item in Model) {
-                count++;
-                <tr> 
-            <td>
-                @count
-               <img src="~/images/@item.FPhoto" width="300" height="400" />
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FQty)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FPrice)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new {  id=item.Fid }) |
-                @Html.ActionLink("Delete", "Delete", new {  id=item.Fid })
-            </td>
-        </tr>
+
+<div  class="card-group">
+@{
+    int count = 0;
+    foreach (var item in Model)
+    {
+                        <div class="card mt-3 border-primary text-primary bg-success" style="width: 20rem">
+                                        <img src="~/images/@item.FPhoto"/>
+                                        <!-- 只有上部圓角 -->
+                                <div class="card-body">
+                                            <h5 class="card-title">@Html.DisplayFor(modelItem => item.FName)</h5>
+                                            @Html.ActionLink("編輯", "Edit", new {  id=item.Fid })
+                                            @Html.ActionLink("刪除", "Delete", new {  id=item.Fid })
+                                </div>
+                              </div>
+    }
 }
-}
-    </tbody>
-</table>
+</div>
+
