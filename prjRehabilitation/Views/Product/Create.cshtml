@@ -1,4 +1,4 @@
-﻿@model prjRehabilitation.ViewModel.CProductViewModel
+﻿    @model prjRehabilitation.ViewModel.CProductViewModel
 
 @{
     ViewData["Title"] = "Create";
@@ -11,12 +11,6 @@
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
-            @{
-                int count = 0;
-                var List = new List<prjRehabilitation.ViewModel.CProductViewModel>();
-                foreach (var item in List)
-                {
-                    count++;
                 <div>
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="form-group">
@@ -38,12 +32,6 @@
                     <input type="submit" value="Create" class="btn btn-primary" />
                 </div>
             </div>
-            }
-            }
-            <div>
-                <button>新增</button>
-            </div>
-
         </form>
     </div>
 </div>

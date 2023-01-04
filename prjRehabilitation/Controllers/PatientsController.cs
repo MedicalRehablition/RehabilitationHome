@@ -27,7 +27,7 @@ namespace prjRehabilitation.Controllers
             else
                 data = db.PatientInfos.Where(c => c.FName.Contains(Keyword)).ToList();
             List<CPatientsViewModel> List = new List<CPatientsViewModel>();
-            foreach(var c in data)
+            foreach (var c in data)
             {
                 CPatientsViewModel patient = new CPatientsViewModel();
                 patient.Patient = c;
@@ -50,15 +50,15 @@ namespace prjRehabilitation.Controllers
         public IActionResult Delete(int? id)
         {
             dbClassContext db = new dbClassContext();
-            PatientInfo patient = db.PatientInfos.FirstOrDefault(c=>c.Fid== id);
+            PatientInfo patient = db.PatientInfos.FirstOrDefault(c => c.Fid == id);
             db.PatientInfos.Remove(patient);
             db.SaveChanges();
             return RedirectToAction("List");
         }
         public IActionResult Edit(int? id)
         {
-            dbClassContext db =new dbClassContext();
-            PatientInfo patient = db.PatientInfos.FirstOrDefault(c=>c.Fid== id);
+            dbClassContext db = new dbClassContext();
+            PatientInfo patient = db.PatientInfos.FirstOrDefault(c => c.Fid == id);
             CPatientsViewModel vm = new CPatientsViewModel();
             vm.Patient = patient;
             return View(vm);
@@ -68,7 +68,7 @@ namespace prjRehabilitation.Controllers
         {
             dbClassContext db = new dbClassContext();
             PatientInfo patient = db.PatientInfos.FirstOrDefault(c => c.Fid == vm.Fid);
-            if(patient != null)
+            if (patient != null)
             {
                 //if(vm.photo!= null)
                 //{
@@ -79,11 +79,11 @@ namespace prjRehabilitation.Controllers
                 //}
                 patient.Fid = vm.Fid;
                 patient.FHos = vm.FHos;
-                patient.FBednum=vm.FBednum;
+                patient.FBednum = vm.FBednum;
                 patient.FIdnum = vm.FIdnum;
-                patient.FName= vm.FName;
+                patient.FName = vm.FName;
                 patient.FSex = vm.FSex;
-                patient.FPhone= vm.FPhone;
+                patient.FPhone = vm.FPhone;
                 db.SaveChanges();
             }
             return RedirectToAction("List");
@@ -98,6 +98,12 @@ namespace prjRehabilitation.Controllers
             }
             return View();
         }
+        //[HttpPost]
+        //public IActionResult Create_F(VMPatientInfoDetail vm)
+        //{
+        //    //dbClassContext db = new dbClassContext();
+        //    //return RedirectToAction("List");
+        //}
     }
 
 }
