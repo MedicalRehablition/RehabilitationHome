@@ -8,8 +8,7 @@
 
 <h4>CAdminViewModel</h4>
 <hr />
-<form>
-
+<form enctype="multipart/form-data" asp-action="Register">
     <div class="row">
         <div class="col-md-6 mb-4">
             <div class="form-outline">
@@ -23,10 +22,10 @@
     <div class="row">
         <div class="col-md-6 mb-4 d-flex align-items-center">
 
-            @*<div class="form-outline datepicker w-100">
+            <div class="form-outline datepicker w-100">
                 <label for="birthdayDate" class="form-label">生日</label>
                 <input asp-for="FBirth" type=" text" class="form-control form-control-lg" id="birthdayDate" />
-            </div>*@
+            </div>
 
         </div>
         <div class="col-md-6 mb-4">
@@ -34,19 +33,19 @@
             <h6 class="mb-2 pb-1">性別: </h6>
 
             <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="femaleGender"
+                <input class="form-check-input" asp-for="FBirth" type="radio" id="femaleGender"
                        value="option1" checked />
                 <label class="form-check-label" for="femaleGender">女</label>
             </div>
 
             <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="maleGender"
+                <input class="form-check-input" asp-for="FBirth" type="radio" id="maleGender"
                        value="option2" />
                 <label class="form-check-label" for="maleGender">男</label>
             </div>
 
             <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="otherGender"
+                <input class="form-check-input" asp-for="FBirth" type="radio" id="otherGender"
                        value="option3" />
                 <label class="form-check-label" for="otherGender">其他</label>
             </div>
@@ -78,12 +77,15 @@
                 </select>
         </div>
     </div>
+    <div>
+        <input type="file" asp-for="Fphoto" class="form-control" />
+    </div>
 
     <div class="mt-4 pt-2">
         <input class="btn btn-primary btn-lg" type="submit" value="確認" />
     </div>
- </form>@*
-
+ </form>
+ @*
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Register">

@@ -1,13 +1,51 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Components.Forms;
+using Microsoft.AspNetCore.Mvc;
 using prjRehabilitation.Models;
 using prjRehabilitation.ViewModel;
+using System.Text.Json;
 
 namespace prjRehabilitation.Controllers
 {
     public class UserLoginController : Controller
     {
-        public IActionResult Login()
+        public IActionResult List(CKeywordViewModel vm)
         {
+            dbClassContext db = new dbClassContext();
+            string keyword = vm.txtKeyword;
+            IEnumerable<Admin> data = null;
+            if(keyword == null)
+            {
+                data = from c in db.Admins
+                       select c;
+            }
+            else
+            {
+                data = db.Admins.Where(c=>c.FName.Contains(keyword)).ToList();
+            }
+            List<CAdminViewModel> List = new List<CAdminViewModel>();
+            foreach(var c in data)
+            {
+                CAdminViewModel a  = new CAdminViewModel();
+                a.admin = c;
+                List.Add(a);
+                
+            }
+            return View(List);
+        }
+        public IActionResult Login(CLoginViewModel vm)
+        {
+            dbClassContext db = new dbClassContext();
+            Admin admin = db.Admins.FirstOrDefault(t => t.FEmail.Equals(vm.txtAccount) && t.FPassword.Equals(vm.txtPassword));
+
+            if (admin != null)
+            {
+                if(admin.FEmail.Equals(vm.txtAccount) && admin.FPassword.Equals(vm.txtPassword))
+                {
+                    string json = JsonSerializer.Serialize(admin);
+                    HttpContext.Session.SetString(CDictionary.SK_Login_User, json);
+                    return RedirectToAction("Index");
+                }
+            }
             return View();
         }
         public IActionResult Register()
@@ -22,5 +60,6 @@ namespace prjRehabilitation.Controllers
             db.SaveChanges();
             return RedirectToAction("List");
         }
+        
     }
 }
