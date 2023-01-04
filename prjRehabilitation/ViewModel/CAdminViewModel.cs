@@ -48,7 +48,28 @@ namespace prjRehabilitation.ViewModel
             get { return _admin.FRank; }
             set { _admin.FRank = value; }
         }
+        [DisplayName("照片")]
 
-        //public IFormFile photo { get; set; }
+        public string? Fphoto 
+        {
+            get { return _admin.Fphoto; }
+            set { _admin.Fphoto = value; }
+        }
+        [DisplayName("性別")]
+
+        public string? FSex 
+        {
+            get { return _admin.FSex; }
+            set { _admin.FSex = value; }
+        }
+        [DisplayName("生日")]
+
+        public string? FBirth
+        {
+            get { return _admin.FBirth; }
+            set { _admin.FBirth = value; }
+        }
+
+        public IFormFile photo { get; set; }
     }
 }

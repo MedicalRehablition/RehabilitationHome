@@ -1,0 +1,71 @@
+﻿@model IEnumerable<prjRehabilitation.ViewModel.CAdminViewModel>
+
+@{
+    ViewData["Title"] = "List";
+}
+
+<h1>List</h1>
+<form>
+<input type="text" name="txtKeyword" />
+<input type="submit" value="查詢" />
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FEmail)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FPassword)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FRank)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Fphoto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FSex)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FBirth)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FEmail)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FPassword)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FRank)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Fphoto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FSex)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FBirth)
+            </td>
+            <td>
+                @Html.ActionLink("編輯", "Edit", new {  id=item.Fid  }) |
+                @Html.ActionLink("刪除", "Delete", new {  id=item.Fid  })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+</form>

@@ -8,7 +8,7 @@
 
 <h4>CAdminViewModel</h4>
 <hr />
-<form>
+<form enctype="multipart/form-data" asp-action="Register">
 
     <div class="row">
         <div class="col-md-6 mb-4">
@@ -23,10 +23,10 @@
     <div class="row">
         <div class="col-md-6 mb-4 d-flex align-items-center">
 
-            @*<div class="form-outline datepicker w-100">
+            <div class="form-outline datepicker w-100">
                 <label for="birthdayDate" class="form-label">生日</label>
                 <input asp-for="FBirth" type=" text" class="form-control form-control-lg" id="birthdayDate" />
-            </div>*@
+            </div>
 
         </div>
         <div class="col-md-6 mb-4">
@@ -34,20 +34,20 @@
             <h6 class="mb-2 pb-1">性別: </h6>
 
             <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="femaleGender"
-                       value="option1" checked />
+                <input  asp-for="FSex" class="form-check-input" type="radio"  id="femaleGender"
+                       value="女" checked />
                 <label class="form-check-label" for="femaleGender">女</label>
             </div>
 
             <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="maleGender"
-                       value="option2" />
+                <input asp-for="FSex" class="form-check-input" type="radio" id="maleGender"
+                       value="男" />
                 <label class="form-check-label" for="maleGender">男</label>
             </div>
 
             <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="otherGender"
-                       value="option3" />
+                <input asp-for="FSex"  class="form-check-input" type="radio"  id="otherGender"
+                       value="其他" />
                 <label class="form-check-label" for="otherGender">其他</label>
             </div>
 
@@ -78,13 +78,19 @@
                 </select>
         </div>
     </div>
+    <div class="col-md-6 mb-4 pb-2">
+        <div class="form-outline">
+            <label class="form-label" for="phoneNumber">照片</label>
+            <input asp-for="Fphoto" type="file" id="phoneNumber" class="form-control form-control-lg" />
+        </div>
+    </div>
 
     <div class="mt-4 pt-2">
         <input class="btn btn-primary btn-lg" type="submit" value="確認" />
     </div>
 
-@*</form>
-<div class="row">
+</form>
+@*<div class="row">
     <div class="col-md-4">
         <form asp-action="Register">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -120,7 +126,7 @@
 </div>*@
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="List">Back to List</a>
 </div>
 
 @section Scripts {
