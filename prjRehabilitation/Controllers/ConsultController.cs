@@ -30,6 +30,7 @@ namespace prjRehabilitation.Controllers
         }
         public IActionResult DateList(int? id)
         {
+
             dbClassContext db = new dbClassContext();
 
             IEnumerable<Consultation> datas = null;
@@ -59,18 +60,38 @@ namespace prjRehabilitation.Controllers
         [HttpPost]
         public ActionResult SaveCreate(CConsultationViewModel vm)
         {        
-            dbClassContext db = new dbClassContext();
-            
+            dbClassContext db = new dbClassContext();            
             db.Consultations.Add(vm.Consult);
             db.SaveChanges();
             return RedirectToAction("DateList");
-
+        }
+        public ActionResult Edit(int? id)
+        {
+            dbClassContext db = new dbClassContext();
+            Consultation consult = db.Consultations.FirstOrDefault(t => t.FConsultId == id);      //'查詢'頁面輸入的資料到Tptient去撈資料，並放到CProductViewMode
+            CConsultationViewModel vm = new CConsultationViewModel();
+            vm.Consult = consult;
+            return View(vm);
+        }
+        [HttpPost]
+        public ActionResult Edit(CConsultationViewModel vm)
+        {
+            dbClassContext db = new dbClassContext();
+            Consultation consult = db.Consultations.FirstOrDefault(t => t.FConsultId == vm.FConsultId);
+            if (consult!=null)
+            {
+                consult.Date = vm.Date;
+                consult.Assessment = vm.Assessment;
+                consult.Summary = vm.Summary;
+                consult.Result = vm.Result;
+                db.SaveChanges();
+            }
+            return RedirectToAction("DateList", "Consult", new { @id = vm.PatinetId }); ;
         }
 
 
 
+            //先將基本先刪修功能完成，10個類型的刪修可以之後在加到CConsultationViewModel裡面
 
-        //先將基本先刪修功能完成，10個類型的刪修可以之後在加到CConsultationViewModel裡面
-
-    }
+        }
 }

@@ -1,22 +1,24 @@
 ﻿@model prjRehabilitation.ViewModel.CConsultationViewModel
 
 @{
-    ViewData["Title"] = "Register";
+    ViewData["Title"] = "Edit";
 }
 
-<h1>新增作業</h1>
+<h1>Edit</h1>
 
 <h4>CConsultationViewModel</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="SaveCreate">
+        <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-
             <div class="form-group">
-                
-                <input type="hidden" value="@ViewBag.pid" name="PatinetId" />
-                
+                <input type="hidden" name="FConsultId" value="@Model.FConsultId">
+            </div>
+            <div class="form-group">
+               
+                <input type="hidden" name="PatinetId" value="@Model.PatinetId">
+               
             </div>
             <div class="form-group">
                 <label asp-for="Date" class="control-label"></label>
@@ -25,32 +27,30 @@
             </div>
             <div class="form-group">
                 <label asp-for="Summary" class="control-label"></label>
-                <textarea asp-for="Summary" class="form-control"></textarea>
+                <input asp-for="Summary" class="form-control" />
                 <span asp-validation-for="Summary" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Assessment" class="control-label"></label>
-                <textarea asp-for="Assessment" class="form-control" ></textarea>
+                <input asp-for="Assessment" class="form-control" />
                 <span asp-validation-for="Assessment" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Result" class="control-label"></label>
-                <textarea asp-for="Result" class="form-control" ></textarea>
+                <input asp-for="Result" class="form-control" />
                 <span asp-validation-for="Result" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="存檔" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="List">取消新增作業</a>
+    <a asp-action="DateList">取消修改作業</a>
 </div>
 
 @section Scripts {
-    @{
-        await Html.RenderPartialAsync("_ValidationScriptsPartial");
-    }
-    }
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
