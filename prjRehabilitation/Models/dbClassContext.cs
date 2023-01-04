@@ -62,6 +62,10 @@ namespace prjRehabilitation.Models
 
                 entity.Property(e => e.Fid).HasColumnName("fid");
 
+                entity.Property(e => e.FBirth)
+                    .HasMaxLength(50)
+                    .HasColumnName("fBirth");
+
                 entity.Property(e => e.FEmail)
                     .HasMaxLength(50)
                     .HasColumnName("fEmail");
@@ -77,6 +81,14 @@ namespace prjRehabilitation.Models
                 entity.Property(e => e.FRank)
                     .HasMaxLength(50)
                     .HasColumnName("fRank");
+
+                entity.Property(e => e.FSex)
+                    .HasMaxLength(50)
+                    .HasColumnName("fSex");
+
+                entity.Property(e => e.Fphoto)
+                    .HasMaxLength(50)
+                    .HasColumnName("fphoto");
             });
 
             modelBuilder.Entity<Consultation>(entity =>
