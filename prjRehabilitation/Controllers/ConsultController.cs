@@ -31,10 +31,15 @@ namespace prjRehabilitation.Controllers
         public IActionResult DateList(int? id)
         {
             dbClassContext db = new dbClassContext();
-
+            int spid = 0;
             IEnumerable<Consultation> datas = null;
-            datas = db.Consultations.Where(c => c.PatinetId == id.Value).ToList();
-
+            if (id != null)
+            {
+                HttpContext.Session.SetInt32("Pid",(int)id);
+            }
+            spid = (int)HttpContext.Session.GetInt32("Pid");
+            datas = db.Consultations.Where(c => c.PatinetId == spid).ToList();
+            
             List<CConsultationViewModel> list = new List<CConsultationViewModel>();
             foreach (var c in datas)
             {
@@ -50,9 +55,11 @@ namespace prjRehabilitation.Controllers
         }
         public ActionResult Create(int id)
         {
+            int spid = (int)HttpContext.Session.GetInt32("Pid");
             CConsultationViewModel consult = new CConsultationViewModel();
-            consult.PatinetId = id;
-            ViewBag.pid = id;
+            //consult.PatinetId = id;
+            consult.PatinetId = spid;
+            ViewBag.pid = spid;
 
             return View(consult);
         }
