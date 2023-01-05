@@ -22,7 +22,7 @@ namespace prjRehabilitation.ViewModel
             get { return _patient; }
             set { _patient= value; }
         }
-        public int Fid
+        public int? Fid
         {
             get { return _patient.Fid; }
             set { _patient.Fid=value; }
