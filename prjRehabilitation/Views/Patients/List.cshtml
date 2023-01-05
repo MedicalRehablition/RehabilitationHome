@@ -1,4 +1,4 @@
-﻿@model IEnumerable<prjRehabilitation.ViewModel.CPatientsViewModel>
+﻿@model IEnumerable<prjRehabilitation.ViewModel.Lin.VMPatientList>
 
 @{
     ViewData["Title"] = "List";
@@ -9,136 +9,39 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-<p>
-    <a asp-action="delete">刪除 New</a>
-</p>
-<form method="post">
 <table class="table">
-    <input type="text" name="txtKeyword" />
-    <input type="submit" value="查詢" />
     <thead>
         <tr>
             <th>
-               序號
+                @Html.DisplayNameFor(model => model.fName)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.FName)
+                @Html.DisplayNameFor(model => model.fPhone)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.FSex)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FCheckin)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FIdnum)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FBednum)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FBirthday)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FHomeNum)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FPhone)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FEdu)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FMarried)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FAddress)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FHos)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FIdy)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FGrant)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FPicture)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Status)
+                @Html.DisplayNameFor(model => model.fidnum)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-        @{
-            int count=0;
-            foreach (var item in Model) 
-            {
-              count++;
+@foreach (var item in Model) {
         <tr>
             <td>
-                @count
+                @Html.DisplayFor(modelItem => item.fName)
             </td>
             <td>
-            <img src="~/images/@item.FPicture"width="800"height="600"/>
-                @Html.DisplayFor(modelItem => item.FName)
+                @Html.DisplayFor(modelItem => item.fPhone)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.FSex)
+                @Html.DisplayFor(modelItem => item.fidnum)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.FCheckin)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FIdnum)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FBednum)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FBirthday)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FHomeNum)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FPhone)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FEdu)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FMarried)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FAddress)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FHos)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FIdy)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FGrant)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FPicture)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Status)
-            </td>
-            <td>
-                @Html.ActionLink("編輯", "Edit", new { id=item.Fid  }) |
-                @Html.ActionLink("刪除", "Delete", new {  id=item.Fid  })
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
             </td>
         </tr>
-    
-}
 }
     </tbody>
 </table>
-</form>

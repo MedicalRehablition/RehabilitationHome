@@ -5,132 +5,51 @@ namespace prjRehabilitation.ViewModel.Lin
 {
     public class VMPatientInfoDetail
     {
-        public PatientInfo _patientInfo { get; set; }
         //基本資料
-        public int? fid
-        {
-            get { return _patientInfo.Fid; } 
-            set { _patientInfo.Fid = value; }
-        }
+        public int? fid { get; set; }
         [DisplayName("照片位址")]
-        public string fPicture
-        {
-            get { return _patientInfo.FPicture; }
-            set { _patientInfo.FPicture = value; }
-        }
+        public string fPicture { get; set; }
 
         //照片
         [DisplayName("姓名")]
-        public string fName
-        {
-            get { return _patientInfo.FName; }
-            set { _patientInfo.FName = value; }
-        }
-        public string fSex
-        {
-            get { return _patientInfo.FSex; }
-            set { _patientInfo.FSex = value; }
-        }
+        public string fName { get; set; }
+        public string fSex { get; set; }
         [DisplayName("入住日")]
-        public string fCheckin
-        {
-            get { return _patientInfo.FCheckin; }
-            set { _patientInfo.FCheckin = value; }
-        }
+        public string fCheckin { get; set; }
         [DisplayName("住宿到期日")]
-        public string fExpireDate
-        {
-            get { return _patientInfo.FExpireDate; }
-            set { _patientInfo.FExpireDate = value; }
-        }
+        public string fExpireDate { get; set; }
         [DisplayName("身分證字號")]
-        public string fIdnum
-        {
-            get { return _patientInfo.FIdnum; }
-            set { _patientInfo.FIdnum = value; }
-        }
+        public string fIdnum { get; set; }
         [DisplayName("床號")]
-        public string fBednum
-        {
-            get { return _patientInfo.FBednum; }
-            set { _patientInfo.FBednum = value; }
-        }
+        public string fBednum { get; set; }
         [DisplayName("生日")]
-        public string fBirthday
-        {
-            get { return _patientInfo.FBirthday; }
-            set { _patientInfo.FBirthday = value; }
-        }
+        public string fBirthday { get; set; }
         [DisplayName("家用電話")]
-        public string fHomeNum
-        {
-            get { return _patientInfo.FHomeNum; }
-            set { _patientInfo.FHomeNum = value; }
-        }
+        public string fHomeNum { get; set; }
         [DisplayName("手機")]
-        public string fPhone
-        {
-            get { return _patientInfo.FPhone; }
-            set { _patientInfo.FPhone = value; }
-        }
+        public string fPhone { get; set; }
         [DisplayName("教育程度")]
-        public string fEdu
-        {
-            get { return _patientInfo.FEdu; }
-            set { _patientInfo.FEdu = value; }
-        }
+        public string fEdu { get; set; }
         [DisplayName("籍貫")]
-        public string fCountry
-        {
-            get { return _patientInfo.FCountry; }
-            set { _patientInfo.FCountry = value; }
-        }
+        public string fCountry { get; set; }
         [DisplayName("婚姻")]
-        public string fMarried
-        {
-            get { return _patientInfo.FMarried; }
-            set { _patientInfo.FMarried = value; }
-        }
+        public string fMarried { get; set; }
         [DisplayName("戶籍地址")]
-        public string fAddressPermanent
-        {
-            get { return _patientInfo.FAddressPermanent; }
-            set { _patientInfo.FAddressPermanent = value; }
-        }
+        public string fAddressPermanent { get; set; }
         [DisplayName("現居地址")]
-        public string fAddressResidential
-        {
-            get { return _patientInfo.FAddressResidential; }
-            set { _patientInfo.FAddressResidential = value; }
-        }
+        public string fAddressResidential { get; set; }
         [DisplayName("指定醫院")]
-        public string fHos
-        {
-            get { return _patientInfo.FHos; }
-            set { _patientInfo.FHos = value; }
-        }
+        public string fHos { get; set; }
         [DisplayName("身分別(複選)")]
-        public string fIDY
-        {
-            get { return _patientInfo.FIdy; }
-            set { _patientInfo.FIdy = value; }
-        }
+        public string fIDY { get; set; }
         [DisplayName("請領補助")]
-        public string fGrant
-        {
-            get { return _patientInfo.FGrant; }
-            set { _patientInfo.FGrant = value; }
-        }
+        public string fGrant { get; set; }
         [DisplayName("補助類型")]
-        public string? fGrantType { get; set; }
+        public string fGrantType { get; set; }
         [DisplayName("識別照")]
-        //public string f
-        //{ get; set; }
-        public bool? status
-        {
-            get { return _patientInfo.Status; }
-            set { _patientInfo.Status = value; }
-        }
+        public string f
+        { get; set; }
+        public bool status { get; set; }
         public IFormFile fphoto { get; set; }
 
         //緊急聯絡人

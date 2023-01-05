@@ -3,110 +3,112 @@
 @{
     ViewData["Title"] = "Create_F";
 }
-<script src="https://code.jquery.com/jquery-3.6.3.slim.js" integrity="sha256-DKU1CmJ8kBuEwumaLuh9Tl/6ZB6jzGOBV/5YpNE2BWc=" crossorigin="anonymous"></script>
-<style>
-    .solidF {
-        position: fixed;
-    }
+@section Styles{
+    <style>
+        .solidF {
+            position: fixed;
+        }
 
-    .layout {
-        display: flex;
-        flex-direction: column;
-    }
+        .layout {
+            display: flex;
+            flex-direction: column;
+        }
 
-    .List {
-        margin-left: 0em;
-    }
+        .List {
+            margin-left: 0em;
+        }
 
-    * {
-        padding: 0.1em;
-    }
-</style>
+        * {
+            padding: 0.1em;
+        }
+    </style>
+}
+
 
 <div class="layout">
-    @*    <div class="solidF">
-    <label>床號</label>
-    <label>姓名:
-    <select id="Patient_List">
-    </select></label>
-    <div class="col">
-    <button></button>
-    <button></button>
-    <button></button>
-    </div>
-    </div>*@
-
-
-    <h1>Create_F</h1>
-
-    <h4>PatientInfo</h4>
-    <hr />
-    <form asp-action="Create_F">
-        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-        @*照片*@
-        <div class="form-group col">
-            <label asp-for="fphoto" class="control-label">照片</label>
-            <input type="file" asp-for="fphoto" class="form-control" />
-            <span asp-validation-for="fphoto"></span>
+@*    <div class="solidF">
+        <label>床號</label>
+        <label>姓名: 
+            <select id="Patient_List">
+            </select></label>
+        <div class="col">
+            <button></button>
+            <button></button>
+            <button></button>
         </div>
+     </div>*@
+
+
+        <h1>Create_F</h1>
+
+        <h4>PatientInfo</h4>
         <hr />
-        <div class="row">
-            <div class="form-group col">
-                <label asp-for="fName" class="control-label">姓名</label>
-                <input asp-for="fName" class="form-control" />
-                <span asp-validation-for="fName"></span>
-            </div>
-            <div class="form-group col-3">
-                <label asp-for="fCheckin" class="control-label">收案日期</label>
-                <input type="date" asp-for="fCheckin" class="form-control" />
-                <span asp-validation-for="fCheckin"></span>
-            </div>
-            <div class="form-group col-3">
-                <label asp-for="fBirthday" class="control-label">生日</label>
-                <input onchange="ageCalculate();" type="date" max="@DateTime.Today" asp-for="fBirthday" class="form-control" />
-                <span asp-validation-for="fBirthday" class="text-danger"></span>
-            </div>
-            @*    年齡顯示而已，不用進資料庫*@
-            <fieldset disabled class="form-group col-3 disabled">
-                <label class="control-label">年齡:</label>
-                <input id="age" class="form-control " />
-                <span class="text-danger"></span>
-            </fieldset>
-        </div>
-        @*身分證、居住到期日、電話、性別*@
-        <div class="row">
-            <div class="form-group col-3">
-                <label asp-for="fIdnum" class="control-label">身分證字號</label>
-                <input asp-for="fIdnum" class="form-control" />
-                <span asp-validation-for="fIdnum"></span>
-            </div>
-            <div class="form-group col-3">
-                <label asp-for="fExpireDate" class="control-label">展延到期日(當前到期日為入住日+1y-1d)</label>
-                <input type="date" asp-for="fExpireDate" class="form-control" />
-                <span asp-validation-for="fExpireDate"></span>
-            </div>
-            <div class="form-group col-3">
-                <label asp-for="fPhone" class="control-label">電話</label>
-                <input asp-for="fPhone" class="form-control" />
-                <span asp-validation-for="fPhone"></span>
-            </div>
-            <div class="form-group   col-3">
-                <label asp-for="fSex" class="control-label">性別</label>
-                <div>
-                    <div class="form-check form-check-inline pt-2 ">
-                        <!-- 這個inline就可以水平排列 -->
-                        <input id="FSexM" class="form-check-input" type="radio" asp-for="fSex" checked value="M">
-                        <label class="form-check-label" for="FSexM">男</label>
+        <form asp-action="Create_F">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            @*照片*@
+                <div class="form-group col">
+                    <label asp-for="fphoto" class="control-label">照片</label>
+                    <input type="file" asp-for="fphoto" class="form-control" />
+            <span asp-validation-for="fphoto"></span>
+                </div>
+                <hr />
+                <div class="row">
+                    <div class="form-group col">
+                            <label asp-for="fName" class="control-label">姓名</label>
+                            <input asp-for="fName" class="form-control" />
+                           <span asp-validation-for="fName"></span>
+                     </div>
+                    <div class="form-group col-3">
+                            <label asp-for="fCheckin" class="control-label">收案日期</label>
+                            <input  type="date" asp-for="fCheckin" class="form-control" />
+                            <span asp-validation-for="fCheckin"></span>
                     </div>
-                    <div class="form-check form-check-inline pt-2">
+                    <div class="form-group col-3">
+                        <label asp-for="fBirthday" class="control-label">生日</label>
+                        <input  onchange="ageCalculate();" type="date" max="@DateTime.Today" asp-for="fBirthday" class="form-control" />
+                        <span asp-validation-for="fBirthday" class="text-danger"></span>
+                    </div>
+                @*    年齡顯示而已，不用進資料庫*@
+                    <fieldset disabled class="form-group col-3 disabled">
+                        <label  class="control-label">年齡:</label>
+                        <input  id="age" class="form-control " />
+                        <span  class="text-danger"></span>
+                    </fieldset>
+                </div>
+                @*身分證、居住到期日、電話、性別*@
+                <div class="row">
+                    <div class="form-group col-3">
+                        <label asp-for="fIdnum" class="control-label">身分證字號</label>
+                        <input asp-for="fIdnum" class="form-control" />
+                        <span asp-validation-for="fIdnum"></span>
+                    </div>
+                    <div class="form-group col-3">
+                        <label asp-for="fExpireDate" class="control-label">展延到期日(當前到期日為入住日+1y-1d)</label>
+                <input type="date" asp-for="fExpireDate" class="form-control" />
+                        <span asp-validation-for="fExpireDate"></span>
+                    </div>
+                    <div class="form-group col-3">
+                        <label asp-for="fPhone" class="control-label">電話</label>
+                     <input asp-for="fPhone" class="form-control" />
+                <span asp-validation-for="fPhone"></span>
+                    </div>
+                    <div class="form-group   col-3">
+                        <label asp-for="fSex" class="control-label">性別</label>
+                        <div>
+                            <div class="form-check form-check-inline pt-2 ">
+                                <!-- 這個inline就可以水平排列 -->
+                        <input id="FSexM" class="form-check-input" type="radio" asp-for="fSex" checked value="M">
+                                <label class="form-check-label" for="FSexM">男</label>
+                            </div>
+                            <div class="form-check form-check-inline pt-2">
                         <input id="FSexF" class="form-check-input" type="radio" asp-for="fSex" value="F">
-                        <label class="form-check-label" for="FSexF">女</label>
+                                <label class="form-check-label" for="FSexF">女</label>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        @*              教育、婚姻、戶籍、戶籍地址
-        .5排，現居地址*@
+@*              教育、婚姻、戶籍、戶籍地址
+                    .5排，現居地址*@
         <div class="row">
             <div class="col-2">
                 <div class="form-group   col-8">
@@ -116,7 +118,7 @@
                         <label class="form-check-label" for="FEdu">不識字</label>
                     </div>
                     <div class="form-check form-check-inline pt-2">
-                        <label class="form-check-label">
+                        <label class="form-check-label" >
                             識字
                             <input class="form-check-input" type="radio" asp-for="fEdu" value="識字">
                         </label>
@@ -124,14 +126,12 @@
                     <div class="form-check form-check-inline pt-2 ">
                         <label class="form-check-label">
                             <input class="form-check-input" type="radio" asp-for="fEdu" value="國小">
-                            國小
-                        </label>
+                            國小</label>
                     </div>
                     <div class="form-check form-check-inline pt-2">
-                        <label class="form-check-label">
+                        <label class="form-check-label" >
                             <input class="form-check-input" type="radio" asp-for="fEdu" value="國中">
-                            國中
-                        </label>
+                            國中</label>
                     </div>
                     <div class="form-check form-check-inline pt-2 ">
                         <label class="form-check-label">
@@ -154,8 +154,7 @@
                     <div class="form-check form-check-inline pt-2 ">
                         <label class="form-check-label">
                             <input class="form-check-input" type="radio" asp-for="fMarried" checked value="未婚">
-                            未婚
-                        </label>
+                            未婚</label>
                     </div>
                     <div class="form-check form-check-inline pt-2">
                         <label class="form-check-label">
@@ -216,7 +215,7 @@
                 <label asp-for="emerCaller1.FPhone" class="control-label">手機或家用電話</label>
                 <input asp-for="emerCaller1.FPhone" class="form-control" />
                 <span asp-validation-for="emerCaller1.FPhone"></span>
-            </div>
+            </div>            
         </div>
         <div class="row">
             <label>緊急聯絡人二</label>
@@ -237,16 +236,16 @@
             </div>
         </div>
         <hr />
-        <div>
-            @*疾病搜尋和新增(ICD10編碼)*@
-            <div class="row">
+        <div >
+        @*疾病搜尋和新增(ICD10編碼)*@
+            <div  class="row">
                 <input type="button" id="btn_dis" onclick="adddis()" value="測試用" />
                 <label>疾病資料(1.在輸入框填入ICD10疾病編碼或名稱 2.選擇最符合的疾病 3.若無結果，可點擊下方新增)</label>
                 <div class="form-group col-4">
                     <input style="margin-right:1em" class="form-control " id="disease" />
                 </div>
                 <div class="form-group col-8">
-                    <select class=" form-select " id="diseaselist"></select>
+                     <select class=" form-select " id="diseaselist"></select>
                 </div>
                 @*div_disease用來裝動態生成的疾病資料*@
                 <div id="div_disease"></div>
@@ -265,8 +264,7 @@
                 <label asp-for="fIDY" class="control-label">身分別</label>
                 <div>
                     <div class="form-check form-check-inline pt-2 ">
-                        <label class="form-check-label">
-                            健保
+                        <label class="form-check-label">健保
                             <input id="FSexM" class="form-check-input" type="checkbox" asp-for="fIDY" value="健保">
                         </label>
                     </div>
@@ -275,19 +273,18 @@
                             福保
                             <input id="FSexM" class="form-check-input" type="checkbox" asp-for="fIDY" value="福保">
                         </label>
-                    </div>
+                    </div>                  
                     <div class="form-check form-check-inline pt-2 ">
                         <label class="form-check-label">
                             低收入戶
                             <input id="FSexM" class="form-check-input" type="checkbox" asp-for="fIDY" value="低收入戶">
                         </label>
-                    </div>
+                    </div>                    
                     <div class="form-check form-check-inline pt-2 ">
-                        <label class="form-check-label">
-                            重大傷病卡
+                        <label class="form-check-label">重大傷病卡
                             <input id="FSexM" class="form-check-input" type="checkbox" asp-for="fIDY" value="健保">
                         </label>
-                    </div>
+                    </div>                    
                     <div class="form-check form-check-inline pt-2 ">
                         <label class="form-check-label">
                             身障手冊/身心障礙證明
@@ -319,84 +316,85 @@
             <hr />
 
         </div>
-        <div class="form-group">
-            <input id="submit" type="submit" value="送出" class="btn btn-primary" />
-        </div>
-    </form>
-</div>
+            <div class="form-group">
+                <input id="submit" type="submit" value="送出" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
 <div>
     <a asp-action="Index">Back to List</a>
 </div>
+@section Scripts{
 <script>
-    $(document).ready(function () {
+    $(document).ready(function(){
         //計算生日
         $("input[name='FBirthday']").change(ageCalculate());
         //輸入疾病名稱或編號時，使用ajax檢索病名並放去disease
         $("#disease").change(function () {
             $("#diseaselist").empty();
             $("#diseaselist").append("<option value=''>查詢中，請稍後</option>");
-            var diseaseName = $("#disease").val();
+        var diseaseName = $("#disease").val();
             console.log(diseaseName);
-            $.ajax({
-                type: "Post",
-                url: "../Patients/Create_F?disease=" + diseaseName,
-                data: '{}',
-                contentType: "application/json; charset=utf-8",
-                dataType: "json",
-                async: true,
-                success: function (data) {
+        $.ajax( {
+            type: "Post",
+            url: "../Patients/Create_F?disease=" + diseaseName,
+            data: '{}',
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            async: true,
+            success: function (data) {
                     $("#diseaselist").empty();
-                    if (data == "") {
+                if (data == "") {
                         $("#diseaselist").append("<option value=''>查無結果</option>");
-                    }
-                    else {
-                        var jo = JSON.parse(data);
+                }
+                else {
+                    var jo = JSON.parse(data);
                         $("#diseaselist").append("<option value=''>請選擇</option>");
-                        for (i = 0; i < jo.length; i++) {
-                            $("#diseaselist").append("<option value='" + jo[i].ID_Disease + '|' + jo[i].DiseaseChineseName + "'>" + jo[i].ID_Disease + jo[i].DiseaseChineseName + "</option>");
-                        }
+                    for (i = 0; i < jo.length; i++) {
+                            $("#diseaselist").append("<option value='" + jo[i].ID_Disease +'|'+ jo[i].DiseaseChineseName+"'>" + jo[i].ID_Disease + jo[i].DiseaseChineseName + "</option>");
                     }
-                },
-                failure: function (errMsg) {
+                }
+            },
+            failure: function (errMsg) {
                     $("#diseaselist").empty();
                     $("#diseaselist").append("<option value=''>查詢過程發生錯誤</option>");
-                }
-            })
-            $("option").select(function () { console.log($(this).val()) });
-            $("#btn_dis").click(function () {
+            }
+        })
+        $("option").select(function(){console.log($(this).val())});
+        $("#btn_dis").click(function(){
                 $("#diseaselist").append("<option value=F1病名1''>F1病名1</option>")
                 $("#diseaselist").append("<option value=F2病名2''>F2病名2</option>")
-            })
+        })
 
-            //使用ajax傳送疾病資料到c#，在c#的Action接收後轉換成list，最後送出時再添加到vm中
-            $("#submit").submit(function (event) {
-                event.preventDefault();
+        //使用ajax傳送疾病資料到c#，在c#的Action接收後轉換成list，最後送出時再添加到vm中
+        $("#submit").submit(function(event){
+             event.preventDefault();
 
-                for (var i = 1; i < count_disease; i++) {
+            for(var i=1;i<count_disease;i++){
                     var id = $(`#diseaseId${i}`).val();
                     var name = $(`#diseaseName${i}`).val();
                     var data = `{
-                                                "VMDisease: {
-                                                    "DiseaseChineseName":${id},
-                                                   "ID_Disease":${name}
-                                               }
-                                            } `
+                                            "VMDisease: {
+                                                "DiseaseChineseName":${id},
+                                               "ID_Disease":${name}
+                                           }
+                                        } `
                     $.ajax({
-                        type: "Post",
-                        url: "../Patients/Create_F/" + id + "?name=" + name,
-                        data: '{}',
-                        contentType: "application/json; charset=utf-8",
-                        dataType: "json",
-                        async: true,
-                        success: function (response) {
+                            type: "Post",
+                        url: "../Patients/Create_F/"+id + "?name=" + name,
+                            data: `{${data}}`,
+                            contentType: "application/json; charset=utf-8",
+                            dataType: "json",
+                            async: true,
+                            success: function (response) {
                             // 傳送成功的處理
                         }
                     });
-                }
+            }   
 
-            })
-        });
-        //選取疾病清單時，動態生成疾病表單
+        })
+    });
+        //選取疾病清單時，動態生成疾病表單        
         $("select").change(function diseaseList_change() {
             count_disease++;
             var div = document.getElementById("div_disease");
@@ -404,7 +402,7 @@
             var position = detail.indexOf("|");
             var id = detail.substring(0, position);
             var name = detail.substring(position + 1);
-
+            
 
 
             //表單生成
@@ -423,8 +421,8 @@
         //$("input[name='FName']").change(function(){
         //    console.log($(this).val());
         //});
-    })
-    function adddis() {
+})
+    function adddis(){
         console.log("新增")
         $("#diseaselist").append("<option value='F1|病名1'>F1病名1</option>")
         $("#diseaselist").append("<option value='F2|病名2'>F2病名2</option>")
@@ -432,20 +430,17 @@
     function ageCalculate() {
         let today = new Date();
         let birthYear = new Date($("#FBirthday").val()).getFullYear();
-        if (today.getFullYear() < birthYear) {
+        if(today.getFullYear() < birthYear){
             $("#age").val(0);
             return;
         }
         $("#age").val(today.getFullYear() - birthYear);
     }
     var count_disease = 0;
-
+    
     function disease_delete() {
         let i = event.target.id;
         $(`#disdiv${i}`).remove();
     }
-
-
-
 </script>
-
+}
