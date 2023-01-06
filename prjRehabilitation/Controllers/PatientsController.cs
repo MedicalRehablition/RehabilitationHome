@@ -19,15 +19,22 @@ namespace prjRehabilitation.Controllers
         {
             _environment = environment;
         }
-        public IActionResult List(VMPatientInfoDetail vm)
+        public IActionResult List(VMPatientList vm)
         {
             dbClassContext db = new dbClassContext();
             IEnumerable<PatientInfo> data = db.PatientInfos.Take(100);
+            //if (Keyword == null)
+            //{
+            //    data = from p in db.PatientInfos
+            //           select p;
+            //}
+            //else
+            //data = db.PatientInfos.Where(c => c.FName.Contains(Keyword)).ToList();
             List<VMPatientList> List = new List<VMPatientList>();
             foreach (var c in data.ToList())
             {
                 VMPatientList p = new VMPatientList();
-                p.fid = c.Fid;
+                p.fid = (int)c.Fid;
                 p.fName = c.FName;
                 p.fPhone = c.FPhone;
                 p.fidnum = c.FIdnum;
@@ -58,13 +65,33 @@ namespace prjRehabilitation.Controllers
         public IActionResult Edit(int? id)
         {
             dbClassContext db = new dbClassContext();
-            PatientInfo patient = db.PatientInfos.FirstOrDefault(c => c.Fid == id);
-            CPatientsViewModel vm = new CPatientsViewModel();
-            vm.Patient = patient;
-            return View(vm);
+            //抓住民
+            var data = new VMPatientInfoDetail();
+            var p = db.PatientInfos.FirstOrDefault(x => x.Fid == id);
+            if (p == null) return RedirectToAction("List");
+            //抓住民疾病
+            data._patientInfo = p;
+            var d = db.DiseaseDiagnoses.Where(x => x.IdPatientDisease == p.Fid).Take(5).ToList();
+            foreach (var c in d)
+            {
+                data.DiseaseList.Add(new VMDisease
+                {
+                    DiseaseChineseName = c.DiseaseChineseName,
+                    ID_Disease = c.IdDisease
+                });
+            }
+            //抓緊急聯絡人
+            var ecaller = db.EmergenceCallers.Where(x => x.FPatientId == p.Fid).Take(2);
+            if (ecaller != null) {
+                //data.emerCaller1 = ecaller.Take(1).First();
+            }
+            
+            //data.emerCaller2 = ecaller.TakeLast(1).First();
+
+            return View(data);
         }
         [HttpPost]
-        public IActionResult Edit(CPatientsViewModel vm)
+        public IActionResult Edit(VMPatientInfoDetail vm)
         {
             dbClassContext db = new dbClassContext();
 

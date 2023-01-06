@@ -254,6 +254,7 @@
                 <div id="div_disease">
                     @{
                         int count = 1;
+                        if (Model.DiseaseList == null) return;
                         foreach (var d in Model.DiseaseList)
                         {
                             string name = "disease" + count;
@@ -426,25 +427,24 @@
                 })
             });
             //填入疾病資料
-            function addDisease() {
-                var dis = @Model.disease1;
-                var html = "";
-                for (let i = 1; i <= 5; i++{
-                    if (dis != null) {
-                        html += `<div id='disdiv${count_disease}'' class='row' style='background-color:antiquewhite'>
-                                                                     <div class='col-3'><label class='col-form-label'>編號</label><input id='disease${count_disease}.ID_Disease'  name='disease${count_disease}.ID_Disease' class='form-control'  value="${id} " />
-                                                                     </div>
-                                                                         <div class='col-6'><label class='col-form-label'>疾病中文名稱</label><input  name='disease${count_disease}.DiseaseChineseName'  id='disease${count_disease}.DiseaseChineseName'  class='form-control' value="${name}"/>
-                                                                         </div>
-                                                                        <div class='col'><br /><button class='btn-danger'>往上</button>
-                                                                            <input type="button" class='btn-danger' id='${count_disease}' onclick='disease_delete()' value="刪除">
-                                                                            <button class='btn-danger'> 往下</button>
-                                                                        </div>
-                                                                </div>`;
-                    }
-                }
-                $("#div_dis").append(html);
-            }
+            //function addDisease() {
+            //    var html = "";
+            //    for (let i = 1; i <= 5; i++{
+            //        if (dis != null) {
+            //            html += `<div id='disdiv${count_disease}'' class='row' style='background-color:antiquewhite'>
+            //                                                         <div class='col-3'><label class='col-form-label'>編號</label><input id='disease${count_disease}.ID_Disease'  name='disease${count_disease}.ID_Disease' class='form-control'  value="${id} " />
+            //                                                         </div>
+            //                                                             <div class='col-6'><label class='col-form-label'>疾病中文名稱</label><input  name='disease${count_disease}.DiseaseChineseName'  id='disease${count_disease}.DiseaseChineseName'  class='form-control' value="${name}"/>
+            //                                                             </div>
+            //                                                            <div class='col'><br /><button class='btn-danger'>往上</button>
+            //                                                                <input type="button" class='btn-danger' id='${count_disease}' onclick='disease_delete()' value="刪除">
+            //                                                                <button class='btn-danger'> 往下</button>
+            //                                                            </div>
+            //                                                    </div>`;
+            //        }
+            //    }
+            //    $("#div_dis").append(html);
+            //}
 
             //選取疾病清單時，動態生成疾病表單
             $("select").change(function diseaseList_change() {
