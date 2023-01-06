@@ -23,17 +23,11 @@ namespace prjRehabilitation.Controllers
         {
             dbClassContext db = new dbClassContext();
             IEnumerable<PatientInfo> data = db.PatientInfos.Take(100);
-            //if (Keyword == null)
-            //{
-            //    data = from p in db.PatientInfos
-            //           select p;
-            //}
-            //else
-            //data = db.PatientInfos.Where(c => c.FName.Contains(Keyword)).ToList();
             List<VMPatientList> List = new List<VMPatientList>();
             foreach (var c in data.ToList())
             {
                 VMPatientList p = new VMPatientList();
+                p.fid = c.Fid;
                 p.fName = c.FName;
                 p.fPhone = c.FPhone;
                 p.fidnum = c.FIdnum;

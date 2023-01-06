@@ -251,7 +251,32 @@
                     <select class=" form-select " id="diseaselist"></select>
                 </div>
                 @*div_disease用來裝動態生成的疾病資料*@
-                <div id="div_disease"></div>
+                <div id="div_disease">
+                    @{
+                        int count = 1;
+                        foreach (var d in Model.DiseaseList)
+                        {
+                            string name = "disease" + count;
+                            string div = "dis_dis" + count;
+                            string disid = d.ID_Disease;
+                            string disname = d.DiseaseChineseName;
+                            <div id='@div' class='row' style='background-color:antiquewhite'>
+                                <div class='col-3'>
+                                    <label class='col-form-label'>編號</label><input asp-for="@name" class='form-control' value='@disname' />
+                                </div>
+                                <div class='col-6'>
+                                    <label class='col-form-label'>疾病中文名稱</label><input asp-for="@name" class='form-control' value="@d.DiseaseChineseName" />
+                                </div>
+                                <div class='col'>
+                                    <br /><button class='btn-danger'>往上</button>
+                                    <input type="button" class='btn-danger' id='${count_disease}' onclick='disease_delete()' value="刪除">
+                                    <button class='btn-danger'> 往下</button>
+                                </div>
+                            </div>
+                            count++;
+                        }
+                    }
+                </div>
             </div>
 
         </div>
@@ -380,11 +405,11 @@
                         var id = $(`#diseaseId${i}`).val();
                         var name = $(`#diseaseName${i}`).val();
                         var data = `{
-                                                    "VMDisease: {
-                                                        "DiseaseChineseName":${id},
-                                                       "ID_Disease":${name}
-                                                   }
-                                                } `
+                                                                    "VMDisease: {
+                                                                        "DiseaseChineseName":${id},
+                                                                       "ID_Disease":${name}
+                                                                   }
+                                                                } `
                         $.ajax({
                             type: "Post",
                             url: "../Patients/Create_F/" + id + "?name=" + name,
@@ -401,26 +426,26 @@
                 })
             });
             //填入疾病資料
-            function addDisease(){
+            function addDisease() {
                 var dis = @Model.disease1;
                 var html = "";
-                for(let i=1;i<=5;i++{
-                    if(dis!=null){
-                          html += `<div id='disdiv${count_disease}'' class='row' style='background-color:antiquewhite'>
-                                                     <div class='col-3'><label class='col-form-label'>編號</label><input id='disease${count_disease}.ID_Disease'  name='disease${count_disease}.ID_Disease' class='form-control'  value="${id} " />
-                                                     </div>
-                                                         <div class='col-6'><label class='col-form-label'>疾病中文名稱</label><input  name='disease${count_disease}.DiseaseChineseName'  id='disease${count_disease}.DiseaseChineseName'  class='form-control' value="${name}"/>
-                                                         </div>
-                                                        <div class='col'><br /><button class='btn-danger'>往上</button>
-                                                            <input type="button" class='btn-danger' id='${count_disease}' onclick='disease_delete()' value="刪除">
-                                                            <button class='btn-danger'> 往下</button>
-                                                        </div>
-                                                </div>`;
-                      }
+                for (let i = 1; i <= 5; i++{
+                    if (dis != null) {
+                        html += `<div id='disdiv${count_disease}'' class='row' style='background-color:antiquewhite'>
+                                                                     <div class='col-3'><label class='col-form-label'>編號</label><input id='disease${count_disease}.ID_Disease'  name='disease${count_disease}.ID_Disease' class='form-control'  value="${id} " />
+                                                                     </div>
+                                                                         <div class='col-6'><label class='col-form-label'>疾病中文名稱</label><input  name='disease${count_disease}.DiseaseChineseName'  id='disease${count_disease}.DiseaseChineseName'  class='form-control' value="${name}"/>
+                                                                         </div>
+                                                                        <div class='col'><br /><button class='btn-danger'>往上</button>
+                                                                            <input type="button" class='btn-danger' id='${count_disease}' onclick='disease_delete()' value="刪除">
+                                                                            <button class='btn-danger'> 往下</button>
+                                                                        </div>
+                                                                </div>`;
+                    }
                 }
                 $("#div_dis").append(html);
             }
-            
+
             //選取疾病清單時，動態生成疾病表單
             $("select").change(function diseaseList_change() {
                 count_disease++;
@@ -432,15 +457,15 @@
 
                 //表單生成
                 var html = `<div id='disdiv${count_disease}'' class='row' style='background-color:antiquewhite'>
-                                         <div class='col-3'><label class='col-form-label'>編號</label><input id='disease${count_disease}.ID_Disease'  name='disease${count_disease}.ID_Disease' class='form-control'  value="${id} " />
-                                         </div>
-                                             <div class='col-6'><label class='col-form-label'>疾病中文名稱</label><input  name='disease${count_disease}.DiseaseChineseName'  id='disease${count_disease}.DiseaseChineseName'  class='form-control' value="${name}"/>
-                                             </div>
-                                            <div class='col'><br /><button class='btn-danger'>往上</button>
-                                                <input type="button" class='btn-danger' id='${count_disease}' onclick='disease_delete()' value="刪除">
-                                                <button class='btn-danger'> 往下</button> 
-                                            </div> 
-                                    </div>`;
+                                                         <div class='col-3'><label class='col-form-label'>編號</label><input id='disease${count_disease}.ID_Disease'  name='disease${count_disease}.ID_Disease' class='form-control'  value="${id} " />
+                                                         </div>
+                                                             <div class='col-6'><label class='col-form-label'>疾病中文名稱</label><input  name='disease${count_disease}.DiseaseChineseName'  id='disease${count_disease}.DiseaseChineseName'  class='form-control' value="${name}"/>
+                                                             </div>
+                                                            <div class='col'><br /><button class='btn-danger'>往上</button>
+                                                                <input type="button" class='btn-danger' id='${count_disease}' onclick='disease_delete()' value="刪除">
+                                                                <button class='btn-danger'> 往下</button>
+                                                            </div>
+                                                    </div>`;
                 div.innerHTML += html;
 
 
