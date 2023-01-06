@@ -73,25 +73,7 @@ namespace prjRehabilitation.Controllers
         public IActionResult Edit(CPatientsViewModel vm)
         {
             dbClassContext db = new dbClassContext();
-            PatientInfo patient = db.PatientInfos.FirstOrDefault(c => c.Fid == vm.Fid);
-            if (patient != null)
-            {
-                //if(vm.photo!= null)
-                //{
-                //    string photoName = Guid.NewGuid().ToString() + ".jpg";
-                //    string path = _environment.WebRootPath + "/images/" + photoName;
-                //    patient.FPicture = photoName;
-                //    vm.photo.CopyTo(new FileStream(path,FileMode.Create));
-                //}
-                //patient.Fid = vm.Fid;
-                //patient.FHos = vm.FHos;
-                //patient.FBednum=vm.FBednum;
-                //patient.FIdnum = vm.FIdnum;
-                //patient.FName= vm.FName;
-                //patient.FSex = vm.FSex;
-                //patient.FPhone= vm.FPhone;
-                //db.SaveChanges();
-            }
+
             return RedirectToAction("List");
         }
         public IActionResult Create_F(string disease)
