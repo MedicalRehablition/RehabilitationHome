@@ -43,10 +43,34 @@ namespace prjRehabilitation.Controllers
                 {
                     string json = JsonSerializer.Serialize(admin);
                     HttpContext.Session.SetString(CDictionary.SK_Login_User, json);
-                    return RedirectToAction("Index");
+                    return RedirectToAction("List");
                 }
             }
+            else if (admin == null)
+            {
+                
+            }
             return View();
+        }
+        public IActionResult ExistAccount(CLoginViewModel vm)
+        {
+            dbClassContext db = new dbClassContext();
+            Admin admin = db.Admins.FirstOrDefault(t => t.FEmail.Equals(vm.txtAccount) && t.FPassword.Equals(vm.txtPassword));
+
+            if (vm.txtAccount!=null&&vm.txtPassword!=null)
+            {
+                if (admin.FEmail != vm.txtAccount)
+                {
+                    if (admin.FPassword != vm.txtPassword)
+                    {
+                        return Content("1");
+                    }
+                    return Content("2");   
+                }
+                return Content("3");
+ 
+            }
+            return Content("0");
         }
         public IActionResult Register()
         {
