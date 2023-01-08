@@ -5,6 +5,7 @@
 /.vs/New folder/v17
 /.vs/ProjectEvaluation
 /.vs/slnRehabilitation/FileContentIndex
+<<<<<<< HEAD
 .vs/slnRehabilitation/DesignTimeBuild/.dtbcache.v2
 .vs/slnRehabilitation/v17/.futdcache.v2
 .vs/slnRehabilitation/v17/.suo
@@ -17,3 +18,7 @@
 /prjRehabilitation/obj/prjRehabilitation.csproj.nuget.g.props
 /prjRehabilitation/obj/project.assets.json
 /prjRehabilitation/obj/project.nuget.cache
+=======
+/.vs/RehabilitationHome/v17
+/.vs
+>>>>>>> origin/gimmywu-patch-1
