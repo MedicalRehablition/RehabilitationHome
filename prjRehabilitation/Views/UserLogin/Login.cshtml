@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "Index";
 }
 
@@ -8,16 +7,16 @@
     <!-- Email input -->
     <div class="form-group mb-4">
         <label class="form-label" for="form2Example1">Email address</label>
-        <input type="email" id="txtAccount" class="form-control" placeholder="Enter email" name="txtAccount" value="a"/>
-        <div id="div1">帳號錯誤</div>
+        <input type="email" id="txtAccount" class="form-control" placeholder="Enter email" name="txtAccount"/>
+        <div id="div1"></div>
     </div>
 
     <!-- Password input -->
     <div class="form-outline mb-4">
         <label class="form-label" for="form2Example2">Password</label>
         <input type="password" id="txtPassword" class="form-control" placeholder="Enter Password" name="txtPassword" />
-    <div id="div2">密碼錯誤</div>
-</div>
+        <div id="div2"></div>
+    </div>
     <!-- 2 column grid layout for inline styling -->
     <div class="row mb-4">
         <div class="col d-flex justify-content-center">
@@ -60,20 +59,37 @@
 </form>
 @section Scripts{
     <script>
-        let logbtn=document.querySelector("#logbtn");
-        let Account = document.querySelector("#txtAccount").value;
+        let logbtn = document.querySelector("#logbtn");
+        let Account = document.querySelector("#txtAccount");
         console.log(Account);
-        let Password = document.querySelector("#txtPassword").value;
-        //logbtn.addEventListener("click",function(){
-        //    let xhr =new XMLHttpRequest();
-        //    xhr.addEventListener("load",function(){
+        let Password = document.querySelector("#txtPassword");
+        const div1 = document.getElementById('div1');
+        const span = document.createElement('span');
+        span.innerText = '請不要空白';
+        span.style.color = 'red';
+        span.style.display = 'none';
+        txtAccount.addEventListener('blur', () => {
+            if (txtAccount.value === '') {
+                // 如果文字方塊內容為空，顯示提示信息
+                span.style.display = 'inline';
+                div1.appendChild(span);
+            } else {
+                // 否則隱藏提示信息
+                span.style.display = 'none';
+            }
+        });
 
-        //    })
 
-        //    xhr.open("GET","@Url.Action("UserLogin","ExistAccount")?;
-        //    xhr.send();
+                //logbtn.addEventListener("click",function(){
+                //    let xhr =new XMLHttpRequest();
+                //    xhr.addEventListener("load",function(){
 
-            
-        //})
+                //    })
+
+                //    xhr.open("GET","@Url.Action("UserLogin","ExistAccount")?;
+                //    xhr.send();
+
+
+                //})
     </script>
 }
