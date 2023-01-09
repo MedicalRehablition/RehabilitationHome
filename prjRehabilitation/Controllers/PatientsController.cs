@@ -99,7 +99,8 @@ namespace prjRehabilitation.Controllers
         }
         public IActionResult Create_F(string disease)
         {
-            return View();
+            var vm = new VMPatientInfoDetail();
+            return View(vm);
         }
         [HttpPost]
         public IActionResult Create_F(VMPatientInfoDetail vm, string disease, string id, string name)
