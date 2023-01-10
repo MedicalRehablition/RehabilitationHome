@@ -8,6 +8,11 @@ namespace prjRehabilitation.Controllers
 {
     public class UserLoginController : Controller
     {
+        private IWebHostEnvironment _environment;
+        public UserLoginController(IWebHostEnvironment environment)
+        {
+            _environment = environment;
+        }
         public IActionResult List(CKeywordViewModel vm)
         {
             dbClassContext db = new dbClassContext();
