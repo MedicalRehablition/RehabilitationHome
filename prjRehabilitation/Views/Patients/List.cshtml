@@ -3,15 +3,19 @@
 @{
     ViewData["Title"] = "List";
 }
-
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 <h1>List</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create_F">新增住民</a>
+    
 </p>
 <table class="table">
     <thead>
         <tr>
+            <th>
+                fid
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.fName)
             </th>
@@ -27,6 +31,9 @@
     <tbody>
 @foreach (var item in Model) {
         <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fid)
+                </td>
             <td>
                 @Html.DisplayFor(modelItem => item.fName)
             </td>
@@ -39,7 +46,7 @@
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id=item.fid }) |
                 @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                    @Html.ActionLink("Delete", "Delete", new { id=item.fid },new {onclick = "return confirm('是否刪除?')"})
             </td>
         </tr>
 }

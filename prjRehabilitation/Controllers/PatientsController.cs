@@ -19,17 +19,20 @@ namespace prjRehabilitation.Controllers
         {
             _environment = environment;
         }
+        public IActionResult fetchDis(int id)
+        {
+            dbClassContext db = new dbClassContext();
+            return Json(db.DiseaseDiagnoses.Where(x => x.Fid == id));
+        }
+        public IActionResult Delete(int id)
+        {
+            (new PatientInfoCRUD()).c_Delete(id);
+            return RedirectToAction("List");
+        }
         public IActionResult List(VMPatientList vm)
         {
             dbClassContext db = new dbClassContext();
-            IEnumerable<PatientInfo> data = db.PatientInfos.Take(100);
-            //if (Keyword == null)
-            //{
-            //    data = from p in db.PatientInfos
-            //           select p;
-            //}
-            //else
-            //data = db.PatientInfos.Where(c => c.FName.Contains(Keyword)).ToList();
+            IEnumerable<PatientInfo> data = db.PatientInfos.Where(x => x.Status != false).Take(100);
             List<VMPatientList> List = new List<VMPatientList>();
             foreach (var c in data.ToList())
             {
@@ -46,20 +49,29 @@ namespace prjRehabilitation.Controllers
         {
             return View();
         }
+
         [HttpPost]
-        public IActionResult Create(CPatientsViewModel vm)
+        public IActionResult Edit(VMPatientInfoDetail vm, string? disease)
         {
-            dbClassContext db = new dbClassContext();
-            db.PatientInfos.Add(vm.Patient);
-            db.SaveChanges();
-            return RedirectToAction("List");
-        }
-        public IActionResult Delete(int? id)
-        {
-            dbClassContext db = new dbClassContext();
-            PatientInfo patient = db.PatientInfos.FirstOrDefault(c => c.Fid == id);
-            db.PatientInfos.Remove(patient);
-            db.SaveChanges();
+            if (!string.IsNullOrEmpty(disease))
+            {
+                string json = JsonSerializer.Serialize((new DiseaseCRUD()).search(disease));
+                return Json(json);
+            }
+            vm.fIDY = "";
+            if (vm.fidy_健保 == true) vm.fIDY += "健保";
+            if (vm.fidy_福保 == true) vm.fIDY += "福保";
+            if (vm.fidy_身心障礙 == true) vm.fIDY += "身障";
+            if (vm.fidy_重大傷病 == true) vm.fIDY += "重大";
+            if (vm.fidy_低收 == true) vm.fIDY += "低收";
+
+
+            //同上，這邊是有無補助
+
+            if (vm.fGrant_無 == "111") vm.fGrant += vm.fGrantType;
+
+
+            string result = (new PatientInfoCRUD()).c_edit(vm);
             return RedirectToAction("List");
         }
         public IActionResult Edit(int? id)
@@ -69,34 +81,44 @@ namespace prjRehabilitation.Controllers
             var data = new VMPatientInfoDetail();
             var p = db.PatientInfos.FirstOrDefault(x => x.Fid == id);
             if (p == null) return RedirectToAction("List");
-            //抓住民疾病
             data._patientInfo = p;
-            var d = db.DiseaseDiagnoses.Where(x => x.IdPatientDisease == p.Fid).Take(5).ToList();
-            foreach (var c in d)
+            //將資料庫的單一資料欄繫結到checkbox
+            if (data.fIDY != null)
             {
-                data.DiseaseList.Add(new VMDisease
-                {
-                    DiseaseChineseName = c.DiseaseChineseName,
-                    ID_Disease = c.IdDisease
-                });
+                if (p.FIdy.Contains("健保")) data.fidy_健保 = true;
+                if (p.FIdy.Contains("福保")) data.fidy_福保 = true;
+                if (p.FIdy.Contains("重大")) data.fidy_重大傷病 = true;
+                if (p.FIdy.Contains("身障")) data.fidy_身心障礙 = true;
+                if (p.FIdy.Contains("低收")) data.fidy_低收 = true;
             }
-            //抓緊急聯絡人
-            var ecaller = db.EmergenceCallers.Where(x => x.FPatientId == p.Fid).Take(2);
-            if (ecaller != null) {
-                //data.emerCaller1 = ecaller.Take(1).First();
-            }
-            
-            //data.emerCaller2 = ecaller.TakeLast(1).First();
 
+            //同上，這邊是有無補助
+            if (data.fGrant != null)
+            {
+                if (data.fGrant.Contains("000")) data.fGrant_無 = "000";
+                else
+                {
+                    data.fGrant_無 = "111";
+                    data.fGrantType = p.FGrant;
+                }
+            }
+            //住民疾病另外抓，這邊不用
+            //抓緊急聯絡人
+            var ecaller = db.EmergenceCallers.Where(x => x.FPatientId == p.Fid);
+            int count = 1;
+            foreach (var c in ecaller)
+            {
+                if (count > 2 || c == null) break;
+                if (count == 1)
+                    data.emerCaller1 = c;
+                else
+                    data.emerCaller2 = c;
+                count++;
+            }
             return View(data);
         }
-        [HttpPost]
-        public IActionResult Edit(VMPatientInfoDetail vm)
-        {
-            dbClassContext db = new dbClassContext();
 
-            return RedirectToAction("List");
-        }
+
         public IActionResult Create_F(string disease)
         {
             var vm = new VMPatientInfoDetail();
@@ -112,20 +134,15 @@ namespace prjRehabilitation.Controllers
                 return Json(json);
             }
         part2:
-            if (!string.IsNullOrEmpty(disease))
-            {
-                list.Add(new VMDisease
-                {
-                    DiseaseChineseName = name,
-                    ID_Disease = id
-                });
-                return Json("");
-            }
+            if (vm.fidy_健保 == true) vm.fIDY += "健保";
+            if (vm.fidy_福保 == true) vm.fIDY += "福保";
+            if (vm.fidy_身心障礙 == true) vm.fIDY += "身障";
+            if (vm.fidy_重大傷病 == true) vm.fIDY += "重大";
+            if (vm.fidy_低收 == true) vm.fIDY += "低收";
 
-            foreach (var c in list)
-            {
-                vm.DiseaseList.Add(c);
-            }
+            vm.fGrant += vm.fGrantType;
+
+
             var tool = new PatientInfoCRUD();
             //TODO 回傳字串處理
             string message = tool.c_PatientInfo(vm);

@@ -107,9 +107,9 @@ namespace prjRehabilitation.Controllers
                 if (vm.photo != null)
                 {
                     string photoName = Guid.NewGuid().ToString() + ".jpg";
-                    string path = _environment.WebRootPath + "/images/" + photoName;
+                    //string path = _environment.WebRootPath + "/images/" + photoName;
                     product.FPhoto = photoName;
-                    vm.photo.CopyTo(new FileStream(path, FileMode.Create));
+                    //vm.photo.CopyTo(new FileStream(path, FileMode.Create));
                 }
                 product.Fid = vm.Fid;
                 product.FPrice = vm.FPrice;
