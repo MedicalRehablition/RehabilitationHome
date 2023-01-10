@@ -8,6 +8,7 @@ namespace prjRehabilitation.ViewModel.Lin
         public VMPatientInfoDetail()
         {
             _patientInfo= new PatientInfo();
+            DiseaseList = new List<VMDisease>();
         }
         public PatientInfo _patientInfo { get; set; }
         //基本資料
@@ -125,11 +126,17 @@ namespace prjRehabilitation.ViewModel.Lin
             set { _patientInfo.FGrant = value; }
         }
         [DisplayName("補助類型")]
-        public string? fGrantType { get; set; }
-        [DisplayName("識別照")]
 
         public bool status { get; set; }
         public IFormFile fphoto { get; set; }
+
+        public bool fidy_健保 { get; set; }
+        public bool fidy_福保 { get; set; }
+        public bool fidy_重大傷病 { get; set; }
+        public bool fidy_身心障礙 { get; set; }
+        public bool fidy_低收 { get; set; }
+        public string? fGrant_無 { get; set; }
+        public string? fGrantType { get; set; }
 
         //緊急聯絡人
         public EmergenceCaller emerCaller1 { get; set; }
