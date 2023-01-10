@@ -3,7 +3,12 @@
 @{
     ViewData["Title"] = "List";
 }
-
+<style>
+ a{
+        color:blue;
+        font-family: 標楷體;
+ }
+</style>
 <h1>List</h1>
 
 <p>
@@ -67,9 +72,8 @@
                 @Html.DisplayFor(modelItem => item.FBirth)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                @Html.ActionLink("編輯", "Edit", new {  id=item.Fid  }) 
+                @Html.ActionLink("刪除", "Delete", new {  id=item.Fid  })
             </td>
         </tr>
 }

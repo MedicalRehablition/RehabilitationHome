@@ -84,6 +84,36 @@ namespace prjRehabilitation.Controllers
             db.SaveChanges();
             return RedirectToAction("List");
         }
-        
+        public IActionResult Edit(int? id)
+        {
+            dbClassContext db = new dbClassContext();
+            Product product = db.Products.FirstOrDefault(c => c.Fid == id);
+            CProductViewModel vm = new CProductViewModel();
+            vm.Product = product;
+            return View(vm);
+        }
+        [HttpPost]
+        public IActionResult Edit(CProductViewModel vm)
+        {
+            dbClassContext db = new dbClassContext();
+            Product product = db.Products.FirstOrDefault(c => c.Fid == vm.Fid);
+            if (product != null)
+            {
+                if (vm.photo != null)
+                {
+                    string photoName = Guid.NewGuid().ToString() + ".jpg";
+                    string path = _environment.WebRootPath + "/images/" + photoName;
+                    product.FPhoto = photoName;
+                    vm.photo.CopyTo(new FileStream(path, FileMode.Create));
+                }
+                product.Fid = vm.Fid;
+                product.FPrice = vm.FPrice;
+                product.FQty = vm.FQty;
+                product.FName = vm.FName;
+                db.SaveChanges();
+            }
+            return RedirectToAction("List");
+        }
+
     }
 }
