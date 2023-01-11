@@ -46,10 +46,11 @@ namespace prjRehabilitation.Controllers
             var pin = db.PatientInfos.FirstOrDefault(t => t.Fid == id);
             CPatientsViewModel ptname = new CPatientsViewModel();
             ptname.Patient = pin != null ? pin:new PatientInfo() ;
-            ViewBag.name = ptname?.Patient?.FName;           
+            ViewBag.name = ptname?.Patient?.FName;
+            ViewBag.ptid = id;
             return View(list);
         }
-        public ActionResult Create(int id)
+        public ActionResult Create(int? id)
         {
             CConsultationViewModel consult = new CConsultationViewModel();
             consult.PatinetId = id;
@@ -63,7 +64,7 @@ namespace prjRehabilitation.Controllers
             dbClassContext db = new dbClassContext();            
             db.Consultations.Add(vm.Consult);
             db.SaveChanges();
-            return RedirectToAction("DateList");
+            return RedirectToAction("DateList","Consult", new { @id = vm.PatinetId });
         }
         public ActionResult Edit(int? id)
         {
@@ -86,10 +87,22 @@ namespace prjRehabilitation.Controllers
                 consult.Result = vm.Result;
                 db.SaveChanges();
             }
-            return RedirectToAction("DateList", "Consult", new { @id = vm.PatinetId }); ;
+            return RedirectToAction("DateList", "Consult", new { @id = vm.PatinetId }); 
         }
 
-
+        public ActionResult Delete(int? id)
+        {
+            dbClassContext db = new dbClassContext();
+            Consultation con = db.Consultations.FirstOrDefault(t => t.FConsultId == id);
+            int ptid = (int)db.Consultations.FirstOrDefault(t => t.FConsultId == id).PatinetId;
+            if (con != null)
+            {
+                db.Consultations.Remove(con);
+                db.SaveChanges();
+            }
+            return RedirectToAction("DateList","Consult", new { @id = ptid});
+            
+        }
 
             //先將基本先刪修功能完成，10個類型的刪修可以之後在加到CConsultationViewModel裡面
 

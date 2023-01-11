@@ -3,12 +3,13 @@
 @{
     ViewData["Title"] = "DateList";
     var cc = Model.Where(x => x.PatinetId != null).FirstOrDefault(x => x.PatinetId != null)?.PatinetId;
+    var ptid = ViewBag.ptid;
 }
 
 <h1>@ViewBag.name 會談紀錄</h1>
 
 <p>
-    <a href="/Consult/Create/@Model.Where(x => x.PatinetId != null).FirstOrDefault(x => x.PatinetId != null)?.PatinetId">新增會談紀錄</a>
+    <a href="/Consult/Create/@ptid">新增會談紀錄</a>
 </p>
 <table class="table">
     <thead>
@@ -47,7 +48,7 @@
 
                 <td>
                     @Html.ActionLink("編輯", "Edit", new {  id=item.FConsultId}) |
-                    @Html.ActionLink("刪除", "Delete", new {  id=item.FConsultId })
+                        @Html.ActionLink("刪除", "Delete","Consult", new {  id=item.FConsultId },new{onclick = "return confirm('確定要刪除嗎')"})
                 </td>
             </tr>
             }
