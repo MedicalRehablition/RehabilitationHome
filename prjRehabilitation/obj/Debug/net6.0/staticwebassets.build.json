@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "auF/XKD4b1CMbn+7V6+DWEQEc2Mv89nVEIP+68gXMPs=",
+  "Hash": "141bK9cw4k9nDlFzFKu59Vbl2JXCgTy4OhohqWcgf5I=",
   "Source": "prjRehabilitation",
   "BasePath": "_content/prjRehabilitation",
   "Mode": "Default",
@@ -918,6 +918,23 @@
       "OriginalItemSpec": "wwwroot\\fonts\\themify.woff"
     },
     {
+      "Identity": "C:\\Users\\88696\\Documents\\GitHub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\images\\17e090a9-49f0-495b-bb17-316a52476243.jpg",
+      "SourceId": "prjRehabilitation",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\88696\\Documents\\GitHub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\",
+      "BasePath": "_content/prjRehabilitation",
+      "RelativePath": "images/17e090a9-49f0-495b-bb17-316a52476243.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\17e090a9-49f0-495b-bb17-316a52476243.jpg"
+    },
+    {
       "Identity": "C:\\Users\\88696\\Documents\\GitHub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\images\\1f70ab5d-d108-481a-a064-a7a55cc3b3dc.jpg",
       "SourceId": "prjRehabilitation",
       "SourceType": "Discovered",
@@ -933,6 +950,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\1f70ab5d-d108-481a-a064-a7a55cc3b3dc.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\88696\\Documents\\GitHub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\images\\5d8eab7c-fbd8-4468-bb95-097f1f34173b.jpg",
+      "SourceId": "prjRehabilitation",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\88696\\Documents\\GitHub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\",
+      "BasePath": "_content/prjRehabilitation",
+      "RelativePath": "images/5d8eab7c-fbd8-4468-bb95-097f1f34173b.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\5d8eab7c-fbd8-4468-bb95-097f1f34173b.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\88696\\Documents\\GitHub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\images\\6e9d8837-586d-4728-92e8-ea8139d32bb1.jpg",
+      "SourceId": "prjRehabilitation",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\88696\\Documents\\GitHub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\",
+      "BasePath": "_content/prjRehabilitation",
+      "RelativePath": "images/6e9d8837-586d-4728-92e8-ea8139d32bb1.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\6e9d8837-586d-4728-92e8-ea8139d32bb1.jpg"
     },
     {
       "Identity": "C:\\Users\\88696\\Documents\\GitHub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\images\\7d2a3cf1-1cf1-409c-8666-9e2430dedcc4.jpg",
@@ -2701,6 +2752,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\price-range.js"
+    },
+    {
+      "Identity": "C:\\Users\\88696\\Documents\\GitHub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\js\\site.js",
+      "SourceId": "prjRehabilitation",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\88696\\Documents\\GitHub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\",
+      "BasePath": "_content/prjRehabilitation",
+      "RelativePath": "js/site.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\site.js"
     },
     {
       "Identity": "C:\\Users\\88696\\Documents\\GitHub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\js\\slick.min.js",
