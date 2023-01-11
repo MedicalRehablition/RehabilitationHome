@@ -1,10 +1,6 @@
 {
   "Version": 1,
-<<<<<<< HEAD
-  "Hash": "2E4mi165/4dgZG0HK+W7yFtSUBgFlJbDIzsVoGZmL/g=",
-=======
   "Hash": "wcXGuS9O+/wUKZqEhcse4WwnTwL3xFDZnuobYlWno+Q=",
->>>>>>> 619203590e21fdcee9b229a021534b6483edf092
   "Source": "prjRehabilitation",
   "BasePath": "_content/prjRehabilitation",
   "Mode": "Default",
@@ -293,28 +289,7 @@
       "OriginalItemSpec": "wwwroot\\css\\responsive.css"
     },
     {
-<<<<<<< HEAD
-      "Identity": "C:\\Users\\88696\\Documents\\GitHub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\css\\site.css",
-      "SourceId": "prjRehabilitation",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\88696\\Documents\\GitHub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\",
-      "BasePath": "_content/prjRehabilitation",
-      "RelativePath": "css/site.css",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\css\\site.css"
-    },
-    {
-      "Identity": "C:\\Users\\88696\\Documents\\GitHub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\css\\slick.css",
-=======
       "Identity": "C:\\Users\\Student\\Desktop\\Project\\RehabilitationHome\\prjRehabilitation\\wwwroot\\css\\slick.css",
->>>>>>> 619203590e21fdcee9b229a021534b6483edf092
       "SourceId": "prjRehabilitation",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\Student\\Desktop\\Project\\RehabilitationHome\\prjRehabilitation\\wwwroot\\",

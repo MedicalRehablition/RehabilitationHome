@@ -61,15 +61,7 @@
       "PackagePath": "staticwebassets\\css\\responsive.css"
     },
     {
-<<<<<<< HEAD
-      "Id": "C:\\Users\\88696\\Documents\\GitHub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\css\\site.css",
-      "PackagePath": "staticwebassets\\css\\site.css"
-    },
-    {
-      "Id": "C:\\Users\\88696\\Documents\\GitHub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\css\\slick.css",
-=======
       "Id": "C:\\Users\\Student\\Desktop\\Project\\RehabilitationHome\\prjRehabilitation\\wwwroot\\css\\slick.css",
->>>>>>> 619203590e21fdcee9b229a021534b6483edf092
       "PackagePath": "staticwebassets\\css\\slick.css"
     },
     {
