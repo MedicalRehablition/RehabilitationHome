@@ -37,6 +37,11 @@ namespace prjRehabilitation.Controllers
             }
             return View(List);
         }
+        public IActionResult Login()
+        {
+            return View();
+        }
+        [HttpPost]
         public IActionResult Login(CLoginViewModel vm)
         {
             dbClassContext db = new dbClassContext();
@@ -50,10 +55,6 @@ namespace prjRehabilitation.Controllers
                     HttpContext.Session.SetString(CDictionary.SK_Login_User, json);
                     return RedirectToAction("List");
                 }
-            }
-            else if (admin == null)
-            {
-                
             }
             return View();
         }
@@ -92,29 +93,30 @@ namespace prjRehabilitation.Controllers
         public IActionResult Edit(int? id)
         {
             dbClassContext db = new dbClassContext();
-            Product product = db.Products.FirstOrDefault(c => c.Fid == id);
-            CProductViewModel vm = new CProductViewModel();
-            vm.Product = product;
+            Admin ad = db.Admins.FirstOrDefault(c => c.Fid == id);
+            CAdminViewModel vm = new CAdminViewModel();
+            vm.admin = ad;
             return View(vm);
         }
         [HttpPost]
-        public IActionResult Edit(CProductViewModel vm)
+        public IActionResult Edit(CAdminViewModel vm)
         {
             dbClassContext db = new dbClassContext();
-            Product product = db.Products.FirstOrDefault(c => c.Fid == vm.Fid);
-            if (product != null)
+            Admin ad = db.Admins.FirstOrDefault(c => c.Fid == vm.Fid);
+            if (ad != null)
             {
                 if (vm.photo != null)
                 {
-                    string photoName = Guid.NewGuid().ToString() + ".jpg";
+                    //string photoName = Guid.NewGuid().ToString() + ".jpg";
                     //string path = _environment.WebRootPath + "/images/" + photoName;
-                    product.FPhoto = photoName;
+                    //ad.Fphoto = photoName;
                     //vm.photo.CopyTo(new FileStream(path, FileMode.Create));
                 }
-                product.Fid = vm.Fid;
-                product.FPrice = vm.FPrice;
-                product.FQty = vm.FQty;
-                product.FName = vm.FName;
+                ad.Fid = vm.Fid;
+                ad.FRank = vm.FRank;
+                ad.FEmail = vm.FEmail;
+                ad.FName = vm.FName;
+                ad.FPassword= vm.FPassword;
                 db.SaveChanges();
             }
             return RedirectToAction("List");
