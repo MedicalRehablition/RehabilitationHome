@@ -1,13 +1,28 @@
 ﻿@{
     ViewData["Title"] = "Index";
 }
+<style>
+    .text-white {
+        border: none;
+        padding: 18px 18px 18px 19px;
+        text-transform: capitalize;
+        border-radius: 6px;
+        cursor: pointer;
+        color: #fff;
+        display: inline-block;
+        font-size: 16px;
+        background-size: 200%;
+        transition: 0.6s;
+        box-shadow: 0px 7px 21px 0px rgb(0 0 0 / 12%);
+    }
+</style>
 
 <h1>登入系統</h1>
 <form asp-action="Login">
     <!-- Email input -->
     <div class="form-group mb-4">
         <label class="form-label" for="form2Example1">Email address</label>
-        <input type="email" id="txtAccount" class="form-control" placeholder="Enter email" name="txtAccount"/>
+        <input type="email" id="txtAccount" class="form-control" placeholder="Enter email" name="txtAccount" />
         <div id="div1"></div>
     </div>
 
@@ -40,21 +55,24 @@
     <div class="text-center">
         <a asp-action="Register">點我註冊</a>
         <p>or sign up with:</p>
-        <button type="button" class="btn btn-link btn-floating mx-1">
-            <i class="fab fa-facebook-f"></i>
-        </button>
+        <a class=" text-white" style="background-color: #3b5998;" href="#!" role="button">
+            <i class="fab fa-facebook"></i>
+        </a>
 
-        <button type="button" class="btn btn-link btn-floating mx-1">
+        <a class=" text-white" style="background-color: #dd4b39;" href="#!" role="button">
             <i class="fab fa-google"></i>
-        </button>
+        </a>
 
-        <button type="button" class="btn btn-link btn-floating mx-1">
+        <a class=" text-white" style="background-color: #55acee;" href="#!" role="button">
             <i class="fab fa-twitter"></i>
-        </button>
+        </a>
 
-        <button type="button" class="btn btn-link btn-floating mx-1">
+        <a class=" text-white" style="background-color: #ac2bac;" href="#!" role="button">
             <i class="fab fa-github"></i>
-        </button>
+        </a>
+        <a class=" text-white" style="background-color: #ec4a89;" href="#!" role="button">
+            <i class="fab fa-instagram"></i>
+        </a>
     </div>
 </form>
 @section Scripts{
@@ -80,16 +98,16 @@
         });
 
 
-                //logbtn.addEventListener("click",function(){
-                //    let xhr =new XMLHttpRequest();
-                //    xhr.addEventListener("load",function(){
+                                          //logbtn.addEventListener("click",function(){
+                                                         //    let xhr =new XMLHttpRequest();
+                                                       //    xhr.addEventListener("load",function(){
 
-                //    })
+                                                       //    })
 
-                //    xhr.open("GET","@Url.Action("UserLogin","ExistAccount")?;
-                //    xhr.send();
+                                                   //    xhr.open("GET","@Url.Action("UserLogin","ExistAccount")?;
+                                                   //    xhr.send();
 
 
-                //})
+                                            //})
     </script>
 }

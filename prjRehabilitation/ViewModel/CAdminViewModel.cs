@@ -27,7 +27,7 @@ namespace prjRehabilitation.ViewModel
             get { return _admin.FName; }
             set { _admin.FName = value; }
         }
-        [DisplayName("EMail")]
+        [DisplayName("信箱")]
 
         public string? FEmail
         {
@@ -48,6 +48,7 @@ namespace prjRehabilitation.ViewModel
             get { return _admin.FRank; }
             set { _admin.FRank = value; }
         }
+        [DisplayName("照片")]
         public string? Fphoto
         {
             get { return _admin.Fphoto; }
