@@ -26,24 +26,11 @@
 
 
 <div class="layout">
-    @*    <div class="solidF">
-    <label>床號</label>
-    <label>姓名:
-    <select id="Patient_List">
-    </select></label>
-    <div class="col">
-    <button></button>
-    <button></button>
-    <button></button>
-    </div>
-    </div>*@
-
-
     <h1>EDIT</h1>
 
     <h4>PatientInfo</h4>
     <hr />
-    <form asp-action="Create_F" id="form1">
+    <form asp-action="Create_F" id="form1" enctype="multipart/form-data">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         @*照片*@
         <div class="form-group col">
@@ -51,7 +38,7 @@
         </div>
         <div class="form-group col">
             <label asp-for="fphoto" class="control-label">照片</label>
-            <input type="file" asp-for="fphoto" class="form-control" />
+            <input accept=".jpg, .png, .jpeg" type="file" asp-for="fphoto" class="form-control" />
             <span asp-validation-for="fphoto"></span>
         </div>
         <hr />
@@ -345,12 +332,12 @@
                     method: "POST",
                     //別忘了把主體参數轉成字串，否則資料會變成[object Object]，它無法被成功儲存在後台
                     body: new FormData(form1)
-                }).then(() => { location.href = "@Url.Action("List","Patients")";})
+                }).then(() => { location.href = "@Url.Action("List","Patients")"; })
                     .catch(function (error) { console.log("失敗") });
-                
+
             });
-            $("checkbox").change(function(){
-               console.log("1"+$(this).val());
+            $("checkbox").change(function () {
+                console.log("1" + $(this).val());
             });
 
             //計算生日
@@ -391,9 +378,9 @@
                     $("#diseaselist").append("<option value=F1病名1''>F1病名1</option>")
                     $("#diseaselist").append("<option value=F2病名2''>F2病名2</option>")
                 })
-                //使用ajax傳送疾病資料到c#，在c#的Action接收後轉換成list，最後送出時再添加到vm中       
+                //使用ajax傳送疾病資料到c#，在c#的Action接收後轉換成list，最後送出時再添加到vm中
             });
-           
+
             //選取疾病清單時，動態生成疾病表單
             $("select").change(function diseaseList_change() {
                 count_disease++;
@@ -405,23 +392,23 @@
 
                 //表單生成
                 var html = `<div id='disdiv${count_disease}'' class='row' style='background-color:antiquewhite'>
-                                                         <div class='col-3'><label class='col-form-label'>編號</label><input id='disease${count_disease}.ID_Disease'  name='disease${count_disease}.ID_Disease' class='form-control'  value="${id} " />
-                                                         </div>
-                                                             <div class='col-6'><label class='col-form-label'>疾病中文名稱</label><input  name='disease${count_disease}.DiseaseChineseName'  id='disease${count_disease}.DiseaseChineseName'  class='form-control' value="${name}"/>
-                                                             </div>
-                                                            <div class='col'><br /><button class='btn-danger'>往上</button>
-                                                                <input type="button" class='btn-danger' id='${count_disease}' onclick='disease_delete()' value="刪除">
-                                                                <button class='btn-danger'> 往下</button>
-                                                            </div>
-                                                    </div>`;
+                                                                 <div class='col-3'><label class='col-form-label'>編號</label><input id='disease${count_disease}.ID_Disease'  name='disease${count_disease}.ID_Disease' class='form-control'  value="${id} " />
+                                                                 </div>
+                                                                     <div class='col-6'><label class='col-form-label'>疾病中文名稱</label><input  name='disease${count_disease}.DiseaseChineseName'  id='disease${count_disease}.DiseaseChineseName'  class='form-control' value="${name}"/>
+                                                                     </div>
+                                                                    <div class='col'><br /><button class='btn-danger'>往上</button>
+                                                                        <input type="button" class='btn-danger' id='${count_disease}' onclick='disease_delete()' value="刪除">
+                                                                        <button class='btn-danger'> 往下</button>
+                                                                    </div>
+                                                            </div>`;
                 div.innerHTML += html;
 
 
                 console.log(id);
             });
 
-        })     
-                    
+        })
+
         async function fetchDisease() {
             console.log("123")
             var div = document.getElementById("div_disease");
@@ -433,21 +420,21 @@
                 const disid = x.idDisease;
                 const name = x.diseaseChineseName;
                 count++;
-                return  `<div id='disdiv${count}' class='row' style='background-color:antiquewhite'>
-                                <div class='col-3'><label class='col-form-label'>編號</label><input id='disease${count}.ID_Disease'  name='disease${count}.ID_Disease' class='form-control'  value="${disid} " />
-                        </div>
-                                    <div class='col-6'><label class='col-form-label'>疾病中文名稱</label><input  name='disease${count}.DiseaseChineseName'  id='disease${count}.DiseaseChineseName'  class='form-control' value="${name}"/>
-                            </div>
-                        <div class='col'><br /><button class='btn-danger'>往上</button>
-                                    <input type="button" class='btn-danger' id='${count}' onclick='disease_delete()' value="刪除">
-                            <button class='btn-danger'> 往下</button>
-                        </div>
-                 </div>`;
-                    }
-                ); 
-                div.innerHTML = html.join("");
-                count_disease = count;
+                return `<div id='disdiv${count}' class='row' style='background-color:antiquewhite'>
+                                        <div class='col-3'><label class='col-form-label'>編號</label><input id='disease${count}.ID_Disease'  name='disease${count}.ID_Disease' class='form-control'  value="${disid} " />
+                                </div>
+                                            <div class='col-6'><label class='col-form-label'>疾病中文名稱</label><input  name='disease${count}.DiseaseChineseName'  id='disease${count}.DiseaseChineseName'  class='form-control' value="${name}"/>
+                                    </div>
+                                <div class='col'><br /><button class='btn-danger'>往上</button>
+                                            <input type="button" class='btn-danger' id='${count}' onclick='disease_delete()' value="刪除">
+                                    <button class='btn-danger'> 往下</button>
+                                </div>
+                         </div>`;
             }
+            );
+            div.innerHTML = html.join("");
+            count_disease = count;
+        }
         function adddis() {
             console.log("新增")
             $("#diseaselist").append("<option value='F1|病名1'>F1病名1</option>")
@@ -456,7 +443,7 @@
         function ageCalculate() {
             let today = new Date();
             //let birthYear = new Date($("fBirthday").val().getFullYear);
-            let birthYear = document.getElementById("fBirthday").value.substring(0,4);
+            let birthYear = document.getElementById("fBirthday").value.substring(0, 4);
             if (today.getFullYear() < birthYear) {
                 $("#age").val(0);
                 return;
@@ -465,7 +452,7 @@
             console.log(birthYear);
         }
         var count_disease = 0;
-        
+
 
         function disease_delete() {
             let i = event.target.id;

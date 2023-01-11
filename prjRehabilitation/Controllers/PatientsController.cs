@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.Extensions.FileSystemGlobbing.Internal.PatternContexts;
 using prjRehabilitation.Models;
 using prjRehabilitation.Models.Lin;
@@ -41,6 +42,10 @@ namespace prjRehabilitation.Controllers
                 p.fName = c.FName;
                 p.fPhone = c.FPhone;
                 p.fidnum = c.FIdnum;
+                if (c.FPhotoFile != null)
+                {
+                    p.fphoto = c.FPhotoFile;
+                }
                 List.Add(p);
             }
             return View(List);
@@ -95,7 +100,7 @@ namespace prjRehabilitation.Controllers
             //同上，這邊是有無補助
             if (data.fGrant != null)
             {
-                if (data.fGrant.Contains("000")) data.fGrant_無 = "000";
+                if (string.IsNullOrEmpty(data.fGrant)) data.fGrant_無 = "000";
                 else
                 {
                     data.fGrant_無 = "111";
