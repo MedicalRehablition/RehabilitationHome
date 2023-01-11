@@ -107,11 +107,12 @@ namespace prjRehabilitation.Controllers
             {
                 if (vm.photo != null)
                 {
-                    //string photoName = Guid.NewGuid().ToString() + ".jpg";
-                    //string path = _environment.WebRootPath + "/images/" + photoName;
-                    //ad.Fphoto = photoName;
-                    //vm.photo.CopyTo(new FileStream(path, FileMode.Create));
+                    string photoName = Guid.NewGuid().ToString() + ".jpg";
+                    string path = _environment.WebRootPath + "/images/" + photoName;
+                    ad.Fphoto = photoName;
+                    vm.photo.CopyTo(new FileStream(path, FileMode.Create));
                 }
+               
                 ad.Fid = vm.Fid;
                 ad.FRank = vm.FRank;
                 ad.FEmail = vm.FEmail;
