@@ -58,7 +58,7 @@
                 <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
                     Dropdown button
                 </button>
-                <ul class="nav nav-pills nav-flush flex-column mb-auto text-center" style="width:10rem">
+                <ul class="nav nav-pills nav-flush flex-column mb-auto text-center" id="ul" style="width:10rem">
                     @{
                         foreach (var item in Model)
                         {
@@ -97,8 +97,7 @@
         </div>
     </div>
     <div class="box">
-        <iframe name="view" id="view" marginwidth="0" marginheight="0" scrolling="No" frameborder="0"></iframe>
-
+        <iframe name="view" id="view" marginwidth="0" marginheight="0" scrolling="No" frameborder="0" ></iframe>
     </div>
 
 
@@ -108,11 +107,14 @@
 
 @section Scripts{
     <script>
+        var iframe = document.getElementById("view");
+        var turn = false; 
         function showiframe(event) {
             var id = event.target.id;
-            document.getElementById("view").src = `@Url.Content("~/Patients/Edit/${id}")`;
+            iframe.src = `@Url.Content("~/Patients/Edit/${id}")`;
             console.log(document.getElementById("view").src);
-        }
+
+         }
 
 
 

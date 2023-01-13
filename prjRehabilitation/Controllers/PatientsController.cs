@@ -20,6 +20,10 @@ namespace prjRehabilitation.Controllers
         {
             _environment = environment;
         }
+        public IActionResult Empty()
+        {
+            return PartialView();
+        }
         public IActionResult fetchDis(int id)
         {
             dbClassContext db = new dbClassContext();
@@ -77,7 +81,7 @@ namespace prjRehabilitation.Controllers
 
 
             string result = (new PatientInfoCRUD()).c_edit(vm);
-            return RedirectToAction("List");
+            return PartialView("Empty");
         }
         public IActionResult Edit(int? id)
         {
