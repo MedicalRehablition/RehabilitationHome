@@ -20,6 +20,30 @@ namespace prjRehabilitation.Controllers
         {
             _environment = environment;
         }
+        public IActionResult patients()
+        {
+            dbClassContext db = new dbClassContext();
+            IEnumerable<PatientInfo> data = db.PatientInfos.Where(x => x.Status != false).Take(100);
+            List<VMPatientList> List = new List<VMPatientList>();
+            foreach (var c in data.ToList())
+            {
+                VMPatientList p = new VMPatientList();
+                p.fid = (int)c.Fid;
+                p.fName = c.FName;
+                p.fPhone = c.FPhone;
+                p.fidnum = c.FIdnum;
+                if (c.FPhotoFile != null)
+                {
+                    p.fphoto = c.FPhotoFile;
+                }
+                List.Add(p);
+            }
+            return PartialView(List);
+        }
+        public IActionResult form()
+        {
+            return View();
+        }
         public IActionResult Empty()
         {
             return PartialView();
@@ -79,9 +103,10 @@ namespace prjRehabilitation.Controllers
 
             if (vm.fGrant_無 == "111") vm.fGrant += vm.fGrantType;
 
-
             string result = (new PatientInfoCRUD()).c_edit(vm);
-            return PartialView("Empty");
+
+
+            return Json("patients");
         }
         public IActionResult Edit(int? id)
         {

@@ -335,7 +335,7 @@
                     //別忘了把主體参數轉成字串，否則資料會變成[object Object]，它無法被成功儲存在後台
                     body: new FormData(form1)
                 })
-                .then(() => { location.href = "@Url.Action("Empty","Patients")"; })
+                .then(() => { history.go(-1) })
                     .catch(function (error) { console.log("失敗") });
 
             });

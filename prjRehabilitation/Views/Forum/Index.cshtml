@@ -1,0 +1,90 @@
+﻿
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+<style>
+    .card-reply {
+        background-color:antiquewhite;
+    }
+</style>
+<article>
+    <div class="artial"></div>
+</article>
+<div class="container" style="margin-left:5em; margin-right:5em">
+    <div class="container-fluid mt-100">
+            <div class="col-md-12">
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <div class="media flex-wrap w-100 align-items-center ">
+                                <img src="https://i.imgur.com/iNmBizf.jpg" class="d-block ui-w-40 rounded-circle" alt="">
+                                 <div class="media-body ml-3 " >
+                                    <a href="javascript:void(0)" data-abc="true">Tom Harry</a>
+                                    <div class="text-muted small">13 days ago</div>
+                                </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                    <h2 class="card-title">標題</h2>
+                        <p>
+                            For me, getting my business website made was a lot of tech wizardry things. Thankfully i get an ad on Facebook ragarding commence website. I get connected with BBB team. They made my stunning website live in just 3 days.
+                            With the increase demand of online customers. I had to take my business online. BBB Team guided me at each step and enabled me to centralise my work and have control on all aspect of my online business.
+                        </p>
+                    </div>
+                <div class="card-reply" name="reply" id="reply1">
+                    <p>123</p>
+                    <div>
+                        <p></p>
+                    </div>
+                </div>
+
+                    <div class="card-footer d-flex flex-wrap justify-content-between align-items-center px-0 pt-0 pb-3">
+                        <div class="px-4 pt-3">
+                            <span class="text-muted d-inline-flex align-items-center align-middle ml-4">讚:數字</span>
+                            <span class="text-muted d-inline-flex align-items-center align-middle ml-4">留言:數字</span>
+                         </div>
+                         
+                            <button type="button" class="btn btn-primary" onclick="setReplybtn()" id="1"><i class="ion ion-md-create"></i>回復</button>
+                         
+                    </div>
+                </div>
+            </div>
+    </div>
+</div>
+<form name="${id}" id="form${id}">
+    <input class="form-control" name="text" type="text" />
+    <input class="btn-primary" value="送出" type="button" onsubmit="submit()" name="${id}" />
+</form>
+@section Scripts{
+    <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
+
+    <script>
+        function submit(){
+            var id = event.target.name;
+            $(`#reply${id}`).append(`
+                
+            `);
+            $(`#form${id}`).remove();
+        }
+        function setReplybtn(){
+            var id =  event.target.id
+            $(`#reply${id}`).append(`
+                <form id="form${id}">
+                    <input class="form-text" name="text"  type="text"/>
+                    <input class="btn-primary" value="送出" type="submit"/>
+                </form>
+            `);
+            if(div==null){console.log("false")};
+            var html = div.html();
+            div.html(`${div.html}
+                        <div>
+                                <p>測試</p>
+
+                                </div>
+                        `        ) ;
+            //$(this).closest("div").append(
+
+            //)
+            console.log("gogo");
+            console.log($(this).closest(".card-reply"));
+        } 
+
+    </script>
+}
