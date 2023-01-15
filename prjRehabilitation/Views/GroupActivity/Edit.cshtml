@@ -1,4 +1,5 @@
-﻿@model prjRehabilitation.ViewModel.CGroupActivityViewModel
+﻿@using prjRehabilitation.ViewModel.Eric
+@model CGroupActivityEditViewModel
 
 @{
     ViewData["Title"] = "Edit";
@@ -12,82 +13,87 @@
     <div class="col-md-4">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" name="FGroupActivityId" value=@Model.FGroupActivityId />
+            <input type="hidden" name="cgavm.FGroupActivityId" value=@Model.cgavm.FGroupActivityId />
             
             <div class="form-group">
-                <label asp-for="FEventType" class="control-label"></label>
-                <input asp-for="FEventType" class="form-control" />
-                <span asp-validation-for="FEventType" class="text-danger"></span>
+                <label asp-for="cgavm.FEventType" class="control-label"></label>
+                <select asp-for="cgavm.FEventType" asp-items="@(new SelectList(Model.GroupActivityType))" class="form-control" ></select>
+                <span asp-validation-for="cgavm.FEventType" class="text-danger"></span>
+            </div>
+            <div class="row">
+                <div class="col-3">
+            <div class="form-group">
+                <label asp-for="cgavm.FDate" class="control-label"></label>
+                <input asp-for="cgavm.FDate" class="form-control" />
+                <span asp-validation-for="cgavm.FDate" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="FDate" class="control-label"></label>
-                <input asp-for="FDate" class="form-control" />
-                <span asp-validation-for="FDate" class="text-danger"></span>
+                <label asp-for="cgavm.FStartTime" class="control-label"></label>
+                <input asp-for="cgavm.FStartTime" class="form-control" />
+                <span asp-validation-for="cgavm.FStartTime" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="FStartTime" class="control-label"></label>
-                <input asp-for="FStartTime" class="form-control" />
-                <span asp-validation-for="FStartTime" class="text-danger"></span>
+                <label asp-for="cgavm.FEndTime" class="control-label"></label>
+                <input asp-for="cgavm.FEndTime" class="form-control" />
+                <span asp-validation-for="cgavm.FEndTime" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="FEndTime" class="control-label"></label>
-                <input asp-for="FEndTime" class="form-control" />
-                <span asp-validation-for="FEndTime" class="text-danger"></span>
+                <label asp-for="cgavm.FGroupName" class="control-label"></label>
+                <input asp-for="cgavm.FGroupName" class="form-control" />
+                <span asp-validation-for="cgavm.FGroupName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="FGroupName" class="control-label"></label>
-                <input asp-for="FGroupName" class="form-control" />
-                <span asp-validation-for="FGroupName" class="text-danger"></span>
+                <label asp-for="cgavm.FClassName" class="control-label"></label>
+                <input asp-for="cgavm.FClassName" class="form-control" />
+                <span asp-validation-for="cgavm.FClassName" class="text-danger"></span>
+                    </div>
+                </div>
+            <div class="col-9"><div id="EventTypeFlex" style="display:flex;border:1px,solid,black"></div></div>
             </div>
             <div class="form-group">
-                <label asp-for="FClassName" class="control-label"></label>
-                <input asp-for="FClassName" class="form-control" />
-                <span asp-validation-for="FClassName" class="text-danger"></span>
+                <label asp-for="cgavm.FGoal" class="control-label"></label>
+                <input asp-for="cgavm.FGoal" class="form-control" />
+                <span asp-validation-for="cgavm.FGoal" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="FGoal" class="control-label"></label>
-                <input asp-for="FGoal" class="form-control" />
-                <span asp-validation-for="FGoal" class="text-danger"></span>
+                <label asp-for="cgavm.FLocation" class="control-label"></label>
+                <input asp-for="cgavm.FLocation" class="form-control" />
+                <span asp-validation-for="cgavm.FLocation" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="FLocation" class="control-label"></label>
-                <input asp-for="FLocation" class="form-control" />
-                <span asp-validation-for="FLocation" class="text-danger"></span>
+                <label asp-for="cgavm.FPeopleCount" class="control-label"></label>
+                <input asp-for="cgavm.FPeopleCount" class="form-control" />
+                <span asp-validation-for="cgavm.FPeopleCount" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="FPeopleCount" class="control-label"></label>
-                <input asp-for="FPeopleCount" class="form-control" />
-                <span asp-validation-for="FPeopleCount" class="text-danger"></span>
+                <label asp-for="cgavm.FLeader" class="control-label"></label>
+                <input asp-for="cgavm.FLeader" class="form-control" />
+                <span asp-validation-for="cgavm.FLeader" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="FLeader" class="control-label"></label>
-                <input asp-for="FLeader" class="form-control" />
-                <span asp-validation-for="FLeader" class="text-danger"></span>
+                <label asp-for="cgavm.FRecorder" class="control-label"></label>
+                <input asp-for="cgavm.FRecorder" class="form-control" />
+                <span asp-validation-for="cgavm.FRecorder" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="FRecorder" class="control-label"></label>
-                <input asp-for="FRecorder" class="form-control" />
-                <span asp-validation-for="FRecorder" class="text-danger"></span>
+                <label asp-for="cgavm.FProcess" class="control-label"></label>
+                <input asp-for="cgavm.FProcess" class="form-control" />
+                <span asp-validation-for="cgavm.FProcess" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="FProcess" class="control-label"></label>
-                <input asp-for="FProcess" class="form-control" />
-                <span asp-validation-for="FProcess" class="text-danger"></span>
+                <label asp-for="cgavm.FAchievement" class="control-label"></label>
+                <input asp-for="cgavm.FAchievement" class="form-control" />
+                <span asp-validation-for="cgavm.FAchievement" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="FAchievement" class="control-label"></label>
-                <input asp-for="FAchievement" class="form-control" />
-                <span asp-validation-for="FAchievement" class="text-danger"></span>
+                <label asp-for="cgavm.FFillFormStaff" class="control-label"></label>
+                <input asp-for="cgavm.FFillFormStaff" class="form-control" />
+                <span asp-validation-for="cgavm.FFillFormStaff" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="FFillFormStaff" class="control-label"></label>
-                <input asp-for="FFillFormStaff" class="form-control" />
-                <span asp-validation-for="FFillFormStaff" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="FFillFormDate" class="control-label"></label>
-                <input asp-for="FFillFormDate" class="form-control" />
-                <span asp-validation-for="FFillFormDate" class="text-danger"></span>
+                <label asp-for="cgavm.FFillFormDate" class="control-label"></label>
+                <input asp-for="cgavm.FFillFormDate" class="form-control" />
+                <span asp-validation-for="cgavm.FFillFormDate" class="text-danger"></span>
             </div>
             <br/>
             <div class="form-group">
@@ -104,4 +110,11 @@
 @section Scripts {
 
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script>
+
+        $("#EventTypeFlex").load("@Url.Content("~/")GroupActivity/ClassThemesPartialView");
+
+    </script>
+
 }
