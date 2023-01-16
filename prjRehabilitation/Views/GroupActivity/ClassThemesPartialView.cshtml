@@ -1,9 +1,20 @@
-﻿@model IEnumerable<int>
+﻿@model prjRehabilitation.ViewModel.Eric.CClassThemesPartialViewViewModel
 
 
-    <ul>
-        @foreach (var item in Model)
+    
+    @foreach (string itemEach in Model.ClassThemesEach)
     {
-        <li>item</li>
+        <select>
+            @foreach (string itemList in Model.ClassThemesList)
+        {
+            if (itemEach == itemList)
+            {
+                <option selected="selected">@itemList</option>
+            } 
+            else { <option>@itemList</option> }
+        }
+
+        </select>
+
     }
-    </ul>
+    

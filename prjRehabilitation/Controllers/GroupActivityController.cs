@@ -78,8 +78,18 @@ namespace prjRehabilitation.Controllers
 
         public IActionResult ClassThemesPartialView(int? id) {
             //int aa = (int)id;
-            IEnumerable<int> aa = db.TGroupActivityClassThemes.Select(_ => _.FClassThemeId);
-            return PartialView(aa);
+            int[] aa = db.TGroupActivityClassThemes.Where(_ => _.FGroupActivityId == id).Select(_=>_.FClassThemeId).ToArray();
+            string[] resultArray = new string[aa.Count()];
+            CClassThemesPartialViewViewModel cctpvvm = new CClassThemesPartialViewViewModel();
+            for (int i = 0; i < resultArray.Length; i++)
+            {
+                resultArray[i] = db.TypeNames.Where(_ => _.TypeNameId == aa[i]).Select(_ => _.TypeName1).FirstOrDefault();
+            }
+            cctpvvm.ClassThemesEach = resultArray;
+
+            cctpvvm.ClassThemesList = db.TypeNames.Select(_ => _.TypeName1).ToArray();
+
+            return PartialView(cctpvvm);
         }
 
     }

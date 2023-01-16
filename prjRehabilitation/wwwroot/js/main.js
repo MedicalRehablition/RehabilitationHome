@@ -2,12 +2,12 @@
   { "use strict"
   
 /* 1. Proloder */
-    $(window).on('load', function () {
-      $('#preloader-active').delay(450).fadeOut('slow');
-      $('body').delay(450).css({
-        'overflow': 'visible'
-      });
-    });
+    //$(window).on('load', function () {
+    //  $('#preloader-active').delay(450).fadeOut('slow');
+    //  $('body').delay(450).css({
+    //    'overflow': 'visible'
+    //  });
+    //});
 
 /* 2. sticky And Scroll UP */
     $(window).on('scroll', function () {
@@ -31,7 +31,7 @@
   
 
 /* 3. slick Nav */
-// mobile_menu
+ //mobile_menu
     var menu = $('ul#navigation');
     if(menu.length){
       menu.slicknav({
@@ -162,78 +162,78 @@
   //  }
 
 /* 7. data-background */
-    $("[data-background]").each(function () {
-      $(this).css("background-image", "url(" + $(this).attr("data-background") + ")")
-      });
+    //$("[data-background]").each(function () {
+    //  $(this).css("background-image", "url(" + $(this).attr("data-background") + ")")
+    //  });
 
 
 /* 10. WOW active */
-    new WOW().init();
+    //new WOW().init();
 
 // 11. ---- Mailchimp js --------//  
-    function mailChimp() {
-      $('#mc_embed_signup').find('form').ajaxChimp();
-    }
-    mailChimp();
+    //function mailChimp() {
+    //  $('#mc_embed_signup').find('form').ajaxChimp();
+    //}
+    //mailChimp();
 
 
 // 12 Pop Up Img
-    var popUp = $('.single_gallery_part, .img-pop-up');
-      if(popUp.length){
-        popUp.magnificPopup({
-          type: 'image',
-          gallery:{
-            enabled:true
-          }
-        });
-      }
+    //var popUp = $('.single_gallery_part, .img-pop-up');
+    //  if(popUp.length){
+    //    popUp.magnificPopup({
+    //      type: 'image',
+    //      gallery:{
+    //        enabled:true
+    //      }
+    //    });
+    //  }
 // 12 Pop Up Video
-    var popUp = $('.popup-video');
-    if(popUp.length){
-      popUp.magnificPopup({
-        type: 'iframe'
-      });
-    }
+    //var popUp = $('.popup-video');
+    //if(popUp.length){
+    //  popUp.magnificPopup({
+    //    type: 'iframe'
+    //  });
+    //}
 
 /* 13. counterUp*/
-    $('.counter').counterUp({
-      delay: 10,
-      time: 3000
-    });
+    //$('.counter').counterUp({
+    //  delay: 10,
+    //  time: 3000
+    //});
     /*------------------
         CountDown
     --------------------*/
     // For demo preview
-    var today = new Date();
-    var dd = String(today.getDate()).padStart(2, '0');
-    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-    var yyyy = today.getFullYear();
-    if(mm == 12) {
-        mm = '01';
-        yyyy = yyyy + 1;
-    } else {
-        mm = parseInt(mm) + 1;
-        mm = String(mm).padStart(2, '0');
-    }
-    var timerdate = mm + '/' + dd + '/' + yyyy;
+    //var today = new Date();
+    //var dd = String(today.getDate()).padStart(2, '0');
+    //var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    //var yyyy = today.getFullYear();
+    //if(mm == 12) {
+    //    mm = '01';
+    //    yyyy = yyyy + 1;
+    //} else {
+    //    mm = parseInt(mm) + 1;
+    //    mm = String(mm).padStart(2, '0');
+    //}
+    //var timerdate = mm + '/' + dd + '/' + yyyy;
     // For demo preview end
     
 
     // Use this for real timer date
     /*  var timerdate = "2020/01/01"; */
 
-	$("#countdown").countdown(timerdate, function(event) {
-        $(this).html(event.strftime("<div class='cd-item'><span>%D</span><p>Days</p> </div>" + "<div class='cd-item'><span>%H</span><p>Hrs</p> </div>" + "<div class='cd-item'><span>%M</span><p>Min</p> </div>" + "<div class='cd-item'><span>%S</span><p>Sec</p> </div>"));
-    });
+	//$("#countdown").countdown(timerdate, function(event) {
+ //       $(this).html(event.strftime("<div class='cd-item'><span>%D</span><p>Days</p> </div>" + "<div class='cd-item'><span>%H</span><p>Hrs</p> </div>" + "<div class='cd-item'><span>%M</span><p>Min</p> </div>" + "<div class='cd-item'><span>%S</span><p>Sec</p> </div>"));
+ //   });
 
 
 
     
 /* 14. Datepicker */
-  $('#datepicker1').datepicker();
+  //$('#datepicker1').datepicker();
 
 // 15. Time Picker
-  $('#timepicker').timepicker();
+  //$('#timepicker').timepicker();
 
 
 })(jQuery);

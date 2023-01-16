@@ -2,7 +2,7 @@
 {
     public class CGroupActivityEditViewModel
     {
-        public IEnumerable<string>? EventType { get; set; }
+        
 
         public CGroupActivityViewModel? cgavm { get; set; }
         public List<string>? GroupActivityType

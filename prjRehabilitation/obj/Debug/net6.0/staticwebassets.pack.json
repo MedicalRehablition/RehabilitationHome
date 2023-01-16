@@ -1,995 +1,995 @@
 {
   "Files": [
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\prjRehabilitation.bundle.scp.css",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\prjRehabilitation.bundle.scp.css",
       "PackagePath": "staticwebassets\\prjRehabilitation.bundle.scp.css"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\css\\animate.min.css",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\css\\animate.min.css",
       "PackagePath": "staticwebassets\\css\\animate.min.css"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\css\\animated-headline.css",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\css\\animated-headline.css",
       "PackagePath": "staticwebassets\\css\\animated-headline.css"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\css\\bootstrap.min.css",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\css\\bootstrap.min.css",
       "PackagePath": "staticwebassets\\css\\bootstrap.min.css"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\css\\flaticon.css",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\css\\flaticon.css",
       "PackagePath": "staticwebassets\\css\\flaticon.css"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\css\\font-awesome.min.css",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\css\\font-awesome.min.css",
       "PackagePath": "staticwebassets\\css\\font-awesome.min.css"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\css\\fontawesome-all.min.css",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\css\\fontawesome-all.min.css",
       "PackagePath": "staticwebassets\\css\\fontawesome-all.min.css"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\css\\gijgo.css",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\css\\gijgo.css",
       "PackagePath": "staticwebassets\\css\\gijgo.css"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\css\\magnific-popup.css",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\css\\magnific-popup.css",
       "PackagePath": "staticwebassets\\css\\magnific-popup.css"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\css\\main.css",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\css\\main.css",
       "PackagePath": "staticwebassets\\css\\main.css"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\css\\nice-select.css",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\css\\nice-select.css",
       "PackagePath": "staticwebassets\\css\\nice-select.css"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\css\\normalize.min.css",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\css\\normalize.min.css",
       "PackagePath": "staticwebassets\\css\\normalize.min.css"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\css\\owl.carousel.min.css",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\css\\owl.carousel.min.css",
       "PackagePath": "staticwebassets\\css\\owl.carousel.min.css"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\css\\price_rangs.css",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\css\\price_rangs.css",
       "PackagePath": "staticwebassets\\css\\price_rangs.css"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\css\\responsive.css",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\css\\responsive.css",
       "PackagePath": "staticwebassets\\css\\responsive.css"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\css\\site.css",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\css\\slick.css",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\css\\slick.css",
       "PackagePath": "staticwebassets\\css\\slick.css"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\css\\slicknav.css",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\css\\slicknav.css",
       "PackagePath": "staticwebassets\\css\\slicknav.css"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\css\\style.css",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\css\\style.css",
       "PackagePath": "staticwebassets\\css\\style.css"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\css\\style.map",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\css\\style.map",
       "PackagePath": "staticwebassets\\css\\style.map"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\css\\themify-icons.css",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\css\\themify-icons.css",
       "PackagePath": "staticwebassets\\css\\themify-icons.css"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\favicon.ico",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\favicon.ico",
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\fonts\\Flaticon.eot",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\fonts\\Flaticon.eot",
       "PackagePath": "staticwebassets\\fonts\\Flaticon.eot"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\fonts\\Flaticon.svg",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\fonts\\Flaticon.svg",
       "PackagePath": "staticwebassets\\fonts\\Flaticon.svg"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\fonts\\Flaticon.ttf",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\fonts\\Flaticon.ttf",
       "PackagePath": "staticwebassets\\fonts\\Flaticon.ttf"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\fonts\\Flaticon.woff",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\fonts\\Flaticon.woff",
       "PackagePath": "staticwebassets\\fonts\\Flaticon.woff"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\fonts\\Flaticon.woff2",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\fonts\\Flaticon.woff2",
       "PackagePath": "staticwebassets\\fonts\\Flaticon.woff2"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\fonts\\_flaticon.scss",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\fonts\\_flaticon.scss",
       "PackagePath": "staticwebassets\\fonts\\_flaticon.scss"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\fonts\\fa-brands-400.eot",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\fonts\\fa-brands-400.eot",
       "PackagePath": "staticwebassets\\fonts\\fa-brands-400.eot"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\fonts\\fa-brands-400.svg",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\fonts\\fa-brands-400.svg",
       "PackagePath": "staticwebassets\\fonts\\fa-brands-400.svg"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\fonts\\fa-brands-400.ttf",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\fonts\\fa-brands-400.ttf",
       "PackagePath": "staticwebassets\\fonts\\fa-brands-400.ttf"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\fonts\\fa-brands-400.woff",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\fonts\\fa-brands-400.woff",
       "PackagePath": "staticwebassets\\fonts\\fa-brands-400.woff"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\fonts\\fa-brands-400.woff2",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\fonts\\fa-brands-400.woff2",
       "PackagePath": "staticwebassets\\fonts\\fa-brands-400.woff2"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\fonts\\fa-regular-400.eot",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\fonts\\fa-regular-400.eot",
       "PackagePath": "staticwebassets\\fonts\\fa-regular-400.eot"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\fonts\\fa-regular-400.svg",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\fonts\\fa-regular-400.svg",
       "PackagePath": "staticwebassets\\fonts\\fa-regular-400.svg"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\fonts\\fa-regular-400.ttf",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\fonts\\fa-regular-400.ttf",
       "PackagePath": "staticwebassets\\fonts\\fa-regular-400.ttf"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\fonts\\fa-regular-400.woff",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\fonts\\fa-regular-400.woff",
       "PackagePath": "staticwebassets\\fonts\\fa-regular-400.woff"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\fonts\\fa-regular-400.woff2",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\fonts\\fa-regular-400.woff2",
       "PackagePath": "staticwebassets\\fonts\\fa-regular-400.woff2"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\fonts\\fa-solid-900.eot",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\fonts\\fa-solid-900.eot",
       "PackagePath": "staticwebassets\\fonts\\fa-solid-900.eot"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\fonts\\fa-solid-900.svg",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\fonts\\fa-solid-900.svg",
       "PackagePath": "staticwebassets\\fonts\\fa-solid-900.svg"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\fonts\\fa-solid-900.ttf",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\fonts\\fa-solid-900.ttf",
       "PackagePath": "staticwebassets\\fonts\\fa-solid-900.ttf"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\fonts\\fa-solid-900.woff",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\fonts\\fa-solid-900.woff",
       "PackagePath": "staticwebassets\\fonts\\fa-solid-900.woff"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\fonts\\fa-solid-900.woff2",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\fonts\\fa-solid-900.woff2",
       "PackagePath": "staticwebassets\\fonts\\fa-solid-900.woff2"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\fonts\\flaticon.css",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\fonts\\flaticon.css",
       "PackagePath": "staticwebassets\\fonts\\flaticon.css"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\fonts\\gijgo-material.eot",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\fonts\\gijgo-material.eot",
       "PackagePath": "staticwebassets\\fonts\\gijgo-material.eot"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\fonts\\gijgo-material.svg",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\fonts\\gijgo-material.svg",
       "PackagePath": "staticwebassets\\fonts\\gijgo-material.svg"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\fonts\\gijgo-material.ttf",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\fonts\\gijgo-material.ttf",
       "PackagePath": "staticwebassets\\fonts\\gijgo-material.ttf"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\fonts\\gijgo-material.woff",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\fonts\\gijgo-material.woff",
       "PackagePath": "staticwebassets\\fonts\\gijgo-material.woff"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\fonts\\themify.eot",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\fonts\\themify.eot",
       "PackagePath": "staticwebassets\\fonts\\themify.eot"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\fonts\\themify.svg",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\fonts\\themify.svg",
       "PackagePath": "staticwebassets\\fonts\\themify.svg"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\fonts\\themify.ttf",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\fonts\\themify.ttf",
       "PackagePath": "staticwebassets\\fonts\\themify.ttf"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\fonts\\themify.woff",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\fonts\\themify.woff",
       "PackagePath": "staticwebassets\\fonts\\themify.woff"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\images\\17e090a9-49f0-495b-bb17-316a52476243.jpg",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\images\\17e090a9-49f0-495b-bb17-316a52476243.jpg",
       "PackagePath": "staticwebassets\\images\\17e090a9-49f0-495b-bb17-316a52476243.jpg"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\images\\1f70ab5d-d108-481a-a064-a7a55cc3b3dc.jpg",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\images\\1f70ab5d-d108-481a-a064-a7a55cc3b3dc.jpg",
       "PackagePath": "staticwebassets\\images\\1f70ab5d-d108-481a-a064-a7a55cc3b3dc.jpg"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\images\\5d8eab7c-fbd8-4468-bb95-097f1f34173b.jpg",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\images\\5d8eab7c-fbd8-4468-bb95-097f1f34173b.jpg",
       "PackagePath": "staticwebassets\\images\\5d8eab7c-fbd8-4468-bb95-097f1f34173b.jpg"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\images\\6e00b522-769c-49c5-8074-e9daee4dd951.jpg",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\images\\6e00b522-769c-49c5-8074-e9daee4dd951.jpg",
       "PackagePath": "staticwebassets\\images\\6e00b522-769c-49c5-8074-e9daee4dd951.jpg"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\images\\6e9d8837-586d-4728-92e8-ea8139d32bb1.jpg",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\images\\6e9d8837-586d-4728-92e8-ea8139d32bb1.jpg",
       "PackagePath": "staticwebassets\\images\\6e9d8837-586d-4728-92e8-ea8139d32bb1.jpg"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\images\\7d2a3cf1-1cf1-409c-8666-9e2430dedcc4.jpg",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\images\\7d2a3cf1-1cf1-409c-8666-9e2430dedcc4.jpg",
       "PackagePath": "staticwebassets\\images\\7d2a3cf1-1cf1-409c-8666-9e2430dedcc4.jpg"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\images\\a2dcadba-fc76-483e-8d7c-d4d78ab03310.jpg",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\images\\a2dcadba-fc76-483e-8d7c-d4d78ab03310.jpg",
       "PackagePath": "staticwebassets\\images\\a2dcadba-fc76-483e-8d7c-d4d78ab03310.jpg"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\images\\f4b4bea7-ab7e-4b8e-9140-723801ba8bdd.jpg",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\images\\f4b4bea7-ab7e-4b8e-9140-723801ba8bdd.jpg",
       "PackagePath": "staticwebassets\\images\\f4b4bea7-ab7e-4b8e-9140-723801ba8bdd.jpg"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\images\\imageDefault.png",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\images\\imageDefault.png",
       "PackagePath": "staticwebassets\\images\\imageDefault.png"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\blog\\author.png",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\blog\\author.png",
       "PackagePath": "staticwebassets\\img\\blog\\author.png"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\blog\\learn_about_bg.png",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\blog\\learn_about_bg.png",
       "PackagePath": "staticwebassets\\img\\blog\\learn_about_bg.png"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\blog\\single_blog_1.png",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\blog\\single_blog_1.png",
       "PackagePath": "staticwebassets\\img\\blog\\single_blog_1.png"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\blog\\single_blog_2.png",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\blog\\single_blog_2.png",
       "PackagePath": "staticwebassets\\img\\blog\\single_blog_2.png"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\blog\\single_blog_3.png",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\blog\\single_blog_3.png",
       "PackagePath": "staticwebassets\\img\\blog\\single_blog_3.png"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\blog\\single_blog_4.png",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\blog\\single_blog_4.png",
       "PackagePath": "staticwebassets\\img\\blog\\single_blog_4.png"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\blog\\single_blog_5.png",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\blog\\single_blog_5.png",
       "PackagePath": "staticwebassets\\img\\blog\\single_blog_5.png"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\blog\\slide_thumb_1.png",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\blog\\slide_thumb_1.png",
       "PackagePath": "staticwebassets\\img\\blog\\slide_thumb_1.png"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\comment\\comment_1.png",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\comment\\comment_1.png",
       "PackagePath": "staticwebassets\\img\\comment\\comment_1.png"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\comment\\comment_2.png",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\comment\\comment_2.png",
       "PackagePath": "staticwebassets\\img\\comment\\comment_2.png"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\comment\\comment_3.png",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\comment\\comment_3.png",
       "PackagePath": "staticwebassets\\img\\comment\\comment_3.png"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\elements\\a.jpg",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\elements\\a.jpg",
       "PackagePath": "staticwebassets\\img\\elements\\a.jpg"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\elements\\a2.jpg",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\elements\\a2.jpg",
       "PackagePath": "staticwebassets\\img\\elements\\a2.jpg"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\elements\\d.jpg",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\elements\\d.jpg",
       "PackagePath": "staticwebassets\\img\\elements\\d.jpg"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\elements\\disabled-check.png",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\elements\\disabled-check.png",
       "PackagePath": "staticwebassets\\img\\elements\\disabled-check.png"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\elements\\disabled-radio.png",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\elements\\disabled-radio.png",
       "PackagePath": "staticwebassets\\img\\elements\\disabled-radio.png"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\elements\\f1.jpg",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\elements\\f1.jpg",
       "PackagePath": "staticwebassets\\img\\elements\\f1.jpg"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\elements\\f2.jpg",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\elements\\f2.jpg",
       "PackagePath": "staticwebassets\\img\\elements\\f2.jpg"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\elements\\f3.jpg",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\elements\\f3.jpg",
       "PackagePath": "staticwebassets\\img\\elements\\f3.jpg"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\elements\\f4.jpg",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\elements\\f4.jpg",
       "PackagePath": "staticwebassets\\img\\elements\\f4.jpg"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\elements\\f5.jpg",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\elements\\f5.jpg",
       "PackagePath": "staticwebassets\\img\\elements\\f5.jpg"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\elements\\f6.jpg",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\elements\\f6.jpg",
       "PackagePath": "staticwebassets\\img\\elements\\f6.jpg"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\elements\\f7.jpg",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\elements\\f7.jpg",
       "PackagePath": "staticwebassets\\img\\elements\\f7.jpg"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\elements\\f8.jpg",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\elements\\f8.jpg",
       "PackagePath": "staticwebassets\\img\\elements\\f8.jpg"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\elements\\g1.jpg",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\elements\\g1.jpg",
       "PackagePath": "staticwebassets\\img\\elements\\g1.jpg"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\elements\\g2.jpg",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\elements\\g2.jpg",
       "PackagePath": "staticwebassets\\img\\elements\\g2.jpg"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\elements\\g3.jpg",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\elements\\g3.jpg",
       "PackagePath": "staticwebassets\\img\\elements\\g3.jpg"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\elements\\g4.jpg",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\elements\\g4.jpg",
       "PackagePath": "staticwebassets\\img\\elements\\g4.jpg"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\elements\\g5.jpg",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\elements\\g5.jpg",
       "PackagePath": "staticwebassets\\img\\elements\\g5.jpg"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\elements\\g6.jpg",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\elements\\g6.jpg",
       "PackagePath": "staticwebassets\\img\\elements\\g6.jpg"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\elements\\g7.jpg",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\elements\\g7.jpg",
       "PackagePath": "staticwebassets\\img\\elements\\g7.jpg"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\elements\\g8.jpg",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\elements\\g8.jpg",
       "PackagePath": "staticwebassets\\img\\elements\\g8.jpg"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\elements\\primary-check.png",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\elements\\primary-check.png",
       "PackagePath": "staticwebassets\\img\\elements\\primary-check.png"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\elements\\primary-radio.png",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\elements\\primary-radio.png",
       "PackagePath": "staticwebassets\\img\\elements\\primary-radio.png"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\elements\\success-check.png",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\elements\\success-check.png",
       "PackagePath": "staticwebassets\\img\\elements\\success-check.png"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\elements\\success-radio.png",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\elements\\success-radio.png",
       "PackagePath": "staticwebassets\\img\\elements\\success-radio.png"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\favicon.ico",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\favicon.ico",
       "PackagePath": "staticwebassets\\img\\favicon.ico"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\gallery\\Homepage_testi.png",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\gallery\\Homepage_testi.png",
       "PackagePath": "staticwebassets\\img\\gallery\\Homepage_testi.png"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\gallery\\about1.png",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\gallery\\about1.png",
       "PackagePath": "staticwebassets\\img\\gallery\\about1.png"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\gallery\\about2.png",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\gallery\\about2.png",
       "PackagePath": "staticwebassets\\img\\gallery\\about2.png"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\gallery\\blog1.png",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\gallery\\blog1.png",
       "PackagePath": "staticwebassets\\img\\gallery\\blog1.png"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\gallery\\blog2.png",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\gallery\\blog2.png",
       "PackagePath": "staticwebassets\\img\\gallery\\blog2.png"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\gallery\\blog3.png",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\gallery\\blog3.png",
       "PackagePath": "staticwebassets\\img\\gallery\\blog3.png"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\gallery\\contact_form.png",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\gallery\\contact_form.png",
       "PackagePath": "staticwebassets\\img\\gallery\\contact_form.png"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\gallery\\department.png",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\gallery\\department.png",
       "PackagePath": "staticwebassets\\img\\gallery\\department.png"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\gallery\\department_man.png",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\gallery\\department_man.png",
       "PackagePath": "staticwebassets\\img\\gallery\\department_man.png"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\gallery\\form.png",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\gallery\\form.png",
       "PackagePath": "staticwebassets\\img\\gallery\\form.png"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\gallery\\gallery1.png",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\gallery\\gallery1.png",
       "PackagePath": "staticwebassets\\img\\gallery\\gallery1.png"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\gallery\\gallery2.png",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\gallery\\gallery2.png",
       "PackagePath": "staticwebassets\\img\\gallery\\gallery2.png"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\gallery\\gallery3.png",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\gallery\\gallery3.png",
       "PackagePath": "staticwebassets\\img\\gallery\\gallery3.png"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\gallery\\gallery4.png",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\gallery\\gallery4.png",
       "PackagePath": "staticwebassets\\img\\gallery\\gallery4.png"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\gallery\\gallery5.png",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\gallery\\gallery5.png",
       "PackagePath": "staticwebassets\\img\\gallery\\gallery5.png"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\gallery\\gallery6.png",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\gallery\\gallery6.png",
       "PackagePath": "staticwebassets\\img\\gallery\\gallery6.png"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\gallery\\popular_sub3.png",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\gallery\\popular_sub3.png",
       "PackagePath": "staticwebassets\\img\\gallery\\popular_sub3.png"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\gallery\\section_bg01.png",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\gallery\\section_bg01.png",
       "PackagePath": "staticwebassets\\img\\gallery\\section_bg01.png"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\gallery\\section_bg02.png",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\gallery\\section_bg02.png",
       "PackagePath": "staticwebassets\\img\\gallery\\section_bg02.png"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\gallery\\section_bg03.png",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\gallery\\section_bg03.png",
       "PackagePath": "staticwebassets\\img\\gallery\\section_bg03.png"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\gallery\\startup.png",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\gallery\\startup.png",
       "PackagePath": "staticwebassets\\img\\gallery\\startup.png"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\gallery\\team1.png",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\gallery\\team1.png",
       "PackagePath": "staticwebassets\\img\\gallery\\team1.png"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\gallery\\team2.png",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\gallery\\team2.png",
       "PackagePath": "staticwebassets\\img\\gallery\\team2.png"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\gallery\\team3.png",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\gallery\\team3.png",
       "PackagePath": "staticwebassets\\img\\gallery\\team3.png"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\hero\\h1_hero.png",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\hero\\h1_hero.png",
       "PackagePath": "staticwebassets\\img\\hero\\h1_hero.png"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\hero\\hero2.png",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\hero\\hero2.png",
       "PackagePath": "staticwebassets\\img\\hero\\hero2.png"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\logo.png",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\logo.png",
       "PackagePath": "staticwebassets\\img\\logo.png"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\logo\\loder.png",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\logo\\loder.png",
       "PackagePath": "staticwebassets\\img\\logo\\loder.png"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\logo\\logo.png",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\logo\\logo.png",
       "PackagePath": "staticwebassets\\img\\logo\\logo.png"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\logo\\logo2_footer.png",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\logo\\logo2_footer.png",
       "PackagePath": "staticwebassets\\img\\logo\\logo2_footer.png"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\post\\next.png",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\post\\next.png",
       "PackagePath": "staticwebassets\\img\\post\\next.png"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\post\\post_1.png",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\post\\post_1.png",
       "PackagePath": "staticwebassets\\img\\post\\post_1.png"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\post\\post_10.png",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\post\\post_10.png",
       "PackagePath": "staticwebassets\\img\\post\\post_10.png"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\post\\post_2.png",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\post\\post_2.png",
       "PackagePath": "staticwebassets\\img\\post\\post_2.png"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\post\\post_3.png",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\post\\post_3.png",
       "PackagePath": "staticwebassets\\img\\post\\post_3.png"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\post\\post_4.png",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\post\\post_4.png",
       "PackagePath": "staticwebassets\\img\\post\\post_4.png"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\post\\post_5.png",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\post\\post_5.png",
       "PackagePath": "staticwebassets\\img\\post\\post_5.png"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\post\\post_6.png",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\post\\post_6.png",
       "PackagePath": "staticwebassets\\img\\post\\post_6.png"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\post\\post_7.png",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\post\\post_7.png",
       "PackagePath": "staticwebassets\\img\\post\\post_7.png"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\post\\post_8.png",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\post\\post_8.png",
       "PackagePath": "staticwebassets\\img\\post\\post_8.png"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\post\\post_9.png",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\post\\post_9.png",
       "PackagePath": "staticwebassets\\img\\post\\post_9.png"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\post\\preview.png",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\img\\post\\preview.png",
       "PackagePath": "staticwebassets\\img\\post\\preview.png"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\js\\animated.headline.js",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\js\\animated.headline.js",
       "PackagePath": "staticwebassets\\js\\animated.headline.js"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\js\\bootstrap.min.js",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\js\\bootstrap.min.js",
       "PackagePath": "staticwebassets\\js\\bootstrap.min.js"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\js\\contact.js",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\js\\contact.js",
       "PackagePath": "staticwebassets\\js\\contact.js"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\js\\gijgo.min.js",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\js\\gijgo.min.js",
       "PackagePath": "staticwebassets\\js\\gijgo.min.js"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\js\\jquery.ajaxchimp.min.js",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\js\\jquery.ajaxchimp.min.js",
       "PackagePath": "staticwebassets\\js\\jquery.ajaxchimp.min.js"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\js\\jquery.countdown.min.js",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\js\\jquery.countdown.min.js",
       "PackagePath": "staticwebassets\\js\\jquery.countdown.min.js"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\js\\jquery.counterup.min.js",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\js\\jquery.counterup.min.js",
       "PackagePath": "staticwebassets\\js\\jquery.counterup.min.js"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\js\\jquery.form.js",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\js\\jquery.form.js",
       "PackagePath": "staticwebassets\\js\\jquery.form.js"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\js\\jquery.magnific-popup.js",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\js\\jquery.magnific-popup.js",
       "PackagePath": "staticwebassets\\js\\jquery.magnific-popup.js"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\js\\jquery.nice-select.min.js",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\js\\jquery.nice-select.min.js",
       "PackagePath": "staticwebassets\\js\\jquery.nice-select.min.js"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\js\\jquery.paroller.min.js",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\js\\jquery.paroller.min.js",
       "PackagePath": "staticwebassets\\js\\jquery.paroller.min.js"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\js\\jquery.slicknav.min.js",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\js\\jquery.slicknav.min.js",
       "PackagePath": "staticwebassets\\js\\jquery.slicknav.min.js"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\js\\jquery.sticky.js",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\js\\jquery.sticky.js",
       "PackagePath": "staticwebassets\\js\\jquery.sticky.js"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\js\\jquery.validate.min.js",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\js\\jquery.validate.min.js",
       "PackagePath": "staticwebassets\\js\\jquery.validate.min.js"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\js\\mail-script.js",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\js\\mail-script.js",
       "PackagePath": "staticwebassets\\js\\mail-script.js"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\js\\main.js",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\js\\main.js",
       "PackagePath": "staticwebassets\\js\\main.js"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\js\\one-page-nav-min.js",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\js\\one-page-nav-min.js",
       "PackagePath": "staticwebassets\\js\\one-page-nav-min.js"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\js\\owl.carousel.min.js",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\js\\owl.carousel.min.js",
       "PackagePath": "staticwebassets\\js\\owl.carousel.min.js"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\js\\plugins.js",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\js\\plugins.js",
       "PackagePath": "staticwebassets\\js\\plugins.js"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\js\\popper.min.js",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\js\\popper.min.js",
       "PackagePath": "staticwebassets\\js\\popper.min.js"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\js\\price-range.js",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\js\\price-range.js",
       "PackagePath": "staticwebassets\\js\\price-range.js"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\js\\site.js",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\js\\slick.min.js",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\js\\slick.min.js",
       "PackagePath": "staticwebassets\\js\\slick.min.js"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\js\\vendor\\jquery-1.12.4.min.js",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\js\\vendor\\jquery-1.12.4.min.js",
       "PackagePath": "staticwebassets\\js\\vendor\\jquery-1.12.4.min.js"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\js\\vendor\\modernizr-3.5.0.min.js",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\js\\vendor\\modernizr-3.5.0.min.js",
       "PackagePath": "staticwebassets\\js\\vendor\\modernizr-3.5.0.min.js"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\js\\waypoints.min.js",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\js\\waypoints.min.js",
       "PackagePath": "staticwebassets\\js\\waypoints.min.js"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\js\\wow.min.js",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\js\\wow.min.js",
       "PackagePath": "staticwebassets\\js\\wow.min.js"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\lib\\bootstrap\\LICENSE",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\lib\\bootstrap\\LICENSE",
       "PackagePath": "staticwebassets\\lib\\bootstrap"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.css"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.css.map"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.min.css"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.js"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js.map",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.js.map"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
       "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js",
       "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js",
       "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\lib\\jquery-validation\\LICENSE.md",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\lib\\jquery-validation\\LICENSE.md",
       "PackagePath": "staticwebassets\\lib\\jquery-validation\\LICENSE.md"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
       "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.js"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js",
       "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.min.js"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js",
       "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.js"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js",
       "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.min.js"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\lib\\jquery\\LICENSE.txt",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\lib\\jquery\\LICENSE.txt",
       "PackagePath": "staticwebassets\\lib\\jquery\\LICENSE.txt"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\lib\\jquery\\dist\\jquery.js",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\lib\\jquery\\dist\\jquery.js",
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.js"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.js"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\scss\\_about.scss",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\scss\\_about.scss",
       "PackagePath": "staticwebassets\\scss\\_about.scss"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\scss\\_all_startups.scss",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\scss\\_all_startups.scss",
       "PackagePath": "staticwebassets\\scss\\_all_startups.scss"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\scss\\_blog_page.scss",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\scss\\_blog_page.scss",
       "PackagePath": "staticwebassets\\scss\\_blog_page.scss"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\scss\\_bradcam.scss",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\scss\\_bradcam.scss",
       "PackagePath": "staticwebassets\\scss\\_bradcam.scss"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\scss\\_color.scss",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\scss\\_color.scss",
       "PackagePath": "staticwebassets\\scss\\_color.scss"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\scss\\_common.scss",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\scss\\_common.scss",
       "PackagePath": "staticwebassets\\scss\\_common.scss"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\scss\\_contact.scss",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\scss\\_contact.scss",
       "PackagePath": "staticwebassets\\scss\\_contact.scss"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\scss\\_contact_form.scss",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\scss\\_contact_form.scss",
       "PackagePath": "staticwebassets\\scss\\_contact_form.scss"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\scss\\_department.scss",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\scss\\_department.scss",
       "PackagePath": "staticwebassets\\scss\\_department.scss"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\scss\\_elements.scss",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\scss\\_elements.scss",
       "PackagePath": "staticwebassets\\scss\\_elements.scss"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\scss\\_extend.scss",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\scss\\_extend.scss",
       "PackagePath": "staticwebassets\\scss\\_extend.scss"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\scss\\_footer.scss",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\scss\\_footer.scss",
       "PackagePath": "staticwebassets\\scss\\_footer.scss"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\scss\\_gallery.scss",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\scss\\_gallery.scss",
       "PackagePath": "staticwebassets\\scss\\_gallery.scss"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\scss\\_h1-hero.scss",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\scss\\_h1-hero.scss",
       "PackagePath": "staticwebassets\\scss\\_h1-hero.scss"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\scss\\_headerMenu.scss",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\scss\\_headerMenu.scss",
       "PackagePath": "staticwebassets\\scss\\_headerMenu.scss"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\scss\\_mixins.scss",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\scss\\_mixins.scss",
       "PackagePath": "staticwebassets\\scss\\_mixins.scss"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\scss\\_overlay.scss",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\scss\\_overlay.scss",
       "PackagePath": "staticwebassets\\scss\\_overlay.scss"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\scss\\_pagination.scss",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\scss\\_pagination.scss",
       "PackagePath": "staticwebassets\\scss\\_pagination.scss"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\scss\\_services.scss",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\scss\\_services.scss",
       "PackagePath": "staticwebassets\\scss\\_services.scss"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\scss\\_services_section.scss",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\scss\\_services_section.scss",
       "PackagePath": "staticwebassets\\scss\\_services_section.scss"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\scss\\_team.scss",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\scss\\_team.scss",
       "PackagePath": "staticwebassets\\scss\\_team.scss"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\scss\\_testimonial.scss",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\scss\\_testimonial.scss",
       "PackagePath": "staticwebassets\\scss\\_testimonial.scss"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\scss\\_variables.scss",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\scss\\_variables.scss",
       "PackagePath": "staticwebassets\\scss\\_variables.scss"
     },
     {
-      "Id": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\scss\\style.scss",
+      "Id": "C:\\Users\\sigma\\source\\repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\wwwroot\\scss\\style.scss",
       "PackagePath": "staticwebassets\\scss\\style.scss"
     },
     {
