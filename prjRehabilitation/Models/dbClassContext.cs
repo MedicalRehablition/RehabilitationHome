@@ -22,7 +22,6 @@ namespace prjRehabilitation.Models
         public virtual DbSet<DiseaseDiagnosis> DiseaseDiagnoses { get; set; } = null!;
         public virtual DbSet<DiseaseList> DiseaseLists { get; set; } = null!;
         public virtual DbSet<EmergenceCaller> EmergenceCallers { get; set; } = null!;
-        public virtual DbSet<Employee> Employees { get; set; } = null!;
         public virtual DbSet<MedDosageUnit> MedDosageUnits { get; set; } = null!;
         public virtual DbSet<MedList> MedLists { get; set; } = null!;
         public virtual DbSet<MedTakeTime> MedTakeTimes { get; set; } = null!;
@@ -32,6 +31,7 @@ namespace prjRehabilitation.Models
         public virtual DbSet<PatientMedInfo> PatientMedInfos { get; set; } = null!;
         public virtual DbSet<Product> Products { get; set; } = null!;
         public virtual DbSet<TClassThemeList> TClassThemeLists { get; set; } = null!;
+        public virtual DbSet<TForumArtical> TForumArticals { get; set; } = null!;
         public virtual DbSet<TGroupActivity> TGroupActivities { get; set; } = null!;
         public virtual DbSet<TGroupActivityClassTheme> TGroupActivityClassThemes { get; set; } = null!;
         public virtual DbSet<TGroupActivityPicAndFile> TGroupActivityPicAndFiles { get; set; } = null!;
@@ -213,33 +213,6 @@ namespace prjRehabilitation.Models
                     .HasConstraintName("FK_EmergenceCaller_PatientInfo");
             });
 
-            modelBuilder.Entity<Employee>(entity =>
-            {
-                entity.HasNoKey();
-
-                entity.ToTable("Employee");
-
-                entity.Property(e => e.FAddress)
-                    .HasMaxLength(50)
-                    .HasColumnName("fAddress");
-
-                entity.Property(e => e.FName)
-                    .HasMaxLength(50)
-                    .HasColumnName("fName");
-
-                entity.Property(e => e.FPassword)
-                    .HasMaxLength(50)
-                    .HasColumnName("fPassword");
-
-                entity.Property(e => e.FRank)
-                    .HasMaxLength(50)
-                    .HasColumnName("fRank");
-
-                entity.Property(e => e.Fid)
-                    .ValueGeneratedOnAdd()
-                    .HasColumnName("fid");
-            });
-
             modelBuilder.Entity<MedDosageUnit>(entity =>
             {
                 entity.HasKey(e => e.IdUnit)
@@ -391,6 +364,8 @@ namespace prjRehabilitation.Models
                     .IsUnicode(false)
                     .HasColumnName("fPhone");
 
+                entity.Property(e => e.FPhotoFile).HasColumnName("fPhotoFile");
+
                 entity.Property(e => e.FPicture)
                     .HasMaxLength(80)
                     .HasColumnName("fPicture");
@@ -474,6 +449,42 @@ namespace prjRehabilitation.Models
                     .HasColumnName("fClassThemeName");
 
                 entity.Property(e => e.FDeleteBool).HasColumnName("fDeleteBool");
+            });
+
+            modelBuilder.Entity<TForumArtical>(entity =>
+            {
+                entity.HasKey(e => e.FArticalId);
+
+                entity.ToTable("tForumArtical");
+
+                entity.Property(e => e.FArticalId).HasColumnName("fArtical_Id");
+
+                entity.Property(e => e.FBad).HasColumnName("fBad");
+
+                entity.Property(e => e.FBelongto).HasColumnName("fBelongto");
+
+                entity.Property(e => e.FContent)
+                    .HasMaxLength(300)
+                    .HasColumnName("fContent");
+
+                entity.Property(e => e.FGood).HasColumnName("fGood");
+
+                entity.Property(e => e.FStatus)
+                    .IsRequired()
+                    .HasColumnName("fStatus")
+                    .HasDefaultValueSql("((1))");
+
+                entity.Property(e => e.FTime)
+                    .HasMaxLength(30)
+                    .HasColumnName("fTime");
+
+                entity.Property(e => e.FTitle)
+                    .HasMaxLength(50)
+                    .HasColumnName("fTitle");
+
+                entity.Property(e => e.FUserId).HasColumnName("fUserId");
+
+                entity.Property(e => e.FisAnonymous).HasColumnName("fisAnonymous");
             });
 
             modelBuilder.Entity<TGroupActivity>(entity =>
