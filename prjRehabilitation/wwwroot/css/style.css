@@ -2609,7 +2609,8 @@ hr {
     .header-area .main-header .main-menu ul li a {
         color: #102039;
         font-weight: 600;
-        padding: 39px 27px;
+        padding-top:10px;
+        padding:5px;
         display: block;
         font-size: 16px;
         -webkit-transition: .3s;

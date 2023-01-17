@@ -1,90 +1,570 @@
-﻿
+﻿@model prjRehabilitation.ViewModel.Lin.VMNewArtical
+
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+
 <style>
+    .loader {
+        width: 48px;
+        height: 48px;
+        background: #fff;
+        border-radius: 50%;
+        position: relative;
+        animation: roll 1s ease-in-out infinite alternate;
+    }
+
+        .loader:after {
+            content: "";
+            position: absolute;
+            inset: 5px;
+            border-radius: 50%;
+            border: 5px solid;
+            border-color: #ff3d00 transparent;
+        }
+    /*  roll {
+        0% {
+          transform: translateX(-150%) rotate(0deg) ;
+        }
+        100% {
+          transform:  translateX(150%) rotate(360deg);
+        }
+      }*/
+    .btnspan {
+        border: none;
+        background-color: none;
+        color: lightgray;
+    }
+
+        .btnspan:hover {
+            color: blueviolet;
+        }
+
+    .AddForm {
+        border-radius: 0.5em;
+        border: solid 1.5px deepskyblue;
+    }
+
     .card-reply {
-        background-color:antiquewhite;
+        padding-top: 0.5em;
+        padding-bottom: 0.5em;
+        background-color: antiquewhite;
+    }
+
+        .card-reply:hover {
+            background-color: beige;
+        }
+
+    .varifyHidden {
+        display: none;
+    }
+
+    .reply {
+        padding: 5px;
+    }
+
+    .reply-name {
+        color: #0089ac;
+    }
+
+    .reply_lauout {
+        padding-left: 3em;
+    }
+
+    .reply_addon {
+        font-size: 13px;
+        color: gray;
+        padding-top: 0.7em;
+        display: flex;
+        justify-content: flex-start;
+    }
+
+    .reply_content {
+        font-size: 18px;
+        padding-left: 10px;
+        display: flex;
+        justify-content: flex-start;
+    }
+
+    .reply_panel {
+        float: left;
+        width: 10px;
+        height: 4em;
+    }
+
+    .reply_icon {
+        border-radius: 2em;
+        width: 4em;
+        height: 4em;
+    }
+
+    .artical {
+        padding-left: 10px;
     }
 </style>
-<article>
-    <div class="artial"></div>
-</article>
-<div class="container" style="margin-left:5em; margin-right:5em">
-    <div class="container-fluid mt-100">
-            <div class="col-md-12">
-                <div class="card mb-4">
-                    <div class="card-header">
-                        <div class="media flex-wrap w-100 align-items-center ">
-                                <img src="https://i.imgur.com/iNmBizf.jpg" class="d-block ui-w-40 rounded-circle" alt="">
-                                 <div class="media-body ml-3 " >
-                                    <a href="javascript:void(0)" data-abc="true">Tom Harry</a>
-                                    <div class="text-muted small">13 days ago</div>
-                                </div>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                    <h2 class="card-title">標題</h2>
-                        <p>
-                            For me, getting my business website made was a lot of tech wizardry things. Thankfully i get an ad on Facebook ragarding commence website. I get connected with BBB team. They made my stunning website live in just 3 days.
-                            With the increase demand of online customers. I had to take my business online. BBB Team guided me at each step and enabled me to centralise my work and have control on all aspect of my online business.
-                        </p>
-                    </div>
-                <div class="card-reply" name="reply" id="reply1">
-                    <p>123</p>
-                    <div>
-                        <p></p>
-                    </div>
-                </div>
 
-                    <div class="card-footer d-flex flex-wrap justify-content-between align-items-center px-0 pt-0 pb-3">
-                        <div class="px-4 pt-3">
-                            <span class="text-muted d-inline-flex align-items-center align-middle ml-4">讚:數字</span>
-                            <span class="text-muted d-inline-flex align-items-center align-middle ml-4">留言:數字</span>
-                         </div>
-                         
-                            <button type="button" class="btn btn-primary" onclick="setReplybtn()" id="1"><i class="ion ion-md-create"></i>回復</button>
-                         
-                    </div>
+<div class="container" style="margin-left:5em; margin-right:5em" id="list">
+    <h2>文章列表</h2>
+    <div class="spinner-border" role="status">
+
+        <span class="visually-hidden">Loading...</span>
+    </div>
+
+    @*這邊裝用ajax抓出來的文章*@
+</div>
+@*模板，未來要新增編輯和刪除*@
+@*
+<div class="card-reply col-12 " name="${id}-reply" id="reply1">
+    <div class=" col" id="Commendcontent_3315820" name="comment_parent" data-comment="{&quot;bsn&quot;:17532,&quot;snB&quot;:6072780,&quot;sn&quot;:3315820,&quot;isLogin&quot;:false,&quot;deletable&quot;:false,&quot;editable&quot;:false,&quot;content&quot;:&quot;\u9019\u7248\u672c\u771f\u7684\u721b \u73fe\u5728\u6bcf\u5bb6\u90fd\u5728\u62da\u8cfd\u7279 \u8ab0\u62da\u5230\u8ab0\u5403\u96de&quot;}">
+        <div class="col">
+            <button type="button" class="reply_panel" style="" data-tooltipped="" aria-describedby="tippy-tooltip-15"> </button>
+            <a class="reply_panel" href="//home.gamer.com.tw/a5502313aqw" target="_blank">${userPhoto}</a>
+        </div>
+        <div class="row reply_lauout">
+            <div class="reply_content col">
+                <span class="reply-name">${userName}</span>
+                <article class="col artical">${content}</article>
+            </div>
+            <div class=" reply_addon">
+                <div class="" style="margin-right:6px;" name="comment_floor">B${count}</div>
+                <div class="" data-tooltipped="" aria-describedby="tippy-tooltip-39" data-original-title="${time}"> ${time}</div>
+                <div class="">
+                    <button type="button" onclick="Forum.C.commentGp(this);" class="gp" title="推一個！"><i class="material-icons">讚</i></button>
+                    <a data-gp="0" href="javascript:;" class="gp-count"></a>
+                    <button type="button" onclick="Forum.C.commentBp(this);" class="bp" title="我要噓…"><i class="material-icons">噓</i></button>
+                    <a data-bp="0" href="javascript:;" class="bp-count"></a>
+                    <button class="tag" type="button" onclick="Forum.C.replyToFloor(6072780, 3315820, 1);">回覆</button>
+                    <button></button>
                 </div>
             </div>
+        </div>
     </div>
+</div>*@
+
+
+<div id="AddArtical" class="start-0 AddForm container-md" style="width:50%">
+    <h3 style="">發布新文章</h3>
+    <form asp-action="CreateArtical" name="formNew" id="formNew" class="row g-3">
+        <input type="hidden" value="" />
+        <div class="col-md-12">
+            <label for="FTitle" class="form-label">標題</label>
+            <select id="titleTheme">
+                <option value="【分享】">分享</option>
+                <option value="【問題】">問題</option>
+                <option value="【討論】">討論</option>
+            </select>
+            <input asp-for="FTitle" type="text" placeholder="標題" class="form-control">
+        </div>
+        <div class="col-12">
+            <label for="FContent" class="form-label">內容</label>
+            <textarea asp-for="FContent" class="form-control" placeholder="文章內容"></textarea>
+        </div>
+        <div class="col">
+            <div class="form-group   col-3">
+                <input asp-for="isAnonymous" class="form-check-input" type="checkbox" value="M">
+                <label class="control-label">匿名發布</label>
+            </div>
+        </div>
+        <div class="col-12">
+            <button type="button" class="btn btn-primary" onclick="CreateNewArtical(event)">送出</button>
+        </div>
+
+    </form>
 </div>
-<form name="${id}" id="form${id}">
-    <input class="form-control" name="text" type="text" />
-    <input class="btn-primary" value="送出" type="button" onsubmit="submit()" name="${id}" />
-</form>
 @section Scripts{
     <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
 
     <script>
-        function submit(){
-            var id = event.target.name;
-            $(`#reply${id}`).append(`
-                
-            `);
-            $(`#form${id}`).remove();
-        }
-        function setReplybtn(){
-            var id =  event.target.id
-            $(`#reply${id}`).append(`
-                <form id="form${id}">
-                    <input class="form-text" name="text"  type="text"/>
-                    <input class="btn-primary" value="送出" type="submit"/>
-                </form>
-            `);
-            if(div==null){console.log("false")};
-            var html = div.html();
-            div.html(`${div.html}
-                        <div>
-                                <p>測試</p>
+         //建立新文章，送出後刷新頁面以便檢視
+         start();
 
-                                </div>
-                        `        ) ;
-            //$(this).closest("div").append(
+         async function start(){
+             await loadHistoryArtical();
+         }
+         //計算時間(還沒寫，先卡著)
+         function setTime(time){
+             var now = Date.now;
+             var age = time-now;
+             return age;
+         }
+         //讀特定回覆
+         async function loadReply(event,id){
 
-            //)
-            console.log("gogo");
-            console.log($(this).closest(".card-reply"));
-        } 
+             if(document.querySelector(`#artbody${id} button`).dataset.replybtn=="true"){
+                 document.querySelector(`#artbody${id} button`).dataset.replybtn ="false";
+                 removeReply(event, id);
+                 console.log("文章已折疊");
+                 return;
+             }
 
+             console.log(document.querySelector(`#artbody${id} button`).dataset.replybtn);
+             document.querySelector(`#artbody${id} button`).dataset.replybtn="true";
+             console.log("讀取中:"+id);
+             $(event.target).html("展開中．．．");
+             $(`div[name="${id}-reply"]`).remove();
+
+             const response = await fetch(`@Url.Content("~/Forum/GetHistoryReply?id=${id}")`);
+             const data = await response.json();
+             var count = 0;
+             var html = data.map(x => {
+                  count  ++;
+                 const userid = x.fUserId;
+                 const articalid = x.fArticalId;
+                 const content = setContent(x.fContent);  //內文的換行之類的要另外處理
+                 const good = x.fGood;
+                 const bad = x.fBad;
+                 const isAsy = x.fisAnonymous;
+                 const time = x.fTime;
+                 var userName;
+                 var userPhoto;
+
+                     userName = "匿名";
+                     userPhoto = `<img src="https://thumbs.dreamstime.com/z/default-avatar-profile-icon-vector-social-media-user-image-182145777.jpg"   class="reply_icon d-block ui-w-40  rounded-circle" alt="">`;
+
+                 return   `
+                             <div class="card-reply col-12 " name="${id}-reply" id="reply1">
+                                 <div class=" col" id="Commendcontent_3315820" name="comment_parent" data-comment="{&quot;bsn&quot;:17532,&quot;snB&quot;:6072780,&quot;sn&quot;:3315820,&quot;isLogin&quot;:false,&quot;deletable&quot;:false,&quot;editable&quot;:false,&quot;content&quot;:&quot;\u9019\u7248\u672c\u771f\u7684\u721b \u73fe\u5728\u6bcf\u5bb6\u90fd\u5728\u62da\u8cfd\u7279 \u8ab0\u62da\u5230\u8ab0\u5403\u96de&quot;}">
+                                     <div class="col">
+                                         <button type="button" class="reply_panel" style="" data-tooltipped="" aria-describedby="tippy-tooltip-15"> </button>
+                                         <a class="reply_panel" href="//home.gamer.com.tw/a5502313aqw" target="_blank">${userPhoto}</a>
+                                         </div>
+                                         <div class="row reply_lauout">
+                                             <div class="reply_content col">
+                                                 <span class="reply-name">${userName}</span>
+                                                 <article class="col artical">${content}</article>
+                                             </div>
+                                             <div class=" reply_addon">
+                                                 <div class="" style="margin-right:6px;" name="comment_floor">B${count}</div>
+                                                 <div class="" data-tooltipped="" aria-describedby="tippy-tooltip-39" data-original-title="${time}"> ${time}</div>
+                                                 <div class="">
+                                                     <button type="button" onclick="Forum.C.commentGp(this);" class="gp" title="推一個！"><i class="material-icons">讚</i></button>
+                                                     <a data-gp="0" href="javascript:;" class="gp-count"></a>
+                                                     <button type="button" onclick="Forum.C.commentBp(this);" class="bp" title="我要噓…"><i class="material-icons">噓</i></button>
+                                                     <a data-bp="0" href="javascript:;" class="bp-count"></a>
+                                                     <button class="tag" type="button" onclick="Forum.C.replyToFloor(6072780, 3315820, 1);">回覆</button>
+                                                 </div>
+                                             </div>
+                                     </div>
+                                 </div>
+                         </div>
+                     `;
+                 }
+             );
+             if (html == null) {
+                 console.log("無資料");
+                 return;
+             }
+             //btn.onclick = function(event) { removeReply(event, id); };
+             //function a(){
+             $(event.target).html("⯭摺疊").unbind(loadReply);
+
+             //$(`#artbody${id}`).find("button").click(removeReply);
+             let target = "artical"+id;
+             console.log(target);
+             document.getElementById(target).innerHTML+= html.join("");
+
+             //$(`artical${id}`).find(".card-body").append(html);
+         }
+
+        async function removeReply(event,id){
+             $(`div[name="${id}-reply"]`).remove();
+             $(event.target).html("⯯展開留言")
+
+             //console.log("id="+id);
+             //console.log($(`div[name="${id}-reply"]`).html());
+             //$(`#artbody${id}`).find("button").off("click").click(loadReply);
+             //$(event.target).html("⯯展開留言").one("click",loadReply(event,id));
+         }
+         //讀文章整體
+         async function loadHistoryArtical(){
+             const response = await fetch(`@Url.Content("~/Forum/GetHistoryArtical")`);
+             const data = await response.json();
+             var artArray = [];
+
+             var html = data.map(x => {
+                 console.log(x);
+                 artArray += x.fArticalId;
+                 const userid = x.fUserId;
+                 const articalid = x.fArticalId;
+                 const title = x.fTitle;
+                 const content = setContent(x.fContent);  //內文的換行之類的要另外處理
+                 const good = x.fGood;
+                 const bad = x.fBad;
+                 const isAsy = x.fisAnonymous;
+                 const time = x.fTime;
+                 const replyNum = x.fReplyCount;
+                 var userName;
+                 var userPhoto;
+                 if(x.user.fName==null){
+                     userName = "匿名";
+                     userPhoto = `<img src="https://thumbs.dreamstime.com/z/default-avatar-profile-icon-vector-social-media-user-image-182145777.jpg"   class="reply_icon d-block ui-w-40  rounded-circle" alt="">`;
+                 }
+                 return `
+                                 <div class="col-md-12">
+                                     <div class="card mb-4">
+                                         <div id="artical${articalid}">
+                                             <div class="card-header">
+                                                 <div class="media flex-wrap w-100 align-items-center ">
+                                                     ${userPhoto}
+                                                     <div class="media-body ml-3 ">
+                                                         <a href="javascript:void(0)" data-abc="true">${userName}</a>
+                                                         <div class="text-muted small">${time}</div>
+                                                     </div>
+                                                 </div>
+                                             </div>
+                                             <div id="artbody${articalid}"
+                                                 <div class="card-body">
+                                                     <h2 class="card-title">${title}</h2>
+                                                     <p>
+                                                        ${content}
+                                                     </p>
+                                                     <div class="col">
+                                                                                 <span class="text-muted d-inline-flex align-items-center align-middle ml-4">👍:${good}</span>
+                                                                         <span class="text-muted d-inline-flex align-items-center align-middle ml-4">👎:${bad}</span>
+                                                                 <span class="text-muted d-inline-flex align-items-center align-middle ml-4">💬:${replyNum}</span>
+                                                         <button  class=" text-muted d-inline-flex align-items-center align-middle ml-4 btnspan" data-replybtn="false" onclick="loadReply(event,${articalid})">
+                                                             ⯯展開留言
+                                                         </button>
+                                                     </div>
+                                                  </div>
+                                              </div>
+                                         <div class="card-footer ">
+                                             <form asp-action="AddReply" enctype="multipart/form-data" name="form${articalid}" id="form${articalid}">
+                                                     <input name="articalId" type="hidden"  value="${articalid}"/>
+                                                     <div class="row">
+                                                     <div class="col-7">
+                                                                 <input class=" form-control" placeholder="輸入回覆..." name="content" id="text${articalid}" type="text" />
+                                                     </div>
+                                                     <div class="col-4">
+                                                         <input class="  btn btn-primary" value="送出" type="button" onclick="addreply()" onsubmit="addreply()" id="${articalid}" name="${articalid}" />
+                                                     </div>
+                                                         </div>
+                                              </form>
+                                         </div>
+                                     </div>
+                                 </div>
+                            `;
+                             }
+             );
+
+              document.getElementById("list").innerHTML += html.join("");
+              //加載完把讀取動畫關掉
+             $(".spinner-border").remove();
+         }
+
+         async function addreply(){
+             event.preventDefault();
+             var id = event.target.id;
+             var name = "form"+event.target.id;
+             const text = document.getElementById(`text${id}`).value // 取回覆值
+             const username = "回覆者";
+             userPhoto = `<img src="https://thumbs.dreamstime.com/z/default-avatar-profile-icon-vector-social-media-user-image-182145777.jpg"   class="reply_icon d-block ui-w-40  rounded-circle" alt="">`
+             document.getElementById(`artical${id}`).innerHTML+=`
+                     <div class="card-reply col-12 " name="${id}-reply" id="reply1">
+                         <div class=" col" id="Commendcontent_3315820" name="comment_parent" data-comment="{&quot;bsn&quot;:17532,&quot;snB&quot;:6072780,&quot;sn&quot;:3315820,&quot;isLogin&quot;:false,&quot;deletable&quot;:false,&quot;editable&quot;:false,&quot;content&quot;:&quot;\u9019\u7248\u672c\u771f\u7684\u721b \u73fe\u5728\u6bcf\u5bb6\u90fd\u5728\u62da\u8cfd\u7279 \u8ab0\u62da\u5230\u8ab0\u5403\u96de&quot;}">
+                             <div class="col">
+                                 <button type="button" class="reply_panel" style="" data-tooltipped="" aria-describedby="tippy-tooltip-15"> </button> @*頭像*@
+                                 <a class="reply_panel" href="//home.gamer.com.tw/a5502313aqw" target="_blank">${userPhoto}</a>
+                                 </div>
+                                 <div class="row reply_lauout">
+                                     <div class="reply_content col">
+                                         <span class="reply-name">${username}</span>
+        @*回覆留言*@
+                                         <article class="col artical">${text}</article>
+                                     </div>
+                                     <div class=" reply_addon">
+                                         <div class="" style="margin-right:6px;" name="comment_floor">B1</div>
+                                         <div class="" data-tooltipped="" aria-describedby="tippy-tooltip-39" data-original-title="留言時間 2023-01-16 10:06:20">現在</div>
+                                         <div class="">
+                                                                     <button type="button" onclick="Forum.C.commentGp(this);" class="gp" title="推一個！"><i class="material-icons">👍</i></button>
+                                             <a data-gp="0" href="javascript:;" class="gp-count"></a>
+                                                             <button type="button" onclick="Forum.C.commentBp(this);" class="bp" title="我要噓…"><i class="material-icons">👎</i></button>
+                                             <a data-bp="0" href="javascript:;" class="bp-count"></a>
+                                                     <button class="tag" type="button" onclick="Forum.C.replyToFloor(6072780, 3315820, 1);">💬</button>
+                                         </div>
+                                     </div>
+                             </div>
+                         </div>
+                 </div>
+             `;
+             let form = "form" + id;
+
+             await fetch(`Forum/AddReply?articalId=${id}&userId=1&content=${text}`).then(console.log("ok"));
+         }
+         function setContent (e) {
+             var str1 =e;
+             //當遇到兩個空白轉換成兩個space   註 : 這麼做是為了有其他考量 , 如果只是純文字資料沒有其他標籤符號 , 那轉換一個空白就可以了 .
+             if(str1!=null){
+                 str2 = str1.replace(/  /g, "  ");
+                 //textarea換行轉成<br>
+                 str2 = str2.replace(/\n/g, "<br>");
+                 return str2;
+             }
+             return;
+         };
+
+         async function CreateNewArtical(event){
+             document.getElementById("FTitle").value = document.getElementById("titleTheme").value + document.getElementById("FTitle").value;
+             console.log(document.getElementById("FTitle").value );
+             await fetch("/Forum/CreateArtical", {
+                     method: "POST",
+                     body: new FormData(formNew)
+                 })
+             location.reload()
+         }
+
+         function submit(){
+             var id = event.target.name;
+             $(`#reply${id}`).append(`
+           `);
+             $(`#form${id}`).remove();
+         }
+
+         function setReplybtn(){
+             var id =  event.target.id
+             $(`#reply${id}`).append(`
+                 <form id="form${id}">
+                     <input class="form-text" name="text"  type="text"/>
+                     <input class="btn-primary" value="送出" type="submit"/>
+                 </form>
+             `);
+             if(div==null){console.log("false")};
+             var html = div.html();
+             div.html(`${div.html}
+                         <div>
+                                 <p>測試</p>
+
+                                 </div>
+                         `        ) ;
+             //$(this).closest("div").append(
+
+             //)
+             console.log("gogo");
+             //console.log($(this).closest(".card-reply"));
+         }
     </script>
 }
+
+@*回覆模板*@
+@*<div class="card-reply " name="reply" id="reply1">
+    <div class=" col" id="Commendcontent_3315820" name="comment_parent" data-comment="{&quot;bsn&quot;:17532,&quot;snB&quot;:6072780,&quot;sn&quot;:3315820,&quot;isLogin&quot;:false,&quot;deletable&quot;:false,&quot;editable&quot;:false,&quot;content&quot;:&quot;\u9019\u7248\u672c\u771f\u7684\u721b \u73fe\u5728\u6bcf\u5bb6\u90fd\u5728\u62da\u8cfd\u7279 \u8ab0\u62da\u5230\u8ab0\u5403\u96de&quot;}">
+        <div class="col">
+            <button type="button" class="reply_panel" style="" data-tooltipped="" aria-describedby="tippy-tooltip-15"> </button>
+            <a class="reply_panel" href="//home.gamer.com.tw/a5502313aqw" target="_blank"><img class="reply_icon" data-gamercard-userid="a5502313aqw" aria-describedby="tippy-tooltip-2" src="~/images/imageDefault.png"></a>
+        </div>
+        <div class="row reply_lauout">
+            <div class="reply_content col">
+                <span class="reply-name">名字</span>
+
+                <article class="col artical">回覆內容</article>
+            </div>
+            <div class=" reply_addon">
+                <div class="" style="margin-right:6px;" name="comment_floor">B1</div>
+                <div class="" data-tooltipped="" aria-describedby="tippy-tooltip-39" data-original-title="留言時間 2023-01-16 10:06:20"> 5 分前</div>
+                <div class="">
+                    <button type="button" onclick="Forum.C.commentGp(this);" class="gp" title="推一個！"><i class="material-icons">讚</i></button>
+                    <a data-gp="0" href="javascript:;" class="gp-count"></a>
+                    <button type="button" onclick="Forum.C.commentBp(this);" class="bp" title="我要噓…"><i class="material-icons">噓</i></button>
+                    <a data-bp="0" href="javascript:;" class="bp-count"></a>
+                    <button class="tag" type="button" onclick="Forum.C.replyToFloor(6072780, 3315820, 1);">回覆</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>*@
+
+
+
+@*<div class="artial">
+    <div class="modal fade" id="commentStrart" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="exampleModalLabel">New message</h4>
+
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="recipient-name" class="control-label">主旨:</label>
+                            <input type="text" class="form-control" id="recipient-name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message-text" class="control-label">內文:</label>
+                            <textarea class="form-control" id="message-text" style="margin-top: 0px; margin-bottom: 0px; height: 250px;" required></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="demo" class="btn btn-outline-success">demo</button>
+                    <button type="button" id="closeModal" class="realSure btn btn-default" data-dismiss="">取消發文</button>
+                    <button type="button" id="comment" class="realSure btn btn-primary" data-dismiss="">發表文章</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="comfirmModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-sm " role="document">
+            <div class="modal-content btn btn-outline-dark">
+                <div class="modal-header">
+                    <h4 class="modal-title">提示訊息</h4>
+
+                </div>
+                <div class="modal-body">
+                    <p id="sureOrNot"></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="innerCancel" class="btn btn-outline-light" data-dismiss="modal">取消</button>
+                    <button type="button" id="innerRealSure" class="btn btn-outline-secondary" data-dismiss="modal">確定</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+</div>
+*@
+
+@*文章範本*@
+@*
+    <div class="container-fluid mt-100" id="list">
+        <div class="col-md-12">
+            <div class="card mb-4">
+                <div class="card-header">
+                    <div class="media flex-wrap w-100 align-items-center ">
+                        <img src="https://i.imgur.com/iNmBizf.jpg" class="d-block ui-w-40  rounded-circle" alt="">
+                        <div class="media-body ml-3 ">
+                            <a href="javascript:void(0)" data-abc="true">Tom Harry</a>
+                            <div class="text-muted small">13 days ago</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <h2 class="card-title">標題</h2>
+                    <p>
+                        For me, getting my business website made was a lot of tech wizardry things. Thankfully i get an ad on Facebook ragarding commence website. I get connected with BBB team. They made my stunning website live in just 3 days.
+                        With the increase demand of online customers. I had to take my business online. BBB Team guided me at each step and enabled me to centralise my work and have control on all aspect of my online business.
+                    </p>
+                    <div class="col">
+                        <span class="text-muted d-inline-flex align-items-center align-middle ml-4">讚:數字</span>
+                        <span class="text-muted d-inline-flex align-items-center align-middle ml-4">留言:數字</span>
+                    </div>
+                </div>
+
+                <div class="card-footer ">
+                    <form asp-action="" enctype="multipart/form-data" name="${id}" id="form${id}">
+                        <div class="row">
+                            <div class="col-7">
+                                <input class=" form-control" placeholder="輸入回覆..." name="text" type="text" />
+                            </div>
+                            <div class="col-4">
+                                <input class="  btn btn-primary" value="送出" type="button" onclick="addreply()" onsubmit="submit()" name="${id}" />
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>*@
