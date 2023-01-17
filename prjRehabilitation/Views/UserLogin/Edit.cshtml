@@ -4,61 +4,94 @@
     ViewData["Title"] = "Edit";
 }
 
+
 <h1>Edit</h1>
 
 <h4>CAdminViewModel</h4>
 <hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit" enctype="multipart/form-data">
+<form asp-action="Edit" enctype="multipart/form-data">
+    <div class="row gutters-sm">
+        <div class="col-md-4 mb-3">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <input asp-for="Fid" class="form-control" type="hidden" />
             </div>
-            <div class="form-group">
-                <label asp-for="FName" class="control-label"></label>
-                <input asp-for="FName" class="form-control" />
-                <span asp-validation-for="FName" class="text-danger"></span>
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-flex flex-column align-items-center text-center">
+                        <img class="rounded-circle border border-primary" src="~/images/@Model.Fphoto" alt="Admin" width="200" height="200" />
+                    </div>
+                    <div>
+                        <input type="file" asp-for="photo" class="form-control" />
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="FEmail" class="control-label"></label>
-                <input asp-for="FEmail" class="form-control" />
-                <span asp-validation-for="FEmail" class="text-danger"></span>
+        </div>
+        <div class="col-md-8">
+            <div class="card mb-3">
+                <div class="card-body">
+                    <div class="form-group">
+                        <div class="row">
+                            <div cla ss="col-sm-3">
+                                <h6 class="mb-0">姓名</h6>
+                            </div>
+                            <div class="col-sm-9 text-secondary">
+                                <input asp-for="FName" class="form-control" />
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div cla ss="col-sm-3">
+                                <label asp-for="FPassword" class="control-label"></label>
+                            </div>
+                            <div class="col-sm-9 text-secondary">
+                                <input asp-for="FPassword" class="form-control" />
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div cla ss="col-sm-3">
+                                <label asp-for="FRank" class="control-label"></label>
+                            </div>
+                            <div class="col-sm-9 text-secondary">
+                                <input asp-for="FRank" class="form-control" />
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div cla ss="col-sm-3">
+                                <label asp-for="FSex" class="control-label"></label>
+                            </div>
+                            <div class="col-sm-9 text-secondary">
+                                <input asp-for="FSex" class="form-control" />
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div cla ss="col-sm-3">
+                                <label asp-for="FBirth" class="control-label"></label>
+                            </div>
+                            <div class="col-sm-9 text-secondary">
+                                <input asp-for="FBirth" class="form-control" />
+                            </div>
+                        </div>
+                        <hr>
+                    <div class="form-group">
+                        <input type="submit" value="Save" class="btn btn-primary" />
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="FPassword" class="control-label"></label>
-                <input asp-for="FPassword" class="form-control" />
-                <span asp-validation-for="FPassword" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="FRank" class="control-label"></label>
-                <input asp-for="FRank" class="form-control" />
-                <span asp-validation-for="FRank" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="FSex" class="control-label"></label>
-                <input asp-for="FSex" class="form-control" />
-                <span asp-validation-for="FSex" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="FBirth" class="control-label"></label>
-                <input asp-for="FBirth" class="form-control" />
-                <span asp-validation-for="FBirth" class="text-danger"></span>
-            </div>
-            <div>
-                <input type="file" asp-for="photo" class="form-control" />
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
+        </div>
     </div>
-</div>
+</form>
+
 
 <div>
     <a asp-action="Index">Back to List</a>
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    }
