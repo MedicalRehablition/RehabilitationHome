@@ -10058,19 +10058,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-<<<<<<< HEAD
-      "projectUniqueName": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\prjRehabilitation.csproj",
-      "projectName": "prjRehabilitation",
-      "projectPath": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\prjRehabilitation.csproj",
-      "packagesPath": "C:\\Users\\Student\\.nuget\\packages\\",
-      "outputPath": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\obj\\",
-=======
       "projectUniqueName": "C:\\Users\\Student\\Documents\\GitHub\\RehabilitationHome\\prjRehabilitation\\prjRehabilitation.csproj",
       "projectName": "prjRehabilitation",
       "projectPath": "C:\\Users\\Student\\Documents\\GitHub\\RehabilitationHome\\prjRehabilitation\\prjRehabilitation.csproj",
       "packagesPath": "C:\\Users\\Student\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\Student\\Documents\\GitHub\\RehabilitationHome\\prjRehabilitation\\obj\\",
->>>>>>> 76c517f0802b5d90514f8d3af2bb305cb76e738b
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -10142,12 +10134,16 @@
             "privateAssets": "all"
           }
         },
-<<<<<<< HEAD
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
-=======
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
->>>>>>> 76c517f0802b5d90514f8d3af2bb305cb76e738b
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "讀取快取檔案 C:\\Users\\Student\\Documents\\GitHub\\RehabilitationHome\\prjRehabilitation\\obj\\project.nuget.cache 時發生問題: Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }

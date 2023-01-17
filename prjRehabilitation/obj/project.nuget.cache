@@ -1,14 +1,8 @@
 {
   "version": 2,
-<<<<<<< HEAD
-  "dgSpecHash": "6Q3H5FgjuHAXdjaujkEKIi4tCH8lAKQgxwT2/o5auDEpFJZ1k69XZZfw05IdzzAhBAu77eqyloJtzK089x+BvA==",
-  "success": true,
-  "projectFilePath": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\prjRehabilitation.csproj",
-=======
   "dgSpecHash": "GqGUdoXZEy+yKeWXoEhOhgWb1YCJsApM8FnM22AZbFjAY+n2o1FpfpLprSv0gpEjlPZdANxsEBSNGApu/gqBAA==",
   "success": true,
   "projectFilePath": "C:\\Users\\Student\\Documents\\GitHub\\RehabilitationHome\\prjRehabilitation\\prjRehabilitation.csproj",
->>>>>>> 76c517f0802b5d90514f8d3af2bb305cb76e738b
   "expectedPackageFiles": [
     "C:\\Users\\Student\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\Student\\.nuget\\packages\\messagepack\\2.1.152\\messagepack.2.1.152.nupkg.sha512",
@@ -184,5 +178,12 @@
     "C:\\Users\\Student\\.nuget\\packages\\system.xml.readerwriter\\4.3.0\\system.xml.readerwriter.4.3.0.nupkg.sha512",
     "C:\\Users\\Student\\.nuget\\packages\\system.xml.xdocument\\4.3.0\\system.xml.xdocument.4.3.0.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "讀取快取檔案 C:\\Users\\Student\\Documents\\GitHub\\RehabilitationHome\\prjRehabilitation\\obj\\project.nuget.cache 時發生問題: Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }
