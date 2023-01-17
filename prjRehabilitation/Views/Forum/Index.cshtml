@@ -105,6 +105,11 @@
          <input  type="hidden" value=""/>
         <div class="col-md-12">
             <label for="FTitle" class="form-label">標題</label>
+            <select id="titleTheme">
+                <option value="【分享】">分享</option>
+                <option value="【問題】">問題</option>
+                <option value="【討論】">討論</option>
+            </select>
             <input asp-for="FTitle"  type="text" placeholder="標題" class="form-control">
         </div>
         <div class="col-12">
@@ -118,7 +123,7 @@
             </div>
         </div>
         <div class="col-12">
-            <button type="submit" class="btn btn-primary" onsubmit="CreateNewArtical()">送出</button>
+            <button type="button" class="btn btn-primary" onclick="CreateNewArtical(event)">送出</button>
         </div>
 
     </form>
@@ -356,9 +361,10 @@
             return;
         };
 
-        async function CreateNewArtical(){
-            Event.preventDefault();
-            await fetch("~\Forum\CreateArtical", {
+        async function CreateNewArtical(event){
+            document.getElementById("FTitle").value = document.getElementById("titleTheme").value + document.getElementById("FTitle").value;
+            console.log(document.getElementById("FTitle").value );
+            await fetch("/Forum/CreateArtical", {
                     method: "POST",
                     body: new FormData(formNew)
                 })
