@@ -13,6 +13,8 @@ namespace prjRehabilitation.Controllers
         {
             _environment = environment;
         }
+
+        //show出員工名單
         public IActionResult List(CKeywordViewModel vm)
         {
             dbClassContext db = new dbClassContext();
@@ -37,6 +39,7 @@ namespace prjRehabilitation.Controllers
             }
             return View(List);
         }
+        //登入寫入Session
         public IActionResult Login()
         {
             return View();
@@ -78,6 +81,7 @@ namespace prjRehabilitation.Controllers
             }
             return Content("0");
         }
+        //註冊or新增
         public IActionResult Register()
         {
             return View();
@@ -90,6 +94,7 @@ namespace prjRehabilitation.Controllers
             db.SaveChanges();
             return RedirectToAction("List");
         }
+        //編輯
         public IActionResult Edit(int? id)
         {
             dbClassContext db = new dbClassContext();
@@ -112,12 +117,23 @@ namespace prjRehabilitation.Controllers
                     ad.Fphoto = photoName;
                     vm.photo.CopyTo(new FileStream(path, FileMode.Create));
                 }
-               
                 ad.Fid = vm.Fid;
                 ad.FRank = vm.FRank;
                 ad.FEmail = vm.FEmail;
                 ad.FName = vm.FName;
                 ad.FPassword= vm.FPassword;
+                db.SaveChanges();
+            }
+            return RedirectToAction("List");
+        }
+        //刪除
+        public IActionResult Delete(int? id)
+        {
+            dbClassContext db = new dbClassContext();
+            Admin ad = db.Admins.FirstOrDefault(c => c.Fid == id);
+            if (ad != null)
+            {
+                db.Admins.Remove(ad);
                 db.SaveChanges();
             }
             return RedirectToAction("List");
