@@ -92,13 +92,12 @@
 
 @section Scripts{
     <script>
-        $('#img').on('change',function(e){
+        $('#file').on('change', function (e) {
             const file = this.files[0];
-            const objurl = URL.createObjectURL(file);
-            console.log(objurl);
-            $(this).attr("src",objurl);
-            $('#preview').attr('src', objectURL);
-        })
+            const objURL = URL.createObjectURL(file);
+            console.log(this);
+            $('#img').attr('src', objURL);
+        });
     </script>
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
