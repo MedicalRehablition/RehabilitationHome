@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "cX5svrGrBqtaxnpMin6s0tSO4yb+yJMlDPDS7FJVAxA=",
+  "Hash": "86ZWN1uw2wNUTU+sQmUivMMc31ic8QMme+S3yGdaAE4=",
   "Source": "prjRehabilitation",
   "BasePath": "_content/prjRehabilitation",
   "Mode": "Default",
@@ -1156,6 +1156,23 @@
       "OriginalItemSpec": "wwwroot\\images\\54ce3db0-211d-4dd8-9fbd-a7e04de76ac8.jpg"
     },
     {
+      "Identity": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\images\\557bae5d-b718-4c5f-aed1-a2e0ceb73bcf.jpg",
+      "SourceId": "prjRehabilitation",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\",
+      "BasePath": "_content/prjRehabilitation",
+      "RelativePath": "images/557bae5d-b718-4c5f-aed1-a2e0ceb73bcf.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\557bae5d-b718-4c5f-aed1-a2e0ceb73bcf.jpg"
+    },
+    {
       "Identity": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\images\\5d8eab7c-fbd8-4468-bb95-097f1f34173b.jpg",
       "SourceId": "prjRehabilitation",
       "SourceType": "Discovered",
@@ -1341,6 +1358,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\ca6e01ca-cfba-4780-a1ba-0b8f75ae7be5.jpg"
+    },
+    {
+      "Identity": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\images\\e8b9005c-bd72-45c1-8d9d-36281e02a6bf.jpg",
+      "SourceId": "prjRehabilitation",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\",
+      "BasePath": "_content/prjRehabilitation",
+      "RelativePath": "images/e8b9005c-bd72-45c1-8d9d-36281e02a6bf.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\e8b9005c-bd72-45c1-8d9d-36281e02a6bf.jpg"
     },
     {
       "Identity": "C:\\shared\\prjGithub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\images\\f4b4bea7-ab7e-4b8e-9140-723801ba8bdd.jpg",
