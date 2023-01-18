@@ -15,7 +15,7 @@ namespace prjRehabilitation.Models
             功能評估s = new HashSet<功能評估>();
         }
 
-        public int? Fid { get; set; }
+        public int Fid { get; set; }
         public string? FName { get; set; }
         public string? FSex { get; set; }
         public string? FCheckin { get; set; }

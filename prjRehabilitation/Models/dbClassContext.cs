@@ -35,6 +35,7 @@ namespace prjRehabilitation.Models
         public virtual DbSet<TGroupActivity> TGroupActivities { get; set; } = null!;
         public virtual DbSet<TGroupActivityClassTheme> TGroupActivityClassThemes { get; set; } = null!;
         public virtual DbSet<TGroupActivityPicAndFile> TGroupActivityPicAndFiles { get; set; } = null!;
+        public virtual DbSet<TOfficialPost> TOfficialPosts { get; set; } = null!;
         public virtual DbSet<TPersonalPerformance> TPersonalPerformances { get; set; } = null!;
         public virtual DbSet<TScheduleDetail> TScheduleDetails { get; set; } = null!;
         public virtual DbSet<TypeName> TypeNames { get; set; } = null!;
@@ -628,6 +629,39 @@ namespace prjRehabilitation.Models
                     .HasForeignKey(d => d.FGroupActivityId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_tGroupActivityPictures_tGroupActivity");
+            });
+
+            modelBuilder.Entity<TOfficialPost>(entity =>
+            {
+                entity.HasKey(e => e.FPostId);
+
+                entity.ToTable("tOfficialPost");
+
+                entity.Property(e => e.FPostId).HasColumnName("fPostId");
+
+                entity.Property(e => e.FContent)
+                    .HasMaxLength(500)
+                    .HasColumnName("fContent");
+
+                entity.Property(e => e.FDate)
+                    .HasMaxLength(50)
+                    .HasColumnName("fDate");
+
+                entity.Property(e => e.FMain)
+                    .HasMaxLength(100)
+                    .HasColumnName("fMain");
+
+                entity.Property(e => e.FStatus)
+                    .HasColumnName("fStatus")
+                    .HasDefaultValueSql("((1))");
+
+                entity.Property(e => e.FTag)
+                    .HasMaxLength(50)
+                    .HasColumnName("fTag");
+
+                entity.Property(e => e.FTitle)
+                    .HasMaxLength(50)
+                    .HasColumnName("fTitle");
             });
 
             modelBuilder.Entity<TPersonalPerformance>(entity =>

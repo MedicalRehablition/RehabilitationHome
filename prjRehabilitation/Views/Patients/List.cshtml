@@ -30,20 +30,11 @@
     }
 
     .divhead {
-        margin: 10px;
         display: flex;
-        justify-content: space-around;
+        justify-content: start;
     }
 
-    .sidebar {
-        width: 12rem;
-        top: 5rem;
-        display: block !important;
-        height: calc(100vh - 6rem);
-        padding-left: .25rem;
-        margin-left: -.25rem;
-        overflow-y: auto;
-    }
+
 </style>
 <div class="box overflow-hidden" >
     <a class="btn btn-primary" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample" style="position:fixed;top:500px;left:0px;">
@@ -58,11 +49,11 @@
             <div>
                 <a asp-action="Create_F" class="btn btn-primary">新增住民</a>
             </div>
-            <div class="dropdown mt-3">
+            <div class="  ">
                 <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
                     Dropdown button
                 </button>
-                <ul class="nav nav-pills nav-flush flex-column mb-auto text-center" id="ul" style="width:10rem">
+                <ul class=" text-center" id="ul" style=" width:12rem;padding:0; margin-right:0px; margin-top:10px;">
                     @{
                         foreach (var item in Model)
                         {
@@ -72,20 +63,20 @@
                                 var base64 = Convert.ToBase64String(item.fphoto);
                                 imgSrc = String.Format("data:image/gif;base64,{0}", base64);
                             }
-                            <li class="nav-item mb-2">
+                            <li class="nav-item mb-3">
                                 @if (!string.IsNullOrEmpty(imgSrc))
                                 {
-                                    <img class="card-img-top" src="@imgSrc" alt="顯示錯誤" width="200" height="100" />
+                                    <img class="" src="@imgSrc" alt="顯示錯誤" width="150" height="100" />
                                 }
                                 else
                                 {
-                                    <img class="card-img-top" src="~/images/imageDefault.png" width="200" height="100" />
+                                    <img class="" src="~/images/imageDefault.png" width="150" height="100" />
                                 }
-                                <div class="card-body">
+                                <div class="card-body" style="">
                                     <h5 class="card-title">@item.fName</h5>
-                                    <p class="card-text col">
-                                        <button class="btn btn-primary " onclick="showiframe(event)" id="@item.fid">編輯</button>
-                                        @Html.ActionLink("刪除", "Delete", new { id=item.fid },new { @class="btn btn-danger",onclick = "return confirm('是否刪除?')"})
+                                    <p class="card-text col" style="">
+                                        <button class="genric-btn success circle arrow  small" onclick="showiframe(event)" id="@item.fid">編輯</button>
+                                        @Html.ActionLink("刪除", "Delete", new { id=item.fid },new { @class="genric-btn danger circle arrow small",onclick = "return confirm('是否刪除?')"})
                                     </p>
                                 </div>
                             </li>

@@ -9,9 +9,35 @@ namespace prjRehabilitation.Controllers
 {
     public class ForumController : Controller
     {
+        public IActionResult NewPost()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult NewPost(VMNewPost vm)
+        {
+            vm.FDate = DateTime.Now.ToString("d");
+            (new ArticalCRUD()).PostCreate(vm);
+            return RedirectToAction("OfficialPost");
+        }
+
+        public IActionResult PostDetail(int id)
+        {
+            var data = (new ArticalCRUD()).GetTargetPost(id);
+            return View(data);
+        }
+        public IActionResult OfficialPost()
+        {
+            return View();
+        }
         public IActionResult Index()
         {
             return View();
+        }
+        public IActionResult GetHistoryPost()
+        {
+            var list = (new ArticalCRUD()).GetHistoryPost();
+            return Json(list);
         }
         public IActionResult GetHistoryReply(int id)
         {

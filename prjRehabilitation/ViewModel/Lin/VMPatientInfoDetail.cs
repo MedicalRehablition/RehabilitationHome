@@ -15,7 +15,7 @@ namespace prjRehabilitation.ViewModel.Lin
         public int? fid
         {
             get { return _patientInfo.Fid; }
-            set { _patientInfo.Fid = value; }
+            set { _patientInfo.Fid = (int)value; }
         }
         [DisplayName("照片位址")]
         public string? fPicture

@@ -2,6 +2,7 @@
 using prjRehabilitation.ViewModel.Lin;
 using System.Drawing.Text;
 using System.Security.Cryptography.X509Certificates;
+using System.Text;
 using System.Xml.Linq;
 
 namespace prjRehabilitation.Models.Lin
@@ -35,7 +36,7 @@ namespace prjRehabilitation.Models.Lin
             p.FAddressResidential = vm.fAddressResidential;
             p.FGrant = vm.fGrant;
             p.FExpireDate = vm.fExpireDate;
-            p.FIdnum = vm.fIdnum;
+            p.FIdnum =  vm.fIdnum;
             p.FBednum = vm.fBednum;
             p.FBirthday = vm.fBirthday;
             p.FHomeNum = vm.fHomeNum;
@@ -172,7 +173,49 @@ namespace prjRehabilitation.Models.Lin
             db.SaveChanges();
             return true;
         }
+        private bool checkMD5(string input,string password)
+        {
+            //input=網頁使用者填的 & password=資料庫儲存經MD5處理的密碼
+            using (var cryptoMD5 = System.Security.Cryptography.MD5.Create())
+            {
+                //將輸入的字串編碼成 UTF8 位元組陣列
+                input += "putSomeSalt"; //加鹽，避免駭客知道加密方法後回推密碼
+                var bytes = Encoding.UTF8.GetBytes(input);
 
+                //取得雜湊值位元組陣列
+                var hash = cryptoMD5.ComputeHash(bytes);
+
+                //取得 MD5
+                var md5 = BitConverter.ToString(hash)
+                  .Replace("-", String.Empty)
+                  .ToUpper();
+
+                //雜湊化密碼相同即回傳正確
+                if(md5==password) return true;
+                return false;
+            }
+        }
+        private string getMD5(string input)
+        {
+            //將密碼雜湊化後回傳
+            using (var cryptoMD5 = System.Security.Cryptography.MD5.Create())
+            {
+                //將輸入的字串編碼成 UTF8 位元組陣列
+                input += "putSomeSalt"; //加鹽，避免駭客知道加密方法後回推密碼
+                var bytes = Encoding.UTF8.GetBytes(input);
+
+                //取得雜湊值位元組陣列
+                var hash = cryptoMD5.ComputeHash(bytes);
+
+                //取得 MD5
+                var md5 = BitConverter.ToString(hash)
+                  .Replace("-", String.Empty)
+                  .ToUpper();
+
+                //回傳密碼
+                return md5;
+            }
+        }
         private bool c_BasicInfo(VMPatientInfoDetail vm)
         {
             byte[]? FileBytes = null;
