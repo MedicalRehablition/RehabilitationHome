@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "R8nfW9cyKptfZdxUChaKlSCyxHbhr6JBQc+1EhbNQc0=",
+  "Hash": "sMnsa5fec5fe9UlZRTOspQesU8WCIWjXgUDOKEzced0=",
   "Source": "prjRehabilitation",
   "BasePath": "_content/prjRehabilitation",
   "Mode": "Default",
@@ -1341,6 +1341,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\ca6e01ca-cfba-4780-a1ba-0b8f75ae7be5.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\Student\\Documents\\GitHub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\images\\e8b9005c-bd72-45c1-8d9d-36281e02a6bf.jpg",
+      "SourceId": "prjRehabilitation",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Student\\Documents\\GitHub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\",
+      "BasePath": "_content/prjRehabilitation",
+      "RelativePath": "images/e8b9005c-bd72-45c1-8d9d-36281e02a6bf.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\e8b9005c-bd72-45c1-8d9d-36281e02a6bf.jpg"
     },
     {
       "Identity": "C:\\Users\\Student\\Documents\\GitHub\\RehabilitationHome\\prjRehabilitation\\wwwroot\\images\\f4b4bea7-ab7e-4b8e-9140-723801ba8bdd.jpg",

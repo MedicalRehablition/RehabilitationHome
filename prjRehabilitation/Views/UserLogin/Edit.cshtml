@@ -19,7 +19,16 @@
             <div class="card">
                 <div class="card-body">
                     <div class="d-flex flex-column align-items-center text-center">
-                        <img class="rounded-circle border border-primary" src="~/images/@Model.Fphoto" alt="Admin" width="200" height="200" id="img"/>
+                        @{
+                            if (Model.Fphoto != null)
+                            {
+                                <img class="rounded-circle border border-primary img" src="~/images/@Model.Fphoto" alt="Admin" width="300" height="300" />
+                            }
+                            else
+                            {
+                                <img class="rounded-circle border border-primary img" src="~/images/imageDefault.png" width="300" height="300" />
+                            }
+                        }
                     </div>
                     <div>
                         <input type="file" asp-for="photo" class="form-control" id="file"/>
@@ -96,7 +105,7 @@
             const file = this.files[0];
             const objURL = URL.createObjectURL(file);
             console.log(this);
-            $('#img').attr('src', objURL);
+            $('.img').attr('src', objURL);
         });
     </script>
     @{
