@@ -8,22 +8,25 @@
 <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
 
 <style>
-    body{
+/*    body{
         padding:initial;
         margin:initial;
-    }
+    }*/
     .box {
-        float:left;
-        width: 95rem;
-        height: 95rem;
+        position:relative;
+        width: 90rem;
+        height: 115rem;
         display: flex;
         margin: 0;
         padding:0;
     }
 
     iframe {
-        width: 100rem;
-        height: 100rem;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 95% ;
+        height: 100% ;
     }
 
     .divhead {
@@ -100,10 +103,6 @@
     <div class="box">
         <iframe name="view" id="view" marginwidth="0" marginheight="0" scrolling="No" frameborder="0" ></iframe>
     </div>
-
-
-
-
 </div>
 
 @section Scripts{
