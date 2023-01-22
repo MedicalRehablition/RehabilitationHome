@@ -19,7 +19,7 @@
 </style>
 
 <h1>登入系統</h1>
-<form asp-action="Login">
+<form asp-action="Login" name="userLogin">
     <!-- Email input -->
     <div class="form-group mb-4">
         <label class="form-label" for="form2Example1">Email address</label>
@@ -33,6 +33,7 @@
         <input type="password" id="txtPassword" class="form-control" placeholder="Enter Password" name="txtPassword" />
         <div id="div2"></div>
     </div>
+    <div id="show"></div>
     <!-- 2 column grid layout for inline styling -->
     <div class="row mb-4">
         <div class="col d-flex justify-content-center">
@@ -99,12 +100,16 @@
         });
 
 
-     //logbtn.addEventListener("click",function(){
-     //    let xhr =new XMLHttpRequest();
-     //    xhr.addEventListener("load",function(){
-//    })
-//    xhr.open("GET","@Url.Action("UserLogin","ExistAccount")?;
-//    xhr.send();
-//})                                             
+        logbtn.addEventListener("click", function () {
+            let xhr = new XMLHttpRequest();
+            xhr.addEventListener("load", function () {
+                alert(xhr.responseText);
+            })
+            const Data = new FormData(document.userLogin);
+            xhr.open("POST", "@Url.Content("/UserLogin/ExistAccount")");
+            xhr.send(Data);
+
+        })
+
     </script>
 }

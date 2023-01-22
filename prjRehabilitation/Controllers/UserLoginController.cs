@@ -64,22 +64,20 @@ namespace prjRehabilitation.Controllers
         public IActionResult ExistAccount(CLoginViewModel vm)
         {
             dbClassContext db = new dbClassContext();
-            Admin admin = db.Admins.FirstOrDefault(t => t.FEmail.Equals(vm.txtAccount) && t.FPassword.Equals(vm.txtPassword));
+            Admin admin = db.Admins.FirstOrDefault(t => t.FEmail.Equals(vm.txtAccount));
 
-            if (vm.txtAccount!=null&&vm.txtPassword!=null)
+            if (admin != null)
             {
-                if (admin.FEmail != vm.txtAccount)
+                if (admin.FEmail == vm.txtAccount && admin.FPassword != vm.txtPassword)
                 {
-                    if (admin.FPassword != vm.txtPassword)
-                    {
-                        return Content("1");
-                    }
-                    return Content("2");   
+                    return Content("密碼錯誤");
                 }
-                return Content("3");
- 
+                string json = JsonSerializer.Serialize(admin);
+                HttpContext.Session.SetString(CDictionary.SK_Login_User, json);
+                return Content("登入成功");
+                return RedirectToAction("List");
             }
-            return Content("0");
+            return Content("無此帳號,請重新登入");
         }
         //註冊or新增
         public IActionResult Register()
