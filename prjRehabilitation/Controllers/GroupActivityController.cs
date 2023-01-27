@@ -38,10 +38,10 @@ namespace prjRehabilitation.Controllers
                 cgavm.groupActivity = tempTGA;
                 CGroupActivityEditViewModel mymodel = new CGroupActivityEditViewModel();
                 mymodel.cgavm = cgavm;
-                
+
                 return View(mymodel);
             }
-            
+
             return RedirectToAction("List");
         }
         [HttpPost]
@@ -76,14 +76,16 @@ namespace prjRehabilitation.Controllers
             return RedirectToAction("List");
         }
 
-        public IActionResult ClassThemesPartialView(int? id) {
+        public IActionResult ClassThemesPartialView(int? id)
+        {
             //int aa = (int)id;
-            int[] aa = db.TGroupActivityClassThemes.Where(_ => _.FGroupActivityId == id).Select(_=>_.FClassThemeId).ToArray();
+            int[] aa = db.TGroupActivityClassThemes.Where(_ => _.FGroupActivityId == id).Select(_ => _.FClassThemeId).ToArray();
             string[] resultArray = new string[aa.Count()];
             CClassThemesPartialViewViewModel cctpvvm = new CClassThemesPartialViewViewModel();
             for (int i = 0; i < resultArray.Length; i++)
             {
-                resultArray[i] = db.TypeNames.Where(_ => _.TypeNameId == aa[i]).Select(_ => _.TypeName1).FirstOrDefault();
+                resultArray[i] = db.TypeNames.FirstOrDefault(_ => _.TypeNameId == aa[i]).TypeName1;
+                cctpvvm.ThemeIndexString = resultArray[i];  //為了要只顯示一個字而加。
             }
             cctpvvm.ClassThemesEach = resultArray;
 
@@ -91,6 +93,40 @@ namespace prjRehabilitation.Controllers
 
             return PartialView(cctpvvm);
         }
+
+        public IActionResult ScheduleDetailsPartialView(int? id)
+        {
+
+            CScheduleDetailsPartialViewViewModel csdpvv = new CScheduleDetailsPartialViewViewModel();
+
+            csdpvv.tsd = db.TScheduleDetails.Where(_ => _.FGroupActivityId == id).ToArray();
+
+            return PartialView(csdpvv);
+        }
+
+        public IActionResult PersonalPerformancesPartialView(int? id)
+        {
+
+            CPersonalPerformancesPartialViewViewModel cpppvvm = new CPersonalPerformancesPartialViewViewModel();
+
+            cpppvvm.tpp = db.TPersonalPerformances.Where(_ => _.FGroupActivityId == id).ToArray();
+
+         var Patients = from tempAA in db.PatientInfos select new { tempAA.Fid,tempAA.FName  };
+
+            string[] names = new string[Patients.Count()];
+            int count = 0;
+            foreach (var item in Patients)
+            {
+
+                names[count] = item.Fid + "," + item.FName;
+
+                count++;
+            }
+            cpppvvm.ResidentName = names;
+
+            return PartialView(cpppvvm);
+        }
+
 
     }
 }

@@ -5,5 +5,6 @@
         public string[] ClassThemesEach { get; set; }
         public string[] ClassThemesList { get; set; }
 
+        public string ThemeIndexString { get; set; }
     }
 }

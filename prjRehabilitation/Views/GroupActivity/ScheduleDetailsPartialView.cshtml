@@ -1,0 +1,15 @@
+﻿@model prjRehabilitation.ViewModel.Eric.CScheduleDetailsPartialViewViewModel
+
+@{
+  
+
+}
+@foreach (TScheduleDetail tsdItem in Model.tsd) {
+    TimeSpan dt = Convert.ToDateTime(tsdItem.FEndTime) - Convert.ToDateTime(tsdItem.FStartTime);
+    <ul class="list-group list-group-horizontal-lg">
+        <li class="list-group-item"><label>開始時間：</label><input type="time" value="@tsdItem.FStartTime"/></li>
+        <li class="list-group-item"><label>結束時間：</label><input type="time" value="@tsdItem.FEndTime" /></li>
+        <li class="list-group-item"><label>耗時：</label>@dt</li>
+        <li class="list-group-item"><label>大綱說明：</label><input type="text" value="@tsdItem.FDepiction" /></li>
+    </ul>
+}
