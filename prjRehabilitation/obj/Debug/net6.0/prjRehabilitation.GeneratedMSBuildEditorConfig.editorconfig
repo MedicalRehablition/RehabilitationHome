@@ -16,6 +16,26 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\a0983\OneDrive\Documents\GitHub\RehabilitationHome\prjRehabilitation
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/Users/a0983/OneDrive/Documents/GitHub/RehabilitationHome/prjRehabilitation/Views/AdminUserLogin/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5Vc2VyTG9naW5cRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/a0983/OneDrive/Documents/GitHub/RehabilitationHome/prjRehabilitation/Views/AdminUserLogin/ForgetPassword.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5Vc2VyTG9naW5cRm9yZ2V0UGFzc3dvcmQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/a0983/OneDrive/Documents/GitHub/RehabilitationHome/prjRehabilitation/Views/AdminUserLogin/List.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5Vc2VyTG9naW5cTGlzdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/a0983/OneDrive/Documents/GitHub/RehabilitationHome/prjRehabilitation/Views/AdminUserLogin/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5Vc2VyTG9naW5cTG9naW4uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/a0983/OneDrive/Documents/GitHub/RehabilitationHome/prjRehabilitation/Views/AdminUserLogin/Register.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5Vc2VyTG9naW5cUmVnaXN0ZXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/a0983/OneDrive/Documents/GitHub/RehabilitationHome/prjRehabilitation/Views/Consult/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29uc3VsdFxDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -138,26 +158,6 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/a0983/OneDrive/Documents/GitHub/RehabilitationHome/prjRehabilitation/Views/Treatment/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVHJlYXRtZW50XEluZGV4LmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/a0983/OneDrive/Documents/GitHub/RehabilitationHome/prjRehabilitation/Views/UserLogin/Edit.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlckxvZ2luXEVkaXQuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/a0983/OneDrive/Documents/GitHub/RehabilitationHome/prjRehabilitation/Views/UserLogin/ForgetPassword.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlckxvZ2luXEZvcmdldFBhc3N3b3JkLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/a0983/OneDrive/Documents/GitHub/RehabilitationHome/prjRehabilitation/Views/UserLogin/List.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlckxvZ2luXExpc3QuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/a0983/OneDrive/Documents/GitHub/RehabilitationHome/prjRehabilitation/Views/UserLogin/Login.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlckxvZ2luXExvZ2luLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/a0983/OneDrive/Documents/GitHub/RehabilitationHome/prjRehabilitation/Views/UserLogin/Register.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlckxvZ2luXFJlZ2lzdGVyLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/a0983/OneDrive/Documents/GitHub/RehabilitationHome/prjRehabilitation/Views/_ViewImports.cshtml]
