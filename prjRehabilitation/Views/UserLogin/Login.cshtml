@@ -46,7 +46,7 @@
 
         <div class="col">
             <!-- Simple link -->
-            <a href="#!">Forgot password?</a>
+            <a class="nav-link text-dark" asp-area="" asp-controller="UserLogin" asp-action="ForgetPassword">忘記密碼</a>
         </div>
     </div>
 
@@ -99,8 +99,9 @@
             }
         });
 
-
-        logbtn.addEventListener("click", function () {
+       
+        logbtn.addEventListener("click", function (event) {
+            //event.preventDefault();
             let xhr = new XMLHttpRequest();
             xhr.addEventListener("load", function () {
                 alert(xhr.responseText);

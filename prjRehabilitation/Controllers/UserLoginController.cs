@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using prjRehabilitation.Models;
 using prjRehabilitation.ViewModel;
+using System.Net.Mail;
 using System.Text.Json;
 
 namespace prjRehabilitation.Controllers
@@ -74,7 +75,6 @@ namespace prjRehabilitation.Controllers
                 }
                 string json = JsonSerializer.Serialize(admin);
                 HttpContext.Session.SetString(CDictionary.SK_Login_User, json);
-                return Content("登入成功");
                 return RedirectToAction("List");
             }
             return Content("無此帳號,請重新登入");
@@ -135,6 +135,42 @@ namespace prjRehabilitation.Controllers
                 db.SaveChanges();
             }
             return RedirectToAction("List");
+        }
+        public IActionResult ForgetPassword()
+        {
+            return View();
+        }
+        public IActionResult SendMailByGmail(CLoginViewModel vm)
+        {
+            dbClassContext db = new dbClassContext();
+            Admin admin = db.Admins.FirstOrDefault(t => t.FEmail.Equals(vm.txtAccount));
+            if (admin == null)
+            {
+                return Content("請輸入信箱帳號");
+            }
+            admin.FEmail = vm.txtAccount;
+            admin.FPassword = Guid.NewGuid().ToString();
+            db.SaveChanges();
+            string newPassword = admin.FPassword;
+            List<string> MailList = new List<string>();
+            MailList.Add(vm.txtAccount);//新增收件人進去
+            string Subject = "變更密碼";
+            string Body = "您的密碼為:" + newPassword;
+            MailMessage msg = new MailMessage();
+            msg.From = new MailAddress("yeee880726@gmail.com", "測試郵件", System.Text.Encoding.UTF8);
+            msg.To.Add(string.Join(",", MailList.ToArray()));//收件人
+            msg.Subject = Subject; //主旨
+            msg.SubjectEncoding = System.Text.Encoding.UTF8;
+            msg.Body = Body;//內容
+            msg.IsBodyHtml = true;
+            msg.BodyEncoding = System.Text.Encoding.UTF8;
+            msg.Priority = MailPriority.Normal;
+            SmtpClient MySmtp = new SmtpClient("smtp.gmail.com", 587);
+            //寄件人
+            MySmtp.Credentials = new System.Net.NetworkCredential("yeee880726@gmail.com", "otdqmlbzkpumgsrw");
+            MySmtp.EnableSsl = true;
+            MySmtp.Send(msg);
+            return Content("已發送郵件");
         }
 
     }
