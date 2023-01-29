@@ -19,6 +19,7 @@ namespace prjRehabilitation.Models
         public virtual DbSet<Admin> Admins { get; set; } = null!;
         public virtual DbSet<Consultation> Consultations { get; set; } = null!;
         public virtual DbSet<CounsultTypeRecord> CounsultTypeRecords { get; set; } = null!;
+        public virtual DbSet<Customer> Customers { get; set; } = null!;
         public virtual DbSet<DiseaseDiagnosis> DiseaseDiagnoses { get; set; } = null!;
         public virtual DbSet<DiseaseList> DiseaseLists { get; set; } = null!;
         public virtual DbSet<EmergenceCaller> EmergenceCallers { get; set; } = null!;
@@ -135,6 +136,35 @@ namespace prjRehabilitation.Models
                     .HasForeignKey(d => d.TypeNameId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_CounsultTypeRecord_TypeNames");
+            });
+
+            modelBuilder.Entity<Customer>(entity =>
+            {
+                entity.HasKey(e => e.Fid);
+
+                entity.ToTable("Customer");
+
+                entity.Property(e => e.Fid).HasColumnName("fid");
+
+                entity.Property(e => e.FAddress)
+                    .HasMaxLength(50)
+                    .HasColumnName("fAddress");
+
+                entity.Property(e => e.FEmail)
+                    .HasMaxLength(50)
+                    .HasColumnName("fEmail");
+
+                entity.Property(e => e.FName)
+                    .HasMaxLength(50)
+                    .HasColumnName("fName");
+
+                entity.Property(e => e.FPassword)
+                    .HasMaxLength(50)
+                    .HasColumnName("fPassword");
+
+                entity.Property(e => e.FPhone)
+                    .HasMaxLength(50)
+                    .HasColumnName("fPhone");
             });
 
             modelBuilder.Entity<DiseaseDiagnosis>(entity =>
