@@ -4,8 +4,8 @@
     {
         
 
-        public CGroupActivityViewModel? cgavm { get; set; }
-        public List<string>? GroupActivityType
+        public CGroupActivityViewModel cgavm { get; set; }
+        public List<string> GroupActivityType
         {
             get
             {

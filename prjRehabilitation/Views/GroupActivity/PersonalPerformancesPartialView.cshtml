@@ -11,19 +11,37 @@
     string name = Model.ResidentName.FirstOrDefault(_ => _.Split(",")[0] == Model.tpp[i].FResidentId.ToString()).Split(",")[1];
 
     <div class="card">
-        <div class="card-body">
-            <div class="row">@name</div>
+        <div class="card-body" >
+            <div class="row"><label class="h5 genric-btn info circle">@name</label></div>
             <div class="row">
-                <div class="col">@Model.tpp[i].FEmotions</div>
-                <div class="col">@Model.tpp[i].FParticipatePersistence</div>
-                <div class="col">@Model.tpp[i].FCooperate</div>
+                <div class="col-4"><label class="badge rounded-pill bg-info text-dark">表情情緒：</label><br />
+                    <select asp-for="tpp[i].FEmotions" asp-items="@(new SelectList(Model.comboxEmotions))" class="mt-2"></select>
+                   
+                    </div>
+                <div class="col-4"><label class="badge rounded-pill bg-info text-dark">持續度：</label><br />
+                    <select asp-for="tpp[i].FParticipatePersistence" asp-items="@(new SelectList(Model.comboxParticipatePersistence))" class="mt-2"></select>
+                 
+                    </div>
+                <div class="col-4"><label class="badge rounded-pill bg-info text-dark">配合度：</label><br />
+                    <select asp-for="tpp[i].FCooperate" asp-items="@(new SelectList(Model.comboxCooperate))" class="mt-2"></select>
+                    
+                    </div>
             </div>
             <div class="row">
-                <div class="col">@Model.tpp[i].FHumanInteraction</div>
-                <div class="col">@Model.tpp[i].FAttention</div>
-                <div class="col">@Model.tpp[i].FParticipatePerformance</div>
+                <div class="col-4"><label class="badge rounded-pill bg-info text-dark">人際互動：</label><br />
+                    <select asp-for="tpp[i].FHumanInteraction" asp-items="@(new SelectList(Model.comboxHumanInteraction))" class="mt-2"></select>
+                    
+                    </div>
+                <div class="col-4"><label class="badge rounded-pill bg-info text-dark">注意力：</label><br />
+                    <select asp-for="tpp[i].FAttention" asp-items="@(new SelectList(Model.comboxAttentionRes))" class="mt-2"></select>
+                    
+                    </div>
+                <div class="col-4"><label class="badge rounded-pill bg-info text-dark">參與表現：</label><br />
+                    <select asp-for="tpp[i].FParticipatePerformance" asp-items="@(new SelectList(Model.comboxParticipatePerformance))" class="mt-2"></select>
+                   
+                    </div>
             </div>
-            <div class="row"><input type="text" asp-for="@Model.tpp[i].FDepiction"/></div>
+            <div class="row"><label class="col-auto badge rounded-pill bg-info text-dark m-2">備註：</label><br /><input type="text" asp-for="tpp[i].FDepiction" class=""/></div>
         </div>
     </div>
 }
