@@ -9,58 +9,62 @@
 <h4>CConsultationViewModel</h4>
 <hr />
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-9">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div>
-                <input type="checkbox" id="1" name="Typeconsult" value="1">
-                <label for="1">衛生習慣</label><br />
-                <input type="checkbox" id="2" name="Typeconsult" value="2">
-                <label for="2">居家清潔</label><br />
-                <input type="checkbox" id="3" name="Typeconsult" value="3">
-                <label for="3">飲食起居</label><br />
-                <input type="checkbox" id="4" name="Typeconsult" value="4">
-                <label for="4">認知能力</label><br />
-                <input type="checkbox" id="5" name="Typeconsult" value="5">
-                <label for="5">體能表現</label><br />
-                <input type="checkbox" id="6" name="Typeconsult" value="6">
-                <label for="6">人際互動</label><br />
-                <input type="checkbox" id="7" name="Typeconsult" value="7">
-                <label for="7">烹飪能力</label><br />
-                <input type="checkbox" id="8" name="Typeconsult" value="8">
-                <label for="8">休閒安排</label><br />
-                <input type="checkbox" id="9" name="Typeconsult" value="9">
-                <label for="9">財務管理</label><br />
-                <input type="checkbox" id="10" name="Typeconsult" value="10">
-                <label for="10">健康促進</label><br />
-            </div>  @*checkbox*@
-            <div class="form-group">
-                <input type="hidden" name="FConsultId" value="@Model.FConsultId">
-            </div>
-            <div class="form-group">
+            <div class="row">
+                <div class="col-3 col-md-3">
+                    <input type="checkbox" id="1" name="Typeconsult" value="1">
+                    <label for="1">衛生習慣</label><br />
+                    <input type="checkbox" id="2" name="Typeconsult" value="2">
+                    <label for="2">居家清潔</label><br />
+                    <input type="checkbox" id="3" name="Typeconsult" value="3">
+                    <label for="3">飲食起居</label><br />
+                    <input type="checkbox" id="4" name="Typeconsult" value="4">
+                    <label for="4">認知能力</label><br />
+                    <input type="checkbox" id="5" name="Typeconsult" value="5">
+                    <label for="5">體能表現</label><br />
+                    <input type="checkbox" id="6" name="Typeconsult" value="6">
+                    <label for="6">人際互動</label><br />
+                    <input type="checkbox" id="7" name="Typeconsult" value="7">
+                    <label for="7">烹飪能力</label><br />
+                    <input type="checkbox" id="8" name="Typeconsult" value="8">
+                    <label for="8">休閒安排</label><br />
+                    <input type="checkbox" id="9" name="Typeconsult" value="9">
+                    <label for="9">財務管理</label><br />
+                    <input type="checkbox" id="10" name="Typeconsult" value="10">
+                    <label for="10">健康促進</label><br />
+                </div>  @*checkbox*@
+                <div class="col col-md-9">
+                    <div class="form-group">
+                        <input type="hidden" name="FConsultId" value="@Model.FConsultId">
+                    </div>
+                    <div class="form-group">
 
-                <input type="hidden" name="PatinetId" value="@Model.PatinetId">
+                        <input type="hidden" name="PatinetId" value="@Model.PatinetId">
 
-            </div>
-            <div class="form-group">
-                <label asp-for="Date" class="control-label"></label>
-                <input type="date" asp-for="Date" class="form-control" />
-                <span asp-validation-for="Date" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Summary" class="control-label"></label>
-                <input asp-for="Summary" class="form-control" />
-                <span asp-validation-for="Summary" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Assessment" class="control-label"></label>
-                <input asp-for="Assessment" class="form-control" />
-                <span asp-validation-for="Assessment" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Result" class="control-label"></label>
-                <input asp-for="Result" class="form-control" />
-                <span asp-validation-for="Result" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Date" class="control-label"></label>
+                        <input type="date" asp-for="Date" class="form-control" />
+                        <span asp-validation-for="Date" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Summary" class="control-label"></label>
+                        <textarea asp-for="Summary" class="form-control"></textarea>
+                        <span asp-validation-for="Summary" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Assessment" class="control-label"></label>
+                        <textarea asp-for="Assessment" class="form-control"></textarea>
+                        <span asp-validation-for="Assessment" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Result" class="control-label"></label>
+                        <textarea asp-for="Result" class="form-control" ></textarea>
+                        <span asp-validation-for="Result" class="text-danger"></span>
+                    </div>
+                </div>
             </div>
             <div class="form-group">
                 <input type="submit" value="存檔" class="btn btn-primary" />
@@ -70,7 +74,7 @@
 </div>
 
 <div>
-     <a href="/Consult/DateList/@Model.PatinetId">取消修改作業</a>
+    <a href="/Consult/DateList/@Model.PatinetId">取消修改作業</a>
 </div>
 
 @section Scripts {
@@ -82,11 +86,12 @@
         var list = [];
         @for (int i = 0; i < Model.Typeconsult.Count(); i++)
         {
-            <text>list.push(@Model.Typeconsult[i]); </text>   //在razor中<text>夾住的東西又變回js
+            <text>list.push(@Model.Typeconsult[i]); </text>
+            //在razor中<text>夾住的東西又變回js
         }
-        $.each(list, function (index, value) {
-            $("#" + value).prop("checked", true);
-        });
+            $.each(list, function (index, value) {
+                $("#" + value).prop("checked", true);
+            });
 
     </script>
 }
