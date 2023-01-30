@@ -1,5 +1,6 @@
 ﻿using prjRehabilitation.Models;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace prjRehabilitation.ViewModel
 {
@@ -29,9 +30,10 @@ namespace prjRehabilitation.ViewModel
         [DisplayName("團體計畫")]
         public string FEventType { get { return _GroupActivity.FEventType; } set { _GroupActivity.FEventType = value; } }
         [DisplayName("日期")]
-        public string FDate { get { return _GroupActivity.FDate; } set { _GroupActivity.FDate = value; } }
+        
+        public string FDate { get { return _GroupActivity.FDate; } set {   _GroupActivity.FDate = value; } }
         [DisplayName("開始時間")]
-        public string FStartTime { get { return _GroupActivity.FStartTime; } set { _GroupActivity.FStartTime = value; } }
+        public string? FStartTime { get { return _GroupActivity.FStartTime; } set { _GroupActivity.FStartTime = value; } }
         [DisplayName("結束時間")]
         public string FEndTime { get { return _GroupActivity.FEndTime; } set { _GroupActivity.FEndTime = value; } }
         [DisplayName("團體名稱")]
@@ -42,7 +44,7 @@ namespace prjRehabilitation.ViewModel
         public string FGoal { get { return _GroupActivity.FGoal; } set { _GroupActivity.FGoal = value; } }
         [DisplayName("地點")]
         public string FLocation { get { return _GroupActivity.FLocation; } set { _GroupActivity.FLocation = value; } }
-        [DisplayName("人數")]
+        [DisplayName("團體人數")]
         public int FPeopleCount { get { return _GroupActivity.FPeopleCount; } set { _GroupActivity.FPeopleCount = value; } }
         [DisplayName("團體領導")]
         public string FLeader { get { return _GroupActivity.FLeader; } set { _GroupActivity.FLeader = value; } }
@@ -60,6 +62,7 @@ namespace prjRehabilitation.ViewModel
         public virtual ICollection<TGroupActivityClassTheme> TGroupActivityClassThemes { get { return _GroupActivity.TGroupActivityClassThemes; } set { _GroupActivity.TGroupActivityClassThemes = value; } }
         public virtual ICollection<TGroupActivityPicAndFile> TGroupActivityPicAndFiles { get { return _GroupActivity.TGroupActivityPicAndFiles; } set { _GroupActivity.TGroupActivityPicAndFiles = value; } }
         public virtual ICollection<TPersonalPerformance> TPersonalPerformances { get { return _GroupActivity.TPersonalPerformances; } set { _GroupActivity.TPersonalPerformances = value; } }
+        [DisplayName("大綱排程")]
         public virtual ICollection<TScheduleDetail> TScheduleDetails { get { return _GroupActivity.TScheduleDetails; } set { _GroupActivity.TScheduleDetails = value; } }
 
     }

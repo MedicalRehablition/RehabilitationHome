@@ -15,7 +15,7 @@ namespace prjRehabilitation.Models
             功能評估s = new HashSet<功能評估>();
         }
 
-        public int? Fid { get; set; }
+        public int Fid { get; set; }
         public string? FName { get; set; }
         public string? FSex { get; set; }
         public string? FCheckin { get; set; }
@@ -33,8 +33,9 @@ namespace prjRehabilitation.Models
         public string? FHos { get; set; }
         public string? FIdy { get; set; }
         public string? FGrant { get; set; }
-        public bool? Status { get; set; }
         public string? FPicture { get; set; }
+        public byte[]? FPhotoFile { get; set; }
+        public bool? Status { get; set; }
 
         public virtual ICollection<Consultation> Consultations { get; set; }
         public virtual ICollection<DiseaseDiagnosis> DiseaseDiagnoses { get; set; }

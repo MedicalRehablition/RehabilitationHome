@@ -1,4 +1,4 @@
-﻿@model prjRehabilitation.ViewModel.CAdminViewModel
+﻿@model prjRehabilitation.ViewModel.CCustomerViewModel
 
 @{
     ViewData["Title"] = "Register";
@@ -8,83 +8,68 @@
 
 <h4>CAdminViewModel</h4>
 <hr />
-<form enctype="multipart/form-data" asp-action="Register">
-    <div class="row">
-        <div class="col-md-6 mb-4">
-            <div class="form-outline">
-                <label class="form-label" for="lastName">姓名</label>
-                <input asp-for="FName" type="text" id="lastName" class="form-control form-control-lg" />
-            </div>
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+</button>
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form enctype="multipart/form-data" asp-action="Register" name="userRegister">
+                <div class="row">
+                    <div class="col-md-6 mb-4">
+                        <div class="form-outline">
+                            <label class="form-label" for="lastName">姓名</label>
+                            <input asp-for="FName" type="text" id="lastName" class="form-control form-control-lg" />
+                        </div>
 
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mb-4 d-flex align-items-center">
+
+                        <div class="form-outline datepicker w-100">
+                            <label for="birthdayDate" class="form-label">地址:</label>
+                            <input asp-for="FAddress" type=" text" class="form-control form-control-lg" id="birthdayDate" />
+                        </div>
+
+                    </div>
+                    <div class="col-md-6 mb-4">
+
+
+                        <div class="form-outline datepicker w-100">
+                            <label for="birthdayDate" class="form-label">手機號碼:</label>
+                            <input asp-for="FPhone" type=" text" class="form-control form-control-lg" id="birthdayDate" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-4 pb-2">
+                        <div class="form-outline">
+                            <label class="form-label" for="emailAddress">電子信箱(帳號):</label>
+                            <input asp-for="FEmail" type=" email" id="emailAddress" class="form-control form-control-lg" />
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-4 pb-2">
+                        <div class="form-outline">
+                            <label class="form-label" for="phoneNumber">密碼:</label>
+                            <input asp-for="FPassword" type="password" id="phoneNumber" class="form-control form-control-lg" />
+                        </div>
+                    </div>
+                </div>
+
+                @* <div>
+                <input type="file" asp-for="Fphoto" class="form-control" />
+                </div>*@
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary" id="subbtn">Save changes</button>
+                </div>
+            </form>
         </div>
     </div>
+</div>
 
-    <div class="row">
-        <div class="col-md-6 mb-4 d-flex align-items-center">
-
-            <div class="form-outline datepicker w-100">
-                <label for="birthdayDate" class="form-label">生日</label>
-                <input asp-for="FBirth" type=" text" class="form-control form-control-lg" id="birthdayDate" />
-            </div>
-
-        </div>
-        <div class="col-md-6 mb-4">
-
-            <h6 class="mb-2 pb-1">性別: </h6>
-
-            <div class="form-check form-check-inline">
-                <input asp-for="FSex" class="form-check-input" asp-for="FBirth" type="radio" id="femaleGender"
-                       value="option1" checked />
-                <label class="form-check-label" for="femaleGender">女</label>
-            </div>
-
-            <div class="form-check form-check-inline">
-                <input asp-for="FSex" class="form-check-input" asp-for="FBirth" type="radio" id="maleGender"
-                       value="option2" />
-                <label class="form-check-label" for="maleGender">男</label>
-            </div>
-
-            <div class="form-check form-check-inline">
-                <input asp-for ="FSex"class="form-check-input" asp-for="FBirth" type="radio" id="otherGender"
-                       value="option3" />
-                <label class="form-check-label" for="otherGender">其他</label>
-            </div>
-
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-6 mb-4 pb-2">
-            <div class="form-outline">
-                <label class="form-label" for="emailAddress">信箱</label>
-                <input asp-for="FEmail"type=" email" id="emailAddress" class="form-control form-control-lg" />
-            </div>
-        </div>
-        <div class="col-md-6 mb-4 pb-2">
-            <div class="form-outline">
-                <label class="form-label" for="phoneNumber">密碼</label>
-                <input asp-for ="FPassword" type="password" id="phoneNumber" class="form-control form-control-lg" />
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-12">
-            <label asp-for="FRank" class="control-label">職級</label>
-            <select  asp-for="FRank"class="form-select" aria-label="Default select example">
-                    <option value="1">經理</option>
-                    <option value="2">副理</option>
-                    <option value="3">員工</option>
-                </select>
-        </div>
-    </div>
-    <div>
-        <input type="file" asp-for="Fphoto" class="form-control" />
-    </div>
-
-    <div class="mt-4 pt-2">
-        <input class="btn btn-primary btn-lg" type="submit" value="確認" />
-    </div>
- </form>
 
 
 <div>
@@ -95,4 +80,19 @@
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
+    <script>
+        let subbtn = document.querySelector("#subbtn");
+        subbtn.addEventListener("click", function (event) {
+            //event.preventDefault();
+            let xhr = new XMLHttpRequest();
+            xhr.addEventListener("load", function () {
+                alert(xhr.responseText);
+            })
+            const Data = new FormData(document.userRegister);
+            xhr.open("POST", "@Url.Content("/UserLogin/AccountAlive")");
+            xhr.send(Data);
+
+        })
+
+    </script>
     }

@@ -19,10 +19,10 @@ namespace prjRehabilitation.Models
         public virtual DbSet<Admin> Admins { get; set; } = null!;
         public virtual DbSet<Consultation> Consultations { get; set; } = null!;
         public virtual DbSet<CounsultTypeRecord> CounsultTypeRecords { get; set; } = null!;
+        public virtual DbSet<Customer> Customers { get; set; } = null!;
         public virtual DbSet<DiseaseDiagnosis> DiseaseDiagnoses { get; set; } = null!;
         public virtual DbSet<DiseaseList> DiseaseLists { get; set; } = null!;
         public virtual DbSet<EmergenceCaller> EmergenceCallers { get; set; } = null!;
-        public virtual DbSet<Employee> Employees { get; set; } = null!;
         public virtual DbSet<MedDosageUnit> MedDosageUnits { get; set; } = null!;
         public virtual DbSet<MedList> MedLists { get; set; } = null!;
         public virtual DbSet<MedTakeTime> MedTakeTimes { get; set; } = null!;
@@ -32,10 +32,13 @@ namespace prjRehabilitation.Models
         public virtual DbSet<PatientMedInfo> PatientMedInfos { get; set; } = null!;
         public virtual DbSet<Product> Products { get; set; } = null!;
         public virtual DbSet<TClassThemeList> TClassThemeLists { get; set; } = null!;
+        public virtual DbSet<TForumArtical> TForumArticals { get; set; } = null!;
         public virtual DbSet<TGroupActivity> TGroupActivities { get; set; } = null!;
         public virtual DbSet<TGroupActivityClassTheme> TGroupActivityClassThemes { get; set; } = null!;
         public virtual DbSet<TGroupActivityPicAndFile> TGroupActivityPicAndFiles { get; set; } = null!;
+        public virtual DbSet<TOfficialPost> TOfficialPosts { get; set; } = null!;
         public virtual DbSet<TPersonalPerformance> TPersonalPerformances { get; set; } = null!;
+        public virtual DbSet<TPostComment> TPostComments { get; set; } = null!;
         public virtual DbSet<TScheduleDetail> TScheduleDetails { get; set; } = null!;
         public virtual DbSet<TypeName> TypeNames { get; set; } = null!;
         public virtual DbSet<功能評估> 功能評估s { get; set; } = null!;
@@ -136,6 +139,39 @@ namespace prjRehabilitation.Models
                     .HasConstraintName("FK_CounsultTypeRecord_TypeNames");
             });
 
+            modelBuilder.Entity<Customer>(entity =>
+            {
+                entity.HasKey(e => e.Fid);
+
+                entity.ToTable("Customer");
+
+                entity.Property(e => e.Fid).HasColumnName("fid");
+
+                entity.Property(e => e.FAddress)
+                    .HasMaxLength(50)
+                    .HasColumnName("fAddress");
+
+                entity.Property(e => e.FEmail)
+                    .HasMaxLength(50)
+                    .HasColumnName("fEmail");
+
+                entity.Property(e => e.FName)
+                    .HasMaxLength(50)
+                    .HasColumnName("fName");
+
+                entity.Property(e => e.FPassword)
+                    .HasMaxLength(50)
+                    .HasColumnName("fPassword");
+
+                entity.Property(e => e.FPhone)
+                    .HasMaxLength(50)
+                    .HasColumnName("fPhone");
+
+                entity.Property(e => e.FPicture)
+                    .HasMaxLength(50)
+                    .HasColumnName("fPicture");
+            });
+
             modelBuilder.Entity<DiseaseDiagnosis>(entity =>
             {
                 entity.HasKey(e => e.IdPatientDisease)
@@ -211,33 +247,6 @@ namespace prjRehabilitation.Models
                     .WithMany(p => p.EmergenceCallers)
                     .HasForeignKey(d => d.FPatientId)
                     .HasConstraintName("FK_EmergenceCaller_PatientInfo");
-            });
-
-            modelBuilder.Entity<Employee>(entity =>
-            {
-                entity.HasNoKey();
-
-                entity.ToTable("Employee");
-
-                entity.Property(e => e.FAddress)
-                    .HasMaxLength(50)
-                    .HasColumnName("fAddress");
-
-                entity.Property(e => e.FName)
-                    .HasMaxLength(50)
-                    .HasColumnName("fName");
-
-                entity.Property(e => e.FPassword)
-                    .HasMaxLength(50)
-                    .HasColumnName("fPassword");
-
-                entity.Property(e => e.FRank)
-                    .HasMaxLength(50)
-                    .HasColumnName("fRank");
-
-                entity.Property(e => e.Fid)
-                    .ValueGeneratedOnAdd()
-                    .HasColumnName("fid");
             });
 
             modelBuilder.Entity<MedDosageUnit>(entity =>
@@ -391,6 +400,8 @@ namespace prjRehabilitation.Models
                     .IsUnicode(false)
                     .HasColumnName("fPhone");
 
+                entity.Property(e => e.FPhotoFile).HasColumnName("fPhotoFile");
+
                 entity.Property(e => e.FPicture)
                     .HasMaxLength(80)
                     .HasColumnName("fPicture");
@@ -474,6 +485,42 @@ namespace prjRehabilitation.Models
                     .HasColumnName("fClassThemeName");
 
                 entity.Property(e => e.FDeleteBool).HasColumnName("fDeleteBool");
+            });
+
+            modelBuilder.Entity<TForumArtical>(entity =>
+            {
+                entity.HasKey(e => e.FArticalId);
+
+                entity.ToTable("tForumArtical");
+
+                entity.Property(e => e.FArticalId).HasColumnName("fArtical_Id");
+
+                entity.Property(e => e.FBad).HasColumnName("fBad");
+
+                entity.Property(e => e.FBelongto).HasColumnName("fBelongto");
+
+                entity.Property(e => e.FContent)
+                    .HasMaxLength(300)
+                    .HasColumnName("fContent");
+
+                entity.Property(e => e.FGood).HasColumnName("fGood");
+
+                entity.Property(e => e.FStatus)
+                    .IsRequired()
+                    .HasColumnName("fStatus")
+                    .HasDefaultValueSql("((1))");
+
+                entity.Property(e => e.FTime)
+                    .HasMaxLength(30)
+                    .HasColumnName("fTime");
+
+                entity.Property(e => e.FTitle)
+                    .HasMaxLength(50)
+                    .HasColumnName("fTitle");
+
+                entity.Property(e => e.FUserId).HasColumnName("fUserId");
+
+                entity.Property(e => e.FisAnonymous).HasColumnName("fisAnonymous");
             });
 
             modelBuilder.Entity<TGroupActivity>(entity =>
@@ -590,26 +637,36 @@ namespace prjRehabilitation.Models
 
                 entity.Property(e => e.FDeleteBool).HasColumnName("fDeleteBool");
 
+                entity.Property(e => e.FFile1).HasColumnName("fFile1");
+
                 entity.Property(e => e.FFile1Path)
-                    .HasMaxLength(100)
+                    .HasMaxLength(200)
                     .HasColumnName("fFile1Path");
 
                 entity.Property(e => e.FGroupActivityId).HasColumnName("fGroupActivityID");
 
+                entity.Property(e => e.FPicture1).HasColumnName("fPicture1");
+
                 entity.Property(e => e.FPicture1Path)
-                    .HasMaxLength(100)
+                    .HasMaxLength(200)
                     .HasColumnName("fPicture1Path");
 
+                entity.Property(e => e.FPicture2).HasColumnName("fPicture2");
+
                 entity.Property(e => e.FPicture2Path)
-                    .HasMaxLength(100)
+                    .HasMaxLength(200)
                     .HasColumnName("fPicture2Path");
 
+                entity.Property(e => e.FPicture3).HasColumnName("fPicture3");
+
                 entity.Property(e => e.FPicture3Path)
-                    .HasMaxLength(100)
+                    .HasMaxLength(200)
                     .HasColumnName("fPicture3Path");
 
+                entity.Property(e => e.FPicture4).HasColumnName("fPicture4");
+
                 entity.Property(e => e.FPicture4Path)
-                    .HasMaxLength(100)
+                    .HasMaxLength(200)
                     .HasColumnName("fPicture4Path");
 
                 entity.HasOne(d => d.FGroupActivity)
@@ -617,6 +674,37 @@ namespace prjRehabilitation.Models
                     .HasForeignKey(d => d.FGroupActivityId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_tGroupActivityPictures_tGroupActivity");
+            });
+
+            modelBuilder.Entity<TOfficialPost>(entity =>
+            {
+                entity.HasKey(e => e.FPostId);
+
+                entity.ToTable("tOfficialPost");
+
+                entity.Property(e => e.FPostId).HasColumnName("fPostId");
+
+                entity.Property(e => e.FContent).HasColumnName("fContent");
+
+                entity.Property(e => e.FDate)
+                    .HasMaxLength(50)
+                    .HasColumnName("fDate");
+
+                entity.Property(e => e.FMain)
+                    .HasMaxLength(100)
+                    .HasColumnName("fMain");
+
+                entity.Property(e => e.FStatus)
+                    .HasColumnName("fStatus")
+                    .HasDefaultValueSql("((1))");
+
+                entity.Property(e => e.FTag)
+                    .HasMaxLength(50)
+                    .HasColumnName("fTag");
+
+                entity.Property(e => e.FTitle)
+                    .HasMaxLength(50)
+                    .HasColumnName("fTitle");
             });
 
             modelBuilder.Entity<TPersonalPerformance>(entity =>
@@ -675,6 +763,38 @@ namespace prjRehabilitation.Models
                     .HasForeignKey(d => d.FResidentId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_tPersonalPerformance_PatientInfo");
+            });
+
+            modelBuilder.Entity<TPostComment>(entity =>
+            {
+                entity.HasKey(e => e.Fid);
+
+                entity.ToTable("tPostComment");
+
+                entity.Property(e => e.Fid).HasColumnName("fid");
+
+                entity.Property(e => e.FContent)
+                    .HasMaxLength(300)
+                    .HasColumnName("fContent");
+
+                entity.Property(e => e.FDate)
+                    .HasMaxLength(50)
+                    .HasColumnName("fDate");
+
+                entity.Property(e => e.FEmail)
+                    .HasMaxLength(50)
+                    .HasColumnName("fEmail");
+
+                entity.Property(e => e.FName)
+                    .HasMaxLength(50)
+                    .HasColumnName("fName");
+
+                entity.Property(e => e.FPostId).HasColumnName("fPostID");
+
+                entity.Property(e => e.FStatus)
+                    .IsRequired()
+                    .HasColumnName("fStatus")
+                    .HasDefaultValueSql("((1))");
             });
 
             modelBuilder.Entity<TScheduleDetail>(entity =>

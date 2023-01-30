@@ -1,9 +1,11 @@
 ﻿@model prjRehabilitation.ViewModel.Lin.VMPatientInfoDetail
 
 @{
-    ViewData["Title"] = "Create_F";
+    ViewData["Title"] = "EDIT";
 }
-@section Styles{
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
+
     <style>
         .solidF {
             position: fixed;
@@ -22,33 +24,37 @@
             padding: 0.1em;
         }
     </style>
-}
+
 
 
 <div class="layout">
-    @*    <div class="solidF">
-    <label>床號</label>
-    <label>姓名:
-    <select id="Patient_List">
-    </select></label>
-    <div class="col">
-    <button></button>
-    <button></button>
-    <button></button>
-    </div>
-    </div>*@
-
-
-    <h1>Create_F</h1>
+    <h1>EDIT</h1>
 
     <h4>PatientInfo</h4>
     <hr />
-    <form asp-action="Create_F">
+    <form asp-action="Create_F" id="form1" enctype="multipart/form-data">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         @*照片*@
         <div class="form-group col">
+            <input type="hidden" asp-for="fid" class="form-control" />
+        </div>
+        <div class="form-group col">
             <label asp-for="fphoto" class="control-label">照片</label>
-            <input type="file" asp-for="fphoto" class="form-control" />
+            <input type="file" asp-for="fphoto" class="form-control" accept="image/gif, image/jpeg, image/png" />
+            <br />
+          @{  if (Model.fimg != null)
+            {
+                    var base64 = Convert.ToBase64String(Model.fimg);
+                    var  imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+                    <img id="preview_Patient_img" src="@imgSrc" alt="尚未上傳住民照片" width="200" height="150" />
+
+                }
+                else
+                {
+                    <img id="preview_Patient_img" src="" alt="尚未上傳住民照片" width="200" height="150" />
+
+                }
+            }
             <span asp-validation-for="fphoto"></span>
         </div>
         <hr />
@@ -83,7 +89,7 @@
                 <span asp-validation-for="fIdnum"></span>
             </div>
             <div class="form-group col-3">
-                <label asp-for="fExpireDate" class="control-label">展延到期日(當前到期日為入住日+1y-1d)</label>
+                <label asp-for="fExpireDate" class="control-label">展延到期日</label>
                 <input type="date" asp-for="fExpireDate" class="form-control" />
                 <span asp-validation-for="fExpireDate"></span>
             </div>
@@ -252,31 +258,6 @@
                 </div>
                 @*div_disease用來裝動態生成的疾病資料*@
                 <div id="div_disease">
-                    @{
-                        int count = 1;
-                        if (Model.DiseaseList == null) return;
-                        foreach (var d in Model.DiseaseList)
-                        {
-                            string name = "disease" + count;
-                            string div = "dis_dis" + count;
-                            string disid = d.ID_Disease;
-                            string disname = d.DiseaseChineseName;
-                            <div id='@div' class='row' style='background-color:antiquewhite'>
-                                <div class='col-3'>
-                                    <label class='col-form-label'>編號</label><input asp-for="@name" class='form-control' value='@disname' />
-                                </div>
-                                <div class='col-6'>
-                                    <label class='col-form-label'>疾病中文名稱</label><input asp-for="@name" class='form-control' value="@d.DiseaseChineseName" />
-                                </div>
-                                <div class='col'>
-                                    <br /><button class='btn-danger'>往上</button>
-                                    <input type="button" class='btn-danger' id='${count_disease}' onclick='disease_delete()' value="刪除">
-                                    <button class='btn-danger'> 往下</button>
-                                </div>
-                            </div>
-                            count++;
-                        }
-                    }
                 </div>
             </div>
 
@@ -295,31 +276,31 @@
                     <div class="form-check form-check-inline pt-2 ">
                         <label class="form-check-label">
                             健保
-                            <input id="FSexM" class="form-check-input" type="checkbox" asp-for="fIDY" value="健保">
+                            @Html.CheckBoxFor(x=>x.fidy_健保,new { @class ="form-check-input" })
                         </label>
                     </div>
                     <div class="form-check form-check-inline pt-2 ">
                         <label class="form-check-label">
                             福保
-                            <input id="FSexM" class="form-check-input" type="checkbox" asp-for="fIDY" value="福保">
+                            @Html.CheckBoxFor(x=>x.fidy_福保,new { @class ="form-check-input" })
                         </label>
                     </div>
                     <div class="form-check form-check-inline pt-2 ">
                         <label class="form-check-label">
                             低收入戶
-                            <input id="FSexM" class="form-check-input" type="checkbox" asp-for="fIDY" value="低收入戶">
+                            @Html.CheckBoxFor(x=>x.fidy_低收,new { @class ="form-check-input" })
                         </label>
                     </div>
                     <div class="form-check form-check-inline pt-2 ">
                         <label class="form-check-label">
                             重大傷病卡
-                            <input id="FSexM" class="form-check-input" type="checkbox" asp-for="fIDY" value="健保">
+                            @Html.CheckBoxFor(x=>x.fidy_重大傷病,new { @class ="form-check-input" })
                         </label>
                     </div>
                     <div class="form-check form-check-inline pt-2 ">
                         <label class="form-check-label">
                             身障手冊/身心障礙證明
-                            <input id="FSexM" class="form-check-input" type="checkbox" asp-for="fIDY" value="身障手冊/身心障礙證明">
+                            @Html.CheckBoxFor(x=>x.fidy_身心障礙,new { @class ="form-check-input" })
                         </label>
                     </div>
                 </div>
@@ -329,12 +310,12 @@
                 <div class="col">
                     <div class=" form-check form-check-inline pt-2  col">
                         無
-                        <input id="FSexM" class="form-check-input" type="radio" asp-for="fGrant" value="健保">
+                        <input class="form-check-input" type="radio" asp-for="fGrant_無" value="000">
                     </div>
                     <div class=" form-check form-check-inline pt-2 col">
                         <label class="form-check-label">
                             有
-                            <input id="FSexM" class="form-check-input" type="radio" asp-for="fGrant" value="健保">
+                            <input class="form-check-input" type="radio" asp-for="fGrant_無" value="111">
                         </label>
                     </div>
                     <div class="" col-3">
@@ -347,17 +328,34 @@
             <hr />
 
         </div>
-        <div class="form-group">
-            <input id="submit" type="submit" value="送出" class="btn btn-primary" />
-        </div>
+
     </form>
+    <button id="btn" class="btn btn-primary">送出</button>
+
 </div>
 <div>
     <a asp-action="Index">Back to List</a>
 </div>
-@section Scripts{
+
     <script>
         $(document).ready(function () {
+            //動態表單用ajax另外拉出來
+            fetchDisease();
+
+            $("#btn").click(() => {
+                //getIDYAndGrant();
+                fetch("~\Patient\Edit", {
+                    method: "POST",
+                    //別忘了把主體参數轉成字串，否則資料會變成[object Object]，它無法被成功儲存在後台
+                    body: new FormData(form1)
+                })
+                .then(() => { history.go(-1) })
+                    .catch(function (error) { console.log("失敗") });
+
+            });
+            $("checkbox").change(function () {
+                console.log("1" + $(this).val());
+            });
 
             //計算生日
             $("input[name='FBirthday']").change(ageCalculate());
@@ -369,7 +367,7 @@
                 console.log(diseaseName);
                 $.ajax({
                     type: "Post",
-                    url: "../Patients/Create_F?disease=" + diseaseName,
+                    url: "~\Edit?disease=" + diseaseName,
                     data: '{}',
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
@@ -397,54 +395,8 @@
                     $("#diseaselist").append("<option value=F1病名1''>F1病名1</option>")
                     $("#diseaselist").append("<option value=F2病名2''>F2病名2</option>")
                 })
-
                 //使用ajax傳送疾病資料到c#，在c#的Action接收後轉換成list，最後送出時再添加到vm中
-                $("#submit").submit(function (event) {
-                    event.preventDefault();
-
-                    for (var i = 1; i < count_disease; i++) {
-                        var id = $(`#diseaseId${i}`).val();
-                        var name = $(`#diseaseName${i}`).val();
-                        var data = `{
-                                                                    "VMDisease: {
-                                                                        "DiseaseChineseName":${id},
-                                                                       "ID_Disease":${name}
-                                                                   }
-                                                                } `
-                        $.ajax({
-                            type: "Post",
-                            url: "../Patients/Create_F/" + id + "?name=" + name,
-                            data: `{${data}}`,
-                            contentType: "application/json; charset=utf-8",
-                            dataType: "json",
-                            async: true,
-                            success: function (response) {
-                                // 傳送成功的處理
-                            }
-                        });
-                    }
-
-                })
             });
-            //填入疾病資料
-            //function addDisease() {
-            //    var html = "";
-            //    for (let i = 1; i <= 5; i++{
-            //        if (dis != null) {
-            //            html += `<div id='disdiv${count_disease}'' class='row' style='background-color:antiquewhite'>
-            //                                                         <div class='col-3'><label class='col-form-label'>編號</label><input id='disease${count_disease}.ID_Disease'  name='disease${count_disease}.ID_Disease' class='form-control'  value="${id} " />
-            //                                                         </div>
-            //                                                             <div class='col-6'><label class='col-form-label'>疾病中文名稱</label><input  name='disease${count_disease}.DiseaseChineseName'  id='disease${count_disease}.DiseaseChineseName'  class='form-control' value="${name}"/>
-            //                                                             </div>
-            //                                                            <div class='col'><br /><button class='btn-danger'>往上</button>
-            //                                                                <input type="button" class='btn-danger' id='${count_disease}' onclick='disease_delete()' value="刪除">
-            //                                                                <button class='btn-danger'> 往下</button>
-            //                                                            </div>
-            //                                                    </div>`;
-            //        }
-            //    }
-            //    $("#div_dis").append(html);
-            //}
 
             //選取疾病清單時，動態生成疾病表單
             $("select").change(function diseaseList_change() {
@@ -457,24 +409,49 @@
 
                 //表單生成
                 var html = `<div id='disdiv${count_disease}'' class='row' style='background-color:antiquewhite'>
-                                                         <div class='col-3'><label class='col-form-label'>編號</label><input id='disease${count_disease}.ID_Disease'  name='disease${count_disease}.ID_Disease' class='form-control'  value="${id} " />
-                                                         </div>
-                                                             <div class='col-6'><label class='col-form-label'>疾病中文名稱</label><input  name='disease${count_disease}.DiseaseChineseName'  id='disease${count_disease}.DiseaseChineseName'  class='form-control' value="${name}"/>
-                                                             </div>
-                                                            <div class='col'><br /><button class='btn-danger'>往上</button>
-                                                                <input type="button" class='btn-danger' id='${count_disease}' onclick='disease_delete()' value="刪除">
-                                                                <button class='btn-danger'> 往下</button>
-                                                            </div>
-                                                    </div>`;
+                                                                 <div class='col-3'><label class='col-form-label'>編號</label><input id='disease${count_disease}.ID_Disease'  name='disease${count_disease}.ID_Disease' class='form-control'  value="${id} " />
+                                                                 </div>
+                                                                     <div class='col-6'><label class='col-form-label'>疾病中文名稱</label><input  name='disease${count_disease}.DiseaseChineseName'  id='disease${count_disease}.DiseaseChineseName'  class='form-control' value="${name}"/>
+                                                                     </div>
+                                                                    <div class='col'><br /><button class='btn-danger'>往上</button>
+                                                                        <input type="button" class='btn-danger' id='${count_disease}' onclick='disease_delete()' value="刪除">
+                                                                        <button class='btn-danger'> 往下</button>
+                                                                    </div>
+                                                            </div>`;
                 div.innerHTML += html;
 
 
                 console.log(id);
             });
-            //$("input[name='FName']").change(function(){
-            //    console.log($(this).val());
-            //});
+
         })
+
+        async function fetchDisease() {
+            console.log("123")
+            var div = document.getElementById("div_disease");
+            var id = document.getElementById("fid").value;
+            var count = 0;
+            const response = await fetch(`@Url.Content("~/Patients/fetchDis?id=${id}")`);
+            const data = await response.json();
+            var html = data.map(x => {
+                const disid = x.idDisease;
+                const name = x.diseaseChineseName;
+                count++;
+                return `<div id='disdiv${count}' class='row' style='background-color:antiquewhite'>
+                                        <div class='col-3'><label class='col-form-label'>編號</label><input id='disease${count}.ID_Disease'  name='disease${count}.ID_Disease' class='form-control'  value="${disid} " />
+                                </div>
+                                            <div class='col-6'><label class='col-form-label'>疾病中文名稱</label><input  name='disease${count}.DiseaseChineseName'  id='disease${count}.DiseaseChineseName'  class='form-control' value="${name}"/>
+                                    </div>
+                                <div class='col'><br /><button class='btn-danger'>往上</button>
+                                            <input type="button" class='btn-danger' id='${count}' onclick='disease_delete()' value="刪除">
+                                    <button class='btn-danger'> 往下</button>
+                                </div>
+                         </div>`;
+            }
+            );
+            div.innerHTML = html.join("");
+            count_disease = count;
+        }
         function adddis() {
             console.log("新增")
             $("#diseaselist").append("<option value='F1|病名1'>F1病名1</option>")
@@ -482,18 +459,84 @@
         }
         function ageCalculate() {
             let today = new Date();
-            let birthYear = new Date($("#FBirthday").val()).getFullYear();
+            //let birthYear = new Date($("fBirthday").val().getFullYear);
+            let birthYear = document.getElementById("fBirthday").value.substring(0, 4);
             if (today.getFullYear() < birthYear) {
                 $("#age").val(0);
                 return;
             }
             $("#age").val(today.getFullYear() - birthYear);
+            console.log(birthYear);
         }
         var count_disease = 0;
+
 
         function disease_delete() {
             let i = event.target.id;
             $(`#disdiv${i}`).remove();
         }
+
+    $("#fphoto").change(function () {
+        //當檔案改變後，做一些事
+        readURL(this);   // this代表<input id="imgInp">
+    });
+
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $("#preview_Patient_img").attr('src', e.target.result);
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
     </script>
-}
+
+@*        function getdata(event) {
+            event.preventDefault();
+            console.log("一秒後傳出");
+            setTimeout(1000);
+            var data = new FormData(form1);
+            $.ajax({
+                type: "Post",
+                url: "~\Edit",
+                data: `{${data}}`,
+                contentType: "application/json; charset=utf-8",
+                dataType: "html",
+                async: true,
+                success: function () {
+                    console.log("修改成功");
+                },
+                failure: function (errMsg) {
+                    console.log(errMsg);
+
+                }
+            });
+        }*@
+@*                 //填入疾病資料
+            //function addDisease() {
+            //    var html = "";
+            //    for (let i = 1; i <= 5; i++{
+            //        if (dis != null) {
+            //            html += `<div id='disdiv${count_disease}' ' class='row' style='background-color:antiquewhite'>
+    //                                                         <div class='col-3'>
+        <label class='col-form-label'>編號</label><input id='disease${count_disease}.ID_Disease' name='disease${count_disease}.ID_Disease' class='form-control' value="${id} " />
+        //
+    </div>
+    //                                                             <div class='col-6'>
+        <label class='col-form-label'>疾病中文名稱</label><input name='disease${count_disease}.DiseaseChineseName' id='disease${count_disease}.DiseaseChineseName' class='form-control' value="${name}" />
+        //
+    </div>
+    //                                                            <div class='col'>
+        <br /><button class='btn-danger'>往上</button>
+        //                                                                <input type="button" class='btn-danger' id='${count_disease}' onclick='disease_delete()' value="刪除">
+        //                                                                <button class='btn-danger'> 往下</button>
+        //
+    </div>
+    //
+</div>`;
+            //        }
+            //    }
+            //    $("#div_dis").append(html);
+            //}
+*@

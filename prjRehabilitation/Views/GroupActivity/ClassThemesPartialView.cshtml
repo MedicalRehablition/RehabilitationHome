@@ -1,0 +1,27 @@
+﻿@model prjRehabilitation.ViewModel.Eric.CClassThemesPartialViewViewModel
+
+
+    
+@for (int i = 0; i < Model.ClassThemesEach.Length; i++)
+{
+    <select asp-for="ClassThemesEach[i]" asp-items="@(new SelectList(Model.ClassThemesList))" class="mt-2 form-control">
+    </select>
+
+}
+@*@foreach (string itemEach in Model.ClassThemesEach)
+    {
+    int count = 0;
+    <select asp-for="ClassThemesEach[0]" asp-items="@(new SelectList(Model.ClassThemesList))" class="m-2">
+         @foreach (string itemList in Model.ClassThemesList)
+        {
+            if (itemEach == itemList)
+            {
+                <option selected="selected">@itemList</option>
+            } 
+            else { <option>@itemList</option> }
+        }
+
+        </select>
+
+    }*@
+    

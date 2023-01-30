@@ -25,7 +25,7 @@ namespace prjRehabilitation.ViewModel
         public int? Fid
         {
             get { return _patient.Fid; }
-            set { _patient.Fid=value; }
+            set { _patient.Fid=(int)value; }
         }
         [DisplayName("姓名")]
         public string? FName

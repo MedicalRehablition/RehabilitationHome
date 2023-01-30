@@ -1,0 +1,115 @@
+﻿@model prjRehabilitation.ViewModel.CAdminViewModel
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "AdminLayout";
+}
+
+
+<h1>Edit</h1>
+
+<h4>CAdminViewModel</h4>
+<hr />
+<form asp-action="Edit" enctype="multipart/form-data">
+    <div class="row gutters-sm">
+        <div class="col-md-4 mb-3">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <input asp-for="Fid" class="form-control" type="hidden" />
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-flex flex-column align-items-center text-center">
+                        @{
+                            if (Model.Fphoto != null)
+                            {
+                                <img class="rounded-circle border border-primary img" src="~/images/@Model.Fphoto" alt="Admin" width="300" height="300" />
+                            }
+                            else
+                            {
+                                <img class="rounded-circle border border-primary img" src="~/images/imageDefault.png" width="300" height="300" />
+                            }
+                        }
+                    </div>
+                    <div>
+                        <input type="file" asp-for="photo" class="form-control" id="file"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="card mb-3">
+                <div class="card-body">
+                    <div class="form-group">
+                        <div class="row">
+                            <div cla ss="col-sm-3">
+                                <h6 class="mb-0">姓名</h6>
+                            </div>
+                            <div class="col-sm-9 text-secondary">
+                                <input asp-for="FName" class="form-control" />
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div cla ss="col-sm-3">
+                                <label asp-for="FPassword" class="control-label"></label>
+                            </div>
+                            <div class="col-sm-9 text-secondary">
+                                <input asp-for="FPassword" class="form-control" />
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div cla ss="col-sm-3">
+                                <label asp-for="FRank" class="control-label"></label>
+                            </div>
+                            <div class="col-sm-9 text-secondary">
+                                <input asp-for="FRank" class="form-control" />
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div cla ss="col-sm-3">
+                                <label asp-for="FSex" class="control-label"></label>
+                            </div>
+                            <div class="col-sm-9 text-secondary">
+                                <input asp-for="FSex" class="form-control" />
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div cla ss="col-sm-3">
+                                <label asp-for="FBirth" class="control-label"></label>
+                            </div>
+                            <div class="col-sm-9 text-secondary">
+                                <input asp-for="FBirth" class="form-control" />
+                            </div>
+                        </div>
+                        <hr>
+                    <div class="form-group">
+                        <input type="submit" value="Save" class="btn btn-primary" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts{
+    <script>
+        $('#file').on('change', function (e) {
+            const file = this.files[0];
+            const objURL = URL.createObjectURL(file);
+            console.log(this);
+            $('.img').attr('src', objURL);
+        });
+    </script>
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    }
