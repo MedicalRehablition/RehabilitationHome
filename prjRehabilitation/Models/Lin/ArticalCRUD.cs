@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using prjRehabilitation.ViewModel.Lin;
+using static Microsoft.Extensions.Logging.EventSource.LoggingEventSource;
 
 namespace prjRehabilitation.Models.Lin
 {
@@ -145,6 +146,40 @@ namespace prjRehabilitation.Models.Lin
             }
             return list;
         }
+        public List<VMNewPost> SearchByKeyword(string keyword)
+        {
+            dbClassContext db = new dbClassContext();
+            var list = new List<VMNewPost>();
+            IEnumerable<TOfficialPost> q;
+            q = db.TOfficialPosts.Where(x => x.FStatus !=false);
+
+            foreach (var c in q.ToList())
+            {
+                if (!c.FMain.Contains(keyword)) 
+                { 
+                    if(!c.FTitle.Contains(keyword)) continue;
+                }
+                var post = new VMNewPost();
+                post.fofficialPost = c;
+                string newtag = "";
+                if (c.FTag != null)
+                {
+                    if (c.FTag.Contains("用藥")) newtag += "用藥 ";
+                    if (c.FTag.Contains("評估")) newtag += "評估 ";
+                    if (c.FTag.Contains("活動")) newtag += "活動 ";
+                    if (c.FTag.Contains("復健")) newtag += "復健 ";
+                    if (c.FTag.Contains("介紹")) newtag += "介紹 ";
+                    if (c.FTag.Contains("QA")) newtag += "QA ";
+                    if (c.FTag.Contains("技術")) newtag += "技術 ";
+                    if (c.FTag.Contains("公告")) newtag += "公告 ";
+                    c.FTag = newtag.Remove(newtag.Length - 1);
+
+                }
+
+                list.Add(post);
+            }
+            return list;
+        }
         public object GetTargetPost(int id)
         {
             dbClassContext db = new dbClassContext();
@@ -169,6 +204,37 @@ namespace prjRehabilitation.Models.Lin
                 }
 
             return post;
+        }
+
+        public  object SearchByTag(string tag)
+        {
+            dbClassContext db = new dbClassContext();
+            var list = new List<VMNewPost>();
+            IEnumerable<TOfficialPost> q;
+            q = db.TOfficialPosts.Where(x => x.FStatus != false);
+
+            foreach (var c in q.ToList())
+            {
+                var post = new VMNewPost();
+                post.fofficialPost = c;
+                string newtag = "";
+                if (c.FTag != null)
+                {
+                    if (!c.FTag.Contains(tag)) continue;  
+                    if (c.FTag.Contains("用藥")) newtag += "用藥 ";
+                    if (c.FTag.Contains("評估")) newtag += "評估 ";
+                    if (c.FTag.Contains("活動")) newtag += "活動 ";
+                    if (c.FTag.Contains("復健")) newtag += "復健 ";
+                    if (c.FTag.Contains("介紹")) newtag += "介紹 ";
+                    if (c.FTag.Contains("QA")) newtag += "QA ";
+                    if (c.FTag.Contains("技術")) newtag += "技術 ";
+                    if (c.FTag.Contains("公告")) newtag += "公告 ";
+                    c.FTag = newtag.Remove(newtag.Length - 1);
+
+                }
+                list.Add(post);
+            }
+            return list;
         }
     }
 }

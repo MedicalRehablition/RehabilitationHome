@@ -7,8 +7,22 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Remove="Views\Patients\Create.cshtml" />
     <Content Remove="wwwroot\AdminBootstrap\pluginsAdminlayout\chartist-plugin-tooltip.min.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Views\Forum\Index.cshtml" />
+    <None Include="Views\Forum\NewPost.cshtml" />
+    <None Include="Views\Forum\OfficialPost.cshtml" />
+    <None Include="Views\Forum\PostDetail.cshtml" />
+    <None Include="Views\Patients\Create.cshtml" />
+    <None Include="Views\Patients\Create_F.cshtml" />
+    <None Include="Views\Patients\Edit.cshtml" />
+    <None Include="Views\Patients\Empty.cshtml" />
+    <None Include="Views\Patients\form.cshtml" />
+    <None Include="Views\Patients\layout.cshtml" />
+    <None Include="Views\Patients\List.cshtml" />
+    <None Include="Views\Patients\patients.cshtml" />
   </ItemGroup>
 
   <ItemGroup>

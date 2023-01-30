@@ -38,6 +38,7 @@ namespace prjRehabilitation.Models
         public virtual DbSet<TGroupActivityPicAndFile> TGroupActivityPicAndFiles { get; set; } = null!;
         public virtual DbSet<TOfficialPost> TOfficialPosts { get; set; } = null!;
         public virtual DbSet<TPersonalPerformance> TPersonalPerformances { get; set; } = null!;
+        public virtual DbSet<TPostComment> TPostComments { get; set; } = null!;
         public virtual DbSet<TScheduleDetail> TScheduleDetails { get; set; } = null!;
         public virtual DbSet<TypeName> TypeNames { get; set; } = null!;
         public virtual DbSet<功能評估> 功能評估s { get; set; } = null!;
@@ -762,6 +763,38 @@ namespace prjRehabilitation.Models
                     .HasForeignKey(d => d.FResidentId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_tPersonalPerformance_PatientInfo");
+            });
+
+            modelBuilder.Entity<TPostComment>(entity =>
+            {
+                entity.HasKey(e => e.Fid);
+
+                entity.ToTable("tPostComment");
+
+                entity.Property(e => e.Fid).HasColumnName("fid");
+
+                entity.Property(e => e.FContent)
+                    .HasMaxLength(300)
+                    .HasColumnName("fContent");
+
+                entity.Property(e => e.FDate)
+                    .HasMaxLength(50)
+                    .HasColumnName("fDate");
+
+                entity.Property(e => e.FEmail)
+                    .HasMaxLength(50)
+                    .HasColumnName("fEmail");
+
+                entity.Property(e => e.FName)
+                    .HasMaxLength(50)
+                    .HasColumnName("fName");
+
+                entity.Property(e => e.FPostId).HasColumnName("fPostID");
+
+                entity.Property(e => e.FStatus)
+                    .IsRequired()
+                    .HasColumnName("fStatus")
+                    .HasDefaultValueSql("((1))");
             });
 
             modelBuilder.Entity<TScheduleDetail>(entity =>

@@ -12,15 +12,16 @@
                     <div class="feature-img">
                         <img class="img-fluid" src="assets/img/blog/single_blog_1.png" alt="">
                     </div>
+                    @*文章內容*@
                     <div class="blog_details">
-                        <h2 style="color: #2d2d2d;">
+                        <h1 style="font:900; color: #2d2d2d;">
                             @Model.FTitle
-                        </h2>
+                        </h1>
                         <ul class="blog-info-link mt-3 mb-4">
                             <li><a href="#"><i class="fa fa-user"></i>@Model.FTag</a></li>
                             <li><a href="#"><i class="fa fa-comments"></i> 03 Comments</a></li>
                         </ul>
-                        <article>@Model.FContent</article>
+                        <article id="article">@Html.Raw(Model.FContent)</article>
                     </div>
                 </div>
                 <div class="navigation-top">
@@ -33,7 +34,7 @@
                             <!-- <p class="comment-count"><span class="align-middle"><i class="fa fa-comment"></i></span> 06 Comments</p> -->
                         </div>
                         <ul class="social-icons">
-                            <li><a href="https://www.facebook.com/sai4ull"><i class="fab fa-facebook-f"></i></a></li>
+                            <li><a href="https://www.facebook.com/sharer.php?u=https://localhost:7164/Forum/PostDetail/@Model.FPostId"><i class="fab fa-facebook-f"></i></a></li>
                             <li><a href="#"><i class="fab fa-twitter"></i></a></li>
                             <li><a href="#"><i class="fab fa-dribbble"></i></a></li>
                             <li><a href="#"><i class="fab fa-behance"></i></a></li>
@@ -82,130 +83,53 @@
                 </div>
                 <div class="blog-author">
                     <div class="media align-items-center">
-                        <img src="assets/img/blog/author.png" alt="">
+                        <img src="~/img/blog/author.png" alt="">
                         <div class="media-body">
                             <a href="#">
-                                <h4>Harvard milan</h4>
+                                <h4>啊哈康復之家</h4>
                             </a>
                             <p>
-                                Second divided from form fish beast made. Every of seas all gathered use saying you're, he
-                                our dominion twon Second divided from
+                                Noting perfect last forever, except in our memories.
                             </p>
                         </div>
                     </div>
                 </div>
-                <div class="comments-area">
-                    <h4>05 Comments</h4>
-                    <div class="comment-list">
-                        <div class="single-comment justify-content-between d-flex">
-                            <div class="user justify-content-between d-flex">
-                                <div class="thumb">
-                                    <img src="assets/img/comment/comment_1.png" alt="">
-                                </div>
-                                <div class="desc">
-                                    <p class="comment">
-                                        Multiply sea night grass fourth day sea lesser rule open subdue female fill which them
-                                        Blessed, give fill lesser bearing multiply sea night grass fourth day sea lesser
-                                    </p>
-                                    <div class="d-flex justify-content-between">
-                                        <div class="d-flex align-items-center">
-                                            <h5>
-                                                <a href="#">Emilly Blunt</a>
-                                            </h5>
-                                            <p class="date">December 4, 2017 at 3:12 pm </p>
-                                        </div>
-                                        <div class="reply-btn">
-                                            <a href="#" class="btn-reply text-uppercase">reply</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                <div id="comments-area" class="comments-area">
+                    <h4 id="commentNum">05 Comments</h4>
+                    <div class="spinner-border" role="status">
+                        <span class="visually-hidden">Loading...</span>
                     </div>
-                    <div class="comment-list">
-                        <div class="single-comment justify-content-between d-flex">
-                            <div class="user justify-content-between d-flex">
-                                <div class="thumb">
-                                    <img src="assets/img/comment/comment_2.png" alt="">
-                                </div>
-                                <div class="desc">
-                                    <p class="comment">
-                                        Multiply sea night grass fourth day sea lesser rule open subdue female fill which them
-                                        Blessed, give fill lesser bearing multiply sea night grass fourth day sea lesser
-                                    </p>
-                                    <div class="d-flex justify-content-between">
-                                        <div class="d-flex align-items-center">
-                                            <h5>
-                                                <a href="#">Emilly Blunt</a>
-                                            </h5>
-                                            <p class="date">December 4, 2017 at 3:12 pm </p>
-                                        </div>
-                                        <div class="reply-btn">
-                                            <a href="#" class="btn-reply text-uppercase">reply</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="comment-list">
-                        <div class="single-comment justify-content-between d-flex">
-                            <div class="user justify-content-between d-flex">
-                                <div class="thumb">
-                                    <img src="assets/img/comment/comment_3.png" alt="">
-                                </div>
-                                <div class="desc">
-                                    <p class="comment">
-                                        Multiply sea night grass fourth day sea lesser rule open subdue female fill which them
-                                        Blessed, give fill lesser bearing multiply sea night grass fourth day sea lesser
-                                    </p>
-                                    <div class="d-flex justify-content-between">
-                                        <div class="d-flex align-items-center">
-                                            <h5>
-                                                <a href="#">Emilly Blunt</a>
-                                            </h5>
-                                            <p class="date">December 4, 2017 at 3:12 pm </p>
-                                        </div>
-                                        <div class="reply-btn">
-                                            <a href="#" class="btn-reply text-uppercase">reply</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+
                 </div>
                 <div class="comment-form">
-                    <h4>Leave a Reply</h4>
-                    <form class="form-contact comment_form" action="#" id="commentForm">
+                    <h4>留下你的看法</h4>
+                    <form class="form-contact comment_form" action="#" id="commentForm" name="commentForm">
+                        <input  type="hidden" asp-for="FPostId" value="@Model.FPostId"/>
                         <div class="row">
                             <div class="col-12">
                                 <div class="form-group">
-                                    <textarea class="form-control w-100" name="comment" id="comment" cols="30" rows="9" placeholder="Write Comment"></textarea>
+                                    <textarea class="form-control w-100" name = "FContent" id="FContent" cols="30" rows="9" placeholder="Write Comment"></textarea>
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <input class="form-control" name="name" id="name" type="text" placeholder="Name">
+                                    <input class="form-control" name="FName" id="FName" type=" text" placeholder="Name">
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <input class="form-control" name="email" id="email" type="email" placeholder="Email">
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="form-group">
-                                    <input class="form-control" name="website" id="website" type="text" placeholder="Website">
+                                    <input class="form-control" name="FEmail" id="FEmail" type="email" placeholder="Email">
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
-                            <button type="submit" class="button button-contactForm btn_1 boxed-btn">Post Comment</button>
                         </div>
                     </form>
+                    <button type="button" onclick="postComment()" class="button button-contactForm btn_1 boxed-btn">Post Comment</button>
+
                 </div>
             </div>
+            @*右側整體*@
             <div class="col-lg-4">
                 <div class="blog_right_sidebar">
                     <aside class="single_sidebar_widget search_widget">
@@ -218,45 +142,51 @@
                                     </div>
                                 </div>
                             </div>
-                            <button class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn" type="submit">Search</button>
+                            <button class="button rounded-0 primary-bg text-black w-100 btn_1 boxed-btn" type="submit">Search</button>
                         </form>
                     </aside>
                     <aside class="single_sidebar_widget post_category_widget">
-                        <h4 class="widget_title" style="color: #2d2d2d;">Category</h4>
+                        <h4 class="widget_title" style="color: #2d2d2d;">分類</h4>
                         <ul class="list cat-list">
                             <li>
                                 <a href="#" class="d-flex">
-                                    <p>Resaurant food</p>
+                                    <p>QA</p>
                                     <p>(37)</p>
                                 </a>
                             </li>
                             <li>
                                 <a href="#" class="d-flex">
-                                    <p>Travel news</p>
+                                    <p>介紹</p>
                                     <p>(10)</p>
                                 </a>
                             </li>
                             <li>
                                 <a href="#" class="d-flex">
-                                    <p>Modern technology</p>
+                                    <p>用藥</p>
                                     <p>(03)</p>
                                 </a>
                             </li>
                             <li>
                                 <a href="#" class="d-flex">
-                                    <p>Product</p>
+                                    <p>復健</p>
                                     <p>(11)</p>
                                 </a>
                             </li>
                             <li>
                                 <a href="#" class="d-flex">
-                                    <p>Inspiration</p>
+                                    <p>技術</p>
                                     <p>(21)</p>
                                 </a>
                             </li>
                             <li>
                                 <a href="#" class="d-flex">
-                                    <p>Health Care</p>
+                                    <p>公告</p>
+                                    <p>(21)</p>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="d-flex">
+                                    <p>活動</p>
                                     <p>(21)</p>
                                 </a>
                             </li>
@@ -381,9 +311,69 @@
 </section>
 @section Scripts{
     <script>
-        //document.querySelector("article").innerHTML += setContent(@Model.FContent);
+        loadComment();
+        //送出評論後重整頁面以便檢視
+        async function postComment(){
+            await fetch("/forum/NewComment", {
+                method: "POST",
+                body: new FormData(commentForm)})
+             
+            location.reload();
+        }
+        async function loadComment(){
+            console.log("reading");
+            const response = await fetch("/forum/GetHistoryComment?id=@Model.FPostId")
+            const data = await response.json();
+            var count=0
+            var html = data.map(x => {
+                count++;
+                console.log(x);
+                const name = x.fName;
+                const content = x.fContent
+                const email = x.fEmail;
+                const date = x.fDate;
+                const id = x.fPostId;
+                return `  <div class="comment-list">
+                                <div class="single-comment justify-content-between d-flex">
+                                    <div class="user justify-content-between d-flex">
+                                        <div class="thumb">
+                                            <img src="assets/img/comment/comment_3.png" alt="">
+                                        </div>
+                                        <div class="desc">
+                                            <p class="comment">
+                                                ${content}
+                                            </p>
+                                            <div class="d-flex justify-content-between">
+                                                <div class="d-flex align-items-center">
+                                                    <h5>
+                                                        <a href="#">${name}</a>
+                                                    </h5>
+                                                    <p class="date">${date} </p>
+                                                </div>
+                                                <div class="reply-btn">
+                                                    <a href="#" class="btn-reply text-uppercase">reply</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                                         `;
+            })
+            if(count<10){
+               document.getElementById("commentNum").innerHTML = `0${count} Comments`
+            }
+            else{
+                document.getElementById("commentNum").innerHTML = `${count} Comments`
+            }
+            document.getElementById("comments-area").innerHTML += html.join("");
+            //加載完把讀取動畫關掉
+            $(".spinner-border").remove();
+        }
         function setContent(e) {
             console.log(e);
+
             var str1 = e;
             //當遇到兩個空白轉換成兩個space   註 : 這麼做是為了有其他考量 , 如果只是純文字資料沒有其他標籤符號 , 那轉換一個空白就可以了 .
             if (str1 != null) {

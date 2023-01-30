@@ -13,6 +13,26 @@ namespace prjRehabilitation.Controllers
         {
             return View();
         }
+        public IActionResult Search(string keyword)
+        {
+           var list= (new ArticalCRUD()).SearchByKeyword(keyword);
+            return Json(list);
+        }
+        public IActionResult SearchByTag(string tag)
+        {
+            var list = (new ArticalCRUD()).SearchByTag(tag);
+            return Json(list);
+        }
+        public IActionResult NewComment(TPostComment t)
+        {
+            (new CommentCRUD()).ArticalCreate(t);
+            return Json("success");
+        }
+        public IActionResult GetHistoryComment(int id)
+        {
+            var list = (new CommentCRUD()).GetPostComments(id);
+            return Json(list);
+        }
         [HttpPost]
         public IActionResult NewPost(VMNewPost vm)
         {
