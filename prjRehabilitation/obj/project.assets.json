@@ -10052,25 +10052,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\sigma\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Users\\Student\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\sigma\\Source\\Repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\prjRehabilitation.csproj",
+      "projectUniqueName": "C:\\Users\\Student\\Desktop\\Project\\RehabilitationHome\\prjRehabilitation\\prjRehabilitation.csproj",
       "projectName": "prjRehabilitation",
-      "projectPath": "C:\\Users\\sigma\\Source\\Repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\prjRehabilitation.csproj",
-      "packagesPath": "C:\\Users\\sigma\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\sigma\\Source\\Repos\\MedicalRehablition\\RehabilitationHome\\prjRehabilitation\\obj\\",
+      "projectPath": "C:\\Users\\Student\\Desktop\\Project\\RehabilitationHome\\prjRehabilitation\\prjRehabilitation.csproj",
+      "packagesPath": "C:\\Users\\Student\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Student\\Desktop\\Project\\RehabilitationHome\\prjRehabilitation\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\sigma\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Student\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -10136,7 +10134,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.101\\RuntimeIdentifierGraph.json"
       }
     }
   }
