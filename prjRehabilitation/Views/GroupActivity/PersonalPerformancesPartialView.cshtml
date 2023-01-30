@@ -10,7 +10,7 @@
 {
     string name = Model.ResidentName.FirstOrDefault(_ => _.Split(",")[0] == Model.tpp[i].FResidentId.ToString()).Split(",")[1];
 
-    <div class="card">
+    <div class="card mt-1">
         <div class="card-body" >
             <div class="row"><label class="h5 genric-btn info circle">@name</label></div>
             <div class="row">

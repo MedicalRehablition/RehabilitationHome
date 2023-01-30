@@ -165,6 +165,10 @@ namespace prjRehabilitation.Models
                 entity.Property(e => e.FPhone)
                     .HasMaxLength(50)
                     .HasColumnName("fPhone");
+
+                entity.Property(e => e.FPicture)
+                    .HasMaxLength(50)
+                    .HasColumnName("fPicture");
             });
 
             modelBuilder.Entity<DiseaseDiagnosis>(entity =>
@@ -632,26 +636,36 @@ namespace prjRehabilitation.Models
 
                 entity.Property(e => e.FDeleteBool).HasColumnName("fDeleteBool");
 
+                entity.Property(e => e.FFile1).HasColumnName("fFile1");
+
                 entity.Property(e => e.FFile1Path)
-                    .HasMaxLength(100)
+                    .HasMaxLength(200)
                     .HasColumnName("fFile1Path");
 
                 entity.Property(e => e.FGroupActivityId).HasColumnName("fGroupActivityID");
 
+                entity.Property(e => e.FPicture1).HasColumnName("fPicture1");
+
                 entity.Property(e => e.FPicture1Path)
-                    .HasMaxLength(100)
+                    .HasMaxLength(200)
                     .HasColumnName("fPicture1Path");
 
+                entity.Property(e => e.FPicture2).HasColumnName("fPicture2");
+
                 entity.Property(e => e.FPicture2Path)
-                    .HasMaxLength(100)
+                    .HasMaxLength(200)
                     .HasColumnName("fPicture2Path");
 
+                entity.Property(e => e.FPicture3).HasColumnName("fPicture3");
+
                 entity.Property(e => e.FPicture3Path)
-                    .HasMaxLength(100)
+                    .HasMaxLength(200)
                     .HasColumnName("fPicture3Path");
 
+                entity.Property(e => e.FPicture4).HasColumnName("fPicture4");
+
                 entity.Property(e => e.FPicture4Path)
-                    .HasMaxLength(100)
+                    .HasMaxLength(200)
                     .HasColumnName("fPicture4Path");
 
                 entity.HasOne(d => d.FGroupActivity)
@@ -669,9 +683,7 @@ namespace prjRehabilitation.Models
 
                 entity.Property(e => e.FPostId).HasColumnName("fPostId");
 
-                entity.Property(e => e.FContent)
-                    .HasMaxLength(500)
-                    .HasColumnName("fContent");
+                entity.Property(e => e.FContent).HasColumnName("fContent");
 
                 entity.Property(e => e.FDate)
                     .HasMaxLength(50)

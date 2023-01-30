@@ -11,5 +11,6 @@ namespace prjRehabilitation.Models
         public string? FPhone { get; set; }
         public string? FName { get; set; }
         public string? FAddress { get; set; }
+        public string? FPicture { get; set; }
     }
 }
