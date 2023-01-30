@@ -36,6 +36,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5Vc2VyTG9naW5cUmVnaXN0ZXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[F:/Ispan_Asp/RehabilitationHome/prjRehabilitation/Views/Calendar/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FsZW5kYXJcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [F:/Ispan_Asp/RehabilitationHome/prjRehabilitation/Views/Consult/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29uc3VsdFxDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 

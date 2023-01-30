@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "XgtjmDRnSQcPAHSFZUaMk2O8wTjjnGdO1z+vGcoJ5LE=",
+  "Hash": "2dBIgIaNvNoS3jl+os2Lw6DaOFb1I3BcUtKmaWyWOqQ=",
   "Source": "prjRehabilitation",
   "BasePath": "_content/prjRehabilitation",
   "Mode": "Default",
@@ -6987,6 +6987,23 @@
       "OriginalItemSpec": "wwwroot\\css\\bootstrap.min.css"
     },
     {
+      "Identity": "F:\\Ispan_Asp\\RehabilitationHome\\prjRehabilitation\\wwwroot\\css\\Calendar\\calendar-gc.min.css",
+      "SourceId": "prjRehabilitation",
+      "SourceType": "Discovered",
+      "ContentRoot": "F:\\Ispan_Asp\\RehabilitationHome\\prjRehabilitation\\wwwroot\\",
+      "BasePath": "_content/prjRehabilitation",
+      "RelativePath": "css/Calendar/calendar-gc.min.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\Calendar\\calendar-gc.min.css"
+    },
+    {
       "Identity": "F:\\Ispan_Asp\\RehabilitationHome\\prjRehabilitation\\wwwroot\\css\\coloShop\\animate.css",
       "SourceId": "prjRehabilitation",
       "SourceType": "Discovered",
@@ -12850,6 +12867,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\bootstrap.min.js"
+    },
+    {
+      "Identity": "F:\\Ispan_Asp\\RehabilitationHome\\prjRehabilitation\\wwwroot\\js\\Calendar\\calendar-gc.min.js",
+      "SourceId": "prjRehabilitation",
+      "SourceType": "Discovered",
+      "ContentRoot": "F:\\Ispan_Asp\\RehabilitationHome\\prjRehabilitation\\wwwroot\\",
+      "BasePath": "_content/prjRehabilitation",
+      "RelativePath": "js/Calendar/calendar-gc.min.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\Calendar\\calendar-gc.min.js"
     },
     {
       "Identity": "F:\\Ispan_Asp\\RehabilitationHome\\prjRehabilitation\\wwwroot\\js\\coloShop\\bootstrap.min.js",

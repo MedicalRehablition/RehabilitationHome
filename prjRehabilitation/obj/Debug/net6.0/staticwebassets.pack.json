@@ -2289,6 +2289,10 @@
       "PackagePath": "staticwebassets\\cssAdminlayout\\style.min.css"
     },
     {
+      "Id": "F:\\Ispan_Asp\\RehabilitationHome\\prjRehabilitation\\wwwroot\\css\\Calendar\\calendar-gc.min.css",
+      "PackagePath": "staticwebassets\\css\\Calendar\\calendar-gc.min.css"
+    },
+    {
       "Id": "F:\\Ispan_Asp\\RehabilitationHome\\prjRehabilitation\\wwwroot\\css\\animate.min.css",
       "PackagePath": "staticwebassets\\css\\animate.min.css"
     },
@@ -3027,6 +3031,10 @@
     {
       "Id": "F:\\Ispan_Asp\\RehabilitationHome\\prjRehabilitation\\wwwroot\\jsAdminlayout\\waves.js",
       "PackagePath": "staticwebassets\\jsAdminlayout\\waves.js"
+    },
+    {
+      "Id": "F:\\Ispan_Asp\\RehabilitationHome\\prjRehabilitation\\wwwroot\\js\\Calendar\\calendar-gc.min.js",
+      "PackagePath": "staticwebassets\\js\\Calendar\\calendar-gc.min.js"
     },
     {
       "Id": "F:\\Ispan_Asp\\RehabilitationHome\\prjRehabilitation\\wwwroot\\js\\animated.headline.js",
