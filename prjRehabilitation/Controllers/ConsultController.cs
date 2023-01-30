@@ -15,6 +15,7 @@ namespace prjRehabilitation.Controllers
             if (Keyword == null)
             {
                 data = from p in db.PatientInfos
+                       where p.Status == true
                        select new PatientInfo { FName = p.FName, Fid = p.Fid };
             }
             else
@@ -59,12 +60,26 @@ namespace prjRehabilitation.Controllers
             return View(consult);
         }
         [HttpPost]
-        public ActionResult SaveCreate(CConsultationViewModel vm)
-        {        
-            dbClassContext db = new dbClassContext();            
+        public ActionResult SaveCreate(CConsultationViewModel vm, [FromForm] List<int> Typeconsult)
+        {
+            dbClassContext db = new dbClassContext();
             db.Consultations.Add(vm.Consult);
             db.SaveChanges();
-            return RedirectToAction("DateList","Consult", new { @id = vm.PatinetId });
+            //-------------------------------checkbox存進資料庫
+            foreach (var item in Typeconsult)
+            {
+                var ctr = new CounsultTypeRecord
+                {
+                    FConsultId = vm.Consult.FConsultId,
+                    TypeNameId = item
+                };
+
+                db.CounsultTypeRecords.Add(ctr);
+            }
+            //-------------------------------
+            db.SaveChanges();
+
+            return RedirectToAction("DateList", "Consult", new { @id = vm.PatinetId });
         }
         public ActionResult Edit(int? id)
         {
@@ -72,14 +87,19 @@ namespace prjRehabilitation.Controllers
             Consultation consult = db.Consultations.FirstOrDefault(t => t.FConsultId == id);      //'查詢'頁面輸入的資料到Tptient去撈資料，並放到CProductViewMode
             CConsultationViewModel vm = new CConsultationViewModel();
             vm.Consult = consult;
+            //-----------chechbox呈現
+            var q = (from cc in db.CounsultTypeRecords
+                     where cc.FConsultId == id
+                     select cc.TypeNameId).ToList();
+            vm.Typeconsult = q;
             return View(vm);
         }
         [HttpPost]
-        public ActionResult Edit(CConsultationViewModel vm)
+        public ActionResult Edit(CConsultationViewModel vm, [FromForm] List<int> Typeconsult)
         {
             dbClassContext db = new dbClassContext();
             Consultation consult = db.Consultations.FirstOrDefault(t => t.FConsultId == vm.FConsultId);
-            if (consult!=null)
+            if (consult != null)
             {
                 consult.Date = vm.Date;
                 consult.Assessment = vm.Assessment;
@@ -87,21 +107,38 @@ namespace prjRehabilitation.Controllers
                 consult.Result = vm.Result;
                 db.SaveChanges();
             }
-            return RedirectToAction("DateList", "Consult", new { @id = vm.PatinetId }); 
+            //-------checkbox儲存---刪舊的再新增
+            var ctr = db.CounsultTypeRecords.Where(t => t.FConsultId == vm.FConsultId);
+            db.RemoveRange(ctr);
+            db.SaveChanges();
+            foreach (var item in Typeconsult)
+            {
+                var ctred = new CounsultTypeRecord
+                {
+                    FConsultId = vm.Consult.FConsultId,
+                    TypeNameId = item
+                };
+                db.CounsultTypeRecords.Add(ctred);
+            };
+            db.SaveChanges();
+            return RedirectToAction("DateList", "Consult", new { @id = vm.PatinetId });
         }
 
         public ActionResult Delete(int? id)
         {
             dbClassContext db = new dbClassContext();
-            Consultation con = db.Consultations.FirstOrDefault(t => t.FConsultId == id);
-            int ptid = (int)db.Consultations.FirstOrDefault(t => t.FConsultId == id).PatinetId;
+            var ctr = db.CounsultTypeRecords.Where(t => t.FConsultId == id);  //先刪除typerecord，因為是foreign-key
+            db.RemoveRange(ctr);
+            db.SaveChanges();
+            Consultation con = db.Consultations.FirstOrDefault(t => t.FConsultId == id);  //刪除該筆會談資料
+            int ptid = (int)db.Consultations.FirstOrDefault(t => t.FConsultId == id).PatinetId; //記住病人id，以便回到datelist
             if (con != null)
             {
-                db.Consultations.Remove(con);
+                db.Remove(con);
                 db.SaveChanges();
             }
-            return RedirectToAction("DateList","Consult", new { @id = ptid});
-            
+            return RedirectToAction("DateList", "Consult", new { @id = ptid });
+
         }
 
             //先將基本先刪修功能完成，10個類型的刪修可以之後在加到CConsultationViewModel裡面
