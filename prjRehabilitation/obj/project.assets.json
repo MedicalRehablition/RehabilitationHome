@@ -3548,6 +3548,36 @@
         "runtime": {
           "lib/netstandard1.3/System.Xml.XDocument.dll": {}
         }
+      },
+      "ZXing.Net/0.16.8": {
+        "type": "package",
+        "compile": {
+          "lib/net6.0/zxing.dll": {
+            "related": ".XML"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/zxing.dll": {
+            "related": ".XML"
+          }
+        }
+      },
+      "ZXing.Net.Bindings.Windows.Compatibility/0.16.10": {
+        "type": "package",
+        "dependencies": {
+          "System.Drawing.Common": "6.0.0",
+          "ZXing.Net": "0.16.7"
+        },
+        "compile": {
+          "lib/net6.0/ZXing.Windows.Compatibility.dll": {
+            "related": ".pdb;.xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/ZXing.Windows.Compatibility.dll": {
+            "related": ".pdb;.xml"
+          }
+        }
       }
     }
   },
@@ -10041,6 +10071,117 @@
         "system.xml.xdocument.4.3.0.nupkg.sha512",
         "system.xml.xdocument.nuspec"
       ]
+    },
+    "ZXing.Net/0.16.8": {
+      "sha512": "Cbbe+x7I7E+VJ0VxU1fPc7AktIw/9xea/ZY/fh38sXqTQ75LJp9ooGUjpzFqfpPfIKozAoXgJ4yvY4GzKpPBzQ==",
+      "type": "package",
+      "path": "zxing.net/0.16.8",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/native/zxing.XML",
+        "lib/native/zxing.pri",
+        "lib/native/zxing.winmd",
+        "lib/net20-cf/zxing.ce2.0.dll",
+        "lib/net20-cf/zxing.ce2.0.xml",
+        "lib/net20/zxing.XML",
+        "lib/net20/zxing.dll",
+        "lib/net35-cf/zxing.ce3.5.dll",
+        "lib/net35-cf/zxing.ce3.5.xml",
+        "lib/net35/zxing.XML",
+        "lib/net35/zxing.dll",
+        "lib/net40/zxing.XML",
+        "lib/net40/zxing.dll",
+        "lib/net40/zxing.presentation.XML",
+        "lib/net40/zxing.presentation.dll",
+        "lib/net45/zxing.XML",
+        "lib/net45/zxing.dll",
+        "lib/net45/zxing.presentation.XML",
+        "lib/net45/zxing.presentation.dll",
+        "lib/net461/zxing.XML",
+        "lib/net461/zxing.dll",
+        "lib/net461/zxing.presentation.XML",
+        "lib/net461/zxing.presentation.dll",
+        "lib/net47/zxing.XML",
+        "lib/net47/zxing.dll",
+        "lib/net47/zxing.presentation.XML",
+        "lib/net47/zxing.presentation.dll",
+        "lib/net48/zxing.XML",
+        "lib/net48/zxing.dll",
+        "lib/net48/zxing.presentation.XML",
+        "lib/net48/zxing.presentation.dll",
+        "lib/net5.0/zxing.XML",
+        "lib/net5.0/zxing.dll",
+        "lib/net6.0/zxing.XML",
+        "lib/net6.0/zxing.dll",
+        "lib/netcoreapp3.0/zxing.dll",
+        "lib/netcoreapp3.0/zxing.xml",
+        "lib/netcoreapp3.1/zxing.dll",
+        "lib/netcoreapp3.1/zxing.xml",
+        "lib/netstandard1.0/zxing.dll",
+        "lib/netstandard1.0/zxing.xml",
+        "lib/netstandard1.1/zxing.dll",
+        "lib/netstandard1.1/zxing.xml",
+        "lib/netstandard1.3/zxing.dll",
+        "lib/netstandard1.3/zxing.xml",
+        "lib/netstandard2.0/zxing.dll",
+        "lib/netstandard2.0/zxing.xml",
+        "lib/netstandard2.1/zxing.dll",
+        "lib/netstandard2.1/zxing.xml",
+        "lib/portable-win+net40+sl4+sl5+wp7+wp71+wp8/zxing.portable.XML",
+        "lib/portable-win+net40+sl4+sl5+wp7+wp71+wp8/zxing.portable.dll",
+        "lib/sl3-wp/zxing.wp7.0.XML",
+        "lib/sl3-wp/zxing.wp7.0.dll",
+        "lib/sl4-wp71/zxing.wp7.1.XML",
+        "lib/sl4-wp71/zxing.wp7.1.dll",
+        "lib/sl4/zxing.sl4.XML",
+        "lib/sl4/zxing.sl4.dll",
+        "lib/sl5/zxing.sl5.XML",
+        "lib/sl5/zxing.sl5.dll",
+        "lib/uap10/zxing.dll",
+        "lib/uap10/zxing.pri",
+        "lib/uap10/zxing.xml",
+        "lib/windows8-managed/zxing.winrt.XML",
+        "lib/windows8-managed/zxing.winrt.dll",
+        "lib/windows8/zxing.XML",
+        "lib/windows8/zxing.pri",
+        "lib/windows8/zxing.winmd",
+        "lib/wp8/zxing.wp8.0.XML",
+        "lib/wp8/zxing.wp8.0.dll",
+        "logo.jpg",
+        "zxing.net.0.16.8.nupkg.sha512",
+        "zxing.net.nuspec"
+      ]
+    },
+    "ZXing.Net.Bindings.Windows.Compatibility/0.16.10": {
+      "sha512": "euWnxHf1jJ+jYyOjX/TAv9uVx4LKJPaUbuUG3O1F3Vkyp0LaXmutgKaJqHITvomyFp+cGt4N3CdC1Ftd5fQkmw==",
+      "type": "package",
+      "path": "zxing.net.bindings.windows.compatibility/0.16.10",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net5.0/ZXing.Windows.Compatibility.dll",
+        "lib/net5.0/ZXing.Windows.Compatibility.pdb",
+        "lib/net5.0/ZXing.Windows.Compatibility.xml",
+        "lib/net6.0/ZXing.Windows.Compatibility.dll",
+        "lib/net6.0/ZXing.Windows.Compatibility.pdb",
+        "lib/net6.0/ZXing.Windows.Compatibility.xml",
+        "lib/netcoreapp3.0/ZXing.Windows.Compatibility.dll",
+        "lib/netcoreapp3.0/ZXing.Windows.Compatibility.pdb",
+        "lib/netcoreapp3.0/ZXing.Windows.Compatibility.xml",
+        "lib/netcoreapp3.1/ZXing.Windows.Compatibility.dll",
+        "lib/netcoreapp3.1/ZXing.Windows.Compatibility.pdb",
+        "lib/netcoreapp3.1/ZXing.Windows.Compatibility.xml",
+        "lib/netstandard2.0/ZXing.Windows.Compatibility.dll",
+        "lib/netstandard2.0/ZXing.Windows.Compatibility.pdb",
+        "lib/netstandard2.0/ZXing.Windows.Compatibility.xml",
+        "lib/netstandard2.1/ZXing.Windows.Compatibility.dll",
+        "lib/netstandard2.1/ZXing.Windows.Compatibility.pdb",
+        "lib/netstandard2.1/ZXing.Windows.Compatibility.xml",
+        "logo.jpg",
+        "zxing.net.bindings.windows.compatibility.0.16.10.nupkg.sha512",
+        "zxing.net.bindings.windows.compatibility.nuspec"
+      ]
     }
   },
   "projectFileDependencyGroups": {
@@ -10048,29 +10189,29 @@
       "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore >= 6.0.12",
       "Microsoft.EntityFrameworkCore.SqlServer >= 6.0.12",
       "Microsoft.EntityFrameworkCore.Tools >= 6.0.12",
-      "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 6.0.11"
+      "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 6.0.11",
+      "ZXing.Net >= 0.16.8",
+      "ZXing.Net.Bindings.Windows.Compatibility >= 0.16.10"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\sigma\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Users\\USER\\.nuget\\packages\\": {},
+    "D:\\Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\Ispan_Asp\\RehabilitationHome\\prjRehabilitation\\prjRehabilitation.csproj",
+      "projectUniqueName": "D:\\github\\RehabilitationHome\\prjRehabilitation\\prjRehabilitation.csproj",
       "projectName": "prjRehabilitation",
-      "projectPath": "F:\\Ispan_Asp\\RehabilitationHome\\prjRehabilitation\\prjRehabilitation.csproj",
-      "packagesPath": "C:\\Users\\sigma\\.nuget\\packages\\",
-      "outputPath": "F:\\Ispan_Asp\\RehabilitationHome\\prjRehabilitation\\obj\\",
+      "projectPath": "D:\\github\\RehabilitationHome\\prjRehabilitation\\prjRehabilitation.csproj",
+      "packagesPath": "C:\\Users\\USER\\.nuget\\packages\\",
+      "outputPath": "D:\\github\\RehabilitationHome\\prjRehabilitation\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        "D:\\Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\sigma\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\USER\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -10079,7 +10220,6 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -10115,6 +10255,14 @@
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
             "target": "Package",
             "version": "[6.0.11, )"
+          },
+          "ZXing.Net": {
+            "target": "Package",
+            "version": "[0.16.8, )"
+          },
+          "ZXing.Net.Bindings.Windows.Compatibility": {
+            "target": "Package",
+            "version": "[0.16.10, )"
           }
         },
         "imports": [
@@ -10136,7 +10284,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.101\\RuntimeIdentifierGraph.json"
       }
     }
   }

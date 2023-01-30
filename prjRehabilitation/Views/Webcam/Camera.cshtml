@@ -1,0 +1,121 @@
+﻿<style>
+    
+</style>
+
+<div class="container">
+    <div id="result">i am result</div>
+    <button id="btnclick"> 按</button>
+    <hr />
+    <video id="video" autoplay style="width:300px"></video>
+    <canvas id="canvas" style="display:none"></canvas>
+    
+</div>
+
+
+@section Scripts
+    {
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/quagga/0.12.1/quagga.min.js"></script>
+        <script>
+            
+            //抓攝影鏡頭
+            navigator.mediaDevices.getUserMedia({ video: true }).then(function (stream) {
+                var video = document.getElementById('video');
+                video.srcObject = stream;
+                //video.play();
+            });
+
+            //按按鈕掃描
+            var canvas = document.getElementById('canvas');
+            //canvas.height = video.videoHeight;
+            //canvas.width = video.videoWidth;
+            var ctx = canvas.getContext("2d");
+            setInterval(function () {
+                ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+            }, 50);
+
+            $("#btnclick").click(function () {            
+                var data = canvas.toDataURL();
+                //debugger;
+                $.ajax({
+                    type: "POST",
+                url: '/Webcam/decode',
+                    data: { imageData: data },                
+                    success: function (response) {
+                        if (response != null) {
+                            var decodedText = response.decodedText;
+                            $("#result").text(decodedText + ',' + name);
+                            tempAlert(decodedText, 5000);
+                            console.log(decodedText);
+                        } else {
+                            $("#result").text(decodedText);
+                            console.log("no pic");
+                        }
+                    }
+
+                });
+
+            });
+
+
+            //固定時間掃描
+            var canvas = document.getElementById('canvas');
+            setInterval(function () {
+                //var data = canvas.toDataURL("image/png");
+                //debugger;
+                //$.ajax({
+                //    type: "POST",
+                //    url: '/Consult/decode',
+                //    data: { imageData: data },
+                //    success: function (response) {
+                //        if (response.success) {
+                //            var decodedText = response.decodedText;
+                //            $("#result").text(decodedText);
+                //               console.log("hi");
+                //        } else {
+                //               $("#result").text(decodedText);
+                //               console.log("no pic");
+                //        }
+                //    }
+
+                //});
+            }, 5000);
+
+
+            //設定跳出訊息
+            //function tempAlert(text, duration) {
+            //    var el = document.createElement("div");
+            //    el.setAttribute("style", "position:absolute;top:40%;left:20%;background-color:white;");
+            //    el.innerHTML = text;
+            //    setTimeout(function () {
+            //        el.parentNode.removeChild(el);
+            //    }, duration);
+            //    document.body.appendChild(el);
+            //};
+            //tempAlert("close", 5000);//呼叫函式
+
+
+            function tempAlert(text, duration) {
+                var d = new Date();
+                let yy = d.getFullYear();
+                let MM = d.getMonth() + 1;
+                let dd = d.getDate();
+                let HH = d.getHours();
+                let mm = d.getMinutes();
+                let ss = d.getSeconds();
+                var time = yy + '-' + MM + '-' + dd + ' ' + HH + ':' + mm + ':' + ss ;
+
+                var el = document.createElement("div");
+                el.setAttribute("style", "position:absolute;top:30%;left:20%;background-color:white;width:350px;height:50px");
+                el.setAttribute("class", "align-items-center text-white bg-primary border-0 d-flex");
+                el.innerHTML = '解碼字串：'+ text +" ;打卡時間"+ time;
+                setTimeout(function () {
+                    el.parentNode.removeChild(el);
+                }, duration);
+                document.body.appendChild(el);
+            };
+
+
+
+
+        </script>
+}

@@ -1,24 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "F:\\Ispan_Asp\\RehabilitationHome\\prjRehabilitation\\prjRehabilitation.csproj": {}
+    "D:\\github\\RehabilitationHome\\prjRehabilitation\\prjRehabilitation.csproj": {}
   },
   "projects": {
-    "F:\\Ispan_Asp\\RehabilitationHome\\prjRehabilitation\\prjRehabilitation.csproj": {
+    "D:\\github\\RehabilitationHome\\prjRehabilitation\\prjRehabilitation.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\Ispan_Asp\\RehabilitationHome\\prjRehabilitation\\prjRehabilitation.csproj",
+        "projectUniqueName": "D:\\github\\RehabilitationHome\\prjRehabilitation\\prjRehabilitation.csproj",
         "projectName": "prjRehabilitation",
-        "projectPath": "F:\\Ispan_Asp\\RehabilitationHome\\prjRehabilitation\\prjRehabilitation.csproj",
-        "packagesPath": "C:\\Users\\sigma\\.nuget\\packages\\",
-        "outputPath": "F:\\Ispan_Asp\\RehabilitationHome\\prjRehabilitation\\obj\\",
+        "projectPath": "D:\\github\\RehabilitationHome\\prjRehabilitation\\prjRehabilitation.csproj",
+        "packagesPath": "C:\\Users\\USER\\.nuget\\packages\\",
+        "outputPath": "D:\\github\\RehabilitationHome\\prjRehabilitation\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+          "D:\\Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\sigma\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\USER\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -27,7 +26,6 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -63,6 +61,14 @@
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
               "version": "[6.0.11, )"
+            },
+            "ZXing.Net": {
+              "target": "Package",
+              "version": "[0.16.8, )"
+            },
+            "ZXing.Net.Bindings.Windows.Compatibility": {
+              "target": "Package",
+              "version": "[0.16.10, )"
             }
           },
           "imports": [
@@ -84,7 +90,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     }
