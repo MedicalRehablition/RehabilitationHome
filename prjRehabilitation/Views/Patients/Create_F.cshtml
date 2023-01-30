@@ -34,7 +34,9 @@
         @*照片*@
         <div class="form-group col">
             <label asp-for="fphoto" class="control-label">照片</label>
-            <input type="file" asp-for="fphoto" class="form-control" />
+            <input type="file" asp-for="fphoto" class="form-control" accept="image/gif, image/jpeg, image/png" />
+            <br />
+            <img id="preview_Patient_img" src="" alt="尚未上傳住民照片" width="200" height="150"/>
             <span asp-validation-for="fphoto"></span>
         </div>
         <hr />
@@ -418,6 +420,20 @@
             let i = event.target.id;
             $(`#disdiv${i}`).remove();
         }
+        $("#fphoto").change(function () {
+            //當檔案改變後，做一些事
+            readURL(this);   // this代表<input id="imgInp">
+        });
 
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $("#preview_Patient_img").attr('src', e.target.result);
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+        
     </script>
 }

@@ -33,7 +33,7 @@ namespace prjRehabilitation.ViewModel
         
         public string FDate { get { return _GroupActivity.FDate; } set {   _GroupActivity.FDate = value; } }
         [DisplayName("開始時間")]
-        public string FStartTime { get { return _GroupActivity.FStartTime; } set { _GroupActivity.FStartTime = value; } }
+        public string? FStartTime { get { return _GroupActivity.FStartTime; } set { _GroupActivity.FStartTime = value; } }
         [DisplayName("結束時間")]
         public string FEndTime { get { return _GroupActivity.FEndTime; } set { _GroupActivity.FEndTime = value; } }
         [DisplayName("團體名稱")]
