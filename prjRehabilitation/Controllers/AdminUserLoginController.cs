@@ -143,7 +143,7 @@ namespace prjRehabilitation.Controllers
         public IActionResult SendMailByGmail(CLoginViewModel vm)
         {
             dbClassContext db = new dbClassContext();
-            Admin admin = db.Admins.FirstOrDefault(t => t.FEmail.Equals(vm.txtAccount));
+            Admin admin = db.Admins.FirstOrDefault(t => t.FEmail==vm.txtAccount);
             if (admin == null)
             {
                 return Content("請輸入信箱帳號");

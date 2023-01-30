@@ -1,0 +1,98 @@
+﻿@model prjRehabilitation.ViewModel.CCustomerViewModel
+
+@{
+    ViewData["Title"] = "Register";
+}
+
+<h1>Register</h1>
+
+<h4>CAdminViewModel</h4>
+<hr />
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+</button>
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form enctype="multipart/form-data" asp-action="Register" name="userRegister">
+                <div class="row">
+                    <div class="col-md-6 mb-4">
+                        <div class="form-outline">
+                            <label class="form-label" for="lastName">姓名</label>
+                            <input asp-for="FName" type="text" id="lastName" class="form-control form-control-lg" />
+                        </div>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mb-4 d-flex align-items-center">
+
+                        <div class="form-outline datepicker w-100">
+                            <label for="birthdayDate" class="form-label">地址:</label>
+                            <input asp-for="FAddress" type=" text" class="form-control form-control-lg" id="birthdayDate" />
+                        </div>
+
+                    </div>
+                    <div class="col-md-6 mb-4">
+
+
+                        <div class="form-outline datepicker w-100">
+                            <label for="birthdayDate" class="form-label">手機號碼:</label>
+                            <input asp-for="FPhone" type=" text" class="form-control form-control-lg" id="birthdayDate" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-4 pb-2">
+                        <div class="form-outline">
+                            <label class="form-label" for="emailAddress">電子信箱(帳號):</label>
+                            <input asp-for="FEmail" type=" email" id="emailAddress" class="form-control form-control-lg" />
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-4 pb-2">
+                        <div class="form-outline">
+                            <label class="form-label" for="phoneNumber">密碼:</label>
+                            <input asp-for="FPassword" type="password" id="phoneNumber" class="form-control form-control-lg" />
+                        </div>
+                    </div>
+                </div>
+
+                @* <div>
+                <input type="file" asp-for="Fphoto" class="form-control" />
+                </div>*@
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary" id="subbtn">Save changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script>
+        let subbtn = document.querySelector("#subbtn");
+        subbtn.addEventListener("click", function (event) {
+            //event.preventDefault();
+            let xhr = new XMLHttpRequest();
+            xhr.addEventListener("load", function () {
+                alert(xhr.responseText);
+            })
+            const Data = new FormData(document.userRegister);
+            xhr.open("POST", "@Url.Content("/UserLogin/AccountAlive")");
+            xhr.send(Data);
+
+        })
+
+    </script>
+    }
