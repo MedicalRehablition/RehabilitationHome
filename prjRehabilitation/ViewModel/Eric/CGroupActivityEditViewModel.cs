@@ -1,4 +1,6 @@
-﻿namespace prjRehabilitation.ViewModel.Eric
+﻿using prjRehabilitation.Models;
+
+namespace prjRehabilitation.ViewModel.Eric
 {
     public class CGroupActivityEditViewModel
     {
@@ -22,5 +24,7 @@
                 };
             }
         }
+
+        public TGroupActivityPicAndFile tgapaf { get; set; }
     }
 }

@@ -20,7 +20,7 @@
 <hr />
 <div class="row">
     <div class="col">
-        <form asp-action="Edit">
+        <form asp-action="Edit" enctype="multipart/form-data" method="post" name="formData">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" name="cgavm.FGroupActivityId" value=@Model.cgavm.FGroupActivityId />
 
@@ -94,6 +94,71 @@
                 <textarea asp-for="cgavm.FProcess" class="form-control"></textarea>
                 <span asp-validation-for="cgavm.FProcess" class="text-danger"></span>
             </div>
+            <div class="row gallery-item p-2" style=" background-color:gray;">
+                <div class="col-md-3">
+
+                    <div class="mb-3">
+                        <label for="formFile" class="form-label">Default file input example</label>
+                        <input class="form-control" type="file" accept=".jpg,.gif,.png" id="formFile1" name="FPicture1">
+                    </div>
+                    <a href="" class="img-pop-up">
+                        @if (Model.tgapaf.FPicture1 != null)
+                        {
+                            var base64 = Convert.ToBase64String(Model.tgapaf.FPicture1);
+                            string imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+                            <img id="formFile1Pic" name="" src="@imgSrc" style="width:100%" />
+                        }
+
+                    </a>
+
+                </div>
+                <div class="col-md-3">
+                    <div class="mb-3">
+                        <label for="formFile" class="form-label">Default file input example</label>
+                        <input class="form-control" type="file" accept=".jpg,.gif,.png" id="formFile2" name="FPicture2">
+                    </div>
+                    <a href="" class="img-pop-up">
+                        @if (Model.tgapaf.FPicture2 != null)
+                        {
+                            var base64 = Convert.ToBase64String(Model.tgapaf.FPicture2);
+                            string imageString = String.Format("data:image/gif;base64,{0}", base64);
+                            <img id="formFile2Pic" name="" src="@imageString" style="width:100%" />
+                        }
+
+                    </a>
+                </div>
+                <div class="col-md-3">
+                    <div class="mb-3">
+                        <label for="formFile" class="form-label">Default file input example</label>
+                        <input class="form-control" type="file" accept=".jpg,.gif,.png" id="formFile3" name="FPicture3">
+                    </div>
+                    <a href="" class="img-pop-up">
+                        @if (Model.tgapaf.FPicture3 != null)
+                        {
+                            var base64 = Convert.ToBase64String(Model.tgapaf.FPicture3);
+                            string stringForImage = String.Format("data:image/gif;base64,{0}", base64);
+                            <img id="formFile3Pic" name="" src="@stringForImage" style="width:100%" />
+                        }
+
+                    </a>
+                </div>
+                <div class="col-md-3">
+                    <div class="mb-3">
+                        <label for="formFile" class="form-label">Default file input example</label>
+                        <input class="form-control" type="file" accept=".jpg,.gif,.png" id="formFile4" name="FPicture4">
+                    </div>
+                    <a href="" class="img-pop-up">
+                        @if (Model.tgapaf.FPicture4 != null)
+                        {
+                            var base64 = Convert.ToBase64String(Model.tgapaf.FPicture4);
+                            string pic4StringforImg = String.Format("data:image/gif;base64,{0}", base64);
+                            <img id="formFile4Pic" name="" src="@pic4StringforImg" style="width:100%" />
+                        }
+
+                    </a>
+                </div>
+            </div>
+
             <div class="form-group">
                 <label asp-for="cgavm.FAchievement" class="control-label"></label>
                 <textarea asp-for="cgavm.FAchievement" class="form-control"></textarea>
@@ -156,6 +221,49 @@
         $("#TScheduleDetails").load("@Url.Content("~/")GroupActivity/ScheduleDetailsPartialView/@Model.cgavm.FGroupActivityId");
         $("#TPersonalPerformances").load("@Url.Content("~/")GroupActivity/PersonalPerformancesPartialView/@Model.cgavm.FGroupActivityId");
 
+        for (var i = 1; i <= 4; i++) {
+
+            const getInput = $(`#formFile${i}`);
+            const getOutput = $(`#formFile${i}Pic`);
+
+            getInput.change(function () {
+
+                if (this.files && this.files[0]) {
+                    var reader = new FileReader();
+                    reader.onload = function (e) {
+                        getOutput.attr('src', e.target.result);
+
+                    }
+                    reader.readAsDataURL(this.files[0]);
+                }
+
+            });
+        }
+
+        //var forTest = Convert.ToBase64String(@Model.tgapaf.FPicture1);
+        //if (forTest != null) {
+        //    console.log(@Model.tgapaf.FPicture1);
+        //    //var getString = Convert.ToBase64String(@Model.tgapaf.FPicture1);
+        //    var base64 = String.Format("data:image/gif;base64,{0}", forTest);
+        //    $("#formFile1Pic").attr('src', `data:image/gif;base64,${base64}`);
+        //}
+
+
+        //async function savePic (){    //改由submit直接存了
+
+        //    const formDataPic = new FormData(formData);
+
+        //    const response = await fetch("@Url.Content("~/")GroupActivity/PicAndFileSaveIn/@Model.cgavm.FGroupActivityId", {
+        //        method:"POST",
+        //        body: formDataPic
+        //    });
+
+        //}
+        //$("#formFile1").change(function () {
+
+        //    //savePic();
+        //});
+
         async function getResidentInPersonalPerformancesSelectPanel() {
             const pplist = document.querySelector('#PersonalListPanel');
             const response = await fetch(`@Url.Content("~/")GroupActivityAjax/getResident`);
@@ -171,65 +279,65 @@
                     const response = await fetch(`@Url.Content("~/")GroupActivityAjax/CPersonalPerformancesPartialViewViewModelList`);
                     const getResidentData = JSON.parse(JSON.parse(await response.text()));
                     //console.log(this.id);
-                    document.querySelector("#TPersonalPerformances").insertAdjacentHTML("beforeend",`
-                                <div class="card mt-1">
-            <div class="card-body">
-                <div class="row"><label class="h5 genric-btn info circle">${this.value}</label></div>
-                <div class="row">
-                    <div class="col-4">
-                        <label class="badge rounded-pill bg-info text-dark">表情情緒：</label><br />
-                                        <select id="${this.id}-${this.value}-comboxEmotions" class="mt-2"></select>
+                    document.querySelector("#TPersonalPerformances").insertAdjacentHTML("beforeend", `
+                                                                        <div class="card mt-1">
+                                                    <div class="card-body">
+                                                        <div class="row"><label class="h5 genric-btn info circle">${this.value}</label></div>
+                                                        <div class="row">
+                                                            <div class="col-4">
+                                                                <label class="badge rounded-pill bg-info text-dark">表情情緒：</label><br />
+                                                                                <select id="${this.id}-${this.value}-comboxEmotions" class="mt-2"></select>
 
-                    </div>
-                    <div class="col-4">
-                        <label class="badge rounded-pill bg-info text-dark">持續度：</label><br />
-                                        <select id="${this.id}-${this.value}-comboxParticipatePersistence"  class="mt-2"></select>
+                                                            </div>
+                                                            <div class="col-4">
+                                                                <label class="badge rounded-pill bg-info text-dark">持續度：</label><br />
+                                                                                <select id="${this.id}-${this.value}-comboxParticipatePersistence"  class="mt-2"></select>
 
-                    </div>
-                    <div class="col-4">
-                        <label class="badge rounded-pill bg-info text-dark">配合度：</label><br />
-                                        <select id="${this.id}-${this.value}-comboxCooperate"  class="mt-2"></select>
+                                                            </div>
+                                                            <div class="col-4">
+                                                                <label class="badge rounded-pill bg-info text-dark">配合度：</label><br />
+                                                                                <select id="${this.id}-${this.value}-comboxCooperate"  class="mt-2"></select>
 
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-4">
-                        <label class="badge rounded-pill bg-info text-dark">人際互動：</label><br />
-                                        <select id="${this.id}-${this.value}-comboxHumanInteraction"  class="mt-2"></select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-4">
+                                                                <label class="badge rounded-pill bg-info text-dark">人際互動：</label><br />
+                                                                                <select id="${this.id}-${this.value}-comboxHumanInteraction"  class="mt-2"></select>
 
-                    </div>
-                    <div class="col-4">
-                        <label class="badge rounded-pill bg-info text-dark">注意力：</label><br />
-                                        <select id="${this.id}-${this.value}-comboxAttentionRes" class="mt-2"></select>
+                                                            </div>
+                                                            <div class="col-4">
+                                                                <label class="badge rounded-pill bg-info text-dark">注意力：</label><br />
+                                                                                <select id="${this.id}-${this.value}-comboxAttentionRes" class="mt-2"></select>
 
-                    </div>
-                    <div class="col-4">
-                        <label class="badge rounded-pill bg-info text-dark">參與表現：</label><br />
-                                        <select id="${this.id}-${this.value}-comboxParticipatePerformance" class="mt-2"></select>
+                                                            </div>
+                                                            <div class="col-4">
+                                                                <label class="badge rounded-pill bg-info text-dark">參與表現：</label><br />
+                                                                                <select id="${this.id}-${this.value}-comboxParticipatePerformance" class="mt-2"></select>
 
-                    </div>
-                </div>
-                <div class="row"><label class="col-auto badge rounded-pill bg-info text-dark m-2">備註：</label><br /><input type="text"  class="" /></div>
-            </div>
-        </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row"><label class="col-auto badge rounded-pill bg-info text-dark m-2">備註：</label><br /><input type="text"  class="" /></div>
+                                                    </div>
+                                                </div>
 
-                    `);
+                                                            `);
                     const comboxEmotionsID = document.querySelector(`#${this.id}-${this.value}-comboxEmotions`);
                     const comboxParticipatePersistenceID = document.querySelector(`#${this.id}-${this.value}-comboxParticipatePersistence`);
                     const comboxCooperateID = document.querySelector(`#${this.id}-${this.value}-comboxCooperate`);
                     const comboxHumanInteractionID = document.querySelector(`#${this.id}-${this.value}-comboxHumanInteraction`);
                     const comboxAttentionResID = document.querySelector(`#${this.id}-${this.value}-comboxAttentionRes`);
                     const comboxParticipatePerformanceID = document.querySelector(`#${this.id}-${this.value}-comboxParticipatePerformance`);
-                    for (var comboxEmotionsItem of getResidentData[0]){
+                    for (var comboxEmotionsItem of getResidentData[0]) {
                         comboxEmotionsID.insertAdjacentHTML("beforeend", `<option>${comboxEmotionsItem}</option>`)
                     }
                     for (var comboxParticipatePersistenceItem of getResidentData[1]) {
                         comboxParticipatePersistenceID.insertAdjacentHTML("beforeend", `<option>${comboxParticipatePersistenceItem}</option>`)
                     }
-                    for (var comboxCooperateItem of getResidentData[2]){
+                    for (var comboxCooperateItem of getResidentData[2]) {
                         comboxCooperateID.insertAdjacentHTML("beforeend", `<option>${comboxCooperateItem}</option>`)
                     }
-                    for (var comboxHumanInteractionItem of getResidentData[3]){
+                    for (var comboxHumanInteractionItem of getResidentData[3]) {
                         comboxHumanInteractionID.insertAdjacentHTML("beforeend", `<option>${comboxHumanInteractionItem}</option>`)
                     }
                     for (var comboxAttentionResItem of getResidentData[4]) {

@@ -3,6 +3,7 @@ using NuGet.Protocol;
 using prjRehabilitation.Models;
 using prjRehabilitation.ViewModel;
 using prjRehabilitation.ViewModel.Eric;
+using System.Diagnostics.Metrics;
 using System.Dynamic;
 using System.Security.Claims;
 
@@ -10,10 +11,11 @@ namespace prjRehabilitation.Controllers
 {
     public class GroupActivityController : Controller
     {
-        dbClassContext db = new dbClassContext();
+        
 
         public IActionResult List()
         {
+            dbClassContext db = new dbClassContext();
             List<TGroupActivity> gaList = db.TGroupActivities.ToList();
 
             List<CGroupActivityViewModel> gavmList = new List<CGroupActivityViewModel>();
@@ -30,7 +32,7 @@ namespace prjRehabilitation.Controllers
 
         public ActionResult Edit(int? id)
         {
-
+            dbClassContext db = new dbClassContext();
             TGroupActivity? tempTGA = db.TGroupActivities.FirstOrDefault(_ => _.FGroupActivityId == id);
             CGroupActivityViewModel cgavm = new CGroupActivityViewModel();
             if (tempTGA != null)
@@ -39,15 +41,19 @@ namespace prjRehabilitation.Controllers
                 CGroupActivityEditViewModel mymodel = new CGroupActivityEditViewModel();
                 mymodel.cgavm = cgavm;
 
+              TGroupActivityPicAndFile TgroupactitypicandfileifNull = db.TGroupActivityPicAndFiles.FirstOrDefault(_=>_.FGroupActivityId == id) ;    //帶圖的內容過去
+                if (TgroupactitypicandfileifNull != null) { mymodel.tgapaf = TgroupactitypicandfileifNull; }
+                else { mymodel.tgapaf = new TGroupActivityPicAndFile(); }//還是要給一個空的不然那邊連null都沒辦法判定。
+
                 return View(mymodel);
             }
 
             return RedirectToAction("List");
         }
         [HttpPost]
-        public ActionResult Edit(CGroupActivityEditViewModel vm)
+        public ActionResult Edit(CGroupActivityEditViewModel vm, IFormFile FPicture1, IFormFile FPicture2, IFormFile FPicture3, IFormFile FPicture4)
         {
-
+            dbClassContext db = new dbClassContext();
             TGroupActivity? tempGetTarget = db.TGroupActivities.FirstOrDefault(_ => _.FGroupActivityId == vm.cgavm.FGroupActivityId);
 
             if (tempGetTarget != null)
@@ -69,6 +75,75 @@ namespace prjRehabilitation.Controllers
                 tempGetTarget.FFillFormStaff = vm.cgavm.FFillFormStaff;
                 tempGetTarget.FFillFormDate = vm.cgavm.FFillFormDate;
 
+                var ifGetId = db.TGroupActivityPicAndFiles.FirstOrDefault(_ => _.FGroupActivityId == vm.cgavm.FGroupActivityId);
+
+                //byte[]? imgByte = null;
+                if (ifGetId != null)
+                {
+                    using (var memoryStream = new MemoryStream())
+                    {
+                        if (FPicture1 != null)
+                        {
+                            FPicture1.CopyTo(memoryStream);
+                            ifGetId.FPicture1 = memoryStream.ToArray();
+                            ifGetId.FPicture1Path = FPicture1.FileName;
+                        }
+                        if (FPicture2 != null)
+                        {
+                            FPicture2.CopyTo(memoryStream);
+                            ifGetId.FPicture2 = memoryStream.ToArray();
+                            ifGetId.FPicture2Path = FPicture2.FileName;
+                        }
+                        if (FPicture3 != null)
+                        {
+                            FPicture3.CopyTo(memoryStream);
+                            ifGetId.FPicture3 = memoryStream.ToArray();
+                            ifGetId.FPicture3Path = FPicture3.FileName;
+                        }
+                        if (FPicture4 != null)
+                        {
+                            FPicture4.CopyTo(memoryStream);
+                            ifGetId.FPicture4 = memoryStream.ToArray();
+                            ifGetId.FPicture4Path = FPicture4.FileName;
+                        }
+                    }
+                }
+                else
+                {
+                    TGroupActivityPicAndFile tPicAndFile = new TGroupActivityPicAndFile();
+                    tPicAndFile.FGroupActivityId = Convert.ToInt32(vm.cgavm.FGroupActivityId);
+                    using (var memoryStream = new MemoryStream())
+                    {
+                        if (FPicture1 != null)
+                        {
+                            FPicture1.CopyTo(memoryStream);
+                            tPicAndFile.FPicture1 = memoryStream.ToArray();
+                            ifGetId.FPicture1Path = FPicture1.FileName;
+                        }
+                        if (FPicture2 != null)
+                        {
+                            FPicture2.CopyTo(memoryStream);
+                            tPicAndFile.FPicture2 = memoryStream.ToArray();
+                            ifGetId.FPicture2Path = FPicture2.FileName;
+                        }
+                        if (FPicture3 != null)
+                        {
+                            FPicture3.CopyTo(memoryStream);
+                            tPicAndFile.FPicture3 = memoryStream.ToArray();
+                            ifGetId.FPicture3Path = FPicture3.FileName;
+                        }
+                        if (FPicture4 != null)
+                        {
+                            FPicture4.CopyTo(memoryStream);
+                            tPicAndFile.FPicture4 = memoryStream.ToArray();
+                            ifGetId.FPicture4Path = FPicture4.FileName;
+                        }
+                    }
+
+                    db.TGroupActivityPicAndFiles.Add(tPicAndFile);
+                }
+
+
                 db.SaveChanges();
 
             }
@@ -78,6 +153,7 @@ namespace prjRehabilitation.Controllers
 
         public IActionResult ClassThemesPartialView(int? id)
         {
+            dbClassContext db = new dbClassContext();
             //int aa = (int)id;
             int[] aa = db.TGroupActivityClassThemes.Where(_ => _.FGroupActivityId == id).Select(_ => _.FClassThemeId).ToArray();
             string[] resultArray = new string[aa.Count()];
@@ -96,7 +172,7 @@ namespace prjRehabilitation.Controllers
 
         public IActionResult ScheduleDetailsPartialView(int? id)
         {
-
+            dbClassContext db = new dbClassContext();
             CScheduleDetailsPartialViewViewModel csdpvv = new CScheduleDetailsPartialViewViewModel();
 
             csdpvv.tsd = db.TScheduleDetails.Where(_ => _.FGroupActivityId == id).ToArray();
@@ -106,7 +182,7 @@ namespace prjRehabilitation.Controllers
 
         public IActionResult PersonalPerformancesPartialView(int? id)
         {
-
+            dbClassContext db = new dbClassContext();
             CPersonalPerformancesPartialViewViewModel cpppvvm = new CPersonalPerformancesPartialViewViewModel();
 
             cpppvvm.tpp = db.TPersonalPerformances.Where(_ => _.FGroupActivityId == id).ToArray();
@@ -127,6 +203,71 @@ namespace prjRehabilitation.Controllers
             return PartialView(cpppvvm);
         }
 
+
+        //public IActionResult PicAndFileSaveIn(int? id, IFormFile FPicture1, IFormFile FPicture2, IFormFile FPicture3, IFormFile FPicture4) {  //改由submit直接存了
+        //    dbClassContext db = new dbClassContext();
+        //    var ifGetId = db.TGroupActivityPicAndFiles.FirstOrDefault(_ => _.FGroupActivityId == id);
+
+        //        //byte[]? imgByte = null;
+        //    if (ifGetId != null) {
+        //        using (var memoryStream = new MemoryStream())
+        //        {
+        //            if (FPicture1 != null)
+        //            {
+        //                FPicture1.CopyTo(memoryStream);
+        //                ifGetId.FPicture1 = memoryStream.ToArray();
+        //            }
+        //            if (FPicture2 != null)
+        //            {
+        //                FPicture2.CopyTo(memoryStream);
+        //                ifGetId.FPicture2 = memoryStream.ToArray();
+        //            }
+        //            if (FPicture3 != null)
+        //            {
+        //                FPicture3.CopyTo(memoryStream);
+        //                ifGetId.FPicture3 = memoryStream.ToArray();
+        //            }
+        //            if (FPicture4 != null)
+        //            {
+        //                FPicture4.CopyTo(memoryStream);
+        //                ifGetId.FPicture4 = memoryStream.ToArray();
+        //            }
+        //        }
+        //    }
+        //    else
+        //    {
+        //        TGroupActivityPicAndFile tPicAndFile = new TGroupActivityPicAndFile();
+        //        tPicAndFile.FGroupActivityId =Convert.ToInt32( id);
+        //        using (var memoryStream = new MemoryStream())
+        //        {
+        //            if (FPicture1 != null)
+        //            {
+        //                FPicture1.CopyTo(memoryStream);
+        //                tPicAndFile.FPicture1 = memoryStream.ToArray();
+        //            }
+        //            if (FPicture2 != null)
+        //            {
+        //                FPicture2.CopyTo(memoryStream);
+        //                tPicAndFile.FPicture2 = memoryStream.ToArray();
+        //            }
+        //            if (FPicture3 != null)
+        //            {
+        //                FPicture3.CopyTo(memoryStream);
+        //                tPicAndFile.FPicture3 = memoryStream.ToArray();
+        //            }
+        //            if (FPicture4 != null)
+        //            {
+        //                FPicture4.CopyTo(memoryStream);
+        //                tPicAndFile.FPicture4 = memoryStream.ToArray();
+        //            }
+        //        }
+
+        //        db.TGroupActivityPicAndFiles.Add(tPicAndFile);
+        //    }
+
+        //    db.SaveChanges();
+        //    return View();
+        //}
 
     }
 }
