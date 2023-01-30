@@ -126,7 +126,7 @@ namespace prjRehabilitation.ViewModel.Lin
             set { _patientInfo.FGrant = value; }
         }
         [DisplayName("補助類型")]
-
+        public byte[] fimg { get; set; }
         public bool status { get; set; }
         public IFormFile fphoto { get; set; }
 

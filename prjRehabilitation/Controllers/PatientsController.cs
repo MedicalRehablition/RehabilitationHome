@@ -119,6 +119,10 @@ namespace prjRehabilitation.Controllers
             //將資料庫的單一資料欄繫結到checkbox
             if (data.fIDY != null)
             {
+                if (p.FPhotoFile != null)
+                {
+                    data.fimg = p.FPhotoFile;
+                }
                 if (p.FIdy.Contains("健保")) data.fidy_健保 = true;
                 if (p.FIdy.Contains("福保")) data.fidy_福保 = true;
                 if (p.FIdy.Contains("重大")) data.fidy_重大傷病 = true;

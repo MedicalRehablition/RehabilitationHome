@@ -42,7 +42,20 @@
             <label asp-for="fphoto" class="control-label">照片</label>
             <input type="file" asp-for="fphoto" class="form-control" accept="image/gif, image/jpeg, image/png" />
             <br />
-            <img id="preview_Patient_img" src="" alt="尚未上傳住民照片" width="200" height="150" />
+            @{
+                if (Model.fimg != null)
+                {
+                    var base64 = Convert.ToBase64String(Model.fimg);
+                    var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+                    <img id="preview_Patient_img" src="@imgSrc" alt="尚未上傳住民照片" width="200" height="150" />
+
+                }
+                else
+                {
+                    <img id="preview_Patient_img" src="" alt="尚未上傳住民照片" width="200" height="150" />
+
+                }
+            }
             <span asp-validation-for="fphoto"></span>
         </div>
         <hr />
