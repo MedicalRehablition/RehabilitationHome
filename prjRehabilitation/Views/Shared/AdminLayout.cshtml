@@ -167,9 +167,13 @@
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" asp-area="" asp-controller="Treatment" asp-action="Index">
+                            @*<a class="sidebar-link waves-effect waves-dark sidebar-link" asp-area="" asp-controller="Treatment" asp-action="Index">
                                 <i class="fa fa-user" aria-hidden="true"></i>
                                 <span class="hide-menu">復健</span>
+                            </a>*@  @*暫時先直接導向會談的list*@
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" asp-area="" asp-controller="Consult" asp-action="List">
+                                <i class="fa fa-user" aria-hidden="true"></i>
+                                <span class="hide-menu">會談</span>
                             </a>
                         </li>
                         <li class="sidebar-item">

@@ -3,43 +3,76 @@
 @{
     ViewData["Title"] = "Register";
 }
+<style>
+.try{
+    border:dashed red 2px;
+}
 
-<h1>新增作業</h1>
+</style>
 
-<h4>CConsultationViewModel</h4>
+<h1>新增會談作業</h1>
+
+@*<h4>CConsultationViewModel</h4>*@
 <hr />
-<div class="row">
-    <div class="col-md-4">
+<div class="row ">
+    <div class="col-md-9 ">
         <form asp-action="SaveCreate">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="row">
+                <div class="col-3 col-md-3">
+                    <input type="checkbox" id="1" name="Typeconsult" value="1">
+                    <label for="1">衛生習慣</label><br />
+                    <input type="checkbox" id="2" name="Typeconsult" value="2">
+                    <label for="2">居家清潔</label><br />
+                    <input type="checkbox" id="3" name="Typeconsult" value="3">
+                    <label for="3">飲食起居</label><br />
+                    <input type="checkbox" id="4" name="Typeconsult" value="4">
+                    <label for="4">認知能力</label><br />
+                    <input type="checkbox" id="5" name="Typeconsult" value="5">
+                    <label for="5">體能表現</label><br />
+                    <input type="checkbox" id="6" name="Typeconsult" value="6">
+                    <label for="6">人際互動</label><br />
+                    <input type="checkbox" id="7" name="Typeconsult" value="7">
+                    <label for="7">烹飪能力</label><br />
+                    <input type="checkbox" id="8" name="Typeconsult" value="8">
+                    <label for="8">休閒安排</label><br />
+                    <input type="checkbox" id="9" name="Typeconsult" value="9">
+                    <label for="9">財務管理</label><br />
+                    <input type="checkbox" id="10" name="Typeconsult" value="10">
+                    <label for="10">健康促進</label><br />
+                </div>
+                <div class="col col-md-9">
+                    <div class="form-group">
 
-            <div class="form-group">
+                        <input type="hidden" value="@ViewBag.pid" name="PatinetId" />
+
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Date" class="control-label"></label>
+                        <input type="date" asp-for="Date" class="form-control" />
+                        <span asp-validation-for="Date" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Summary" class="control-label"></label>
+                        <textarea asp-for="Summary" class="form-control" style="width:260;overflow-x:visible;overflow-y:visible;"></textarea>
+                        <span asp-validation-for="Summary" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Assessment" class="control-label"></label>
+                        <textarea asp-for="Assessment" class="form-control"></textarea>
+                        <span asp-validation-for="Assessment" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Result" class="control-label"></label>
+                        <textarea asp-for="Result" class="form-control"></textarea>
+                        <span asp-validation-for="Result" class="text-danger"></span>
+                    </div>
+                </div>
                 
-                <input type="hidden" value="@ViewBag.pid" name="PatinetId" />
-                
-            </div>
-            <div class="form-group">
-                <label asp-for="Date" class="control-label"></label>
-                <input type="date" asp-for="Date" class="form-control" />
-                <span asp-validation-for="Date" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Summary" class="control-label"></label>
-                <textarea asp-for="Summary" class="form-control"></textarea>
-                <span asp-validation-for="Summary" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Assessment" class="control-label"></label>
-                <textarea asp-for="Assessment" class="form-control" ></textarea>
-                <span asp-validation-for="Assessment" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Result" class="control-label"></label>
-                <textarea asp-for="Result" class="form-control" ></textarea>
-                <span asp-validation-for="Result" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                </div>
             </div>
         </form>
     </div>
