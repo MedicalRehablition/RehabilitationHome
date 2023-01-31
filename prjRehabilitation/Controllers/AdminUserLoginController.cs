@@ -92,7 +92,6 @@ namespace prjRehabilitation.Controllers
             {
                 string photoName = Guid.NewGuid().ToString() + ".jpg";
                 string path = _environment.WebRootPath + "/images/" + photoName;
-                vm.Fphoto = photoName;
                 vm.photo.CopyTo(new FileStream(path, FileMode.Create));
             }
             db.Admins.Add(vm.admin);
@@ -153,7 +152,7 @@ namespace prjRehabilitation.Controllers
             Admin admin = db.Admins.FirstOrDefault(t => t.FEmail==vm.txtAccount);
             if (admin == null)
             {
-                return Content("無此信箱帳號");
+                return Content("請輸入信箱帳號");
             }
             admin.FEmail = vm.txtAccount;
             admin.FPassword = Guid.NewGuid().ToString();

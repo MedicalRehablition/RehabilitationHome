@@ -152,7 +152,7 @@ namespace prjRehabilitation.Models.Lin
             dbClassContext db = new dbClassContext();
             var list = new List<VMNewPost>();
             IEnumerable<TOfficialPost> q;
-            q = db.TOfficialPosts.Where(x => x.FStatus !=false);
+            q = db.TOfficialPosts.Where(x => x.FStatus !=false).OrderByDescending(x => x.FDate);
 
             foreach (var c in q.ToList())
             {
@@ -212,7 +212,7 @@ namespace prjRehabilitation.Models.Lin
             dbClassContext db = new dbClassContext();
             var list = new List<VMNewPost>();
             IEnumerable<TOfficialPost> q;
-            q = db.TOfficialPosts.Where(x => x.FStatus != false);
+            q = db.TOfficialPosts.Where(x => x.FStatus != false).OrderByDescending(x => x.FDate);
 
             foreach (var c in q.ToList())
             {
@@ -236,6 +236,35 @@ namespace prjRehabilitation.Models.Lin
                 list.Add(post);
             }
             return list;
+        }
+
+        public object SearchByTime()
+        {
+            dbClassContext db = new dbClassContext();
+            var list = new List<VMNewPost>();
+            IEnumerable<TOfficialPost> q;
+            q = db.TOfficialPosts.Where(x => x.FStatus != false).OrderByDescending(x => x.FDate).Take(5);
+
+            foreach (var c in q.ToList())
+            {
+                var post = new VMNewPost();
+                post.fofficialPost = c;
+                string newtag = "";
+                list.Add(post);
+            }
+            return list;
+        }
+
+        public object getPrePost(int id)
+        {
+            dbClassContext db = new dbClassContext();
+            TOfficialPost? q=null;
+
+            q = db.TOfficialPosts.Where(x => x.FStatus != false&&x.FPostId<id).OrderByDescending(x=>x.FPostId).FirstOrDefault();
+            
+            if (q != null) return q;
+            else return db.TOfficialPosts.OrderByDescending(x => x.FPostId).First();
+
         }
     }
 }

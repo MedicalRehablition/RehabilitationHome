@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore.Scaffolding.Metadata;
 using prjRehabilitation.Models;
 using prjRehabilitation.Models.Lin;
 using prjRehabilitation.ViewModel.Lin;
+using static Microsoft.Extensions.Logging.EventSource.LoggingEventSource;
 
 namespace prjRehabilitation.Controllers
 {
@@ -12,6 +13,11 @@ namespace prjRehabilitation.Controllers
         public IActionResult NewPost()
         {
             return View();
+        }
+        public IActionResult SearchByTime()
+        {
+            var list = (new ArticalCRUD()).SearchByTime();
+            return Json(list);
         }
         public IActionResult Search(string keyword)
         {
