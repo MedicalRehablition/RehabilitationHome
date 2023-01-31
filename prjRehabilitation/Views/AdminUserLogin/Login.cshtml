@@ -107,7 +107,7 @@
                 alert(xhr.responseText);
             })
             const Data = new FormData(document.userLogin);
-            xhr.open("POST", "@Url.Content("/UserLogin/ExistAccount")");
+            xhr.open("POST", "@Url.Content("/AdminUserLogin/ExistAccount")");
             xhr.send(Data);
 
         })

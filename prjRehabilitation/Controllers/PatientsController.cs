@@ -56,7 +56,7 @@ namespace prjRehabilitation.Controllers
         public IActionResult Delete(int id)
         {
             (new PatientInfoCRUD()).c_Delete(id);
-            return RedirectToAction("List");
+            return  RedirectToAction("patients");
         }
         public IActionResult List(VMPatientList vm)
         {

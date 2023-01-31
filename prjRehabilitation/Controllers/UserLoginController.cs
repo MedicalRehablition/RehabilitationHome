@@ -7,6 +7,10 @@ namespace prjRehabilitation.Controllers
 {
     public class UserLoginController : Controller
     {
+        public IActionResult Loginsuccess()
+        {
+            return View();
+        }
         public IActionResult Login()
         {
             return View();
@@ -23,7 +27,7 @@ namespace prjRehabilitation.Controllers
                 {
                     string json = JsonSerializer.Serialize(customer);
                     HttpContext.Session.SetString(CDictionary.SK_Login_User, json);
-                    return RedirectToAction("List");
+                    return RedirectToAction("Loginsuccess");
                 }
             }
             return View();
@@ -62,7 +66,7 @@ namespace prjRehabilitation.Controllers
             dbClassContext db = new dbClassContext();
             Customer customer = db.Customers.FirstOrDefault(t=>t.FEmail==vm.FEmail);
 
-            if (customer.FEmail == null)
+            if (customer == null)
             {
                 db.Customers.Add(vm.Customer);
                 db.SaveChanges();
@@ -73,6 +77,10 @@ namespace prjRehabilitation.Controllers
 
         }
         public IActionResult PartialRegister()
+        {
+            return PartialView();
+        }
+        public IActionResult PartialForgetPassword()
         {
             return PartialView();
         }

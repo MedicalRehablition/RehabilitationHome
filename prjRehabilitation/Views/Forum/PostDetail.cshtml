@@ -5,9 +5,10 @@
 }
 @model prjRehabilitation.ViewModel.Lin.VMNewPost
 <section class="blog_area single-post-area section-padding">
+    <input  type="hidden" id="postId" value="@Model.FPostId"/>
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 posts-list">
+            <div class="col-lg-8 posts-list" id="post">
                 <div class="single-post">
                     <div class="feature-img">
                         <img class="img-fluid" src="assets/img/blog/single_blog_1.png" alt="">
@@ -43,40 +44,23 @@
                     <div class="navigation-area">
                         <div class="row">
                             <div class="col-lg-6 col-md-6 col-12 nav-left flex-row d-flex justify-content-start align-items-center">
-                                <div class="thumb">
-                                    <a href="#">
-                                        <img class="img-fluid" src="assets/img/post/preview.png" alt="">
-                                    </a>
-                                </div>
+
                                 <div class="arrow">
                                     <a href="#">
                                         <span class="lnr text-white ti-arrow-left"></span>
                                     </a>
                                 </div>
-                                <div class="detials">
-                                    <p>Prev Post</p>
-                                    <a href="#">
-                                        <h4 style="color: #2d2d2d;">Space The Final Frontier</h4>
-                                    </a>
+                                <div class="detials" id="prePost">
+                                    <p>上一篇</p>
+
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-6 col-12 nav-right flex-row d-flex justify-content-end align-items-center">
-                                <div class="detials">
-                                    <p>Next Post</p>
-                                    <a href="#">
-                                        <h4 style="color: #2d2d2d;">Telescopes 101</h4>
-                                    </a>
+                                <div class="detials" id="nextPost">
+                                    <p>下一篇</p>
+
                                 </div>
-                                <div class="arrow">
-                                    <a href="#">
-                                        <span class="lnr text-white ti-arrow-right"></span>
-                                    </a>
-                                </div>
-                                <div class="thumb">
-                                    <a href="#">
-                                        <img class="img-fluid" src="assets/img/post/next.png" alt="">
-                                    </a>
-                                </div>
+
                             </div>
                         </div>
                     </div>
@@ -136,56 +120,57 @@
                         <form action="#">
                             <div class="form-group">
                                 <div class="input-group mb-3">
-                                    <input type="text" class="form-control" placeholder="Search Keyword" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Search Keyword'">
+                                    <input type="text" class="form-control" id="keyword" placeholder="關鍵字搜尋" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Search Keyword'">
                                     <div class="input-group-append">
                                         <button class="btns" type="button"><i class="ti-search"></i></button>
                                     </div>
                                 </div>
                             </div>
-                            <button class="button rounded-0 primary-bg text-black w-100 btn_1 boxed-btn" type="submit">Search</button>
                         </form>
+                        <button class="button rounded-0 primary-bg text-black w-100 btn_1 boxed-btn" onclick="searchByKeyword()" type="button">Search</button>
+
                     </aside>
                     <aside class="single_sidebar_widget post_category_widget">
                         <h4 class="widget_title" style="color: #2d2d2d;">分類</h4>
                         <ul class="list cat-list">
                             <li>
-                                <a href="#" class="d-flex">
+                                <a onclick="searchByTag('QA')" class="d-flex">
                                     <p>QA</p>
                                     <p>(37)</p>
                                 </a>
                             </li>
                             <li>
-                                <a href="#" class="d-flex">
+                                <a onclick="searchByTag('介紹')" class="d-flex">
                                     <p>介紹</p>
                                     <p>(10)</p>
                                 </a>
                             </li>
                             <li>
-                                <a href="#" class="d-flex">
+                                <a onclick="searchByTag('用藥')" class="d-flex">
                                     <p>用藥</p>
                                     <p>(03)</p>
                                 </a>
                             </li>
                             <li>
-                                <a href="#" class="d-flex">
+                                <a onclick="searchByTag('復健')" class="d-flex">
                                     <p>復健</p>
                                     <p>(11)</p>
                                 </a>
                             </li>
                             <li>
-                                <a href="#" class="d-flex">
+                                <a onclick="searchByTag('技術')" class="d-flex">
                                     <p>技術</p>
                                     <p>(21)</p>
                                 </a>
                             </li>
                             <li>
-                                <a href="#" class="d-flex">
+                                <a onclick="searchByTag('公告')" class="d-flex">
                                     <p>公告</p>
                                     <p>(21)</p>
                                 </a>
                             </li>
                             <li>
-                                <a href="#" class="d-flex">
+                                <a onclick="searchByTag('活動')" class="d-flex">
                                     <p>活動</p>
                                     <p>(21)</p>
                                 </a>
@@ -193,117 +178,11 @@
                         </ul>
                     </aside>
                     <aside class="single_sidebar_widget popular_post_widget">
-                        <h3 class="widget_title" style="color: #2d2d2d;">Recent Post</h3>
-                        <div class="media post_item">
-                            <img src="assets/img/post/post_1.png" alt="post">
-                            <div class="media-body">
-                                <a href="blog_details.html">
-                                    <h3 style="color: #2d2d2d;">From life was you fish...</h3>
-                                </a>
-                                <p>January 12, 2019</p>
-                            </div>
-                        </div>
-                        <div class="media post_item">
-                            <img src="assets/img/post/post_2.png" alt="post">
-                            <div class="media-body">
-                                <a href="blog_details.html">
-                                    <h3 style="color: #2d2d2d;">The Amazing Hubble</h3>
-                                </a>
-                                <p>02 Hours ago</p>
-                            </div>
-                        </div>
-                        <div class="media post_item">
-                            <img src="assets/img/post/post_3.png" alt="post">
-                            <div class="media-body">
-                                <a href="blog_details.html">
-                                    <h3 style="color: #2d2d2d;">Astronomy Or Astrology</h3>
-                                </a>
-                                <p>03 Hours ago</p>
-                            </div>
-                        </div>
-                        <div class="media post_item">
-                            <img src="assets/img/post/post_4.png" alt="post">
-                            <div class="media-body">
-                                <a href="blog_details.html">
-                                    <h3 style="color: #2d2d2d;">Asteroids telescope</h3>
-                                </a>
-                                <p>01 Hours ago</p>
-                            </div>
-                        </div>
+                        <h3 class="widget_title" style="color: #2d2d2d;">最新文章</h3>
+                        <div id="recentPost"></div>
                     </aside>
-                    <aside class="single_sidebar_widget tag_cloud_widget">
-                        <h4 class="widget_title" style="color: #2d2d2d;">Tag Clouds</h4>
-                        <ul class="list">
-                            <li>
-                                <a href="#">project</a>
-                            </li>
-                            <li>
-                                <a href="#">love</a>
-                            </li>
-                            <li>
-                                <a href="#">technology</a>
-                            </li>
-                            <li>
-                                <a href="#">travel</a>
-                            </li>
-                            <li>
-                                <a href="#">restaurant</a>
-                            </li>
-                            <li>
-                                <a href="#">life style</a>
-                            </li>
-                            <li>
-                                <a href="#">design</a>
-                            </li>
-                            <li>
-                                <a href="#">illustration</a>
-                            </li>
-                        </ul>
-                    </aside>
-                    <aside class="single_sidebar_widget instagram_feeds">
-                        <h4 class="widget_title" style="color: #2d2d2d;">Instagram Feeds</h4>
-                        <ul class="instagram_row flex-wrap">
-                            <li>
-                                <a href="#">
-                                    <img class="img-fluid" src="assets/img/post/post_5.png" alt="">
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <img class="img-fluid" src="assets/img/post/post_6.png" alt="">
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <img class="img-fluid" src="assets/img/post/post_7.png" alt="">
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <img class="img-fluid" src="assets/img/post/post_8.png" alt="">
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <img class="img-fluid" src="assets/img/post/post_9.png" alt="">
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <img class="img-fluid" src="assets/img/post/post_10.png" alt="">
-                                </a>
-                            </li>
-                        </ul>
-                    </aside>
-                    <aside class="single_sidebar_widget newsletter_widget">
-                        <h4 class="widget_title" style="color: #2d2d2d;">Newsletter</h4>
-                        <form action="#">
-                            <div class="form-group">
-                                <input type="email" class="form-control" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter email'" placeholder="Enter email" required="">
-                            </div>
-                            <button class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn" type="submit">Subscribe</button>
-                        </form>
-                    </aside>
+
+
                 </div>
             </div>
         </div>
@@ -312,6 +191,146 @@
 @section Scripts{
     <script>
         loadComment();
+        getRecentPost();
+        getPrePost();
+        getNextPost();
+        var tagCloud="";
+
+        async function AddAndSearchByTag(){
+
+        }
+        async function getPrePost(){
+            console.log("prePost");
+            var idd = document.getElementById("postId").value;
+            const response = await fetch(`@Url.Content("~/Forum/getPrePost?${idd}")`)
+            const x = await response.json();
+    
+            console.log(x);
+            const title = x.fTitle;
+            const id = x.fPostId;
+            var tag = x.fTag;
+
+            document.getElementById("prePost").innerHTML += `
+                            <a onclick="redirectToPage(${id})"  >
+                                 <h4 style="color: #2d2d2d;" > ${title}`
+                        ;
+
+        }
+        async function getNextPost() {
+            var idd = document.getElementById("postId").value;
+
+
+            const response = await fetch(`@Url.Content("~/Forum/getNextPost?${idd}")`)
+            const x = await response.json();
+
+            console.log(x);
+            const title = x.fTitle;
+            const id = x.fPostId;
+            var tag = x.fTag;
+
+            document.getElementById("nextPost").innerHTML += `
+                                    <a onclick="redirectToPage(${id})"  >
+                                         <h4 style="color: #2d2d2d;" > ${title}`
+                ;
+
+        }
+        async function searchByKeyword() {
+            var keyword = document.getElementById("keyword").value;
+            document.getElementById("post").innerHTML = `<span class="visually-hidden">Loading...</span>`;
+
+            const response = await fetch(`@Url.Content("~/Forum/Search?keyword=${keyword}")`)
+            const data = await response.json();
+
+            var html = data.map(x => {
+                console.log(x);
+                const title = x.fTitle;
+                const main = x.fMain;
+                const date = x.fDate;
+                const id = x.fPostId;
+                var tag = x.fTag;
+                return `<article class="blog_item  gray-bg">
+                                                        <div class="blog_details">
+                                                                            <button class="genric-btn info large" onclick="redirectToPage(${id})"><a src="~/Forum/PostDetail?${id}">${date}</button>
+                                                                 <a class="d-inline-block"  src="~/Forum/PostDetail?${id}">
+                                                                                 <h3 class=" blog-head " onclick="redirectToPage(${id})" style="color: #2d2d2d;">${title}</h3>
+                                                            </a>
+                                                            <p>
+                                                                ${main}
+                                                            </p>
+                                                            <ul class="blog-info-link">
+                                                                <li><a href="#"><i class="fa fa-user"></i>${tag}</a></li>
+                                                                <li><a href="#"><i class="fa fa-comments"></i> 03 Comments</a></li>
+                                                            </ul>
+                                                        </div>
+                                                 </article>
+                                                 `;
+            })
+            document.getElementById("post").innerHTML += html.join("");
+            //加載完把讀取動畫關掉
+            $(".spinner-border").remove();
+        }
+        async function getRecentPost() {
+            document.getElementById("recentPost").innerHTML = `<span class="visually-hidden">Loading...</span>`;
+
+            const response = await fetch(`@Url.Content("~/Forum/SearchByTime")`)
+            const data = await response.json();
+
+            var html = data.map(x => {
+                console.log(x);
+                const title = x.fTitle;
+                const date = x.fDate;
+                const id = x.fPostId;
+                return `      <div class="media post_item">
+                                                <div class="media-body row">
+                                                                            <a  onclick="redirectToPage(${id})">
+                                                        <h3 style="color: #2d2d2d;">${title}</h3>
+                                                            <p >${date}</p>
+
+                                                    </a>
+                                                </div>
+                                            </div>`;
+            })
+            document.getElementById("recentPost").innerHTML += html.join("");
+            //加載完把讀取動畫關掉
+            $(".spinner-border").remove();
+        }
+        async function searchByTag(tag) {
+            document.getElementById("post").innerHTML = `<span class="visually-hidden">Loading...</span>`;
+
+            const response = await fetch(`@Url.Content("~/Forum/SearchByTag?tag=${tag}")`)
+            const data = await response.json();
+
+            var html = data.map(x => {
+                console.log(x);
+                const title = x.fTitle;
+                const main = x.fMain;
+                const date = x.fDate;
+                const id = x.fPostId;
+                var tag = x.fTag;
+                return `<article class="blog_item  gray-bg">
+                                                                <div class="blog_details">
+                                                                                    <button class="genric-btn info large" onclick="redirectToPage(${id})"><a src="~/Forum/PostDetail?${id}">${date}</button>
+                                                                         <a class="d-inline-block"  src="~/Forum/PostDetail?${id}">
+                                                                                         <h3 class=" blog-head " onclick="redirectToPage(${id})" style="color: #2d2d2d;">${title}</h3>
+                                                                    </a>
+                                                                    <p>
+                                                                        ${main}
+                                                                    </p>
+                                                                    <ul class="blog-info-link">
+                                                                        <li><a href="#"><i class="fa fa-user"></i>${tag}</a></li>
+                                                                        <li><a href="#"><i class="fa fa-comments"></i> 03 Comments</a></li>
+                                                                    </ul>
+                                                                </div>
+                                                         </article>
+                                                         `;
+            })
+            document.getElementById("post").innerHTML += html.join("");
+            //加載完把讀取動畫關掉
+            $(".spinner-border").remove();
+        }
+        function redirectToPage(id) {
+            location.href =`@Url.Content("~/Forum/PostDetail/${id}")`;
+        }
         //送出評論後重整頁面以便檢視
         async function postComment(){
             await fetch("/forum/NewComment", {

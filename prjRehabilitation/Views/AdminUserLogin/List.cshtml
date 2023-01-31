@@ -9,8 +9,11 @@
         color: blue;
     }
 </style>
-<h1>List</h1>
-
+<h1>員工列表</h1>
+<form>
+<input type="text" name="txtKeyword" />
+<input type="submit" class="btn btn-primary" value="查詢" />
+</form>
 
 <table class="table">
     <thead>
@@ -30,9 +33,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.FRank)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Fphoto)
-            </th>
+            @*<th>
+            @Html.DisplayNameFor(model => model.Fphoto)
+            </th>*@
             <th>
                 @Html.DisplayNameFor(model => model.FSex)
             </th>
