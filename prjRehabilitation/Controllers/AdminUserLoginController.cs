@@ -126,6 +126,7 @@ namespace prjRehabilitation.Controllers
                 ad.FRank = vm.FRank;
                 ad.FEmail = vm.FEmail;
                 ad.FName = vm.FName;
+                ad.FBirth=vm.FBirth;
                 ad.FPassword= vm.FPassword;
                 db.SaveChanges();
             }
@@ -148,7 +149,7 @@ namespace prjRehabilitation.Controllers
             return View();
         }
         public IActionResult SendMailByGmail(CLoginViewModel vm)
-        {
+            {
             dbClassContext db = new dbClassContext();
             Admin admin = db.Admins.FirstOrDefault(t => t.FEmail==vm.txtAccount);
             if (admin == null)

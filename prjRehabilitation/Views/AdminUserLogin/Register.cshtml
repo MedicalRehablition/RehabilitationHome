@@ -24,7 +24,7 @@
 
             <div class="form-outline datepicker w-100">
                 <label asp-for="FBirth" class="control-label">生日</label>
-                <input onchange="ageCalculate();" type="date" max="@DateTime.Today" asp-for="FBirth" class="form-control" />
+                <input type="date" max="@DateTime.Today" asp-for="FBirth" class="form-control" />
                 <span asp-validation-for="FBirth" class="text-danger"></span>
             </div>
 
@@ -79,6 +79,7 @@
         </div>
     </div>
     <div>
+        <label asp-for="photo" class="control-label">照片</label>
         <input type="file" asp-for="photo" class="form-control" />
     </div>
 
