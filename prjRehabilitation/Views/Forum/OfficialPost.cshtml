@@ -93,116 +93,55 @@
                         </ul>
                     </aside>
                     <aside class="single_sidebar_widget popular_post_widget">
-                        <h3 class="widget_title" style="color: #2d2d2d;">Recent Post</h3>
-                        <div class="media post_item">
-                            
-                            <div class="media-body">
-                                <a href="blog_details.html">
-                                    <h3 style="color: #2d2d2d;">From life was you fish...</h3>
-                                </a>
-                                <p>January 12, 2019</p>
-                            </div>
-                        </div>
-                        <div class="media post_item">
-                            <div class="media-body">
-                                <a href="blog_details.html">
-                                    <h3 style="color: #2d2d2d;">The Amazing Hubble</h3>
-                                </a>
-                                <p>02 Hours ago</p>
-                            </div>
-                        </div>
-                        <div class="media post_item">
-                            <div class="media-body">
-                                <a href="blog_details.html">
-                                    <h3 style="color: #2d2d2d;">Astronomy Or Astrology</h3>
-                                </a>
-                                <p>03 Hours ago</p>
-                            </div>
-                        </div>
-                        <div class="media post_item">
-                            <img src="assets/img/post/post_4.png" alt="post">
-                            <div class="media-body">
-                                <a href="blog_details.html">
-                                    <h3 style="color: #2d2d2d;">Asteroids telescope</h3>
-                                </a>
-                                <p>01 Hours ago</p>
-                            </div>
-                        </div>
+                        <h3 class="widget_title" style="color: #2d2d2d;">最新文章</h3>
+                        <div id="recentPost"></div>
+
                     </aside>
                     <aside class="single_sidebar_widget tag_cloud_widget">
-                        <h4 class="widget_title" style="color: #2d2d2d;">Tag Clouds</h4>
+                        <h4 class="widget_title" style="color: #2d2d2d;">標籤雲</h4>
                         <ul class="list">
                             <li>
-                                <a href="#">project</a>
+                                <a class="genric-btn info-border circle" onclick="AddAndSearchByTag('QA')">
+                                    QA
+                                </a>
                             </li>
                             <li>
-                                <a href="#">love</a>
+                                <a onclick="AddAndSearchByTag('介紹')" class="genric-btn info-border circle">
+                                    介紹
+                                </a>
                             </li>
                             <li>
-                                <a href="#">technology</a>
+                                <a onclick="AddAndSearchByTag('用藥')" class="genric-btn info-border circle">用藥</a>
                             </li>
                             <li>
-                                <a href="#">travel</a>
+                                <a onclick="AddAndSearchByTag('用藥')" class="genric-btn info-border circle">
+                                    用藥
+                                </a>
                             </li>
                             <li>
-                                <a href="#">restaurant</a>
+                                <a onclick="AddAndSearchByTag('復健')" class="genric-btn info-border circle">
+                                    復健
+                                </a>
                             </li>
                             <li>
-                                <a href="#">life style</a>
+                                <a onclick="AddAndSearchByTag('技術')" class="genric-btn info-border circle">
+                                    技術
+                                </a>
                             </li>
                             <li>
-                                <a href="#">design</a>
+                                <a onclick="AddAndSearchByTag('公告')" class="genric-btn info-border circle">
+                                    公告
+                                </a>
                             </li>
                             <li>
-                                <a href="#">illustration</a>
+                                <a onclick="AddAndSearchByTag('活動')" class="genric-btn info-border circle">
+                                    活動
+                                </a>
                             </li>
                         </ul>
                     </aside>
 
-                    <aside class="single_sidebar_widget instagram_feeds">
-                        <h4 class="widget_title" style="color: #2d2d2d;">Instagram Feeds</h4>
-                        <ul class="instagram_row flex-wrap">
-                            <li>
-                                <a href="#">
-                                    <img class="img-fluid" src="assets/img/post/post_5.png" alt="">
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <img class="img-fluid" src="assets/img/post/post_6.png" alt="">
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <img class="img-fluid" src="assets/img/post/post_7.png" alt="">
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <img class="img-fluid" src="assets/img/post/post_8.png" alt="">
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <img class="img-fluid" src="assets/img/post/post_9.png" alt="">
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <img class="img-fluid" src="assets/img/post/post_10.png" alt="">
-                                </a>
-                            </li>
-                        </ul>
-                    </aside>
-                    <aside class="single_sidebar_widget newsletter_widget">
-                        <h4 class="widget_title" style="color: #2d2d2d;">Newsletter</h4>
-                        <form action="#">
-                            <div class="form-group">
-                                <input type="email" class="form-control" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter email'" placeholder="Enter email" required="">
-                            </div>
-                            <button class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn" type="submit">Subscribe</button>
-                        </form>
-                    </aside>
+
                 </div>
             </div>
         </div>
@@ -212,6 +151,32 @@
  @section Scripts{
 <script>
     loadArtical();
+        getRecentPost();
+       async function getRecentPost(){
+            document.getElementById("recentPost").innerHTML = `<span class="visually-hidden">Loading...</span>`;
+
+            const response = await fetch(`@Url.Content("~/Forum/SearchByTime")`)
+            const data = await response.json();
+
+            var html = data.map(x => {
+                console.log(x);
+                const title = x.fTitle;
+                const date = x.fDate;
+                const id = x.fPostId;
+                return `      <div class="media post_item">
+                                                        <div class="media-body row">
+                                                                                    <a  onclick="redirectToPage(${id})">
+                                                                <h3 style="color: #2d2d2d;">${title}</h3>
+                                                                    <p >${date}</p>
+
+                                                            </a>
+                                                        </div>
+                                                    </div>`;
+                })
+            document.getElementById("recentPost").innerHTML += html.join("");
+            //加載完把讀取動畫關掉
+            $(".spinner-border").remove();
+       }
         async function searchByTag(tag) {
             document.getElementById("div_article").innerHTML = `<span class="visually-hidden">Loading...</span>`;
 
