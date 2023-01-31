@@ -14,6 +14,18 @@ namespace prjRehabilitation.Controllers
         {
             return View();
         }
+        public IActionResult getPrePost(int id)
+        {
+            var list = (new ArticalCRUD()).getPrePost(id);
+
+            return Json(list);
+        }
+        public IActionResult getNextPost(int id)
+        {
+            var list = (new ArticalCRUD()).getNextPost(id);
+
+            return Json(list);
+        }
         public IActionResult SearchByTime()
         {
             var list = (new ArticalCRUD()).SearchByTime();
