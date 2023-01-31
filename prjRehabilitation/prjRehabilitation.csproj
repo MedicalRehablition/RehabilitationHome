@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="Views\AdminUserLogin\UserList.cshtml" />
     <Content Remove="wwwroot\AdminBootstrap\pluginsAdminlayout\chartist-plugin-tooltip.min.js" />
   </ItemGroup>
 

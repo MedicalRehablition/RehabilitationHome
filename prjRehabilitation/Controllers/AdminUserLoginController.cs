@@ -40,6 +40,7 @@ namespace prjRehabilitation.Controllers
             }
             return View(List);
         }
+       
         //登入寫入Session
         public IActionResult Login()
         {
@@ -92,6 +93,7 @@ namespace prjRehabilitation.Controllers
             {
                 string photoName = Guid.NewGuid().ToString() + ".jpg";
                 string path = _environment.WebRootPath + "/images/" + photoName;
+                vm.Fphoto = photoName;
                 vm.photo.CopyTo(new FileStream(path, FileMode.Create));
             }
             db.Admins.Add(vm.admin);
