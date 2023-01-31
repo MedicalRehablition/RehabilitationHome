@@ -213,7 +213,6 @@
 <script>
     loadArtical();
         async function searchByTag(tag) {
-            var keyword = document.getElementById("keyword").value;
             document.getElementById("div_article").innerHTML = `<span class="visually-hidden">Loading...</span>`;
 
             const response = await fetch(`@Url.Content("~/Forum/SearchByTag?tag=${tag}")`)

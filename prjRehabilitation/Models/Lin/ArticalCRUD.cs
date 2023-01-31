@@ -121,8 +121,9 @@ namespace prjRehabilitation.Models.Lin
             dbClassContext db = new dbClassContext();
             var list = new List<VMNewPost>();
             IEnumerable<TOfficialPost> q;
-                  q = db.TOfficialPosts.Where(x => x.FStatus != false);
-
+            //降冪排列，優先顯示最新的文章
+                  q = db.TOfficialPosts.Where(x => x.FStatus != false).OrderByDescending(x=>x.FDate);
+            
             foreach (var c in q.ToList())
             {
                 var post = new VMNewPost();
