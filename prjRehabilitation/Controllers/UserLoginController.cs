@@ -76,5 +76,9 @@ namespace prjRehabilitation.Controllers
         {
             return PartialView();
         }
+        public IActionResult PartialForgetPassword()
+        {
+            return PartialView();
+        }
     }
 }

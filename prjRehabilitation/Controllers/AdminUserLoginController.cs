@@ -53,7 +53,7 @@ namespace prjRehabilitation.Controllers
 
             if (admin != null)
             {
-                if(admin.FEmail.Equals(vm.txtAccount) && admin.FPassword.Equals(vm.txtPassword))
+                if (admin.FEmail.Equals(vm.txtAccount) && admin.FPassword.Equals(vm.txtPassword))
                 {
                     string json = JsonSerializer.Serialize(admin);
                     HttpContext.Session.SetString(CDictionary.SK_Login_User, json);
@@ -65,7 +65,7 @@ namespace prjRehabilitation.Controllers
         public IActionResult ExistAccount(CLoginViewModel vm)
         {
             dbClassContext db = new dbClassContext();
-            Admin admin = db.Admins.FirstOrDefault(t => t.FEmail.Equals(vm.txtAccount));
+            Admin admin = db.Admins.FirstOrDefault(t => t.FEmail==vm.txtAccount);
 
             if (admin != null)
             {
@@ -88,6 +88,12 @@ namespace prjRehabilitation.Controllers
         public IActionResult Register(CAdminViewModel vm)
         {
             dbClassContext db = new dbClassContext();
+            if (vm.photo != null)
+            {
+                string photoName = Guid.NewGuid().ToString() + ".jpg";
+                string path = _environment.WebRootPath + "/images/" + photoName;
+                vm.photo.CopyTo(new FileStream(path, FileMode.Create));
+            }
             db.Admins.Add(vm.admin);
             db.SaveChanges();
             return RedirectToAction("List");

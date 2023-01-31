@@ -48,7 +48,9 @@
 
         <div class="col">
             <!-- Simple link -->
-            <a class="nav-link text-dark" asp-area="" asp-controller="UserLogin" asp-action="ForgetPassword">忘記密碼</a>
+            <button type="button" class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#exampleModal" id="ForgetPasswordbtn">
+                忘記密碼
+            </button>
         </div>
     </div>
 
@@ -61,7 +63,7 @@
             點我註冊
         </button>
 
-        
+
 
         <p>or sign up with:</p>
         <a class=" text-white" style="background-color: #3b5998;" href="#!" role="button">
@@ -84,15 +86,15 @@
         </a>
     </div>
 </form>
-<form name="UserRegister111">
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">註冊帳號</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            
+<form name="UserRegister">
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">註冊帳號</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
                 <div class="modal-body RegisterBody ">
                 </div>
 
@@ -100,9 +102,29 @@
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
                     <input type="submit" class="btn btn-primary Registersubbtn" value="註冊"></input>
                 </div>
-            
+
+            </div>
         </div>
     </div>
+</form>
+<form name="UserForgetPassword">
+    <div class="UserForgetPasswordmodal fade" id="UserForgetPasswordModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="UserForgetPasswordModalLabel">請輸入信箱</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="UserForgetPasswordmodal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body ForgetPasswordBody ">
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="UserForgetPasswordmodal">關閉</button>
+                    <input type="submit" class="btn btn-primary ForgetPasswordsubbtn" value="傳送"></input>
+                </div>
+            </div>
+        </div>
     </div>
 </form>
 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -130,9 +152,7 @@
                 span.style.display = 'none';
             }
         });
-        $(".Registerbtn").on("click", function () {
-            $(".RegisterBody").load("@Url.Content("/UserLogin/PartialRegister")")
-        })
+
 
         logbtn.addEventListener("click", function (event) {
             event.preventDefault();
@@ -145,6 +165,11 @@
             xhr.send(Data);
 
         })
+        //=====================================註冊帳號=====================================
+
+        $(".Registerbtn").on("click", function () {
+            $(".RegisterBody").load("@Url.Content("/UserLogin/PartialRegister")")
+        })
         $(".Registersubbtn").on("click", function (event) {
             event.preventDefault();
             let xhr = new XMLHttpRequest();
@@ -152,8 +177,23 @@
                 alert(xhr.responseText);
             })
             debugger
-            const data = new FormData(document.UserRegister111);
+            const data = new FormData(UserRegister);
             xhr.open("POST", "@Url.Content("/UserLogin/AccountAlive")");
+            xhr.send(data);
+        })
+        //=====================================忘記密碼=====================================
+        $("#ForgetPasswordbtn").on("click", function () {
+            $(".ForgetPasswordBody").load("@Url.Content("/UserLogin/PartialForgetPassword")")
+        })
+        $(".ForgetPasswordsubbtn").on("click", function (event) {
+            event.preventDefault();
+            let xhr = new XMLHttpRequest();
+            xhr.addEventListener("load", function () {
+                alert(xhr.responseText);
+            })
+            debugger
+            const data = new FormData(UserForgetPassword);
+            xhr.open("POST", "@Url.Content("/UserLogin/SendMailByGmail")");
             xhr.send(data);
         })
     </script>
