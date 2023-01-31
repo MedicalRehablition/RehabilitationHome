@@ -7,7 +7,7 @@
 <section class="blog_area single-post-area section-padding">
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 posts-list">
+            <div class="col-lg-8 posts-list" id="post">
                 <div class="single-post">
                     <div class="feature-img">
                         <img class="img-fluid" src="assets/img/blog/single_blog_1.png" alt="">
@@ -149,43 +149,43 @@
                         <h4 class="widget_title" style="color: #2d2d2d;">分類</h4>
                         <ul class="list cat-list">
                             <li>
-                                <a href="#" class="d-flex">
+                                <a onclick="searchByTag('QA')" class="d-flex">
                                     <p>QA</p>
                                     <p>(37)</p>
                                 </a>
                             </li>
                             <li>
-                                <a href="#" class="d-flex">
+                                <a onclick="searchByTag('介紹')" class="d-flex">
                                     <p>介紹</p>
                                     <p>(10)</p>
                                 </a>
                             </li>
                             <li>
-                                <a href="#" class="d-flex">
+                                <a onclick="searchByTag('用藥')" class="d-flex">
                                     <p>用藥</p>
                                     <p>(03)</p>
                                 </a>
                             </li>
                             <li>
-                                <a href="#" class="d-flex">
+                                <a onclick="searchByTag('復健')" class="d-flex">
                                     <p>復健</p>
                                     <p>(11)</p>
                                 </a>
                             </li>
                             <li>
-                                <a href="#" class="d-flex">
+                                <a onclick="searchByTag('技術')" class="d-flex">
                                     <p>技術</p>
                                     <p>(21)</p>
                                 </a>
                             </li>
                             <li>
-                                <a href="#" class="d-flex">
+                                <a onclick="searchByTag('公告')" class="d-flex">
                                     <p>公告</p>
                                     <p>(21)</p>
                                 </a>
                             </li>
                             <li>
-                                <a href="#" class="d-flex">
+                                <a onclick="searchByTag('活動')" class="d-flex">
                                     <p>活動</p>
                                     <p>(21)</p>
                                 </a>
@@ -312,6 +312,43 @@
 @section Scripts{
     <script>
         loadComment();
+        async function searchByTag(tag) {
+            document.getElementById("post").innerHTML = `<span class="visually-hidden">Loading...</span>`;
+
+            const response = await fetch(`@Url.Content("~/Forum/SearchByTag?tag=${tag}")`)
+            const data = await response.json();
+
+            var html = data.map(x => {
+                console.log(x);
+                const title = x.fTitle;
+                const main = x.fMain;
+                const date = x.fDate;
+                const id = x.fPostId;
+                var tag = x.fTag;
+                return `<article class="blog_item  gray-bg">
+                                                                <div class="blog_details">
+                                                                                    <button class="genric-btn info large" onclick="redirectToPage(${id})"><a src="~/Forum/PostDetail?${id}">${date}</button>
+                                                                         <a class="d-inline-block"  src="~/Forum/PostDetail?${id}">
+                                                                                         <h3 class=" blog-head " onclick="redirectToPage(${id})" style="color: #2d2d2d;">${title}</h3>
+                                                                    </a>
+                                                                    <p>
+                                                                        ${main}
+                                                                    </p>
+                                                                    <ul class="blog-info-link">
+                                                                        <li><a href="#"><i class="fa fa-user"></i>${tag}</a></li>
+                                                                        <li><a href="#"><i class="fa fa-comments"></i> 03 Comments</a></li>
+                                                                    </ul>
+                                                                </div>
+                                                         </article>
+                                                         `;
+            })
+            document.getElementById("post").innerHTML += html.join("");
+            //加載完把讀取動畫關掉
+            $(".spinner-border").remove();
+        }
+        function redirectToPage(id) {
+            location.href =`@Url.Content("~/Forum/PostDetail/${id}")`;
+        }
         //送出評論後重整頁面以便檢視
         async function postComment(){
             await fetch("/forum/NewComment", {
