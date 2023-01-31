@@ -114,6 +114,7 @@ namespace prjRehabilitation.Controllers
                     tPicAndFile.FGroupActivityId = Convert.ToInt32(vm.cgavm.FGroupActivityId);
                     using (var memoryStream = new MemoryStream())
                     {
+                        ifGetId = new TGroupActivityPicAndFile();
                         if (FPicture1 != null)
                         {
                             FPicture1.CopyTo(memoryStream);

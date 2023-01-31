@@ -3,7 +3,7 @@
 
 @{
     ViewData["Title"] = "Edit";
-    DateTime dd = new DateTime(Convert.ToInt32(Model.cgavm.FDate.Split('-')[0]), Convert.ToInt32(Model.cgavm.FDate.Split('-')[1]), Convert.ToInt32(Model.cgavm.FDate.Split('-')[2]));
+    //DateTime dd = new DateTime(Convert.ToInt32(Model.cgavm.FDate.Split('-')[0]), Convert.ToInt32(Model.cgavm.FDate.Split('-')[1]), Convert.ToInt32(Model.cgavm.FDate.Split('-')[2]));  //只有-才讀的到的血淚史，之前用斜線讀不到還要這樣拆，用-就不用了(其實單引號裡的是/，因為… 很長不打了)
     //Layout = "AdminLayout";
 }
 
@@ -33,7 +33,7 @@
                 <div class="col">
                     <div class="form-group">
                         <label asp-for="cgavm.FDate" class="control-label"></label>
-                        <input asp-for=@dd type="date" class="form-control" name="cgavm.FDate" />
+                        <input asp-for="cgavm.FDate" type="date" class="form-control" name="cgavm.FDate" />
                         <span asp-validation-for="cgavm.FDate" class="text-danger"></span>
                     </div>
                     <div class="form-group">
@@ -107,6 +107,8 @@
                             var base64 = Convert.ToBase64String(Model.tgapaf.FPicture1);
                             string imgSrc = String.Format("data:image/gif;base64,{0}", base64);
                             <img id="formFile1Pic" name="" src="@imgSrc" style="width:100%" />
+                        }else{
+                            <img id="formFile1Pic" name="" src="" style="width:100%" />
                         }
 
                     </a>
@@ -124,6 +126,10 @@
                             string imageString = String.Format("data:image/gif;base64,{0}", base64);
                             <img id="formFile2Pic" name="" src="@imageString" style="width:100%" />
                         }
+                        else
+                        {
+                            <img id="formFile2Pic" name="" src="" style="width:100%" />
+                        }
 
                     </a>
                 </div>
@@ -139,6 +145,10 @@
                             string stringForImage = String.Format("data:image/gif;base64,{0}", base64);
                             <img id="formFile3Pic" name="" src="@stringForImage" style="width:100%" />
                         }
+                        else
+                        {
+                            <img id="formFile3Pic" name="" src="" style="width:100%" />
+                        }
 
                     </a>
                 </div>
@@ -153,6 +163,10 @@
                             var base64 = Convert.ToBase64String(Model.tgapaf.FPicture4);
                             string pic4StringforImg = String.Format("data:image/gif;base64,{0}", base64);
                             <img id="formFile4Pic" name="" src="@pic4StringforImg" style="width:100%" />
+                        }
+                        else
+                        {
+                            <img id="formFile4Pic" name="" src="" style="width:100%" />
                         }
 
                     </a>

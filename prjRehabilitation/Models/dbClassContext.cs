@@ -907,15 +907,18 @@ namespace prjRehabilitation.Models
                     .HasMaxLength(100)
                     .HasColumnName("f現狀評估");
 
-                entity.Property(e => e.F評估項目)
-                    .HasMaxLength(100)
-                    .HasColumnName("f評估項目");
+                entity.Property(e => e.F評估項目).HasColumnName("f評估項目");
 
                 entity.HasOne(d => d.F功能評估)
                     .WithMany(p => p.功能評估個表s)
                     .HasForeignKey(d => d.F功能評估Id)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_功能評估個表_功能評估");
+
+                entity.HasOne(d => d.F評估項目Navigation)
+                    .WithMany(p => p.功能評估個表s)
+                    .HasForeignKey(d => d.F評估項目)
+                    .HasConstraintName("FK_功能評估個表_TypeNames");
             });
 
             OnModelCreatingPartial(modelBuilder);
