@@ -15,7 +15,6 @@
     <None Include="Views\Forum\NewPost.cshtml" />
     <None Include="Views\Forum\OfficialPost.cshtml" />
     <None Include="Views\Forum\PostDetail.cshtml" />
-    <None Include="Views\Patients\Create.cshtml" />
     <None Include="Views\Patients\Create_F.cshtml" />
     <None Include="Views\Patients\Edit.cshtml" />
     <None Include="Views\Patients\Empty.cshtml" />

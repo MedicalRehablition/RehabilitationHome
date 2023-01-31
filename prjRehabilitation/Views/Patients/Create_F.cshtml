@@ -26,8 +26,8 @@
 
 
 <div class="layout">
-    <h1>Create_F</h1>
-    <h4>PatientInfo</h4>
+    <h1>新增住民</h1>
+    <h4></h4>
     <hr />
     <form asp-action="Create_F" name="FormP" enctype="multipart/form-data">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -313,7 +313,7 @@
             <input id="submit" type="submit" value="送出" class=" btn btn-primary" />
         </div>
     </form>
-    <button form="FormP" type="submit" id="btn_submit" onclick="formSubmit()">創建資料</button>
+    @*<button form="FormP" type="submit" id="btn_submit" onclick="formSubmit()">創建資料</button>*@
 </div>
 <div>
     <a asp-action="Index">Back to List</a>

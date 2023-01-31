@@ -30,7 +30,6 @@
 <div class="layout">
     <h1>EDIT</h1>
 
-    <h4>PatientInfo</h4>
     <hr />
     <form asp-action="Create_F" id="form1" enctype="multipart/form-data">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -413,9 +412,9 @@
                                                                  </div>
                                                                      <div class='col-6'><label class='col-form-label'>疾病中文名稱</label><input  name='disease${count_disease}.DiseaseChineseName'  id='disease${count_disease}.DiseaseChineseName'  class='form-control' value="${name}"/>
                                                                      </div>
-                                                                    <div class='col'><br /><button class='btn-danger'>往上</button>
-                                                                        <input type="button" class='btn-danger' id='${count_disease}' onclick='disease_delete()' value="刪除">
-                                                                        <button class='btn-danger'> 往下</button>
+                                                                    <div class='col'><br />
+                                                                        <input type="button" class='btn btn-danger' id='${count_disease}' onclick='disease_delete()' value="刪除">
+                                                                        </button>
                                                                     </div>
                                                             </div>`;
                 div.innerHTML += html;
@@ -442,9 +441,9 @@
                                 </div>
                                             <div class='col-6'><label class='col-form-label'>疾病中文名稱</label><input  name='disease${count}.DiseaseChineseName'  id='disease${count}.DiseaseChineseName'  class='form-control' value="${name}"/>
                                     </div>
-                                <div class='col'><br /><button class='btn-danger'>往上</button>
-                                            <input type="button" class='btn-danger' id='${count}' onclick='disease_delete()' value="刪除">
-                                    <button class='btn-danger'> 往下</button>
+                                <div class='col'><br />
+                                            <input type="button" class='btn btn-danger' id='${count}' onclick='disease_delete()' value="刪除">
+                                
                                 </div>
                          </div>`;
             }
