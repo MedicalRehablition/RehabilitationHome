@@ -122,7 +122,7 @@ namespace prjRehabilitation.Models.Lin
             var list = new List<VMNewPost>();
             IEnumerable<TOfficialPost> q;
             //降冪排列，優先顯示最新的文章
-                  q = db.TOfficialPosts.Where(x => x.FStatus != false).OrderByDescending(x=>x.FDate);
+                  q = db.TOfficialPosts.Where(x => x.FStatus != false).OrderByDescending(x=>x.FPostId).Take(5);
             
             foreach (var c in q.ToList())
             {
@@ -243,7 +243,7 @@ namespace prjRehabilitation.Models.Lin
             dbClassContext db = new dbClassContext();
             var list = new List<VMNewPost>();
             IEnumerable<TOfficialPost> q;
-            q = db.TOfficialPosts.Where(x => x.FStatus != false).OrderByDescending(x => x.FDate).Take(5);
+            q = db.TOfficialPosts.Where(x => x.FStatus != false).OrderByDescending(x => x.FPostId).Take(5);
 
             foreach (var c in q.ToList())
             {
@@ -258,13 +258,35 @@ namespace prjRehabilitation.Models.Lin
         public object getPrePost(int id)
         {
             dbClassContext db = new dbClassContext();
-            TOfficialPost? q=null;
+            IQueryable<TOfficialPost> q=null;
+            TOfficialPost? a= null;
+            try
+            {
+                a = db.TOfficialPosts.Where(x => x.FStatus != false && x.FPostId < id).OrderByDescending(x => x.FPostId).First();
+            }
+            catch
+            {
+                a = db.TOfficialPosts.OrderByDescending(x => x.FPostId).First();
+            }
 
-            q = db.TOfficialPosts.Where(x => x.FStatus != false&&x.FPostId<id).OrderByDescending(x=>x.FPostId).FirstOrDefault();
-            
-            if (q != null) return q;
-            else return db.TOfficialPosts.OrderByDescending(x => x.FPostId).First();
+            return a;
+        }
+        public object getNextPost(int id)
+        {
+            dbClassContext db = new dbClassContext();
+            TOfficialPost q = null;
 
+            try
+            {
+                q = db.TOfficialPosts.OrderBy(x => x.FPostId).First();
+
+            }
+            catch
+            {
+            }
+
+             return q;
+    
         }
     }
 }
