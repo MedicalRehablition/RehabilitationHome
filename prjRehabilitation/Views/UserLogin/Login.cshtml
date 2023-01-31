@@ -4,7 +4,7 @@
     ViewData["Title"] = "Index";
 }
 <style>
-    
+
     .text-white {
         border: none;
         padding: 18px 18px 18px 19px;
@@ -49,7 +49,7 @@
 
         <div class="col">
             <!-- Simple link -->
-            <button type="button" class="btn btn-primary ForgetPasswordbtn" data-bs-toggle="modal" data-bs-target="#exampleModal" id="ForgetPasswordbtn">
+            <button type="button" class="btn btn-primary ForgetPasswordbtn" data-bs-toggle="UserForgetPasswordmodal" data-bs-target="#UserForgetPasswordModal">
                 忘記密碼
             </button>
         </div>
@@ -63,8 +63,6 @@
         <button type="button" class="btn btn-primary Registerbtn" data-bs-toggle="modal" data-bs-target="#exampleModal">
             點我註冊
         </button>
-
-
 
         <p>or sign up with:</p>
         <a class=" text-white" style="background-color: #3b5998;" href="#!" role="button">
@@ -109,7 +107,7 @@
     </div>
 </form>
 <form name="UserForgetPassword">
-    <div class="UserForgetPasswordmodal fade" id="UserForgetPasswordModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="UserForgetPasswordModal" tabindex="-1" aria-labelledby="UserForgetPasswordLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -118,7 +116,6 @@
                 </div>
 
                 <div class="modal-body ForgetPasswordBody ">
-
                 </div>
 
                 <div class="modal-footer">
@@ -136,7 +133,6 @@
         let Account = document.querySelector("#txtAccount");
         console.log(Account);
         let Password = document.querySelector("#txtPassword");
-
         const div1 = document.getElementById('div1');
         const span = document.createElement('span');
         span.innerText = '請不要空白';
@@ -166,7 +162,7 @@
 
         })
         //=====================================註冊帳號=====================================
-        
+
         $(".Registerbtn").on("click", function () {
             $(".RegisterBody").load("@Url.Content("/UserLogin/PartialRegister")")
         })
@@ -176,14 +172,14 @@
             xhr.addEventListener("load", function () {
                 alert(xhr.responseText);
             })
-            
+
             const data = new FormData(UserRegister);
             xhr.open("POST", "@Url.Content("/UserLogin/AccountAlive")");
             xhr.send(data);
         })
         //=====================================忘記密碼=====================================
-        debugger
-        $("#ForgetPasswordbtn").on("click", function () {
+
+        $(".ForgetPasswordbtn").on("click", function () {
             $(".ForgetPasswordBody").load("@Url.Content("/UserLogin/PartialForgetPassword")")
         })
         $(".ForgetPasswordsubbtn").on("click", function (event) {
@@ -192,11 +188,13 @@
             xhr.addEventListener("load", function () {
                 alert(xhr.responseText);
             })
-            debugger
+
             const data = new FormData(UserForgetPassword);
             xhr.open("POST", "@Url.Content("/UserLogin/SendMailByGmail")");
             xhr.send(data);
         })
+        //=====================================驗證=====================================
+        
     </script>
 }
 
