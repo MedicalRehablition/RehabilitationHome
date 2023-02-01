@@ -1,0 +1,40 @@
+﻿@model IEnumerable<prjRehabilitation.ViewModel.CEvaluateViewModle>
+
+@{
+    ViewData["Title"] = "DateList";
+}
+
+<h1>DateList</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>      
+            <th>
+                @Html.DisplayNameFor(model => model.F日期)
+            </th> 
+            <th>
+                @Html.DisplayNameFor(model => model.F問題)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+                <th>
+                    @Html.DisplayFor(modelItem => item.F日期)
+                </th>
+                <th>
+                    @Html.DisplayFor(modelItem => item.F問題)
+                </th>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
