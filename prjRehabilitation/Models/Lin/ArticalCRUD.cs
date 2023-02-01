@@ -12,6 +12,7 @@ namespace prjRehabilitation.Models.Lin
             db.TForumArticals.Add(artical);
             db.SaveChanges();
         }
+
         public void ArticalEdit(TForumArtical artical)
         {
             dbClassContext db = new dbClassContext();
@@ -103,6 +104,21 @@ namespace prjRehabilitation.Models.Lin
             dbClassContext db = new dbClassContext();
             var post = new TOfficialPost();
             post = vm.fofficialPost;
+            post = processType(post, vm);
+
+            db.TOfficialPosts.Add(post);
+            db.SaveChanges();
+        }
+        public void PostEdit(VMNewPost vm)
+        {
+            dbClassContext db = new dbClassContext();
+           
+            var post = db.TOfficialPosts.Where(x=>x.FPostId==vm.FPostId).FirstOrDefault();
+            post.FTitle = vm.FTitle;
+            post.FMain = vm.FMain;
+            post.FContent = vm.FContent;
+
+            post.FTag = "";
             if (vm.type_用藥 != false) post.FTag += "用藥";
             if (vm.type_評估 != false) post.FTag += "評估";
             if (vm.type_活動 != false) post.FTag += "活動";
@@ -112,17 +128,16 @@ namespace prjRehabilitation.Models.Lin
             if (vm.type_技術 != false) post.FTag += "技術";
             if (vm.type_公告 != false) post.FTag += "公告";
 
-            db.TOfficialPosts.Add(post);
             db.SaveChanges();
         }
-
-        public object GetHistoryPost()
+        public object GetHistoryPost(int page)
         {
             dbClassContext db = new dbClassContext();
             var list = new List<VMNewPost>();
             IEnumerable<TOfficialPost> q;
+            page -= 1;
             //降冪排列，優先顯示最新的文章
-                  q = db.TOfficialPosts.Where(x => x.FStatus != false).OrderByDescending(x=>x.FPostId).Take(5);
+                  q = db.TOfficialPosts.Where(x => x.FStatus != false).OrderByDescending(x=>x.FPostId).Skip(page*5).Take(5);
             
             foreach (var c in q.ToList())
             {
@@ -206,7 +221,29 @@ namespace prjRehabilitation.Models.Lin
 
             return post;
         }
+        public object GetTargetPostToEdit(int id)
+        {
+            dbClassContext db = new dbClassContext();
 
+            var c = db.TOfficialPosts.First(x => x.FStatus != false && x.FPostId == id);
+
+            var post = new VMNewPost();
+            post.fofficialPost = c;
+            if (c.FTag != null)
+            {
+                if (c.FTag.Contains("用藥")) post.type_用藥 =true;
+                if (c.FTag.Contains("評估")) post.type_評估 = true;
+                if (c.FTag.Contains("活動")) post.type_活動 = true;
+                if (c.FTag.Contains("復健")) post.type_復健 = true;
+                if (c.FTag.Contains("介紹")) post.type_介紹 = true;
+                if (c.FTag.Contains("QA")) post.type_QA = true;
+                if (c.FTag.Contains("技術")) post.type_技術 = true;
+                if (c.FTag.Contains("公告")) post.type_公告 = true;
+
+            }
+
+            return post;
+        }
         public  object SearchByTag(string tag)
         {
             dbClassContext db = new dbClassContext();
@@ -284,9 +321,20 @@ namespace prjRehabilitation.Models.Lin
             catch
             {
             }
-
              return q;
     
+        }
+        private TOfficialPost processType(TOfficialPost post, VMNewPost vm)
+        {
+            if (vm.type_用藥 != false) post.FTag += "用藥";
+            if (vm.type_評估 != false) post.FTag += "評估";
+            if (vm.type_活動 != false) post.FTag += "活動";
+            if (vm.type_復健 != false) post.FTag += "復健";
+            if (vm.type_介紹 != false) post.FTag += "介紹";
+            if (vm.type_QA != false) post.FTag += "QA";
+            if (vm.type_技術 != false) post.FTag += "技術";
+            if (vm.type_公告 != false) post.FTag += "公告";
+            return post;
         }
     }
 }

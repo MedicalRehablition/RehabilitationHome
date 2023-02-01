@@ -10,6 +10,17 @@ namespace prjRehabilitation.Controllers
 {
     public class ForumController : Controller
     {
+        [HttpPost]
+        public IActionResult PostEdit(VMNewPost vm)
+        {
+             (new ArticalCRUD()).PostEdit(vm);
+            return RedirectToAction("OfficialPost");
+        }
+        public IActionResult PostEdit(int id)
+        {
+            var data = (new ArticalCRUD()).GetTargetPostToEdit(id);
+            return View(data);
+        }
         public IActionResult NewPost()
         {
             return View();
@@ -74,7 +85,12 @@ namespace prjRehabilitation.Controllers
         }
         public IActionResult GetHistoryPost()
         {
-            var list = (new ArticalCRUD()).GetHistoryPost();
+            var list = (new ArticalCRUD()).GetHistoryPost(1);
+            return Json(list);
+        }
+        public IActionResult PostNextPage(int page)
+        {
+            var list = (new ArticalCRUD()).GetHistoryPost(page);
             return Json(list);
         }
         public IActionResult GetHistoryReply(int id)

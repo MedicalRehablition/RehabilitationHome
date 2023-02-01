@@ -18,10 +18,10 @@
                             </a>
                         </li>
                         <li class="page-item">
-                            <a href="#" class="page-link">1</a>
+                            <a onclick="PostNextPage(1)" class="page-link">1</a>
                         </li>
                         <li class="page-item active">
-                            <a href="#" class="page-link">2</a>
+                            <a onclick="PostNextPage(2)" class="page-link">2</a>
                         </li>
                         <li class="page-item">
                             <a href="#" class="page-link" aria-label="Next">
@@ -152,6 +152,49 @@
 <script>
     loadArtical();
         getRecentPost();
+
+        async function PostNextPage(page){
+              //網頁回滾至頂端
+            $("html,body").animate(
+                {
+                    scrollTop: 150,
+                },
+                0
+            );
+            const response = await fetch(`@Url.Content("~/Forum/PostNextPage?page=${page}")`)
+            const data = await response.json();
+            document.getElementById("div_article").innerHTML = `<span class="visually-hidden">Loading...</span>`;
+
+            var html = data.map(x => {
+                console.log(x);
+                const title = x.fTitle;
+                const main = x.fMain;
+                const date = x.fDate;
+                const id = x.fPostId;
+                var tag = x.fTag;
+                return `<article class="blog_item  gray-bg">
+                                                        <div class="blog_details">
+                                                                            <button class="genric-btn info large" onclick="redirectToPage(${id})"><a src="~/Forum/PostDetail?${id}">${date}</button>
+                                                                 <a class="d-inline-block"  src="~/Forum/PostDetail?${id}">
+                                                                                 <h3 class=" blog-head " onclick="redirectToPage(${id})" style="color: #2d2d2d;">${title}</h3>
+                                                            </a>
+                                                            <p>
+                                                                ${main}
+                                                            </p>
+                                                            <ul class="blog-info-link">
+                                                                <li><a href="#"><i class="fa fa-user"></i>${tag}</a></li>
+                                                                <li><a href="#"><i class="fa fa-comments"></i> 03 Comments</a></li>
+                                                            </ul>
+                                                        </div>
+                                                 </article>
+                                                 `;
+            })
+            document.getElementById("div_article").innerHTML += html.join("");
+            //加載完把讀取動畫關掉
+            $(".spinner-border").remove();
+
+       }
+
        async function getRecentPost(){
             document.getElementById("recentPost").innerHTML = `<span class="visually-hidden">Loading...</span>`;
 

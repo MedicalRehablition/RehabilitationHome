@@ -3,6 +3,7 @@ using prjRehabilitation.ViewModel.Lin;
 using System.Drawing.Text;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
+using System.Text.Json;
 using System.Xml.Linq;
 
 namespace prjRehabilitation.Models.Lin
@@ -253,6 +254,54 @@ namespace prjRehabilitation.Models.Lin
 
 
             return true;
+        }
+
+        public  object getPatientsList()
+        {
+            dbClassContext db = new dbClassContext();
+            IEnumerable<PatientInfo> data = db.PatientInfos.Where(x => x.Status != false).Take(100);
+            List<VMPatientList> List = new List<VMPatientList>();
+            foreach (var c in data.ToList())
+            {
+                VMPatientList p = new VMPatientList();
+                p.fid = (int)c.Fid;
+                p.fName = c.FName;
+                p.fPhone = c.FPhone;
+                p.fidnum = c.FIdnum;
+                if (c.FPhotoFile != null)
+                {
+                    p.fphoto = c.FPhotoFile;
+                }
+                List.Add(p);
+            }
+            return List;
+        }
+
+        public object getList()
+        {
+            dbClassContext db = new dbClassContext();
+            IEnumerable<PatientInfo> data = db.PatientInfos.Where(x => x.Status != false).Take(100);
+            List<VMPatientList> List = new List<VMPatientList>();
+            foreach (var c in data.ToList())
+            {
+                VMPatientList p = new VMPatientList();
+                p.fid = (int)c.Fid;
+                p.fName = c.FName;
+                p.fPhone = c.FPhone;
+                p.fidnum = c.FIdnum;
+                if (c.FPhotoFile != null)
+                {
+                    p.fphoto = c.FPhotoFile;
+                }
+                List.Add(p);
+            }
+            return List;
+        }
+
+        internal void EditAndProcess(VMPatientInfoDetail vm, string? disease)
+        {
+
+
         }
     }
 }
