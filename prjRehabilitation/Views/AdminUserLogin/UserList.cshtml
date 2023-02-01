@@ -1,0 +1,65 @@
+﻿@model IEnumerable<prjRehabilitation.ViewModel.CCustomerViewModel>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                序號:
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FEmail)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FPassword)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FPhone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FAddress)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            int COUNT =0;
+            foreach (var item in Model) 
+            {
+                COUNT++;
+                <tr>
+                    <td>
+                        @COUNT
+                    </td>
+                    <td>
+                        
+                        @Html.DisplayFor(modelItem => item.FName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FEmail)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FPassword)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FPhone)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FAddress)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                        @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                        @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                    </td>
+                </tr>
+}
+}
+        </tbody>
+    </table>

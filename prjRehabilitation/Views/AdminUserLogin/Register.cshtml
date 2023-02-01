@@ -24,7 +24,7 @@
 
             <div class="form-outline datepicker w-100">
                 <label asp-for="FBirth" class="control-label">生日</label>
-                <input onchange="ageCalculate();" type="date" max="@DateTime.Today" asp-for="FBirth" class="form-control" />
+                <input type="date" max="@DateTime.Today" asp-for="FBirth" class="form-control" />
                 <span asp-validation-for="FBirth" class="text-danger"></span>
             </div>
 
@@ -79,21 +79,37 @@
         </div>
     </div>
     <div>
+        <label asp-for="photo" class="control-label">照片</label>
         <input type="file" asp-for="photo" class="form-control" />
     </div>
 
     <div class="mt-4 pt-2">
-        <input class="btn btn-primary btn-lg" type="submit" value="確認" />
+        <input class="btn btn-primary btn-lg" type="submit" value="確認" id="subbtn" />
     </div>
  </form>
 
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Login">返回登入</a>
 </div>
 
 @section Scripts {
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
+<script>
+    let subbtn = document.querySelector("#subbtn");
+    subbtn.addEventListener("click", function (event) {
+        //event.preventDefault();
+        let xhr = new XMLHttpRequest();
+        xhr.addEventListener("load", function () {
+            alert(xhr.responseText);
+        })
+        const Data = new FormData(document.userRegister);
+        xhr.open("POST", "@Url.Content("/UserLogin/AccountAlive")");
+        xhr.send(Data);
+
+    })
+    </script>
+
     }

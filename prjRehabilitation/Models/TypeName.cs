@@ -9,6 +9,7 @@ namespace prjRehabilitation.Models
         {
             CounsultTypeRecords = new HashSet<CounsultTypeRecord>();
             TGroupActivityClassThemes = new HashSet<TGroupActivityClassTheme>();
+            功能評估個表s = new HashSet<功能評估個表>();
         }
 
         public int Fid { get; set; }
@@ -17,5 +18,6 @@ namespace prjRehabilitation.Models
 
         public virtual ICollection<CounsultTypeRecord> CounsultTypeRecords { get; set; }
         public virtual ICollection<TGroupActivityClassTheme> TGroupActivityClassThemes { get; set; }
+        public virtual ICollection<功能評估個表> 功能評估個表s { get; set; }
     }
 }

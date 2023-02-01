@@ -7,7 +7,7 @@ namespace prjRehabilitation.Models
     {
         public int Id評估表 { get; set; }
         public int F功能評估Id { get; set; }
-        public string? F評估項目 { get; set; }
+        public int? F評估項目 { get; set; }
         public string? F現狀評估 { get; set; }
         public string? F問題 { get; set; }
         public string? F復健目標 { get; set; }
@@ -15,5 +15,6 @@ namespace prjRehabilitation.Models
         public bool? Deleted { get; set; }
 
         public virtual 功能評估 F功能評估 { get; set; } = null!;
+        public virtual TypeName? F評估項目Navigation { get; set; }
     }
 }

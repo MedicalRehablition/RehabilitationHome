@@ -1,82 +1,63 @@
-﻿
-@{
-    ViewData["Title"] = "Index";
+﻿@{
+	ViewData["Title"] = "Index";
 }
 
 @section Styles{
-    <link href="@Url.Content("~/")css/calendar/calendar-gc.min.css" rel="stylesheet" />
-    <style>
-        html,
-        body {
-            margin: 0;
-            overflow-x: hidden;
-        }
-    </style>
+	<link href="@Url.Content("~/")css/calendar/calendar-gc.min.css" rel="stylesheet" />
+	<style>
+		html,
+		body {
+			margin: 0;
+			overflow-x: hidden;
+		}
+	</style>
 }
 
 
-<h1>Calendar</h1>
+<h1>行事曆</h1>
+<div class="row">
 
- <div id="calendar" style="padding: 1rem;"></div>
+	<div class="col-2">
+		<div style="height:100px"></div>
+		<div id="PersonalListPanel" class=" mt-3 form-group form-control" style=" background-color:gray;"></div>
+	</div>
+	<div class="col" id="calendar" style="padding: 1rem;"></div>
+</div>
 
 
 @section Scripts{
-    <script src="@Url.Content("~/")js/calendar/calendar-gc.min.js"></script>
-    <script>
-        $(function (e) {
-            var calendar = $("#calendar").calendarGC({
-                dayBegin: 0,
-                prevIcon: '&#x3c;',
-                nextIcon: '&#x3e;',
-                onPrevMonth: function (e) {
-                    console.log("prev");
-                    console.log(e);
-                },
-                onNextMonth: function (e) {
-                    console.log("next");
-                    console.log(e);
-                },
-                events: getHoliday(),
-                onclickDate: function (e, data) {
-                    console.log(e, data);
-                }
-            });
-        });
+	<script src="@Url.Content("~/")js/calendar/calendar-gc.min.js"></script>
+	<script>
+		$(function (e) {
+			var calendar = $("#calendar").calendarGC({
+				dayBegin: 0,
+				prevIcon: '&#x3c;',
+				nextIcon: '&#x3e;',
+				onPrevMonth: function (e) {
+					console.log("prev");
+					console.log(e);
+				},
+				onNextMonth: function (e) {
+					console.log("next");
+					console.log(e);
+				},
+				events: [],
+				onclickDate: function (e, data) {
+					console.log(e, data);
+				}
+			});
+		});
 
-        function getHoliday() {
-            var d = new Date();
-            var totalDay = new Date(d.getFullYear(), d.getMonth(), 0).getDate();
-            var events = [];
 
-            for (var i = 1; i <= totalDay; i++) {
-                var newDate = new Date(d.getFullYear(), d.getMonth(), i);
-                if (newDate.getDay() == 0) {   //if Sunday
-                    events.push({
-                        date: newDate,
-                        eventName: "Sunday free",
-                        className: "badge bg-danger",
-                        onclick(e, data) {
-                            console.log(data);
-                        },
-                        dateColor: "red"
-                    });
-                }
-                if (newDate.getDay() == 6) {   //if Saturday
-                    events.push({
-                        date: newDate,
-                        eventName: "Saturday free",
-                        className: "badge bg-danger",
-                        onclick(e, data) {
-                            console.log(data);
-                        },
-                        dateColor: "red"
-                    });
-                }
+		async function getResidentInPersonalPerformancesSelectPanel() {
+			const pplist = document.querySelector('#PersonalListPanel');
+			const response = await fetch(`@Url.Content("~/")GroupActivityAjax/getResident`);
+			const getResidentData = JSON.parse(await response.text());
+			for (let aa of getResidentData) {
+				pplist.insertAdjacentHTML("beforeend", `<input type="button" id="selectPanel-${aa.fid}" class="addintoR genric-btn info circle arrow  small mt-1 form-control" value="${aa.fName}">`)
+			}
+		}
+		getResidentInPersonalPerformancesSelectPanel();//叫出所有人列表
 
-            }
-            return events;
-        }
-
-        getHoliday()
-    </script>
+	</script>
 }

@@ -5,6 +5,7 @@
 }
 @model prjRehabilitation.ViewModel.Lin.VMNewPost
 <section class="blog_area single-post-area section-padding">
+    <input  type="hidden" id="postId" value="@Model.FPostId"/>
     <div class="container">
         <div class="row">
             <div class="col-lg-8 posts-list" id="post">
@@ -51,22 +52,13 @@
                                 </div>
                                 <div class="detials" id="prePost">
                                     <p>上一篇</p>
-                                    <a href="#">
-                                        <h4 style="color: #2d2d2d;">Space The Final Frontier</h4>
-                                    </a>
+
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-6 col-12 nav-right flex-row d-flex justify-content-end align-items-center">
                                 <div class="detials" id="nextPost">
                                     <p>下一篇</p>
-                                    <a href="#">
-                                        <h4 style="color: #2d2d2d;">Telescopes 101</h4>
-                                    </a>
-                                </div>
-                                <div class="arrow">
-                                    <a href="#">
-                                        <span class="lnr text-white ti-arrow-right"></span>
-                                    </a>
+
                                 </div>
 
                             </div>
@@ -200,9 +192,46 @@
     <script>
         loadComment();
         getRecentPost();
+        getPrePost();
+        getNextPost();
         var tagCloud="";
 
         async function AddAndSearchByTag(){
+
+        }
+        async function getPrePost(){
+            console.log("prePost");
+            var idd = document.getElementById("postId").value;
+            const response = await fetch(`@Url.Content("~/Forum/getPrePost?${idd}")`)
+            const x = await response.json();
+    
+            console.log(x);
+            const title = x.fTitle;
+            const id = x.fPostId;
+            var tag = x.fTag;
+
+            document.getElementById("prePost").innerHTML += `
+                            <a onclick="redirectToPage(${id})"  >
+                                 <h4 style="color: #2d2d2d;" > ${title}`
+                        ;
+
+        }
+        async function getNextPost() {
+            var idd = document.getElementById("postId").value;
+
+
+            const response = await fetch(`@Url.Content("~/Forum/getNextPost?${idd}")`)
+            const x = await response.json();
+
+            console.log(x);
+            const title = x.fTitle;
+            const id = x.fPostId;
+            var tag = x.fTag;
+
+            document.getElementById("nextPost").innerHTML += `
+                                    <a onclick="redirectToPage(${id})"  >
+                                         <h4 style="color: #2d2d2d;" > ${title}`
+                ;
 
         }
         async function searchByKeyword() {

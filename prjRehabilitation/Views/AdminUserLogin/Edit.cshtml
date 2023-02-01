@@ -6,9 +6,7 @@
 }
 
 
-<h1>Edit</h1>
-
-<h4>CAdminViewModel</h4>
+<h1>編輯員工資料</h1>
 <hr />
 <form asp-action="Edit" enctype="multipart/form-data">
     <div class="row gutters-sm">
@@ -106,7 +104,7 @@
                                 <label asp-for="FBirth" class="control-label"></label>
                             </div>
                             <div class="col-sm-9 text-secondary">
-                                <input onchange="ageCalculate();" type="date" max="@DateTime.Today" asp-for="FBirth" class="form-control" />
+                                <input type="date" max="@DateTime.Today" asp-for="FBirth" class="form-control" />
                             </div>
                         </div>
                         <hr>
