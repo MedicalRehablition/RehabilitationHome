@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+
 using prjRehabilitation.Models;
 using prjRehabilitation.ViewModel;
 using System.Text.Json;
@@ -20,13 +22,14 @@ namespace prjRehabilitation.Controllers
         {
             dbClassContext db = new dbClassContext();
             Customer customer= db.Customers.FirstOrDefault(t => t.FEmail.Equals(vm.txtAccount) && t.FPassword.Equals(vm.txtPassword));
-
+            string json = "";
             if (customer != null)
             {
                 if (customer.FEmail.Equals(vm.txtAccount) && customer.FPassword.Equals(vm.txtPassword))
                 {
-                    string json = JsonSerializer.Serialize(customer);
+                    json = JsonSerializer.Serialize(customer);
                     HttpContext.Session.SetString(CDictionary.SK_Login_User, json);
+                    HttpContext.Session.GetString(CDictionary.SK_Login_User);
                     return RedirectToAction("Loginsuccess");
                 }
             }
@@ -36,16 +39,17 @@ namespace prjRehabilitation.Controllers
         {
             dbClassContext db = new dbClassContext();
             Customer customer = db.Customers.FirstOrDefault(t => t.FEmail.Equals(vm.txtAccount));
-
+            string json = "";
             if (customer != null)
             {
                 if (customer.FEmail == vm.txtAccount && customer.FPassword != vm.txtPassword)
                 {
                     return Content("密碼錯誤");
                 }
-                string json = JsonSerializer.Serialize(customer);
+                json = JsonSerializer.Serialize(customer);
                 HttpContext.Session.SetString(CDictionary.SK_Login_User, json);
                 return Content("登入成功");
+                
             }
             return Content("無此帳號,請重新登入");
         }
@@ -84,5 +88,16 @@ namespace prjRehabilitation.Controllers
         {
             return PartialView();
         }
+        public IActionResult GetUserSession()
+        {
+            string json=HttpContext.Session.GetString(CDictionary.SK_Login_User);
+            if(string.IsNullOrEmpty(json))
+            {
+                return Content("");
+            }
+            Customer customer = JsonSerializer.Deserialize<Customer>(json);
+            return Content(customer.FName);
+        }
+
     }
 }

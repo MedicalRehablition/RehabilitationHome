@@ -181,6 +181,20 @@ namespace prjRehabilitation.Controllers
             MySmtp.Send(msg);
             return Content("已發送郵件");
         }
+        public IActionResult PartialLogin()
+        {
+            return PartialView();
+        }
+        public IActionResult GetUserSession()
+        {
+            string json = HttpContext.Session.GetString(CDictionary.SK_Login_User);
+            if (string.IsNullOrEmpty(json))
+            {
+                return Content("");
+            }
+            Admin admin = JsonSerializer.Deserialize<Admin>(json);
+            return Json(admin);
+        }
 
     }
 }

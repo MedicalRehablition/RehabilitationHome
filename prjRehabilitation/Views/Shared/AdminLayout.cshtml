@@ -96,8 +96,9 @@
                         <li>
                             <a class="profile-pic" href="#">
                                 <!-- ===========================照片隨便放的================================ -->
-                                <img src="~/images/17e090a9-49f0-495b-bb17-316a52476243.jpg" alt="user-img" width="36"
-                                     class="img-circle"><span class="text-white font-medium">Steave</span>
+                                <img src="~/images/imageDefault.png" alt="user-img" width="36"
+                                     class="img-circle AdminUserImg">
+                                <span class="text-white font-medium AdminID AdminUserName">名子</span>
                             </a>
                         </li>
                         <!-- ============================================================== -->
@@ -168,8 +169,8 @@
                         </li>
                         <li class="sidebar-item">
                             @*<a class="sidebar-link waves-effect waves-dark sidebar-link" asp-area="" asp-controller="Treatment" asp-action="Index">
-                                <i class="fa fa-user" aria-hidden="true"></i>
-                                <span class="hide-menu">復健</span>
+                            <i class="fa fa-user" aria-hidden="true"></i>
+                            <span class="hide-menu">復健</span>
                             </a>*@  @*暫時先直接導向會談的list*@
                             <a class="sidebar-link waves-effect waves-dark sidebar-link" asp-area="" asp-controller="Consult" asp-action="List">
                                 <i class="fa fa-user" aria-hidden="true"></i>
@@ -185,10 +186,36 @@
                         </li>
                         <li class="sidebar-item">
                             @* <a class="sidebar-link waves-effect waves-dark sidebar-link" href="profile.html" aria-expanded="false">*@
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" asp-area="" asp-controller="AdminUserLogin" asp-action="Login">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link LoginA" asp-area="" asp-controller="AdminUserLogin" asp-action="Login">
                                 <i class="fa fa-user" aria-hidden="true"></i>
                                 <span class="hide-menu">登入</span>
                             </a>
+                        </li>
+                        <li class="sidebar-item">
+                            @* <a class="sidebar-link waves-effect waves-dark sidebar-link" href="profile.html" aria-expanded="false">*@
+                            <button type="button" class="btn btn-primary textbtn" data-toggle="modal" data-target="#exampleModalCenter" id="textbtn">
+                                登入
+                            </button>
+                            <form name="UserLoingForm">
+                                <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                <button type="button" class="btn btn-primary Loginsubbtn">Save changes</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
                         </li>
                         <li class="sidebar-item">
                             @* <a class="sidebar-link waves-effect waves-dark sidebar-link" href="profile.html" aria-expanded="false">*@
@@ -279,7 +306,27 @@
     <script src="~/AdminBootstrap/jsAdminlayout/pages/dashboards/dashboard1.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script>
+        
+    </script>
     @await RenderSectionAsync("Scripts", required: false)
+    <script>
+         async function GetUser(){
+             
+            const response = await fetch("@Url.Content("/AdminUserLogin/GetUserSession")");
+            const User = await response.json();
+            if(User!="") {
+                const span = document.querySelector(".AdminUserName");
+                const LoginA = document.querySelector(".LoginA");
+                const AdminUserImg = document.querySelector(".AdminUserImg");
+                LoginA.remove();
+                span.innerText = User.fName;
+                $(".AdminUserImg").attr("src", "/images/"+User.fphoto)
+            }
+            
+        }
+        GetUser();
+    </script>
 </body>
 </html>
 
