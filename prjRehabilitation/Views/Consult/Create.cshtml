@@ -4,9 +4,9 @@
     ViewData["Title"] = "Register";
 }
 <style>
-.try{
-    border:dashed red 2px;
-}
+    .try {
+        border: dashed red 2px;
+    }
 
 </style>
 
@@ -68,10 +68,13 @@
                         <span asp-validation-for="Result" class="text-danger"></span>
                     </div>
                 </div>
-                
+
 
                 <div class="form-group">
-                    <input type="submit" value="Create" class="btn btn-primary" />
+                    <input type="submit" value="新增會談資料" class="btn btn-primary" />
+                </div>
+                <div>
+                    <button type="button" id="demo" class="btn btn-sm">產生範例</button>
                 </div>
             </div>
         </form>
@@ -86,4 +89,11 @@
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
+    <script>
+        $("#demo").click(function () {
+            $("#Summary").text("討論過年期間是否有返家過年，與家屬相處狀況");
+            $("#Assessment").text("住民表示家屬過年期間帶自己回家過年，除夕到初二，後來就回來了。家人有包紅包給自己，想說先存起來，以後再使用");
+            $("#Result").text("住民對返家感開心，與家屬互動狀況良好；財務管理表現良");
+        })
+    </script>
     }

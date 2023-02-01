@@ -36,3 +36,19 @@ namespace prjRehabilitation.Controllers
 
     }
 }
+// Substring(抓取起始字串index(int),抓的字串長度(int)):指定抓取起點與抓取長度常用Substring(Int32, Int32)
+
+//string b = "我要成為工程師";
+//string c = b.Substring(3, 2);//從index=3開始抓，往後抓2個
+//Console.WriteLine(c);
+//Console.ReadKey();
+//輸出結果:為工
+
+//字串尋找
+//概念一:直接搜尋文字
+//String.Contains(string要查的字串):看括號內的值是否在字串內，傳回值為布林值boolean(T / F)常用
+//string b = "我要成為工程師";
+//bool c = b.Contains("我");//看"我"是否存在b字串裡
+//Console.WriteLine(c);
+//Console.ReadKey();
+//輸出結果:true
