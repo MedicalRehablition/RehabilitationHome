@@ -119,9 +119,10 @@
             //if (document.getElementById("w-e-textarea-1").innerHTML !="") return;
 
             document.getElementById("w-e-textarea-1").innerHTML += `@Html.Raw(Model.FContent)`;
+            console.log(document.getElementById("FPostId").value);
         }
 
-        async function submit() {
+        async function submit(event) {
             event.preventDefault();
 
             document.getElementById("FContent").value = editor.getHtml();
@@ -136,7 +137,7 @@
 
          function GoToWhere(id){
             if(check()){
-                location.href = "/Forum/PostDetail?id=${id}";
+                location.href = `/Forum/PostDetail?id=${id}`;
             }
             else{
                 location.href = "/Forum/List";
