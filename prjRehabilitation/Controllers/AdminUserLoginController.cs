@@ -195,6 +195,11 @@ namespace prjRehabilitation.Controllers
             Admin admin = JsonSerializer.Deserialize<Admin>(json);
             return Json(admin);
         }
+        public IActionResult RemoveUserSession()
+        {
+            HttpContext.Session.Remove(CDictionary.SK_Login_User);
+            return Content("清除session");
+        }
 
     }
 }

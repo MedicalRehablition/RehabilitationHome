@@ -29,7 +29,6 @@ namespace prjRehabilitation.Controllers
                 {
                     json = JsonSerializer.Serialize(customer);
                     HttpContext.Session.SetString(CDictionary.SK_Login_User, json);
-                    HttpContext.Session.GetString(CDictionary.SK_Login_User);
                     return RedirectToAction("Loginsuccess");
                 }
             }
@@ -48,7 +47,9 @@ namespace prjRehabilitation.Controllers
                 }
                 json = JsonSerializer.Serialize(customer);
                 HttpContext.Session.SetString(CDictionary.SK_Login_User, json);
-                return Content("登入成功");
+                HttpContext.Session.GetString(CDictionary.SK_Login_User);
+                customer = JsonSerializer.Deserialize<Customer>(json);
+                return Content(customer.FName);
                 
             }
             return Content("無此帳號,請重新登入");
@@ -97,6 +98,11 @@ namespace prjRehabilitation.Controllers
             }
             Customer customer = JsonSerializer.Deserialize<Customer>(json);
             return Content(customer.FName);
+        }
+        public IActionResult RemoveUserSession()
+        {
+            HttpContext.Session.Remove(CDictionary.SK_Login_User);
+            return Content("清除session");
         }
 
     }
