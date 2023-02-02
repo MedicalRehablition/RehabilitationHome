@@ -22,7 +22,10 @@
 		<div style="height:100px"></div>
 		<div id="PersonalListPanel" class=" mt-3 form-group form-control" style=" background-color:gray;"></div>
 	</div>
-	<div class="col" id="calendar" style="padding: 1rem;"></div>
+	<div class="col">
+		<div id="calendar" style="padding: 1rem;"></div>
+		<a asp-action="Create"  class="genric-btn primary e-large">新增</a>
+	</div>
 </div>
 
 
@@ -66,7 +69,7 @@
 				var getItemDate = new Date(item.date);
 				//console.log(item.date);
 				events.push({
-					date: new Date( getItemDate.setMonth(getItemDate.getMonth()+1)),
+					date: new Date(getItemDate.setDate(getItemDate.getDate() + 28)),
 					eventName: `${item.patinetId} 回診日`,
 					className: "genric-btn primary-border circle arrow small",
 					onclick(e, data) {

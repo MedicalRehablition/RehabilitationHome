@@ -1,0 +1,101 @@
+﻿@model prjRehabilitation.ViewModel.Eric.CCalendarViewModel
+
+@{
+	ViewData["Title"] = "Create";
+}
+
+@section Styles{
+	<style>
+
+		.hiddenAdvanced {
+			display: none;
+		}
+	</style>
+}
+
+<h1>Create</h1>
+
+<h4>CCalendarViewModel</h4>
+<hr />
+<div class="row">
+	<div class="col-md-7">
+		<form asp-action="Create">
+			<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+			<div class="form-group">
+				<label asp-for="date" class="control-label"></label>
+				<input asp-for="date" type="date" class="form-control" />
+				<span asp-validation-for="date" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="eventName" class="control-label"></label>
+				<input asp-for="eventName" class="form-control" />
+				<span asp-validation-for="eventName" class="text-danger"></span>
+			</div>
+
+			<div class="form-group">
+				<label asp-for="title" class="control-label"></label>
+				<input asp-for="title" class="form-control" />
+				<span asp-validation-for="title" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="content" class="control-label"></label>
+				<textarea asp-for="content" class="form-control" style="height:250px"></textarea>
+				<span asp-validation-for="content" class="text-danger"></span>
+			</div>
+			<div class="row">
+				<div class="col-6">
+					<label asp-for="fRecorder" class="control-label"></label>
+					<input asp-for="fRecorder" class="form-control" disabled="disabled" />
+					<span asp-validation-for="content" class="text-danger"></span>
+				</div>
+				<div class="col-6">
+					<label asp-for="fRecorderDate" class="control-label"></label>
+					<input asp-for="fRecorderDate" class="form-control"  disabled="disabled" />
+					<span asp-validation-for="content" class="text-danger"></span>
+				</div>
+			</div>
+			<div class="form-group">
+				<input type="submit" value="Create" class="btn btn-primary" />
+			</div>
+		</form>
+	</div>
+</div>
+
+
+
+
+<div>
+	<a asp-action="Index">Back to List</a>
+</div>
+
+
+<br />
+<input type="button" id="buttonAdvanced" value="進階內容" />
+<div class="row ">
+
+	@*<label class="control-label" style="h4">進階內容</label>*@
+
+	<div id="calendarAdvanced" class="col-6 hiddenAdvanced">
+		<textarea class="form-control " style="height:250px"></textarea>
+
+	</div>
+</div>
+
+
+
+@section Scripts{
+	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js" integrity="sha512-rstIgDs0xPgmG6RX1Aba4KV5cWJbAMcvRCVmglpam9SoHZiUCyQVDdH2LPlxoHtrv17XWblE/V/PP+Tr04hbtA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/4.0.0/jquery.validate.unobtrusive.min.js" integrity="sha512-xq+Vm8jC94ynOikewaQXMEkJIOBp7iArs3IhFWSWdRT3Pq8wFz46p+ZDFAR7kHnSFf+zUv52B3prRYnbDRdgog==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<script>
+		document.querySelector("#buttonAdvanced").addEventListener("click", function () {
+
+		 document.querySelector("#calendarAdvanced").classList.toggle("hiddenAdvanced");
+		
+		});
+
+
+	</script>
+}
+
