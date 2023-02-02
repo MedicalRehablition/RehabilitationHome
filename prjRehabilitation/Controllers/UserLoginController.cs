@@ -52,7 +52,7 @@ namespace prjRehabilitation.Controllers
                 return Content(customer.FName);
                 
             }
-            return Content("無此帳號,請重新登入");
+            return Content("0");
         }
         public IActionResult Register()
         {

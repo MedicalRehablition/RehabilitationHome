@@ -51,11 +51,20 @@
                                 <div class="main-menu f-right d-none d-lg-block">
                                     <nav>
                                         <ul id="navigation">
-                                           @* <li>
-                                                <a class="nav-link text-dark LoginA" asp-area="" asp-controller="Home" asp-action="Login">登入</a>
-                                            </li>*@
                                             <li>
-                                                <a class="nav-link text-dark Logoutbtn" style="display:none;">登出</a>
+                                                <a href="blog.html" class="MyFamily" style="display:none;">我的家人</a>
+                                                <ul class="submenu">
+                                                    <li>
+                                                        <a class="nav-link text-dark" asp-area="" asp-controller="Forum" asp-action="Index">家人資料</a>
+                                                    </li>
+                                                    <li>
+                                                        <a class="nav-link text-dark" asp-area="" asp-controller="Forum" asp-action="OfficialPost">家人活動</a>
+                                                    </li>
+                                                    <li>
+                                                        <a class="nav-link text-dark" asp-area="" asp-controller="Forum" asp-action="NewPost">家人???</a>
+                                                    </li>
+
+                                                </ul>
                                             </li>
                                             <li>
                                                 <button type="button" class="btn btn-primary Loginbtn" data-toggle="modal" data-target="#exampleModalCenter" id="textbtn">
@@ -91,6 +100,9 @@
                                                     </li>
 
                                                 </ul>
+                                            </li>
+                                            <li>
+                                                <a class="nav-link text-dark Logoutbtn" style="display:none;">登出</a>
                                             </li>
                                         </ul>
                                     </nav>
@@ -248,17 +260,37 @@
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
     <script>
-
+        //=======================抓使用者是誰======================
+        let xhr = new XMLHttpRequest();
+        xhr.addEventListener("load", function () {
+            const span = document.querySelector("#UserName");
+            const User = xhr.responseText;
+            const LoginA = document.querySelector(".LoginA");
+            if (User != "") {
+                alert("登入成功!");
+                $(".Loginbtn").hide(); //登入後隱藏
+                $(".Logoutbtn").show();//登入後顯示出來
+                $(".MyFamily").show(); //登入後顯示出來
+                span.innerText = User + " 歡迎!";
+            }
+        })
+        xhr.open("POST", "@Url.Content("/UserLogin/GetUserSession")");
+        xhr.send();
+        //==============================================================
         $(".Loginbtn").on("click", function () {
             $(".modal-body").load("@Url.Content("/Home/PartialLogin")")
         })
-        
+
         $(".Loginsubbtn").on("click", function () {
             let xhr = new XMLHttpRequest();
-            
-            xhr.addEventListener("load", function () { 
+            debugger
+            xhr.addEventListener("load", function () {
                 const span = document.querySelector("#UserName");
                 const User = xhr.responseText;
+                if (User == "0") 
+                {
+                    alert("無此帳號,請重新登入");
+                }
                 //if (User != "") {
                 //    alert("登入成功!");
                 //    $(".Loginbtn").hide();
@@ -268,27 +300,14 @@
                 //else{
                 //    alert(xhr.responseText);
                 //}
-               
+
             })
             const data = new FormData(UserLoingForm);
             xhr.open("POST", "@Url.Content("/UserLogin/ExistAccount")");
             xhr.send(data);
         })
-        //=======================抓使用者是誰======================
-        let xhr = new XMLHttpRequest();
-        xhr.addEventListener("load", function () {
-            const span = document.querySelector("#UserName");
-            const User = xhr.responseText;
-            const LoginA = document.querySelector(".LoginA");
-            if (User != "") {
-                alert("登入成功!");
-                $(".Loginbtn").hide();
-                $(".Logoutbtn").show();
-                span.innerText = User + " 歡迎!";
-            }
-        })
-        xhr.open("POST", "@Url.Content("/UserLogin/GetUserSession")");
-        xhr.send();
+        
+
         //=================清除使用者=================================
         const btn = document.querySelector(".Logoutbtn")
         btn.addEventListener("click", function () {
@@ -297,6 +316,7 @@
                 if (xhr.responseText == "清除session") {
                     $(".Loginbtn").show();
                     $(".Logoutbtn").hide();
+                    $(".MyFamily").hide();
                     $("#UserName").text("");
                 }
             })
