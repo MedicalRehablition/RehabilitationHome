@@ -1,5 +1,8 @@
 ﻿@model prjRehabilitation.ViewModel.Lin.VMNewPost
-
+@{
+    ViewData["Title"] = "PostEdit";
+    Layout = "AdminLayout";
+}
 @*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
@@ -23,9 +26,8 @@
 
 
 <div class="container">
-
+    <br />
     <div class="Post-form ">
-        <h3>發布新文章</h3>
         <form class="form-contact comment_form" asp-action="PostEdit" id="PostForm">
             <input type="hidden" asp-for="FPostId"  />
 
@@ -101,8 +103,9 @@
             <div class="form-group">
             </div>
         </form>
-        <button type="button" onclick="submit(event)" class="button button-contactForm btn_1 boxed-btn">發布文章</button>
-
+        <div class="col-sm-12">
+            <button type="button" onclick="submit(event)"  class="btn btn-success text-white">更新文章</button>
+        </div>
     </div>
 </div>
 @section Scripts{
@@ -111,26 +114,37 @@
     <!-- 引入 layui.js -->
     <script src=@Html.Raw("https://unpkg.com/@wangeditor/editor@latest/dist/index.js")></script>
     <script>
-
-
-
         async function loadarticle(){
             if (document.getElementById("w-e-textarea-1") == null) return;
             //if (document.getElementById("w-e-textarea-1").innerHTML !="") return;
 
             document.getElementById("w-e-textarea-1").innerHTML += `@Html.Raw(Model.FContent)`;
         }
+
         async function submit() {
             event.preventDefault();
 
             document.getElementById("FContent").value = editor.getHtml();
-            console.log(document.getElementById("FContent").value);
+            var id = document.getElementById("FPostId").value;
             await fetch("/Forum/PostEdit", {
                 method: "POST",
                 body: new FormData(PostForm)
             })
 
-            location.href = "/Forum/OfficialPost";
+            GoToWhere(id);
+        }
+
+         function GoToWhere(id){
+            if(check()){
+                location.href = "/Forum/PostDetail?id=${id}";
+            }
+            else{
+                location.href = "/Forum/List";
+            }
+
+        }
+        function check(){
+            return confirm("發布成功，是否前往檢視部落格頁面?")
         }
         const { createEditor, createToolbar } = window.wangEditor
 

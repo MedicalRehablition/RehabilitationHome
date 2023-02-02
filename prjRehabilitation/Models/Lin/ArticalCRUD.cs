@@ -135,10 +135,17 @@ namespace prjRehabilitation.Models.Lin
             dbClassContext db = new dbClassContext();
             var list = new List<VMNewPost>();
             IEnumerable<TOfficialPost> q;
-            page -= 1;
-            //降冪排列，優先顯示最新的文章
-                  q = db.TOfficialPosts.Where(x => x.FStatus != false).OrderByDescending(x=>x.FPostId).Skip(page*5).Take(5);
-            
+            if (page==0)
+            {
+                q = db.TOfficialPosts.Where(x => x.FStatus != false).OrderByDescending(x => x.FPostId);
+            }
+            else
+            {
+                page -= 1;
+                //降冪排列，優先顯示最新的文章
+                q = db.TOfficialPosts.Where(x => x.FStatus != false).OrderByDescending(x => x.FPostId).Skip(page * 5).Take(5);
+            }
+
             foreach (var c in q.ToList())
             {
                 var post = new VMNewPost();
@@ -196,13 +203,15 @@ namespace prjRehabilitation.Models.Lin
             }
             return list;
         }
-        public object GetTargetPost(int id)
+        public object GetTargetPost(int? id)
         {
             dbClassContext db = new dbClassContext();
-
-              var  c = db.TOfficialPosts.First(x => x.FStatus != false && x.FPostId == id);
-
-                var post = new VMNewPost();
+            TOfficialPost c;
+            if(id.HasValue)
+                c = db.TOfficialPosts.First(x => x.FStatus != false && x.FPostId == id);
+            else
+                c = db.TOfficialPosts.Where(x => x.FStatus != false).OrderByDescending(x=>x.FPostId).First();
+            var post = new VMNewPost();
                 post.fofficialPost = c;
                 string newtag = "";
                 if (c.FTag != null)
@@ -335,6 +344,17 @@ namespace prjRehabilitation.Models.Lin
             if (vm.type_技術 != false) post.FTag += "技術";
             if (vm.type_公告 != false) post.FTag += "公告";
             return post;
+        }
+
+        public void PostDelete(int id)
+        {
+            dbClassContext db = new dbClassContext();
+            try
+            {
+                db.TOfficialPosts.Remove(db.TOfficialPosts.Where(x => x.FPostId == id).First());
+            }
+            catch { }
+            db.SaveChanges();
         }
     }
 }
