@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <None Include="Views\Forum\Index.cshtml" />
+    <None Include="Views\Forum\List.cshtml" />
     <None Include="Views\Forum\NewPost.cshtml" />
     <None Include="Views\Forum\OfficialPost.cshtml" />
     <None Include="Views\Forum\PostDetail.cshtml" />

@@ -1,6 +1,5 @@
-﻿
-@{
-    
+﻿@{
+
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -33,7 +32,7 @@
 
 </head>
 <body>
-    <span id="UserName">登入測試:</span>
+
     <!--大標題-->
     <header>
         <div class="header-area">
@@ -53,7 +52,19 @@
                                     <nav>
                                         <ul id="navigation">
                                             <li>
-                                                <a class="nav-link text-dark LoginA" asp-area="" asp-controller="Home" asp-action="Login">登入</a>
+                                                <a href="blog.html" class="MyFamily" style="display:none;">我的家人</a>
+                                                <ul class="submenu">
+                                                    <li>
+                                                        <a class="nav-link text-dark" asp-area="" asp-controller="Forum" asp-action="Index">家人資料</a>
+                                                    </li>
+                                                    <li>
+                                                        <a class="nav-link text-dark" asp-area="" asp-controller="Forum" asp-action="OfficialPost">家人活動</a>
+                                                    </li>
+                                                    <li>
+                                                        <a class="nav-link text-dark" asp-area="" asp-controller="Forum" asp-action="NewPost">家人???</a>
+                                                    </li>
+
+                                                </ul>
                                             </li>
                                             <li>
                                                 <button type="button" class="btn btn-primary Loginbtn" data-toggle="modal" data-target="#exampleModalCenter" id="textbtn">
@@ -73,7 +84,7 @@
                                                 <a class="nav-link text-dark" asp-area="" asp-controller="GroupActivity" asp-action="List">活動</a>
                                             </li>
                                             <li>
-                                                 
+
                                             </li>
                                             <li>
                                                 <a href="blog.html">Blog</a>
@@ -84,17 +95,18 @@
                                                     <li>
                                                         <a class="nav-link text-dark" asp-area="" asp-controller="Forum" asp-action="OfficialPost">康家Blog</a>
                                                     </li>
-                                                    <li>
-                                                        <a class="nav-link text-dark" asp-area="" asp-controller="Forum" asp-action="NewPost">新文章</a>
-                                                    </li>
+
 
                                                 </ul>
+                                            </li>
+                                            <li>
+                                                <a class="nav-link text-dark Logoutbtn" style="display:none;">登出</a>
                                             </li>
                                         </ul>
                                     </nav>
                                 </div>
                                 <div class="header-right-btn f-right d-none d-lg-block ml-30">
-                                    <a href="#" class="btn header-btn">01654.066.456</a>
+                                    <span id="UserName"></span>
                                 </div>
                             </div>
                         </div>
@@ -113,25 +125,24 @@
         </main>
     </div>
     <form name="UserLoingForm">
-    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary Loginsubbtn">Save changes</button>
+        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">登入帳號</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+                        <button type="submit" class="btn btn-primary Loginsubbtn">登入</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
     </form>
     <!--? Footer Start-->
     <div class="footer-area " @*data-background="assets/img/gallery/footer_bg.jpg" style="background-image: url(&quot;assets/img/gallery/footer_bg.jpg&quot;);"*@>
@@ -247,34 +258,69 @@
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
     <script>
-        
-        $(".Loginbtn").on("click", function () {
-            $(".modal-body").load("@Url.Content("/Home/PartialLogin")")
-        })
-        $(".Loginsubbtn").on("click", function () {
-            let xhr = new XMLHttpRequest();
-            xhr.addEventListener("load", function () {
-                alert(xhr.responseText);
-                
-            })
-            const data = new FormData(UserLoingForm);
-            xhr.open("POST", "@Url.Content("/UserLogin/ExistAccount")");
-            xhr.send(data);
-        })
         //=======================抓使用者是誰======================
         let xhr = new XMLHttpRequest();
         xhr.addEventListener("load", function () {
             const span = document.querySelector("#UserName");
             const User = xhr.responseText;
             const LoginA = document.querySelector(".LoginA");
-            if(User!="")
-            {
-                LoginA.remove();
-                span.innerText = User;
+            if (User != "") {
+                alert("登入成功!");
+                $(".Loginbtn").hide(); //登入後隱藏
+                $(".Logoutbtn").show();//登入後顯示出來
+                $(".MyFamily").show(); //登入後顯示出來
+                span.innerText = User + " 歡迎!";
             }
         })
         xhr.open("POST", "@Url.Content("/UserLogin/GetUserSession")");
         xhr.send();
+        //==============================================================
+        $(".Loginbtn").on("click", function () {
+            $(".modal-body").load("@Url.Content("/Home/PartialLogin")")
+        })
+
+        $(".Loginsubbtn").on("click", function () {
+            let xhr = new XMLHttpRequest();
+            debugger
+            xhr.addEventListener("load", function () {
+                const span = document.querySelector("#UserName");
+                const User = xhr.responseText;
+                if (User == "0") 
+                {
+                    alert("無此帳號,請重新登入");
+                }
+                //if (User != "") {
+                //    alert("登入成功!");
+                //    $(".Loginbtn").hide();
+                //    $(".Logoutbtn").show();
+                //    span.innerText = User + " 歡迎!";
+                //}
+                //else{
+                //    alert(xhr.responseText);
+                //}
+
+            })
+            const data = new FormData(UserLoingForm);
+            xhr.open("POST", "@Url.Content("/UserLogin/ExistAccount")");
+            xhr.send(data);
+        })
+        
+
+        //=================清除使用者=================================
+        const btn = document.querySelector(".Logoutbtn")
+        btn.addEventListener("click", function () {
+            const xhr = new XMLHttpRequest();
+            xhr.addEventListener("load", function () {
+                if (xhr.responseText == "清除session") {
+                    $(".Loginbtn").show();
+                    $(".Logoutbtn").hide();
+                    $(".MyFamily").hide();
+                    $("#UserName").text("");
+                }
+            })
+            xhr.open("Post", "@Url.Content("/UserLogin/RemoveUserSession")");
+            xhr.send();
+        })
     </script>
 </body>
 </html>
