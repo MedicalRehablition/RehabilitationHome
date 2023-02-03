@@ -23,6 +23,7 @@ namespace prjRehabilitation.Models
         public virtual DbSet<DiseaseDiagnosis> DiseaseDiagnoses { get; set; } = null!;
         public virtual DbSet<DiseaseList> DiseaseLists { get; set; } = null!;
         public virtual DbSet<EmergenceCaller> EmergenceCallers { get; set; } = null!;
+        public virtual DbSet<EmployeeDuty> EmployeeDuties { get; set; } = null!;
         public virtual DbSet<MedDosageUnit> MedDosageUnits { get; set; } = null!;
         public virtual DbSet<MedList> MedLists { get; set; } = null!;
         public virtual DbSet<MedTakeTime> MedTakeTimes { get; set; } = null!;
@@ -42,6 +43,7 @@ namespace prjRehabilitation.Models
         public virtual DbSet<TPostComment> TPostComments { get; set; } = null!;
         public virtual DbSet<TScheduleDetail> TScheduleDetails { get; set; } = null!;
         public virtual DbSet<TypeName> TypeNames { get; set; } = null!;
+        public virtual DbSet<VisitorDateList> VisitorDateLists { get; set; } = null!;
         public virtual DbSet<功能評估> 功能評估s { get; set; } = null!;
         public virtual DbSet<功能評估個表> 功能評估個表s { get; set; } = null!;
 
@@ -50,7 +52,7 @@ namespace prjRehabilitation.Models
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Data Source=medicate.database.windows.net;Initial Catalog=dbClass;User ID=medical;Password=Uxul6yj3");
+                optionsBuilder.UseSqlServer("Data Source=medicate.database.windows.net;Initial Catalog=dbClass;User ID=medical;Password=Uxul6yj3;");
             }
         }
 
@@ -81,6 +83,10 @@ namespace prjRehabilitation.Models
                 entity.Property(e => e.FPassword)
                     .HasMaxLength(50)
                     .HasColumnName("fPassword");
+
+                entity.Property(e => e.FQrcode)
+                    .HasMaxLength(50)
+                    .HasColumnName("fQrcode");
 
                 entity.Property(e => e.FRank)
                     .HasMaxLength(50)
@@ -171,6 +177,10 @@ namespace prjRehabilitation.Models
                 entity.Property(e => e.FPicture)
                     .HasMaxLength(50)
                     .HasColumnName("fPicture");
+
+                entity.Property(e => e.FQrcode)
+                    .HasMaxLength(50)
+                    .HasColumnName("fQrcode");
             });
 
             modelBuilder.Entity<DiseaseDiagnosis>(entity =>
@@ -248,6 +258,19 @@ namespace prjRehabilitation.Models
                     .WithMany(p => p.EmergenceCallers)
                     .HasForeignKey(d => d.FPatientId)
                     .HasConstraintName("FK_EmergenceCaller_PatientInfo");
+            });
+
+            modelBuilder.Entity<EmployeeDuty>(entity =>
+            {
+                entity.HasKey(e => e.Fid);
+
+                entity.ToTable("EmployeeDuty");
+
+                entity.Property(e => e.Fid).HasColumnName("fid");
+
+                entity.Property(e => e.Offduty).HasMaxLength(50);
+
+                entity.Property(e => e.Onduty).HasMaxLength(50);
             });
 
             modelBuilder.Entity<MedDosageUnit>(entity =>
@@ -894,6 +917,17 @@ namespace prjRehabilitation.Models
                     .HasMaxLength(6)
                     .HasColumnName("TypeName")
                     .IsFixedLength();
+            });
+
+            modelBuilder.Entity<VisitorDateList>(entity =>
+            {
+                entity.HasKey(e => e.Fid);
+
+                entity.ToTable("VisitorDateList");
+
+                entity.Property(e => e.Fid).HasColumnName("fid");
+
+                entity.Property(e => e.Date).HasMaxLength(50);
             });
 
             modelBuilder.Entity<功能評估>(entity =>
