@@ -351,7 +351,8 @@ namespace prjRehabilitation.Models.Lin
             dbClassContext db = new dbClassContext();
             try
             {
-                db.TOfficialPosts.Remove(db.TOfficialPosts.Where(x => x.FPostId == id).First());
+                var a = db.TOfficialPosts.Where(x => x.FPostId == id).First();
+                a.FStatus = false;
             }
             catch { }
             db.SaveChanges();

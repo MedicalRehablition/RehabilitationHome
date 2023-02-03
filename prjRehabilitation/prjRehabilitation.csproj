@@ -25,6 +25,10 @@
     <None Include="Views\Patients\layout.cshtml" />
     <None Include="Views\Patients\List.cshtml" />
     <None Include="Views\Patients\patients.cshtml" />
+    <None Include="Views\Product\Create.cshtml" />
+    <None Include="Views\Product\Edit.cshtml" />
+    <None Include="Views\Product\List.cshtml" />
+    <None Include="Views\Product\List_B.cshtml" />
   </ItemGroup>
 
   <ItemGroup>
