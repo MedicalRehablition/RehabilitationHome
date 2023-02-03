@@ -43,5 +43,8 @@ namespace prjRehabilitation.ViewModel.Eric
         [DisplayName("填表日期")]
 		[Required(ErrorMessage = "必填")]
 		public string? fRecorderDate { get { return _calendar.FRecorderDate; } set { _calendar.FRecorderDate = value; } }
-    }
+		[DisplayName("可視等級")]
+		[Required(ErrorMessage = "若無填值預設最高級")]
+		public byte FVisualHierarchy { get { return _calendar.FVisualHierarchy; } set { _calendar.FVisualHierarchy = value; } }
+	}
 }

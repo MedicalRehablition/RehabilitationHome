@@ -57,7 +57,8 @@ namespace prjRehabilitation.Controllers
 		public IActionResult Create(CCalendarViewModel ccvm)
 		{
 			dbClassContext db = new dbClassContext();
-			
+			ccvm.FDeleteBool = true;
+
 			db.Add(ccvm.calendar);
 			db.SaveChanges();
 
