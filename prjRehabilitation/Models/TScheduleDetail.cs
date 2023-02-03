@@ -5,7 +5,7 @@ namespace prjRehabilitation.Models
 {
     public partial class TScheduleDetail
     {
-        public byte FId { get; set; }
+        public int FId { get; set; }
         public bool? FDeleteBool { get; set; }
         public int FGroupActivityId { get; set; }
         public string FStartTime { get; set; } = null!;

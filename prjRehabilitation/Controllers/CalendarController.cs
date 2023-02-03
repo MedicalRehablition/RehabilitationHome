@@ -7,27 +7,38 @@ namespace prjRehabilitation.Controllers
 {
 	public class CalendarController : Controller
 	{
+
+		public List<TCalendar> betweenDate(DateTime targetDay) {
+
+			dbClassContext db = new dbClassContext();
+
+			DateTime getToday = DateTime.Today;
+
+			string getFront30 = getToday.AddDays(-30).ToString("yyyy-MM-dd");
+			string getNext30 = getToday.AddDays(30).ToString("yyyy-MM-dd");
+
+			List<TCalendar> targetRangeDays =	(from d in db.TCalendars
+											 where (string.Compare(d.FDate, getFront30) >= 0) && (string.Compare(d.FDate, getNext30) <= 0)
+											select d).ToList();
+
+			return targetRangeDays;
+		}
+
+
+
 		public IActionResult Index()
 		{
 			dbClassContext db = new dbClassContext();
 
-			//Consultation aa = (from test in db.Consultations
-			//		  orderby test.Date
-			//		  select test).Last();
-
-			//List<Consultation> ll = new List<Consultation> { aa };
-			List<Consultation> aa = (from p in db.Consultations
-										 //where conditions or joins with other tables to be included here
+            CCalendarTotalNeedViewModel cctnvm = new CCalendarTotalNeedViewModel();
+        
+            cctnvm.ResidentReVisitDay = (from p in db.Consultations
 									 group p by p.PatinetId into grp
 									 select grp.OrderByDescending(g => g.Date).First()).ToList();
 
-			//foreach (var a in aa) {
+			cctnvm.GetTodayNextAndFrontOneMonth = betweenDate(DateTime.Today);
 
-			//	Console.WriteLine(a);
-			//}
-
-
-			return View(aa);
+			return View(cctnvm);
 		}
 		[HttpGet]
 		public IActionResult Create()
@@ -45,13 +56,12 @@ namespace prjRehabilitation.Controllers
 		[HttpPost]
 		public IActionResult Create(CCalendarViewModel ccvm)
 		{
-
-
 			dbClassContext db = new dbClassContext();
+			
+			db.Add(ccvm.calendar);
+			db.SaveChanges();
 
-
-
-			return View();
+			return RedirectToAction("index");
 		}
 
 	}

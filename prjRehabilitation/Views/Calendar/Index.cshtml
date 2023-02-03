@@ -1,4 +1,4 @@
-﻿@model List<prjRehabilitation.Models.Consultation>
+﻿@model prjRehabilitation.ViewModel.Eric.CCalendarTotalNeedViewModel
 
 @{
 	ViewData["Title"] = "Index";
@@ -63,7 +63,7 @@
 		function startAllShowList() {
 
 			var events = [];
-			const data = @Html.Raw(Json.Serialize(Model));
+			const data = @Html.Raw(Json.Serialize(Model.ResidentReVisitDay));
 
 			for (var item of data) {
 				var getItemDate = new Date(item.date);
