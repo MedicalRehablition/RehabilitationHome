@@ -31,6 +31,7 @@ namespace prjRehabilitation.Models
         public virtual DbSet<PatientInfo> PatientInfos { get; set; } = null!;
         public virtual DbSet<PatientMedInfo> PatientMedInfos { get; set; } = null!;
         public virtual DbSet<Product> Products { get; set; } = null!;
+        public virtual DbSet<TCalendar> TCalendars { get; set; } = null!;
         public virtual DbSet<TClassThemeList> TClassThemeLists { get; set; } = null!;
         public virtual DbSet<TForumArtical> TForumArticals { get; set; } = null!;
         public virtual DbSet<TGroupActivity> TGroupActivities { get; set; } = null!;
@@ -468,6 +469,49 @@ namespace prjRehabilitation.Models
                     .HasColumnName("fPrice");
 
                 entity.Property(e => e.FQty).HasColumnName("fQty");
+            });
+
+            modelBuilder.Entity<TCalendar>(entity =>
+            {
+                entity.HasKey(e => e.FId);
+
+                entity.ToTable("tCalendar");
+
+                entity.Property(e => e.FId).HasColumnName("fID");
+
+                entity.Property(e => e.FClassName)
+                    .HasMaxLength(100)
+                    .HasColumnName("fClassName");
+
+                entity.Property(e => e.FContent)
+                    .HasMaxLength(100)
+                    .HasColumnName("fContent");
+
+                entity.Property(e => e.FDate)
+                    .HasMaxLength(50)
+                    .HasColumnName("fDate");
+
+                entity.Property(e => e.FDateColor)
+                    .HasMaxLength(100)
+                    .HasColumnName("fDateColor");
+
+                entity.Property(e => e.FDeleteBool).HasColumnName("fDeleteBool");
+
+                entity.Property(e => e.FEventName)
+                    .HasMaxLength(100)
+                    .HasColumnName("fEventName");
+
+                entity.Property(e => e.FRecorder)
+                    .HasMaxLength(50)
+                    .HasColumnName("fRecorder");
+
+                entity.Property(e => e.FRecorderDate)
+                    .HasMaxLength(50)
+                    .HasColumnName("fRecorderDate");
+
+                entity.Property(e => e.FTitle)
+                    .HasMaxLength(100)
+                    .HasColumnName("fTitle");
             });
 
             modelBuilder.Entity<TClassThemeList>(entity =>

@@ -2,12 +2,13 @@
 
 @{
     ViewData["Title"] = "DateList";
+    var ptid = ViewBag.ptid;
 }
 
 <h1>DateList</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a href="/Evaluate/Create/@ptid" Create">新增</a>
 </p>
 <table class="table">
     <thead>
@@ -31,8 +32,8 @@
                     @Html.DisplayFor(modelItem => item.F問題)
                 </th>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) 
+                @Html.ActionLink("刪除", "Delete","Evaluate", new {  id=item.F功能評估Id },new{onclick = "return confirm('確定要刪除嗎')"})
             </td>
         </tr>
 }
