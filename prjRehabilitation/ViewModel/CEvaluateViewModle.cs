@@ -24,7 +24,7 @@ namespace prjRehabilitation.ViewModel
             set { _功能評估個表 = value; }
         }
 
-        public int F功能評估Id參考 
+        public int F功能評估Id
         {
             get { return _功能評估.F功能評估Id; } 
             set { _功能評估.F功能評估Id = value; }
@@ -58,7 +58,7 @@ namespace prjRehabilitation.ViewModel
             get { return _功能評估個表.Id評估表; }
             set { _功能評估個表.Id評估表 = value; }
         }
-        public int F功能評估Id 
+        public int F功能評估Id參考
         {
             get { return _功能評估個表.F功能評估Id; }
             set { _功能評估個表.F功能評估Id = value; }

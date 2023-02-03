@@ -1,28 +1,26 @@
 ﻿@model prjRehabilitation.ViewModel.CEvaluateViewModle
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Edit";
 }
 
-<h1>Create</h1>
+<h1>Edit</h1>
 
 <h4>CEvaluateViewModle</h4>
 <hr />
-@*<script>
-        $(document).ready(function () {
-            $('#selector').change();
-            });
-        })
-    </script>*@
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create">
+        <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            
             <div class="form-group">
                 
-                <input type="hidden" name="Fid" class="form-control" value="@ViewBag.id" />
-                 
+                <input type="hidden" asp-for="F功能評估Id" class="form-control" />
+                
+            </div>
+            <div class="form-group">
+                
+                <input type="hidden" name="Fid" class="form-control" value="" />
+                
             </div>
             <div class="form-group">
                 <label asp-for="F日期" class="control-label"></label>
@@ -39,11 +37,24 @@
                 <input asp-for="F體重" class="form-control" />
                 <span asp-validation-for="F體重" class="text-danger"></span>
             </div>
-            
-            
+            <div class="form-group">
+                
+                <input type="hidden" asp-for="Deleted" class="form-control" />
+                
+            </div>
+            <div class="form-group">
+                
+                <input type="hidden" asp-for="Id評估表" class="form-control" />
+                
+            </div>
+            <div class="form-group">
+                
+                <input type="hidden" asp-for="F功能評估Id參考" class="form-control" />
+                
+            </div>
             <div class="form-group">
                 <label asp-for="F評估項目" class="control-label"></label>
-                <select asp-for="F評估項目" class="form-control" >
+                <select asp-for="F評估項目" class="form-control">
                     <option value="1">衛生習慣</option>
                     <option value="2">居家清潔</option>
                     <option value="3">飲食起居</option>
@@ -55,7 +66,6 @@
                     <option value="9">財務管理</option>
                     <option value="10">健康促進</option>
                 </select>
-                @*@Html.DropDownList("selector", (IEnumerable<SelectListItem>)ViewBag.SelectList, new { @style = "background-color:white" })*@
                 <span asp-validation-for="F評估項目" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -79,7 +89,12 @@
                 <span asp-validation-for="F復健計畫" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                
+                <input type="hidden" asp-for="Deleted個表" class="form-control" />
+                
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>
     </div>
