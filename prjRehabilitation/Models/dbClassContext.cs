@@ -360,6 +360,10 @@ namespace prjRehabilitation.Models
                     .HasMaxLength(10)
                     .HasColumnName("fCountry");
 
+                entity.Property(e => e.FCustomerid)
+                    .HasMaxLength(50)
+                    .HasColumnName("fCustomerid");
+
                 entity.Property(e => e.FEdu)
                     .HasMaxLength(50)
                     .HasColumnName("fEdu");
