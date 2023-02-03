@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using prjRehabilitation.Models;
+using prjRehabilitation.Models.Lin;
 using prjRehabilitation.ViewModel;
 using static Microsoft.Extensions.Logging.EventSource.LoggingEventSource;
 
@@ -12,81 +13,53 @@ namespace prjRehabilitation.Controllers
         {
             _environment = environment;
         }
-        public IActionResult List(CKeywordViewModel vm)
+        public IActionResult List()
         {
-            dbClassContext db = new dbClassContext();
-            string keyword = vm.txtKeyword;
-            IEnumerable<Product> prod = null;
-            if(keyword== null)
-            {
-                prod = from c in db.Products
-                       select c;
-            }
-            else
-            {
-                prod= db.Products.Where(c=>c.FName.Contains(keyword)).ToList();
-            }
-            List<CProductViewModel> LIST = new List<CProductViewModel>();
-            foreach(var c in prod)
-            {
-                CProductViewModel v = new CProductViewModel();
-                v.Product = c;
-                LIST.Add(v);
-            }
-            return View(LIST);
+            return View((new ProductCRUD()).GetTakeUpProducts());
         }
-        public IActionResult Edit(int? id)
+        public IActionResult List_B()
         {
-            dbClassContext db = new dbClassContext();
-            Product product = db.Products.FirstOrDefault(c=>c.Fid==id);
-            CProductViewModel vm = new CProductViewModel();
-            vm.Product = product;
-            return View(vm);
+            return View((new ProductCRUD()).GetProducts());
+        }
+
+        public IActionResult GetAllProduct()
+        {
+            return Json((new ProductCRUD()).GetProducts);
+        }
+        public IActionResult Edit(int id)
+        {
+            return View((new ProductCRUD()).getTargetProduct(id));
         }
         [HttpPost]
         public IActionResult Edit(CProductViewModel vm)
         {
-            dbClassContext db = new dbClassContext();
-            Product product = db.Products.FirstOrDefault(c => c.Fid == vm.Fid);
-            if (product != null)
-            {
-                if (vm.photo != null)
-                {
-                    string photoName = Guid.NewGuid().ToString() + ".jpg";
-                    string path = _environment.WebRootPath + "/images/" + photoName;
-                    product.FPhoto = photoName;
-                    vm.photo.CopyTo(new FileStream(path, FileMode.Create));
-                }
-                product.Fid=vm.Fid;
-                product.FPrice=vm.FPrice;
-                product.FQty=vm.FQty;
-                product.FName=vm.FName;
-                db.SaveChanges();
-            }
-            return RedirectToAction("List");
+            (new ProductCRUD()).edit(vm);
+            return RedirectToAction("List_B");
         }
-        public IActionResult Delete(int? id)
+        public IActionResult Delete(int id)
         {
-            dbClassContext db = new dbClassContext();
-            Product prod = db.Products.FirstOrDefault(c => c.Fid == id);
-            if(prod != null)
-            {
-                db.Products.Remove(prod);
-                db.SaveChanges();
-            }
-            return RedirectToAction("List");
+            (new ProductCRUD()).Delete(id);
+            return RedirectToAction("List_B");
         }
         public IActionResult Create()
         {
             return View();
         }
+        public IActionResult TakeOff(int id)
+        {
+            (new ProductCRUD()).TakeOff(id);
+            return RedirectToAction("List_B");
+        }
+        public IActionResult TakeUp(int id)
+        {
+            (new ProductCRUD()).TakeUp(id);
+            return RedirectToAction("List_B");
+        }
         [HttpPost]
         public IActionResult Create(CProductViewModel vm)
         {
-            dbClassContext db = new dbClassContext();
-            db.Products.Add(vm.Product);
-            db.SaveChanges();
-            return RedirectToAction("List");
+            (new ProductCRUD()).Create(vm);
+            return RedirectToAction("List_B");
         }
     }
 }

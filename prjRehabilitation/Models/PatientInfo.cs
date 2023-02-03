@@ -36,7 +36,7 @@ namespace prjRehabilitation.Models
         public string? FPicture { get; set; }
         public byte[]? FPhotoFile { get; set; }
         public bool? Status { get; set; }
-        public string? FCustomerid { get; set; }
+        public int? FCustomerid { get; set; }
 
         public virtual ICollection<Consultation> Consultations { get; set; }
         public virtual ICollection<DiseaseDiagnosis> DiseaseDiagnoses { get; set; }

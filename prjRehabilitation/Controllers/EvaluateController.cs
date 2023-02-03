@@ -80,31 +80,64 @@ namespace prjRehabilitation.Controllers
         }
         public IActionResult Create(int? id) 
         {
-           dbClassContext db = new dbClassContext();
-            var selectList = new List<SelectListItem>()
-    {
-        new SelectListItem {Text="衛生習慣", Value="1" },
-        new SelectListItem {Text="居家清潔", Value="2" },
-        new SelectListItem {Text="飲食起居", Value="3" },
-        new SelectListItem {Text="認知能力", Value="4" },
-        new SelectListItem {Text="體能表現", Value="5" },
-        new SelectListItem {Text="人際互動", Value="6" },
-        new SelectListItem {Text="烹飪能力", Value="7" },
-        new SelectListItem {Text="休閒安排", Value="8" },
-        new SelectListItem {Text="財務管理", Value="9" },
-        new SelectListItem {Text="健康促進", Value="10" },
-    };
-            //預設選擇哪一筆
-            selectList.Where(q => q.Value == "1").First().Selected = true;
-            ViewBag.SelectList = selectList;
+            ViewBag.id = id;
+        //    var selectList = new List<SelectListItem>()
+        //    {
+        //new SelectListItem {Text="衛生習慣", Value="1" },
+        //new SelectListItem {Text="居家清潔", Value="2" },
+        //new SelectListItem {Text="飲食起居", Value="3" },
+        //new SelectListItem {Text="認知能力", Value="4" },
+        //new SelectListItem {Text="體能表現", Value="5" },
+        //new SelectListItem {Text="人際互動", Value="6" },
+        //new SelectListItem {Text="烹飪能力", Value="7" },
+        //new SelectListItem {Text="休閒安排", Value="8" },
+        //new SelectListItem {Text="財務管理", Value="9" },
+        //new SelectListItem {Text="健康促進", Value="10" },
+        //      };
+        //    //預設選擇哪一筆
+        //    selectList.Where(q => q.Value == "1").First().Selected = true;
+        //    ViewBag.SelectList = selectList;
             return View();
         }
         [HttpPost]
-        public IActionResult Create()
+        public IActionResult Create(CEvaluateViewModle eva)
         {
             dbClassContext db = new dbClassContext();
-
-            return View();
+            eva.Deleted = false;
+            db.功能評估s.Add(eva.Evaluate);
+            db.SaveChanges();
+            eva.F功能評估Id參考 = eva.F功能評估Id;
+            db.功能評估個表s.Add(eva.Evaluate2);
+            db.SaveChanges();
+            return RedirectToAction("DateList", "Evaluate", new { @id = eva.Fid });
+        }
+        public IActionResult Edit(int? id) 
+        {
+            dbClassContext db = new dbClassContext();
+            功能評估 ev1 = db.功能評估s.FirstOrDefault(c => c.F功能評估Id == id);
+            var bbb = ev1.F功能評估Id;
+            功能評估個表 ev2 = db.功能評估個表s.FirstOrDefault(c => c.F功能評估Id == ev1.F功能評估Id);
+            CEvaluateViewModle eva = new CEvaluateViewModle();
+            eva.Evaluate = ev1;
+            eva.Evaluate2 = ev2;
+            return View(eva); 
+        }
+        [HttpPost]
+        public IActionResult Edit(CEvaluateViewModle eva)
+        {
+            dbClassContext db = new dbClassContext();
+            功能評估 ev1 = db.功能評估s.FirstOrDefault(c => c.F功能評估Id == eva.F功能評估Id);
+            ev1.F日期 = eva.F日期;
+            ev1.F身高 = eva.F身高;
+            ev1.F體重 = eva.F體重;
+            功能評估個表 ev2 = db.功能評估個表s.FirstOrDefault(c=>c.F功能評估Id==ev1.F功能評估Id);
+            ev2.F評估項目 = eva.F評估項目;
+            ev2.F問題 = eva.F問題;
+            ev2.F現狀評估 = eva.F現狀評估;
+            ev2.F復健計畫 = eva.F復健計畫;
+            ev2.F復健目標 = eva.F復健目標;
+            db.SaveChanges();
+            return RedirectToAction("DateList", "Evaluate", new { @id = eva.Fid });
         }
         public IActionResult Delete(int id) 
         {

@@ -32,7 +32,7 @@
                     @Html.DisplayFor(modelItem => item.F問題)
                 </th>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) 
+                @Html.ActionLink("修改", "Edit", new { id=item.F功能評估Id }) 
                 @Html.ActionLink("刪除", "Delete","Evaluate", new {  id=item.F功能評估Id },new{onclick = "return confirm('確定要刪除嗎')"})
             </td>
         </tr>

@@ -360,9 +360,7 @@ namespace prjRehabilitation.Models
                     .HasMaxLength(10)
                     .HasColumnName("fCountry");
 
-                entity.Property(e => e.FCustomerid)
-                    .HasMaxLength(50)
-                    .HasColumnName("fCustomerid");
+                entity.Property(e => e.FCustomerid).HasColumnName("fCustomerid");
 
                 entity.Property(e => e.FEdu)
                     .HasMaxLength(50)
@@ -456,7 +454,10 @@ namespace prjRehabilitation.Models
 
             modelBuilder.Entity<Product>(entity =>
             {
-                entity.HasKey(e => e.Fid);
+                entity.HasKey(e => e.Fid)
+                    .HasName("PK__Product__D9908D648D461CFB");
+
+                entity.ToTable("Product");
 
                 entity.Property(e => e.Fid).HasColumnName("fid");
 
@@ -464,15 +465,18 @@ namespace prjRehabilitation.Models
                     .HasMaxLength(50)
                     .HasColumnName("fName");
 
-                entity.Property(e => e.FPhoto)
-                    .HasMaxLength(50)
-                    .HasColumnName("fPhoto");
+                entity.Property(e => e.FPhoto).HasColumnName("fPhoto");
 
                 entity.Property(e => e.FPrice)
                     .HasColumnType("money")
                     .HasColumnName("fPrice");
 
                 entity.Property(e => e.FQty).HasColumnName("fQty");
+
+                entity.Property(e => e.FStatus)
+                    .IsRequired()
+                    .HasColumnName("fStatus")
+                    .HasDefaultValueSql("('1')");
             });
 
             modelBuilder.Entity<TCalendar>(entity =>
@@ -516,6 +520,8 @@ namespace prjRehabilitation.Models
                 entity.Property(e => e.FTitle)
                     .HasMaxLength(100)
                     .HasColumnName("fTitle");
+
+                entity.Property(e => e.FVisualHierarchy).HasColumnName("fVisualHierarchy");
             });
 
             modelBuilder.Entity<TClassThemeList>(entity =>
@@ -851,9 +857,7 @@ namespace prjRehabilitation.Models
 
                 entity.ToTable("tScheduleDetails");
 
-                entity.Property(e => e.FId)
-                    .ValueGeneratedOnAdd()
-                    .HasColumnName("fID");
+                entity.Property(e => e.FId).HasColumnName("fID");
 
                 entity.Property(e => e.FDeleteBool).HasColumnName("fDeleteBool");
 
