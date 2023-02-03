@@ -13,12 +13,25 @@
         <form asp-action="Edit" enctype="multipart/form-data">
 
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-
+            <input  type="hidden" asp-for="FPhoto"/>
             <div class="form-group col">
                 <label asp-for="photo" class="control-label">照片</label>
                 <input type="file" asp-for="photo" class="form-control" accept="image/gif, image/jpeg, image/png" />
                 <br />
-                <img id="preview_Product_img" src="" alt="尚未上傳商品照片" width="200" height="150" />
+                @{
+                    if (Model.FPhoto != null)
+                    {
+                        var base64 = Convert.ToBase64String(Model.FPhoto);
+                        var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+                        <img id="preview_Product_img" src="@imgSrc" alt="尚未上傳商品照片" width="200" height="150" />
+
+                    }
+                    else
+                    {
+                        <img id="preview_Product_img" src="" alt="尚未上傳商品照片" width="200" height="150" />
+
+                    }
+                }
                 <span asp-validation-for="photo"></span>
             </div>
             <div class="form-group">
