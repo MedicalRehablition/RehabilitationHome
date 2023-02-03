@@ -32,7 +32,7 @@ namespace prjRehabilitation.ViewModel
             get { return _product.FPrice; }
             set { _product.FPrice = value; }
         }
-        public string? FPhoto 
+        public byte[]? FPhoto 
         { 
             get { return _product.FPhoto; } 
             set {_product.FPhoto = value; } 

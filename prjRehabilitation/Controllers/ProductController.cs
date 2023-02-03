@@ -54,7 +54,7 @@ namespace prjRehabilitation.Controllers
                 {
                     string photoName = Guid.NewGuid().ToString() + ".jpg";
                     string path = _environment.WebRootPath + "/images/" + photoName;
-                    product.FPhoto = photoName;
+                    product.FPhoto = new byte[3];   //暫時只改這邊不出錯而已
                     vm.photo.CopyTo(new FileStream(path, FileMode.Create));
                 }
                 product.Fid=vm.Fid;
