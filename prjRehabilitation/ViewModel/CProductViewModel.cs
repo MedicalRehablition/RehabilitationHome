@@ -48,7 +48,7 @@ namespace prjRehabilitation.ViewModel
             get { return _product.FStatus; }
             set { _product.FStatus = value; }
         }
-        [DisplayName("商品圖片")]
+        ////[DisplayName("商品圖片")]
         public IFormFile photo { get; set; }
     }
 }

@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using prjRehabilitation.Models;
+using prjRehabilitation.ViewModel;
+using System.Text.Json;
 
 namespace prjRehabilitation.Controllers
 {
@@ -9,14 +11,43 @@ namespace prjRehabilitation.Controllers
         {
             return View();
         }
+        public IActionResult PersonInfomation()
+        {
+            string json = HttpContext.Session.GetString(CDictionary.SK_Login_User);
+            Customer data = JsonSerializer.Deserialize<Customer>(json);
+            CCustomerViewModel customer = new CCustomerViewModel();
+            customer.Customer = data;
+            return View(customer);
+        }
         public IActionResult GetUserPatientPartialView()
         {
             return PartialView();
         }
-        public IActionResult GetUserPatient()
+        public IActionResult GetUserPatient(CKeywordViewModel vm)
         {
             string json = HttpContext.Session.GetString(CDictionary.SK_Login_User);
-            return Json(json);   
+            Customer customer = JsonSerializer.Deserialize<Customer>(json);
+            IEnumerable<PatientInfo> data = null;
+            dbClassContext db = new dbClassContext();
+            string keyword = vm.txtKeyword;
+            if (keyword == null)
+            {
+                data = db.PatientInfos.Where(c => c.FCustomerid == customer.Fid);
+            }
+            else
+            {
+                data = db.PatientInfos.Where(c => c.FName.Contains(keyword)).ToList();
+            }
+            List<CPatientsViewModel> List = new List<CPatientsViewModel>();
+            foreach (var c in data)
+            {
+                CPatientsViewModel a = new CPatientsViewModel();
+                a.Patient = c;
+                List.Add(a);
+
+            }
+            return View(List);
+
         }
     }
 }

@@ -1,0 +1,83 @@
+﻿@model prjRehabilitation.ViewModel.CCustomerViewModel
+<style>
+    .form-group{
+        TEXT-ALIGN: CENTER;
+    }
+</style>
+<div>
+    <a asp-controller="Home" asp-action="Index">回上一頁</a>
+</div>
+<h4>個人詳細資料</h4>
+<hr />
+<section style="background-color: #eee;">
+    <div class="container py-5">
+        <div class="row">
+            @*左邊的照片*@
+            <div class="col-lg-4">
+                <div class="card mb-4">
+                    <div class="card-body text-center">
+                        <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
+                             class="rounded-circle img-fluid" style="width: 150px;">
+                        <h5 class="my-3">@Model.FName</h5>
+                        <p class="text-muted mb-1">會員編號:@Model.Fid</p>
+                        <p class="text-muted mb-4">電子信箱:@Model.FEmail</p>
+                        <div class="d-flex justify-content-center mb-2">
+                           
+                            <button type="button" class="btn btn-outline-primary ms-1">編輯個人檔案</button>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+            @*右邊的個人檔案*@
+            <div class="col-lg-8">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">姓名</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-muted mb-0">@Model.FName</p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">電子信箱</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-muted mb-0">@Model.FEmail</p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">行動電話</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-muted mb-0">@Model.FPhone</p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">居住地址</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-muted mb-0">@Model.FAddress</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="儲存" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+

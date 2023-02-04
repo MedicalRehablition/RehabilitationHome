@@ -2,6 +2,7 @@
 using prjRehabilitation.Models;
 using prjRehabilitation.ViewModel;
 using System.Diagnostics;
+using System.Net.Mail;
 using System.Text.Json;
 
 namespace prjRehabilitation.Controllers
@@ -56,6 +57,42 @@ namespace prjRehabilitation.Controllers
         public IActionResult PartialLogin()
         {
             return PartialView();
+        }
+        public IActionResult ForgetPassword()
+        {
+            return View();
+        }
+        public IActionResult SendMailByGmail(CLoginViewModel vm)
+        {
+            dbClassContext db = new dbClassContext();
+            Customer customer = db.Customers.FirstOrDefault(t => t.FEmail == vm.txtAccount);
+            if (string.IsNullOrEmpty(customer.FEmail))
+            {
+                return Content("無此信箱帳號");
+            }
+            customer.FEmail = vm.txtAccount;
+            customer.FPassword = Guid.NewGuid().ToString();
+            db.SaveChanges();
+            string newPassword = customer.FPassword;
+            List<string> MailList = new List<string>();
+            MailList.Add(vm.txtAccount);//新增收件人進去
+            string Subject = "變更密碼";
+            string Body = "您的密碼為:" + newPassword;
+            MailMessage msg = new MailMessage();
+            msg.From = new MailAddress("yeee880726@gmail.com", "測試郵件", System.Text.Encoding.UTF8);
+            msg.To.Add(string.Join(",", MailList.ToArray()));//收件人
+            msg.Subject = Subject; //主旨
+            msg.SubjectEncoding = System.Text.Encoding.UTF8;
+            msg.Body = Body;//內容
+            msg.IsBodyHtml = true;
+            msg.BodyEncoding = System.Text.Encoding.UTF8;
+            msg.Priority = MailPriority.Normal;
+            SmtpClient MySmtp = new SmtpClient("smtp.gmail.com", 587);
+            //寄件人
+            MySmtp.Credentials = new System.Net.NetworkCredential("yeee880726@gmail.com", "otdqmlbzkpumgsrw");
+            MySmtp.EnableSsl = true;
+            MySmtp.Send(msg);
+            return Content("已發送郵件");
         }
 
     }
