@@ -31,6 +31,7 @@ namespace prjRehabilitation.ViewModel
             get { return _product.FQty; }
             set { _product.FQty = value; }
         }
+        public int FOrderNum{get;set;}
         [DisplayName("價格")]
         public decimal? FPrice
         {
