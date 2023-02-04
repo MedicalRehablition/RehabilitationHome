@@ -1,7 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using prjRehabilitation.Models;
 using prjRehabilitation.Models.Lin;
 using prjRehabilitation.ViewModel;
+using prjRehabilitation.ViewModel.Lin;
+using System.Text.Json;
+
 using static Microsoft.Extensions.Logging.EventSource.LoggingEventSource;
 
 namespace prjRehabilitation.Controllers
@@ -12,6 +16,64 @@ namespace prjRehabilitation.Controllers
         public ProductController(IWebHostEnvironment environment)
         {
             _environment = environment;
+        }
+        public IActionResult RemoveCartItem(int id)
+        {
+			string json;
+			VMCart cart = new VMCart();
+			if (HttpContext.Request.Cookies.TryGetValue(CDictionary.SK_Purchased_Products_List, out json))
+			{
+				cart = JsonSerializer.Deserialize<VMCart>(json);
+			}
+            else return Json("{'outcome' : '發生不該發生的錯誤:購物車不存在'}");
+			
+            if (cart.Item.Contains(id)) cart.Item.Remove(id);
+			
+			HttpContext.Response.Cookies.Append(CDictionary.SK_Purchased_Products_List, JsonSerializer.Serialize(cart));
+
+			return RedirectToAction("Cart");
+		}
+		public IActionResult ResetCart()
+		{
+			string json;
+			VMCart cart = new VMCart();
+			HttpContext.Response.Cookies.Append(CDictionary.SK_Purchased_Products_List, JsonSerializer.Serialize(cart));
+
+            return RedirectToAction("Cart");
+        }
+        public IActionResult AddToCart(int id)
+        {
+            string json;
+            VMCart cart = new VMCart();
+            if (!HttpContext.Request.Cookies.TryGetValue(CDictionary.SK_Purchased_Products_List, out json))
+            {
+                HttpContext.Response.Cookies.Append(CDictionary.SK_Purchased_Products_List, JsonSerializer.Serialize(cart));
+            }
+            else
+            {
+                cart = JsonSerializer.Deserialize<VMCart>(json);
+            }
+
+            if (cart.Item.Contains(id)) return Json(new { outcome = "該產品已加入購物車" });
+
+			cart.Item.Add(id);
+            HttpContext.Response.Cookies.Append(CDictionary.SK_Purchased_Products_List, JsonSerializer.Serialize(cart));
+
+			return Json(new { outcome = "加入購物車成功"});
+        }
+        public IActionResult Cart()
+        {
+			string json;
+			VMCart cart = null;
+			if (HttpContext.Request.Cookies.TryGetValue(CDictionary.SK_Purchased_Products_List, out json))
+			{
+				cart = JsonSerializer.Deserialize<VMCart>(json);
+			}
+			else
+			{
+				return RedirectToAction("List_B");
+			}
+			return View((new ProductCRUD()).GetCartItems(cart));
         }
         public IActionResult List()
         {

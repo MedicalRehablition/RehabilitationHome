@@ -1,4 +1,5 @@
 ﻿using prjRehabilitation.ViewModel;
+using prjRehabilitation.ViewModel.Lin;
 using System.Collections.Generic;
 using System.Runtime.InteropServices.ObjectiveC;
 
@@ -35,6 +36,7 @@ namespace prjRehabilitation.Models.Lin
             dbClassContext db = new dbClassContext();
             Product product = db.Products.FirstOrDefault(c => c.Fid == id);
             CProductViewModel vm = new CProductViewModel();
+
             vm.Product = product;
             return vm;
         }
@@ -113,6 +115,25 @@ namespace prjRehabilitation.Models.Lin
 				});
 			}
 			return list;
+		}
+
+  //      public void AddToCart(int id)
+  //      {
+
+		//}
+        public object GetCartItem()
+        {
+            return new Product();
+        }
+
+		public object GetCartItems(VMCart? cart)
+		{
+            List<CProductViewModel> items = new List<CProductViewModel>();
+            foreach(int c in cart.Item) 
+            {
+                items.Add((CProductViewModel)getTargetProduct(c));
+            }
+            return items;
 		}
 	}
 }
