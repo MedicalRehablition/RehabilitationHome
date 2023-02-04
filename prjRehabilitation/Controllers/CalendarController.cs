@@ -43,9 +43,10 @@ namespace prjRehabilitation.Controllers
 		[HttpGet]
 		public IActionResult Create()
 		{
-			string json = "";
+			string json = HttpContext.Session.GetString(CDictionary.SK_CUSTOMER_User);
 			Customer customer = null;
-			if (HttpContext.Session.GetString(CDictionary.SK_Login_User) != null)
+
+			if (!string.IsNullOrEmpty( json) )
 			{
 				customer = JsonSerializer.Deserialize<Customer>(json);
 			}

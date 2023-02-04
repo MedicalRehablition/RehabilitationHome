@@ -47,7 +47,7 @@ namespace prjRehabilitation.Controllers
                 if (customer.FEmail.Equals(vm.txtAccount) && customer.FPassword.Equals(vm.txtPassword))
                 {
                     json = JsonSerializer.Serialize(customer);
-                    HttpContext.Session.SetString(CDictionary.SK_Login_User, json);
+                    HttpContext.Session.SetString(CDictionary.SK_CUSTOMER_User, json);
                     return RedirectToAction("Index");
                 }
             }

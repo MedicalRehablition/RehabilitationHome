@@ -316,8 +316,8 @@
                 $(".Loginbtn").hide(); //登入後隱藏
                 $(".Logoutbtn").show();//登入後顯示出來
                 $(".MyFamily").show(); //登入後顯示出來
-                $(".modal-backdrop").remove();
-                $(".modal").remove();
+                $(".modal-backdrop").hide();
+                $(".modal").hide();
                 span.innerText = User + " 歡迎!";
             }
         }
@@ -359,8 +359,8 @@
                     $(".Loginbtn").show();
                     $(".Logoutbtn").hide();
                     $(".MyFamily").hide();
-                    $(".modal").append();
-                    $(".modal-backdrop").append();
+                    //$(".modal").append();
+                    //$(".modal-backdrop").append();
                     $("#UserName").text("");
                 }
             })

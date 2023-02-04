@@ -13,7 +13,7 @@ namespace prjRehabilitation.Controllers
         }
         public IActionResult PersonInfomation()
         {
-            string json = HttpContext.Session.GetString(CDictionary.SK_Login_User);
+            string json = HttpContext.Session.GetString(CDictionary.SK_CUSTOMER_User);
             Customer data = JsonSerializer.Deserialize<Customer>(json);
             CCustomerViewModel customer = new CCustomerViewModel();
             customer.Customer = data;
@@ -25,7 +25,7 @@ namespace prjRehabilitation.Controllers
         }
         public IActionResult GetUserPatient(CKeywordViewModel vm)
         {
-            string json = HttpContext.Session.GetString(CDictionary.SK_Login_User);
+            string json = HttpContext.Session.GetString(CDictionary.SK_CUSTOMER_User);
             Customer customer = JsonSerializer.Deserialize<Customer>(json);
             IEnumerable<PatientInfo> data = null;
             dbClassContext db = new dbClassContext();

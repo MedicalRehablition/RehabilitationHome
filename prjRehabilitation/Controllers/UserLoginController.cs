@@ -30,7 +30,7 @@ namespace prjRehabilitation.Controllers
                 if (customer.FEmail.Equals(vm.txtAccount) && customer.FPassword.Equals(vm.txtPassword))
                 {
                     json = JsonSerializer.Serialize(customer);
-                    HttpContext.Session.SetString(CDictionary.SK_Login_User, json);
+                    HttpContext.Session.SetString(CDictionary.SK_CUSTOMER_User, json);
                     return RedirectToAction("Loginsuccess");
                 }
             }
@@ -48,9 +48,9 @@ namespace prjRehabilitation.Controllers
                     return Content("1");
                 }
                 json = JsonSerializer.Serialize(customer);
-                HttpContext.Session.SetString(CDictionary.SK_Login_User, json);
-                HttpContext.Session.GetString(CDictionary.SK_Login_User);
-                customer = JsonSerializer.Deserialize<Customer>(json);
+                HttpContext.Session.SetString(CDictionary.SK_CUSTOMER_User, json);
+                //HttpContext.Session.GetString(CDictionary.SK_CUSTOMER_User);
+                //customer = JsonSerializer.Deserialize<Customer>(json);
                 return Content(customer.FName);
 
             }
@@ -93,7 +93,7 @@ namespace prjRehabilitation.Controllers
         }
         public IActionResult GetUserSession()
         {
-            string json = HttpContext.Session.GetString(CDictionary.SK_Login_User);
+            string json = HttpContext.Session.GetString(CDictionary.SK_CUSTOMER_User);
             if (string.IsNullOrEmpty(json))
             {
                 return Content("");
@@ -103,7 +103,7 @@ namespace prjRehabilitation.Controllers
         }
         public IActionResult RemoveUserSession()
         {
-            HttpContext.Session.Remove(CDictionary.SK_Login_User);
+            HttpContext.Session.Remove(CDictionary.SK_CUSTOMER_User);
             return Content("清除session");
         }
         private bool checkMD5(CLoginViewModel vm)
