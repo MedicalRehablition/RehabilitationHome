@@ -7,5 +7,8 @@
         public string fName { get; set; }
         public string fPhone { get; set; }
         public string fidnum { get; set; }
+        public int fCustomerid { get; set; }
+        public string FCheckin { get; set; }
+       
     }
 }

@@ -1,35 +1,49 @@
-﻿@model IEnumerable<prjRehabilitation.ViewModel.CPatientsViewModel>
+﻿@model IEnumerable<prjRehabilitation.ViewModel.Lin.VMPatientList>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.FName)
-            </th>
-            
-           
-            <th>
-                @Html.DisplayNameFor(model => model.FCustomerid)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-          
-            <td>
-                @Html.DisplayFor(modelItem => item.FName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FCustomerid)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/5.3.45/css/materialdesignicons.css" integrity="sha256-NAxhqDvtY0l4xn+YVa6WjAcmd94NNfttjNsDmNatFVc=" crossorigin="anonymous" />
+
+<div class="container bootdey">
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            string imgSrc = "";
+            if (item.fphoto != null)
+            {
+                var base64 = Convert.ToBase64String(item.fphoto);
+                imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+            }
+            @*<tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FCustomerid)
+                </td>*@
+                <div class="col-lg-3 col-md-6 col-12 mt-4 pt-2">
+                    <div class="team text-center rounded p-3 py-4">
+                    @if (!string.IsNullOrEmpty(imgSrc))
+                    {
+                        <img class="img-fluid avatar avatar-medium shadow rounded-pill" src="@imgSrc" alt="顯示錯誤" width="268px" height="268px"/>
+                    }
+                    else
+                    {
+                        <img class="img-fluid avatar avatar-medium shadow rounded-pill" src="~/images/imageDefault.png" width="268px" height="268px" />
+                    }
+                        <div class="content mt-3">
+                            <h4 class="title mb-0">@Html.DisplayFor(modelItem=>item.fName)</h4>
+                            <small class="text-muted">入住時間:@Html.DisplayFor(modelItem=>item.FCheckin)</small>
+                        </div>
+                    </div>
+                </div><!--end col-->
+               @* <td>
+                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                </td>
+           @* </tr>*@
+        }
+        @*</tbody>
+        </table>*@
+    </div>
+</div>

@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using prjRehabilitation.Models;
 using prjRehabilitation.ViewModel;
+using prjRehabilitation.ViewModel.Lin;
 using System.Text.Json;
 
 namespace prjRehabilitation.Controllers
@@ -23,26 +24,26 @@ namespace prjRehabilitation.Controllers
         {
             return PartialView();
         }
-        public IActionResult GetUserPatient(CKeywordViewModel vm)
+        public IActionResult GetUserPatient()
         {
             string json = HttpContext.Session.GetString(CDictionary.SK_CUSTOMER_User);
             Customer customer = JsonSerializer.Deserialize<Customer>(json);
-            IEnumerable<PatientInfo> data = null;
             dbClassContext db = new dbClassContext();
-            string keyword = vm.txtKeyword;
-            if (keyword == null)
-            {
-                data = db.PatientInfos.Where(c => c.FCustomerid == customer.Fid);
-            }
-            else
-            {
-                data = db.PatientInfos.Where(c => c.FName.Contains(keyword)).ToList();
-            }
-            List<CPatientsViewModel> List = new List<CPatientsViewModel>();
+           IEnumerable<PatientInfo> data = db.PatientInfos.Where(c=>c.FCustomerid==customer.Fid) ;
+            List<VMPatientList> List = new List<VMPatientList>();
             foreach (var c in data)
             {
-                CPatientsViewModel a = new CPatientsViewModel();
-                a.Patient = c;
+                VMPatientList a = new VMPatientList();
+                a.fid = (int)c.Fid;
+                a.fName = c.FName;
+                a.fPhone = c.FPhone;
+                a.fidnum = c.FIdnum;
+                a.FCheckin= c.FCheckin;
+                a.fCustomerid = (int)c.FCustomerid;
+                if (c.FPhotoFile != null)
+                {
+                    a.fphoto = c.FPhotoFile;
+                }
                 List.Add(a);
 
             }
