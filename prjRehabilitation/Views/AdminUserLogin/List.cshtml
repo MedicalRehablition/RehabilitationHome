@@ -6,13 +6,13 @@
 }
 <style>
     a {
-        color: blue;
+        color: black;
     }
 </style>
 <h1>員工列表</h1>
 <form>
-<input type="text" name="txtKeyword" />
-<input type="submit" class="btn btn-primary" value="查詢" />
+    <input type="text" name="txtKeyword" />
+    <input type="submit" class="btn btn-primary" value="查詢" />
 </form>
 
 <table class="table">
@@ -84,7 +84,7 @@
                         @Html.DisplayFor(modelItem => item.FBirth)
                     </td>
                     <td>
-                        @Html.ActionLink("編輯", "Edit", new {  id=item.Fid  })
+                        @Html.ActionLink("編輯", "Edit2", new {  id=item.Fid  },new { @class="btn btn-primary"})
                         @Html.ActionLink("刪除", "Delete", new {  id=item.Fid  },new { @class="btn btn-danger",onclick = "return confirm('是否刪除?')"})
                     </td>
                 </tr>
@@ -92,3 +92,8 @@
         }
     </tbody>
 </table>
+@section Scripts{
+    <script>
+     
+    </script>
+}
