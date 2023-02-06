@@ -108,6 +108,11 @@ namespace prjRehabilitation.ViewModel
             get { return _patient.Status; }
             set { _patient.Status = value; }
         }
+        public int? FCustomerid
+        {
+            get { return _patient.FCustomerid; }
+            set { _patient.FCustomerid = value; }
+        }
         public IFormFile photo { get; set; }
         public virtual ICollection<Consultation> Consultations { get; set; }
         public virtual ICollection<DiseaseDiagnosis> DiseaseDiagnoses { get; set; }

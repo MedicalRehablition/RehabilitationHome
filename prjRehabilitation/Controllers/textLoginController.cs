@@ -27,7 +27,7 @@ namespace prjRehabilitation.Controllers
                 if (admin.FEmail.Equals(vm.txtAccount) && admin.FPassword.Equals(vm.txtPassword))
                 {
                     string json = JsonSerializer.Serialize(admin);
-                    HttpContext.Session.SetString(CDictionary.SK_Login_User, json);
+                    HttpContext.Session.SetString(CDictionary.SK_ADMIN_User, json);
                     return RedirectToAction("List");
                 }
             }
@@ -54,7 +54,7 @@ namespace prjRehabilitation.Controllers
             else
             {
                 string json = JsonSerializer.Serialize(admin);
-                HttpContext.Session.SetString(CDictionary.SK_Login_User, json);
+                HttpContext.Session.SetString(CDictionary.SK_ADMIN_User, json);
                 return RedirectToAction("List");
             }
         }

@@ -14,7 +14,7 @@
 <link rel="stylesheet" type="text/css" href="~/css/coloshop/main_styles.css">
 <link rel="stylesheet" type="text/css" href="~/css/coloshop/responsive.css">
 
-
+@Html.ActionLink("購物車","Cart","Product",new{  },new {@class="btn btn-outline-success"})
 	<div class="fs_menu_overlay"></div>
 	<div class="hamburger_menu">
 		<div class="hamburger_close"><i class="fa fa-times" aria-hidden="true"></i></div>
@@ -30,7 +30,7 @@
 			<div class="row align-items-center fill_height">
 				<div class="col">
 					<div class="main_slider_content">
-						<h6>讓這個不完美的世界，變成我們所期望的樣子</h6>
+						<h6>將這個不完美的世界，變成我們所期望的樣子</h6>
 					<h1>甜心小舖</h1>
 						<div class="red_button shop_now_button"><a href="https://technext.github.io/coloshop/index.html#">shop now</a></div>
 					</div>
@@ -123,7 +123,9 @@
 										<div class="product_price">$@Math.Ceiling((decimal)item.FPrice)</div>
 									</div>
 								</div>
-								<div class="red_button add_to_cart_button"><a href="https://technext.github.io/coloshop/index.html#">add to cart</a></div>
+								<div class="red_button add_to_cart_button" onclick="AddToCart(@item.Fid)">
+									add to cart
+								</div>
 							</div>
                 }
             }
@@ -286,5 +288,16 @@
 <script src="~/js/coloshop/custom.js"></script>
 	<!-- Footer -->
 
+@section Scripts{
+<script>
+		async function AddToCart(id){
+			 const response =  await fetch(`@Url.Content("~/Product/AddToCart?id=${id}")`);
+			const data = await response.json();
+			const outcome = data.outcome;
+			console.log(data);
+			alert(outcome);
+		}
 
+</script>
+}
 
