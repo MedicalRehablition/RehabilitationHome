@@ -1,5 +1,5 @@
 ﻿<style>
-    
+
 </style>
 
 <div class="container">
@@ -8,114 +8,102 @@
     <hr />
     <video id="video" autoplay style="width:300px"></video>
     <canvas id="canvas" style="display:none"></canvas>
-    
+
 </div>
 
 
 @section Scripts
     {
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/quagga/0.12.1/quagga.min.js"></script>
-        <script>
-            
-            //抓攝影鏡頭
-            navigator.mediaDevices.getUserMedia({ video: true }).then(function (stream) {
-                var video = document.getElementById('video');
-                video.srcObject = stream;
-                //video.play();
-            });
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/quagga/0.12.1/quagga.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.7.1/sweetalert2.all.js"></script>
+    <script>
 
-            //按按鈕掃描
-            var canvas = document.getElementById('canvas');
-            //canvas.height = video.videoHeight;
-            //canvas.width = video.videoWidth;
-            var ctx = canvas.getContext("2d");
-            setInterval(function () {
-                ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-            }, 50);
+        //抓攝影鏡頭
+        navigator.mediaDevices.getUserMedia({ video: true }).then(function (stream) {
+            var video = document.getElementById('video');
+            video.srcObject = stream;
+            //video.play();
+        });
 
-            $("#btnclick").click(function () {            
-                var data = canvas.toDataURL();
-                //debugger;
-                $.ajax({
-                    type: "POST",
+        //把圖片存放在<canvas>中
+        var canvas = document.getElementById('canvas');
+        var ctx = canvas.getContext("2d");
+        setInterval(function () {
+            ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+        }, 50);
+
+        //固定時間執行掃描
+
+        timego();
+
+        //說明：
+        //1.建立一個funcion scan做掃描
+        //2.建立一個funcion timego 做每秒執行scan一次
+        //3.掃到東西後先停止掃描並把掃到的資料用彈窗alertwindow()功能秀出來
+        //4.彈窗功能的結束會再呼叫timeto做重複掃描
+
+
+        function timego() {         //1秒做一次掃描
+            scannostop = window.setInterval(scan, 1000);
+        };
+
+
+        function scan() {           //做掃描
+            var data = canvas.toDataURL("image/png");
+            //debugger;
+            $.ajax({
+                type: "POST",
                 url: '/Webcam/decode',
-                    data: { imageData: data },                
-                    success: function (response) {
-                        if (response != null) {
-                            var decodedText = response.decodedText;
-                            $("#result").text(decodedText + ',' + name);
-                            tempAlert(decodedText, 5000);
-                            console.log(decodedText);
-                        } else {
-                            $("#result").text(decodedText);
-                            console.log("no pic");
-                        }
-                    }
-
-                });
-
+                data: { imageData: data },
+                success: function (response) {
+                    if (response != null) {
+                        var person = response.person;  //誰打卡
+                        var time = response.time;      //打卡時間調整成看得懂的字串
+                        var timeview = time.substr(0, 10) + " " + time.substr(11, 2) + ":" + time.substr(14, 2) + ":" + time.substr(17, 2);
+                        var morningafternoon = response.morningafternoon
+                        if (response.word = "e") { //員工
+                            clearInterval(scannostop);//若掃到東西有回傳的化先停止掃描
+                            alertwindow(person, timeview, morningafternoon);  //視窗彈跳結束後繼續掃描
+                        };
+                    };
+                }
             });
+        };
 
-
-            //固定時間掃描
-            var canvas = document.getElementById('canvas');
-            setInterval(function () {
-                //var data = canvas.toDataURL("image/png");
-                //debugger;
-                //$.ajax({
-                //    type: "POST",
-                //    url: '/Consult/decode',
-                //    data: { imageData: data },
-                //    success: function (response) {
-                //        if (response.success) {
-                //            var decodedText = response.decodedText;
-                //            $("#result").text(decodedText);
-                //               console.log("hi");
-                //        } else {
-                //               $("#result").text(decodedText);
-                //               console.log("no pic");
-                //        }
-                //    }
-
-                //});
-            }, 5000);
-
-
-            //設定跳出訊息
-            //function tempAlert(text, duration) {
-            //    var el = document.createElement("div");
-            //    el.setAttribute("style", "position:absolute;top:40%;left:20%;background-color:white;");
-            //    el.innerHTML = text;
-            //    setTimeout(function () {
-            //        el.parentNode.removeChild(el);
-            //    }, duration);
-            //    document.body.appendChild(el);
-            //};
-            //tempAlert("close", 5000);//呼叫函式
-
-
-            function tempAlert(text, duration) {
-                var d = new Date();
-                let yy = d.getFullYear();
-                let MM = d.getMonth() + 1;
-                let dd = d.getDate();
-                let HH = d.getHours();
-                let mm = d.getMinutes();
-                let ss = d.getSeconds();
-                var time = yy + '-' + MM + '-' + dd + ' ' + HH + ':' + mm + ':' + ss ;
-
-                var el = document.createElement("div");
-                el.setAttribute("style", "position:absolute;top:30%;left:20%;background-color:white;width:350px;height:50px");
-                el.setAttribute("class", "align-items-center text-white bg-primary border-0 d-flex");
-                el.innerHTML = '解碼字串：'+ text +" ;打卡時間"+ time;
-                setTimeout(function () {
-                    el.parentNode.removeChild(el);
-                }, duration);
-                document.body.appendChild(el);
-            };
+        //參考網址https://sweetalert2.github.io/recipe-gallery/timer-methods.html
+        function alertwindow(text, time, when) {         //彈跳視窗
+            Swal.fire({
+                title: '關心康復之家',   //彈窗的標題
+                html:                    //彈窗的 HTML 內容
+                    `<div class="position-relative">
+                                          <h3>${text}&nbsp你好</h3></br>
+                                                          <h4>${when}&nbsp${time}</h4></br>
+                                                  <strong class="position-absolute bottom-0 end-0 fs-6" ></strong>
+                                        </div>`,
+                //`<h3>${text}&nbsp你好</h3></br>` +   //可以擺其他的標籤
+                //`<h4>打卡時間：${time}</h4>`+
+                //'<strong></strong>',
+                timer: 3000,    //定義彈窗自動關閉的時間（以毫秒為單位）
+                showConfirmButton: false,
+                didOpen: () => {     //彈窗打開後要執行的函數
+                    const content = Swal.getHtmlContainer()
+                    const $ = content.querySelector.bind(content)
+                    //Swal.showLoading()//顯示圖取動畫，繞圈圈
+                    //timerInterval = setInterval(() => {  //讀秒功能
+                    //    Swal.getHtmlContainer().querySelector('strong')
+                    //        .textContent = Math.floor((Swal.getTimerLeft() / 1000) + 1)
+                    //}, 100)
+                },
+                willClose: () => {  //彈窗關閉前要執行的函數
+                    //clearInterval(timerInterval)
+                    timego();//彈跳視窗結束後繼續每秒執行一次掃描
+                }
+            })
+        }
 
 
 
 
-        </script>
+
+    </script>
 }
