@@ -237,52 +237,52 @@ namespace prjRehabilitation.Controllers
             return RedirectToAction("List");
 
         }
-        public async Task<IActionResult> Callback()
-        {
-            if (!this.Request.Query.TryGetValue("code", out var code))
-            {
-                return this.StatusCode(400);
-            }
+        //#todo 壞掉的區塊
+        //public async Task<IActionResult> Callback()
+        //{
+        //    if (!this.Request.Query.TryGetValue("code", out var code))
+        //    {
+        //        return this.StatusCode(400);
+        //    }
 
-            var (accessToken, idToken) = await this.ExchangeAccessToken(code);
+        //    var (accessToken, idToken) = await this.ExchangeAccessToken(code);
 
-            if (accessToken == null)
-            {
-                return this.StatusCode(400);
-            }
+        //    if (accessToken == null)
+        //    {
+        //        return this.StatusCode(400);
+        //    }
 
-            // TODO: Save AccessToken and IdToken
+        //    // TODO: Save AccessToken and IdToken
 
-            // TODO: User Login
+        //    // TODO: User Login
 
-            return this.Redirect("/");
-        }
+        //    return this.Redirect("/");
+        //}
 
-        private async Task<(string, string)> ExchangeAccessToken(string code)
-        {
-            var client =this.Register();
+        //private async Task<(string, string)> ExchangeAccessToken(string code)
+        //{
+        //    var client =this.Register();
 
-            var request = new HttpRequestMessage(HttpMethod.Post, "AccessTokenUrl");
+        //    var request = new HttpRequestMessage(HttpMethod.Post, "AccessTokenUrl");
 
-            request.Content = new FormUrlEncodedContent(
-                new Dictionary<string, string>
-                {
-                    ["grant_type"] = "authorization_code",
-                    ["code"] = code,
-                    ["redirect_uri"] = "RedirectURI",
-                    ["client_id"] = "405238953344-evflmg05d4fffkh7avfuvt3b9pnlmetk.apps.googleusercontent.com",
-                    ["client_secret"] = "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"
-                });
+        //    request.Content = new FormUrlEncodedContent(
+        //        new Dictionary<string, string>
+        //        {
+        //            ["grant_type"] = "authorization_code",
+        //            ["code"] = code,
+        //            ["redirect_uri"] = "RedirectURI",
+        //            ["client_id"] = "405238953344-evflmg05d4fffkh7avfuvt3b9pnlmetk.apps.googleusercontent.com",
+        //            ["client_secret"] = "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"
+        //        });
 
-            var response = await client.SendAsync(request);
+        //    var response = await client.SendAsync(request);
+        //    if (response.StatusCode != HttpStatusCode.OK) return (null, null);
 
-            if (response.StatusCode != HttpStatusCode.OK) return (null, null);
+        //    var content = await response.Content.ReadAsStringAsync();
 
-            var content = await response.Content.ReadAsStringAsync();
+        //    var result = JsonNode.Parse(content);
 
-            var result = JsonNode.Parse(content);
-
-            return (result["access_token"].GetValue<string>(), result["id_token"].GetValue<string>());
-        }
+        //    return (result["access_token"].GetValue<string>(), result["id_token"].GetValue<string>());
+        //}
     }
 }

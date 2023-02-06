@@ -12,6 +12,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="Views\ECPay\CallbackCustomer.cshtml" />
+    <None Include="Views\ECPay\CallbackReturn.cshtml" />
+    <None Include="Views\ECPay\Index.cshtml" />
+    <None Include="Views\ECPay\Privacy.cshtml" />
+    <None Include="Views\ECPay\SendToNewebPay.cshtml" />
     <None Include="Views\Forum\Index.cshtml" />
     <None Include="Views\Forum\List.cshtml" />
     <None Include="Views\Forum\NewPost.cshtml" />
@@ -27,9 +32,12 @@
     <None Include="Views\Patients\patients.cshtml" />
     <None Include="Views\Product\Cart.cshtml" />
     <None Include="Views\Product\Create.cshtml" />
+    <None Include="Views\Product\CreateOrder.cshtml" />
     <None Include="Views\Product\Edit.cshtml" />
+    <None Include="Views\Product\GetOrderInfo.cshtml" />
     <None Include="Views\Product\List.cshtml" />
     <None Include="Views\Product\List_B.cshtml" />
+    <None Include="Views\Product\pay.cshtml" />
   </ItemGroup>
 
   <ItemGroup>
