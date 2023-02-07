@@ -44,7 +44,12 @@ namespace prjRehabilitation.ViewModel.Eric
 		[Required(ErrorMessage = "必填")]
 		public string? fRecorderDate { get { return _calendar.FRecorderDate; } set { _calendar.FRecorderDate = value; } }
 		[DisplayName("可視等級")]
-		[Required(ErrorMessage = "若無填值預設最高級")]
+		[Required(ErrorMessage = "若無填值預設最低層級")]
 		public byte FVisualHierarchy { get { return _calendar.FVisualHierarchy; } set { _calendar.FVisualHierarchy = value; } }
-	}
+        [DisplayName("審核狀態")]
+        
+        public bool? FApplyVisitor { get { return _calendar.FApplyVisitor; } set { _calendar.FApplyVisitor = value; } }
+		public int? FCustomerid { get { return _calendar.FCustomerid; } set { _calendar.FCustomerid = value; } }
+        public int? FAdminId { get { return _calendar.FAdminId; } set { _calendar.FAdminId = value; } }
+    }
 }

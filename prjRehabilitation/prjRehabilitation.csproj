@@ -12,6 +12,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="Views\ECPay\CallbackCustomer.cshtml" />
+    <None Include="Views\ECPay\CallbackReturn.cshtml" />
+    <None Include="Views\ECPay\Index.cshtml" />
+    <None Include="Views\ECPay\Privacy.cshtml" />
+    <None Include="Views\ECPay\SendToNewebPay.cshtml" />
     <None Include="Views\Forum\Index.cshtml" />
     <None Include="Views\Forum\List.cshtml" />
     <None Include="Views\Forum\NewPost.cshtml" />
@@ -27,12 +32,16 @@
     <None Include="Views\Patients\patients.cshtml" />
     <None Include="Views\Product\Cart.cshtml" />
     <None Include="Views\Product\Create.cshtml" />
+    <None Include="Views\Product\CreateOrder.cshtml" />
     <None Include="Views\Product\Edit.cshtml" />
+    <None Include="Views\Product\GetOrderInfo.cshtml" />
     <None Include="Views\Product\List.cshtml" />
     <None Include="Views\Product\List_B.cshtml" />
+    <None Include="Views\Product\pay.cshtml" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.Google" Version="6.0.13" />
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="6.0.12" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.12" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.12">

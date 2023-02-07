@@ -1,0 +1,129 @@
+﻿@model prjRehabilitation.ViewModel.Eric.CCalendarViewModel
+
+@{
+    ViewData["Title"] = "CalendarApplyVisitor";
+}
+
+<h1>CalendarApplyVisitor</h1>
+
+<h4>CCalendarViewModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="CalendarApplyVisitor" name="applyForm">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            @*    <div class="form-group">
+            <label asp-for="FId" class="control-label"></label>
+            <input asp-for="FId" class="form-control" />
+            <span asp-validation-for="FId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+            <label asp-for="FDeleteBool" class="control-label"></label>
+            <input asp-for="FDeleteBool" class="form-control" />
+            <span asp-validation-for="FDeleteBool" class="text-danger"></span>
+            </div>*@
+            <div class="form-group">
+                <label class="control-label">申請日期</label>
+                <input asp-for="date" type="date" class="form-control" />
+                <span asp-validation-for="date" class="text-danger"></span>
+            </div>
+            @* <div class="form-group">
+            <label asp-for="eventName" class="control-label"></label>
+            <input asp-for="eventName" class="form-control" />
+            <span asp-validation-for="eventName" class="text-danger"></span>
+            </div>*@
+            @*     <div class="form-group">
+            <label asp-for="className" class="control-label"></label>
+            <input asp-for="className" class="form-control" />
+            <span asp-validation-for="className" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+            <label asp-for="dateColor" class="control-label"></label>
+            <input asp-for="dateColor" class="form-control" />
+            <span asp-validation-for="dateColor" class="text-danger"></span>
+            </div>*@
+            @*<div class="form-group">
+            <label asp-for="title" class="control-label"></label>
+            <input asp-for="title" class="form-control" />
+            <span asp-validation-for="title" class="text-danger"></span>
+            </div>*@
+            <div class="form-group">
+                <label asp-for="content" class="control-label"></label>
+                <textarea asp-for="content" class="form-control" style="height:350px"> </textarea>
+                <span asp-validation-for="content" class="text-danger"></span>
+            </div>
+            <div class="row">
+                <div class="form-group col">
+                    <label asp-for="fRecorder" class="control-label"></label>
+                    <input asp-for="fRecorder" class="form-control" />
+                    <span asp-validation-for="fRecorder" class="text-danger"></span>
+                </div>
+                <div class="form-group col">
+                    <label asp-for="fRecorderDate" class="control-label"></label>
+                    <input asp-for="fRecorderDate" class="form-control" />
+                    <span asp-validation-for="fRecorderDate" class="text-danger"></span>
+                </div>
+            </div>
+
+            @*  <div class="form-group">
+            <label asp-for="FVisualHierarchy" class="control-label"></label>
+            <input asp-for="FVisualHierarchy" class="form-control" />
+            <span asp-validation-for="FVisualHierarchy" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+            <label asp-for="FApplyVisitor" class="control-label"></label>
+            <input asp-for="FApplyVisitor" class="form-control" />
+            <span asp-validation-for="FApplyVisitor" class="text-danger"></span>
+            </div>*@
+            <div class="form-group">
+                <input type="submit" id="sendApply" value="送出申請" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="List">Back to List</a>
+</div>
+
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div id="messageboxBody" class="modal-body" >
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Understood</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts{
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js" integrity="sha512-rstIgDs0xPgmG6RX1Aba4KV5cWJbAMcvRCVmglpam9SoHZiUCyQVDdH2LPlxoHtrv17XWblE/V/PP+Tr04hbtA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/4.0.0/jquery.validate.unobtrusive.min.js" integrity="sha512-xq+Vm8jC94ynOikewaQXMEkJIOBp7iArs3IhFWSWdRT3Pq8wFz46p+ZDFAR7kHnSFf+zUv52B3prRYnbDRdgog==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        //document.querySelector("#sendApply").addEventListener("click", async function () {
+
+
+        //    const response = await fetch("@Url.Content("~/")CalendarAjax/SendMailByGmail", {
+
+        //        method: 'POST',
+        //        body: new FormData(applyForm)
+        //    });
+        //    const text = await response.text();
+        //    //alert(text);
+        //    document.querySelector("#messageboxBody").innerHTML = text;
+        //    new bootstrap.Modal(document.querySelector("#staticBackdrop"), {}).show();
+        //});
+
+    </script>
+}

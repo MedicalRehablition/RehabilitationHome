@@ -2,6 +2,7 @@
 
 @{
 	ViewData["Title"] = "Create";
+	Layout = "AdminLayout";
 }
 
 @section Styles{
@@ -54,11 +55,11 @@
 					<span asp-validation-for="content" class="text-danger"></span>
 				</div>
 				<div class="col">
-					<label asp-for="FVisualHierarchy" class="control-label"></label>
+                    <label asp-for="FVisualHierarchy" class="control-label"></label>(0為全可視)
 					<select asp-for="FVisualHierarchy" class="form-control">
 						@for (int FVisualHierarchyI = 0; FVisualHierarchyI < 15; FVisualHierarchyI++)
 						{
-							<option>@FVisualHierarchyI</option>
+							<option selected>@FVisualHierarchyI</option>
 						}
 
 					</select>
@@ -76,7 +77,7 @@
 
 
 <div>
-	<a asp-action="Index">Back to List</a>
+	<a asp-action="List">Back to List</a>
 </div>
 
 

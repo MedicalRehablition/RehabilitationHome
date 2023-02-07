@@ -1,0 +1,125 @@
+﻿@model IEnumerable<prjRehabilitation.ViewModel.Eric.CCalendarViewModel>
+
+@{
+    ViewData["Title"] = "CalendarApplyCensorList";
+}
+
+<h1>CalendarApplyCensorList</h1>
+
+<p>
+    <a asp-action="CalendarApplyCensorCreate" class="genric-btn primary e-large">後端新增會客預約</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            @*      <th>
+            @Html.DisplayNameFor(model => model.FId)
+            </th>
+            <th>
+            @Html.DisplayNameFor(model => model.FDeleteBool)
+            </th>*@
+            <th>
+                預約日期
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.eventName)
+            </th>
+            @*   <th>
+            @Html.DisplayNameFor(model => model.className)
+            </th>
+            <th>
+            @Html.DisplayNameFor(model => model.dateColor)
+            </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.content)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.fRecorder)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.fRecorderDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FVisualHierarchy)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FApplyVisitor)
+            </th>
+            <th>
+                填表人ID
+            </th>
+            @*<th>
+            @Html.DisplayNameFor(model => model.FAdminId)
+            </th>*@
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                @*     <td>
+            @Html.DisplayFor(modelItem => item.FId)
+            </td>
+            <td>
+            @Html.DisplayFor(modelItem => item.FDeleteBool)
+            </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.eventName)
+                </td>
+                @* <td>
+            @Html.DisplayFor(modelItem => item.className)
+            </td>*@
+                @*      <td>
+            @Html.DisplayFor(modelItem => item.dateColor)
+            </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.content)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fRecorder)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fRecorderDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FVisualHierarchy)
+                </td>
+                <td>
+                    @*@Html.DisplayFor(modelItem => item.FApplyVisitor)*@
+                    <input id="calendarAV" class="calendarAVs" asp-for="@item.FApplyVisitor" disabled="disabled" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FCustomerid)
+                </td>
+                @*<td>
+            @Html.DisplayFor(modelItem => item.FAdminId)
+            </td>*@
+                <td>
+                    @Html.ActionLink("審核", "Edit", new { /* id=item.PrimaryKey */ })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+@section Scripts{
+    <script>
+        var getAV = document.querySelectorAll(".calendarAVs");
+        for(var av of getAV){
+            //console.log(av.value);
+            if (av.value == "False") { av.style.color = "red"; }
+            else{ av.style.color = "blue";}
+        }
+    </script>
+    }

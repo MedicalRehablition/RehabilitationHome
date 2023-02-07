@@ -4,9 +4,18 @@
     ViewData["Title"] = "Edit";
 }
 
-<h1>Edit</h1>
+@*<h1></h1>*@
 
-<h4>CConsultationViewModel</h4>
+<style>
+    textarea {
+    width: 300px;
+    height: 150px;
+    resize: none;
+}
+
+</style>
+
+<h4 class="custtitle">編輯作業</h4>
 <hr />
 <div class="row">
     <div class="col-md-9">
@@ -14,25 +23,25 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="row">
                 <div class="col-3 col-md-3">
-                    <input type="checkbox" id="1" name="Typeconsult" value="1">
+                    <input type="checkbox" id="1" name="Typeconsult" value="1" class="chcust">
                     <label for="1">衛生習慣</label><br />
-                    <input type="checkbox" id="2" name="Typeconsult" value="2">
+                    <input type="checkbox" id="2" name="Typeconsult" value="2" class="chcust">
                     <label for="2">居家清潔</label><br />
-                    <input type="checkbox" id="3" name="Typeconsult" value="3">
+                    <input type="checkbox" id="3" name="Typeconsult" value="3" class="chcust">
                     <label for="3">飲食起居</label><br />
-                    <input type="checkbox" id="4" name="Typeconsult" value="4">
+                    <input type="checkbox" id="4" name="Typeconsult" value="4" class="chcust">
                     <label for="4">認知能力</label><br />
-                    <input type="checkbox" id="5" name="Typeconsult" value="5">
+                    <input type="checkbox" id="5" name="Typeconsult" value="5" class="chcust">
                     <label for="5">體能表現</label><br />
-                    <input type="checkbox" id="6" name="Typeconsult" value="6">
+                    <input type="checkbox" id="6" name="Typeconsult" value="6" class="chcust">
                     <label for="6">人際互動</label><br />
-                    <input type="checkbox" id="7" name="Typeconsult" value="7">
+                    <input type="checkbox" id="7" name="Typeconsult" value="7" class="chcust">
                     <label for="7">烹飪能力</label><br />
-                    <input type="checkbox" id="8" name="Typeconsult" value="8">
+                    <input type="checkbox" id="8" name="Typeconsult" value="8" class="chcust">
                     <label for="8">休閒安排</label><br />
-                    <input type="checkbox" id="9" name="Typeconsult" value="9">
+                    <input type="checkbox" id="9" name="Typeconsult" value="9" class="chcust">
                     <label for="9">財務管理</label><br />
-                    <input type="checkbox" id="10" name="Typeconsult" value="10">
+                    <input type="checkbox" id="10" name="Typeconsult" value="10" class="chcust">
                     <label for="10">健康促進</label><br />
                 </div>  @*checkbox*@
                 <div class="col col-md-9">
@@ -46,27 +55,27 @@
                     </div>
                     <div class="form-group">
                         <label asp-for="Date" class="control-label"></label>
-                        <input type="date" asp-for="Date" class="form-control" />
+                        <input type="date" asp-for="Date" class="form-control cust"  />
                         <span asp-validation-for="Date" class="text-danger"></span>
                     </div>
                     <div class="form-group">
                         <label asp-for="Summary" class="control-label"></label>
-                        <textarea asp-for="Summary" class="form-control"></textarea>
+                        <textarea asp-for="Summary" class="form-control cust"></textarea>
                         <span asp-validation-for="Summary" class="text-danger"></span>
                     </div>
                     <div class="form-group">
                         <label asp-for="Assessment" class="control-label"></label>
-                        <textarea asp-for="Assessment" class="form-control"></textarea>
+                        <textarea asp-for="Assessment" class="form-control cust"></textarea>
                         <span asp-validation-for="Assessment" class="text-danger"></span>
                     </div>
                     <div class="form-group">
                         <label asp-for="Result" class="control-label"></label>
-                        <textarea asp-for="Result" class="form-control" ></textarea>
+                        <textarea asp-for="Result" class="form-control cust"></textarea>
                         <span asp-validation-for="Result" class="text-danger"></span>
                     </div>
                 </div>
             </div>
-            <div class="form-group">
+            <div class="form-group employee">
                 <input type="submit" value="存檔" class="btn btn-primary" />
             </div>
         </form>
@@ -74,7 +83,7 @@
 </div>
 
 <div>
-    <a href="/Consult/DateList/@Model.PatinetId">取消修改作業</a>
+    <a href="/Consult/DateList/@Model.PatinetId" class="cancel">取消修改作業</a>
 </div>
 
 @section Scripts {
@@ -82,7 +91,7 @@
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
     <script>
-
+//-----------chechbox 顯示--------
         var list = [];
         @for (int i = 0; i < Model.Typeconsult.Count(); i++)
         {
@@ -92,6 +101,16 @@
             $.each(list, function (index, value) {
                 $("#" + value).prop("checked", true);
             });
+//-----customer setting----------------
+    var set = `@ViewBag.setting`;
+        //debugger;
+        if (set == "customer") {
+            $(".cancel").text("回上一頁");
+            $(".custtitle").text("會談紀錄");
+            $(".chcust").prop("disabled", true);//checkbox不能修改
+            $(".cust").prop("readOnly", true);  //textarea只能讀          
+            $(".employee").hide();//存檔按鈕藏起來
+        }
 
     </script>
 }

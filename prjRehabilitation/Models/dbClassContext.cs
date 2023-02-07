@@ -52,7 +52,7 @@ namespace prjRehabilitation.Models
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Data Source=medicate.database.windows.net;Initial Catalog=dbClass;User ID=medical;Password=Uxul6yj3;");
+                optionsBuilder.UseSqlServer("Data Source=medicate.database.windows.net;Initial Catalog=dbClass;User ID=medical;Password=Uxul6yj3");
             }
         }
 
@@ -510,6 +510,8 @@ namespace prjRehabilitation.Models
 
                 entity.Property(e => e.FId).HasColumnName("fID");
 
+                entity.Property(e => e.FApplyVisitor).HasColumnName("fApplyVisitor");
+
                 entity.Property(e => e.FClassName)
                     .HasMaxLength(100)
                     .HasColumnName("fClassName");
@@ -545,6 +547,8 @@ namespace prjRehabilitation.Models
                     .HasColumnName("fTitle");
 
                 entity.Property(e => e.FVisualHierarchy).HasColumnName("fVisualHierarchy");
+                entity.Property(e => e.FCustomerid).HasColumnName("fCustomerid");
+                entity.Property(e => e.FAdminId).HasColumnName("fAdminId");
             });
 
             modelBuilder.Entity<TClassThemeList>(entity =>
