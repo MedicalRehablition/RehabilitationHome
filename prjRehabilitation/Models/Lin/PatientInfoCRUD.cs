@@ -33,6 +33,7 @@ namespace prjRehabilitation.Models.Lin
             p.FSex = vm.fSex;
             p.FCheckin = vm.fCheckin;
             p.FHos = vm.fHos;
+            p.FEdu= vm.fEdu;
             p.FAddressPermanent = vm.fAddressPermanent;
             p.FAddressResidential = vm.fAddressResidential;
             p.FGrant = vm.fGrant;

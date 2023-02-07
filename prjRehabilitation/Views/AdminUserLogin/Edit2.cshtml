@@ -1,0 +1,134 @@
+﻿@model prjRehabilitation.ViewModel.CAdminViewModel
+@{
+    Layout = "AdminLayout";
+}
+<h4>編輯會員資料</h4>
+<hr />
+<form asp-action="Edit2" enctype="multipart/form-data">
+    <div class="row gutters-sm">
+        <div class="col-md-4 mb-3">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <input asp-for="Fid" class="form-control" type="hidden" />
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-flex flex-column align-items-center text-center">
+                        @{
+                            if (Model.Fphoto != null)
+                            {
+                                <img class="rounded-circle border border-primary img" src="~/images/@Model.Fphoto" alt="Admin" width="300" height="300" />
+                            }
+                            else
+                            {
+                                <img class="rounded-circle border border-primary img" src="~/images/imageDefault.png" width="300" height="300" />
+                            }
+                        }
+                    </div>
+                    <div>
+                        <input type="file" asp-for="photo" class="form-control" id="file" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8  form-group">
+            <div class="card mb-3">
+        <div class="card-body">
+            <div class="form-group">
+                        <div class="row">
+                            <div cla ss="col-sm-3">
+                                <label asp-for="FName" class="control-label"></label>
+                            </div>
+                            <div class="col-sm-9 text-secondary">
+                                <input asp-for="FName" class="form-control" />
+                            </div>
+                        </div>
+                <hr>
+                <div class="row">
+                    <div cla ss="col-sm-3">
+                        <label asp-for="FPassword" class="control-label"></label>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                        <input asp-for="FPassword" class="form-control" />
+                    </div>
+                </div>
+                <hr>
+                <div class="col-md-6 mb-4 pb-2">
+                    <div class="form-outline">
+                        <label class="form-label" for="emailAddress">信箱</label>
+                        <input asp-for="FEmail" type="email" id="emailAddress" class="form-control form-control-lg" />
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-12">
+                        <label asp-for="FRank" class="control-label">職級</label>
+                        <select asp-for="FRank" class="form-select" aria-label="Default select example">
+                            <option value="1">經理</option>
+                            <option value="2">副理</option>
+                            <option value="3">員工</option>
+                        </select>
+                    </div>
+                </div>
+                <hr>
+                <div class="col-md-6 mb-4">
+
+                    <h6 class="mb-2 pb-1">性別: </h6>
+
+                    <div class="form-check form-check-inline">
+                        <input asp-for="FSex" class="form-check-input" asp-for="FBirth" type="radio" id="femaleGender"
+                               value="女" checked />
+                        <label class="form-check-label" for="femaleGender">女</label>
+                    </div>
+
+                    <div class="form-check form-check-inline">
+                        <input asp-for="FSex" class="form-check-input" asp-for="FBirth" type="radio" id="maleGender"
+                               value="男" />
+                        <label class="form-check-label" for="maleGender">男</label>
+                    </div>
+
+                    <div class="form-check form-check-inline">
+                        <input asp-for="FSex" class="form-check-input" asp-for="FBirth" type="radio" id="otherGender"
+                               value="其他" />
+                        <label class="form-check-label" for="otherGender">其他</label>
+                    </div>
+
+                </div>
+                <hr>
+                <div class="row">
+                    <div cla ss="col-sm-3">
+                        <label asp-for="FBirth" class="control-label"></label>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                        <input type="date" max="@DateTime.Today" asp-for="FBirth" class="form-control" />
+                    </div>
+                </div>
+                <hr>
+                        <div class="form-group">
+                            <input type="submit" value="儲存" class="btn btn-primary" />
+                        </div>
+            </div>
+        </div>
+    </div>
+        </div>
+    </div>
+  
+</form>
+
+
+<div>
+    <a asp-action="List">Back to List</a>
+</div>
+@section Scripts{
+    <script>
+        $('#file').on('change', function (e) {
+            const file = this.files[0];
+            const objURL = URL.createObjectURL(file);
+            console.log(this);
+            $('.img').attr('src', objURL);
+        });
+        </script>
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
