@@ -57,7 +57,7 @@ namespace prjRehabilitation.Controllers
                 if (admin.FEmail.Equals(vm.txtAccount) && admin.FPassword.Equals(vm.txtPassword))
                 {
                     string json = JsonSerializer.Serialize(admin);
-                    HttpContext.Session.SetString(CDictionary.SK_Login_User, json);
+                    HttpContext.Session.SetString(CDictionary.SK_ADMIN_User, json);
                     return RedirectToAction("List");
                 }
             }
@@ -75,7 +75,7 @@ namespace prjRehabilitation.Controllers
                     return Content("密碼錯誤");
                 }
                 string json = JsonSerializer.Serialize(admin);
-                HttpContext.Session.SetString(CDictionary.SK_Login_User, json);
+                HttpContext.Session.SetString(CDictionary.SK_ADMIN_User, json);
                 return Content("登入成功");
             }
             return Content("無此帳號,請重新登入");
@@ -187,7 +187,7 @@ namespace prjRehabilitation.Controllers
         }
         public IActionResult GetUserSession()
         {
-            string json = HttpContext.Session.GetString(CDictionary.SK_Login_User);
+            string json = HttpContext.Session.GetString(CDictionary.SK_ADMIN_User);
             if (string.IsNullOrEmpty(json))
             {
                 return Content("");
@@ -197,7 +197,7 @@ namespace prjRehabilitation.Controllers
         }
         public IActionResult RemoveUserSession()
         {
-            HttpContext.Session.Remove(CDictionary.SK_Login_User);
+            HttpContext.Session.Remove(CDictionary.SK_ADMIN_User);
             return Content("清除session");
         }
 

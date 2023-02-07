@@ -1,6 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using prjRehabilitation.Models;
+using prjRehabilitation.Models.Lin;
 using prjRehabilitation.ViewModel;
+using prjRehabilitation.ViewModel.Lin;
+using System.Text.Json;
+
 using static Microsoft.Extensions.Logging.EventSource.LoggingEventSource;
 
 namespace prjRehabilitation.Controllers
@@ -12,81 +17,111 @@ namespace prjRehabilitation.Controllers
         {
             _environment = environment;
         }
-        public IActionResult List(CKeywordViewModel vm)
+        public IActionResult RemoveCartItem(int id)
         {
-            dbClassContext db = new dbClassContext();
-            string keyword = vm.txtKeyword;
-            IEnumerable<Product> prod = null;
-            if(keyword== null)
+			string json;
+			VMCart cart = new VMCart();
+			if (HttpContext.Request.Cookies.TryGetValue(CDictionary.SK_Purchased_Products_List, out json))
+			{
+				cart = JsonSerializer.Deserialize<VMCart>(json);
+			}
+            else return Json("{'outcome' : '發生不該發生的錯誤:購物車不存在'}");
+			
+            if (cart.Item.Contains(id)) cart.Item.Remove(id);
+			
+			HttpContext.Response.Cookies.Append(CDictionary.SK_Purchased_Products_List, JsonSerializer.Serialize(cart));
+
+			return RedirectToAction("Cart");
+		}
+		public IActionResult ResetCart()
+		{
+			string json;
+			VMCart cart = new VMCart();
+			HttpContext.Response.Cookies.Append(CDictionary.SK_Purchased_Products_List, JsonSerializer.Serialize(cart));
+
+            return RedirectToAction("Cart");
+        }
+        public IActionResult AddToCart(int id)
+        {
+            string json;
+            VMCart cart = new VMCart();
+            if (!HttpContext.Request.Cookies.TryGetValue(CDictionary.SK_Purchased_Products_List, out json))
             {
-                prod = from c in db.Products
-                       select c;
+                HttpContext.Response.Cookies.Append(CDictionary.SK_Purchased_Products_List, JsonSerializer.Serialize(cart));
             }
             else
             {
-                prod= db.Products.Where(c=>c.FName.Contains(keyword)).ToList();
+                cart = JsonSerializer.Deserialize<VMCart>(json);
             }
-            List<CProductViewModel> LIST = new List<CProductViewModel>();
-            foreach(var c in prod)
-            {
-                CProductViewModel v = new CProductViewModel();
-                v.Product = c;
-                LIST.Add(v);
-            }
-            return View(LIST);
+
+            if (cart.Item.Contains(id)) return Json(new { outcome = "該產品已加入購物車" });
+
+			cart.Item.Add(id);
+            HttpContext.Response.Cookies.Append(CDictionary.SK_Purchased_Products_List, JsonSerializer.Serialize(cart));
+
+			return Json(new { outcome = "加入購物車成功"});
         }
-        public IActionResult Edit(int? id)
+        public IActionResult Cart()
         {
-            dbClassContext db = new dbClassContext();
-            Product product = db.Products.FirstOrDefault(c=>c.Fid==id);
-            CProductViewModel vm = new CProductViewModel();
-            vm.Product = product;
-            return View(vm);
+			string json;
+			VMCart cart = null;
+			if (HttpContext.Request.Cookies.TryGetValue(CDictionary.SK_Purchased_Products_List, out json))
+			{
+				cart = JsonSerializer.Deserialize<VMCart>(json);
+			}
+			else
+			{
+				return RedirectToAction("List_B");
+			}
+			return View((new ProductCRUD()).GetCartItems(cart));
+        }
+        public IActionResult List()
+        {
+            return View((new ProductCRUD()).GetTakeUpProducts());
+        }
+        public IActionResult List_B()
+        {
+            return View((new ProductCRUD()).GetProducts());
+        }
+
+        public IActionResult GetAllProduct()
+        {
+            return Json((new ProductCRUD()).GetProducts);
+        }
+        public IActionResult Edit(int id)
+        {
+            return View((new ProductCRUD()).getTargetProduct(id));
         }
         [HttpPost]
         public IActionResult Edit(CProductViewModel vm)
         {
-            dbClassContext db = new dbClassContext();
-            Product product = db.Products.FirstOrDefault(c => c.Fid == vm.Fid);
-            if (product != null)
-            {
-                if (vm.photo != null)
-                {
-                    string photoName = Guid.NewGuid().ToString() + ".jpg";
-                    string path = _environment.WebRootPath + "/images/" + photoName;
-                    product.FPhoto = photoName;
-                    vm.photo.CopyTo(new FileStream(path, FileMode.Create));
-                }
-                product.Fid=vm.Fid;
-                product.FPrice=vm.FPrice;
-                product.FQty=vm.FQty;
-                product.FName=vm.FName;
-                db.SaveChanges();
-            }
-            return RedirectToAction("List");
+            (new ProductCRUD()).edit(vm);
+            return RedirectToAction("List_B");
         }
-        public IActionResult Delete(int? id)
+        public IActionResult Delete(int id)
         {
-            dbClassContext db = new dbClassContext();
-            Product prod = db.Products.FirstOrDefault(c => c.Fid == id);
-            if(prod != null)
-            {
-                db.Products.Remove(prod);
-                db.SaveChanges();
-            }
-            return RedirectToAction("List");
+            (new ProductCRUD()).Delete(id);
+            return RedirectToAction("List_B");
         }
         public IActionResult Create()
         {
             return View();
         }
+        public IActionResult TakeOff(int id)
+        {
+            (new ProductCRUD()).TakeOff(id);
+            return RedirectToAction("List_B");
+        }
+        public IActionResult TakeUp(int id)
+        {
+            (new ProductCRUD()).TakeUp(id);
+            return RedirectToAction("List_B");
+        }
         [HttpPost]
         public IActionResult Create(CProductViewModel vm)
         {
-            dbClassContext db = new dbClassContext();
-            db.Products.Add(vm.Product);
-            db.SaveChanges();
-            return RedirectToAction("List");
+            (new ProductCRUD()).Create(vm);
+            return RedirectToAction("List_B");
         }
     }
 }

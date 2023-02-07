@@ -15,5 +15,6 @@ namespace prjRehabilitation.Models
         public string FContent { get; set; } = null!;
         public string FRecorder { get; set; } = null!;
         public string FRecorderDate { get; set; } = null!;
+        public byte FVisualHierarchy { get; set; }
     }
 }

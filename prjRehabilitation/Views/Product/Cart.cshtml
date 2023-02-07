@@ -1,0 +1,147 @@
+﻿@model IEnumerable<prjRehabilitation.ViewModel.CProductViewModel>
+
+@{
+    ViewData["Title"] = "List";
+    Layout = "_Layout";
+}
+<br />
+<a class="genric-btn primary-border radius e-large " href="@Url.Content("~/Product/List")">繼續購物</a>
+<br />
+
+<table class="table">
+    <thead>
+        <tr class="column">
+            <th>
+                <label>全選
+                    <input type="checkbox" checked id="cbAll" class="form-check-input mt-0" />
+                </label>
+            </th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th>
+                <button onclick="ResetCart()" class="genric-btn danger-border radius e-large ">清空購物車</button>
+            </th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            foreach (var item in Model)
+            {
+                string imgSrc = "";
+                if (item.FPhoto != null)
+                {
+                    var base64 = Convert.ToBase64String(item.FPhoto);
+                    imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+                }
+                <tr id="product @item.Fid" name="order">
+                    <td>
+                            <input class="form-check-input mt-0" type="checkbox" id="@item.Fid" checked>
+                    </td>
+                    @if (!string.IsNullOrEmpty(imgSrc))
+                    {
+                        <td><img class="" src="@imgSrc" alt="顯示錯誤" width="100" height="100" /></td>
+                    }
+                    else
+                    {
+                        <td><img class="" src="~/images/imageDefault.png" width="100" height="100" /></td>
+                    }
+                    <td><span class="text-dark">@item.FName</span></td>
+                    <td>
+                        <span class="text-dark">庫存量:@item.FQty</span>
+                    </td>
+                    <td>
+                        <label class="text-dark">數量
+                            <input type="number" name="num" value="1" max="@item.FQty" min="1" onchange="checkNum(value,event)">
+                        </label>
+                    </td>
+                    <td>
+                        <label class="text-dark" name="price">單價:@Math.Ceiling((decimal)item.FPrice)
+                            <input type="hidden" value="@Math.Ceiling((decimal)item.FPrice)">    
+                        </label>
+                    </td>
+                    <td>
+                        @Html.ActionLink("移除","RemoveCartItem","Product",new{ id =item.Fid },new {@class="genric-btn danger-border radius  "})
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+<table class="table">
+    <thead class="column">
+        <tr>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody >
+    <tr class="column">
+        <td class="carttitleBox">
+        </td>
+        <td class="payInfoBox">
+              <p>商品總金額：$<span id="total">0</span></p>
+        </td>
+        <td>
+            <p class="freightAmt" style="display:none">運費：<span><i>$</i><i id="freight_label">0</i></span></p>
+        </td>
+        <td>
+            @*<p>結帳總金額：<span><i class="totalPriceMoney">$</i><i class="totalPrice">0<i></i></i></span></p>*@
+        </td>
+
+        <td class="checkoutButton ">
+            <p>
+                    <a class="genric-btn primary-border radius e-large ">結帳</a>
+            </p>
+        </td>
+     </tr>
+  </tbody>
+</table>
+
+
+@section Scripts{
+    <script>
+        checkMoney();
+
+        async function RemoveCartItem(id) {
+            const response = await fetch(`@Url.Content("~/Product/RemoveCartItem?id=${id}")`);
+            location.reload();
+        }
+
+        async function ResetCart(id) {
+            const response = await fetch(`@Url.Content("~/Product/ResetCart")`);
+            location.reload();
+        }
+
+        function checkNum(num,event){
+            var max = $(event.target).attr("max");
+            var target = $(event.target);
+
+            if(parseInt(num)>parseInt (max)){
+                target.val(max);
+            }
+            else if (parseInt(num) < 1 || num ==""){
+                target.val(1);
+            }
+            console.log(target.val());
+            checkMoney();
+        }
+
+        function checkMoney(){
+            var total = 0;
+            $("tr[name='order']").each(function(){
+                var num = $(this).find("td:eq(4)").find("input").val();
+                var price = $(this).find("td:eq(5)").find("input").val();
+                 total += parseInt(num) * parseInt(price);
+            })
+            $("#total").html(total);
+        }
+    </script>
+
+
+}
