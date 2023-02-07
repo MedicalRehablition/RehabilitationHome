@@ -18,10 +18,10 @@
                             </a>
                         </li>
                         <li class="page-item">
-                            <a onclick="PostNextPage(1)" class="page-link">1</a>
+                            <a onclick="PostNextPage(1,event)" class="btn page-link active">1</a>
                         </li>
-                        <li class="page-item active">
-                            <a onclick="PostNextPage(2)" class="page-link">2</a>
+                        <li class="page-item ">
+                            <a onclick="PostNextPage(2,event)" class="btn page-link">2</a>
                         </li>
                         <li class="page-item">
                             <a href="#" class="page-link" aria-label="Next">
@@ -148,7 +148,9 @@
     loadArtical();
         getRecentPost();
 
-        async function PostNextPage(page){
+        async function PostNextPage(page,event){
+                        $(".page-link").removeClass("active");
+            $(event.target).addClass("active");
               //網頁回滾至頂端
             $("html,body").animate(
                 {

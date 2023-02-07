@@ -10,6 +10,7 @@ namespace prjRehabilitation.Models
         public int? FQty { get; set; }
         public decimal? FPrice { get; set; }
         public byte[]? FPhoto { get; set; }
+        public string? FType { get; set; }
         public bool FStatus { get; set; }
     }
 }
