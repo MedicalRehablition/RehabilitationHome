@@ -11,6 +11,11 @@ namespace prjRehabilitation.Controllers
 {
     public class UserLoginController : Controller
     {
+        private IWebHostEnvironment _environment;
+        public UserLoginController(IWebHostEnvironment environment)
+        {
+            _environment = environment;
+        }
         public IActionResult Loginsuccess()
         {
             return View();
@@ -75,6 +80,10 @@ namespace prjRehabilitation.Controllers
 
             if (customer == null)
             {
+                string photoName = Guid.NewGuid().ToString() + ".jpg";
+                string path = _environment.WebRootPath + "/images/" + photoName;
+                vm.FPicture = photoName;
+                vm.photo.CopyTo(new FileStream(path, FileMode.Create));
                 db.Customers.Add(vm.Customer);
                 db.SaveChanges();
                 return Content("註冊成功!");//後面要記得改

@@ -106,7 +106,7 @@
             alert(xhr.responseText);
         })
         const Data = new FormData(document.userRegister);
-        xhr.open("POST", "@Url.Content("/UserLogin/AccountAlive")");
+        xhr.open("POST", "@Url.Content("/AdminUserLogin/AccountAlive")");
         xhr.send(Data);
 
     })

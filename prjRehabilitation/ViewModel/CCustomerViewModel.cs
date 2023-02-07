@@ -50,10 +50,15 @@ namespace prjRehabilitation.ViewModel
             get { return _Customer.FAddress; }
             set { _Customer.FAddress = value; }
         }
-        public string? FQrcode 
+        public string? FQrcode
         {
             get { return _Customer.FQrcode; }
             set { _Customer.FQrcode = value; }
+        }
+        public string? FPicture
+        {
+            get { return _Customer.FPicture; }
+            set { _Customer.FPicture = value; }
         }
         public IFormFile photo { get; set; }
     }

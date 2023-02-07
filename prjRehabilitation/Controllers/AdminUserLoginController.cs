@@ -176,7 +176,7 @@ namespace prjRehabilitation.Controllers
             msg.Priority = MailPriority.Normal;
             SmtpClient MySmtp = new SmtpClient("smtp.gmail.com", 587);
             //寄件人
-            MySmtp.Credentials = new System.Net.NetworkCredential("yeee880726@gmail.com", "otdqmlbzkpumgsrw");
+            MySmtp.Credentials = new System.Net.NetworkCredential("yeeee880726@gmail.com", "dkyzsdpffgrgount");
             MySmtp.EnableSsl = true;
             MySmtp.Send(msg);
             return Content("已發送郵件");
@@ -200,6 +200,20 @@ namespace prjRehabilitation.Controllers
             HttpContext.Session.Remove(CDictionary.SK_ADMIN_User);
             return Content("清除session");
         }
+        public IActionResult AccountAlive(CAdminViewModel vm)//是否被註冊過
+        {
+            dbClassContext db = new dbClassContext();
+            Admin admin = db.Admins.FirstOrDefault(t => t.FEmail == vm.FEmail);
 
+            if (admin == null)
+            {
+                db.Admins.Add(vm.admin);
+                db.SaveChanges();
+                return Content("註冊成功!");//後面要記得改
+                //return RedirectToAction("List");
+            }
+            return Content("此帳號已註冊使用,請前往登入");
+
+        }
     }
 }

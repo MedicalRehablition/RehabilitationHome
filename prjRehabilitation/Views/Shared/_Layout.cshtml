@@ -307,9 +307,13 @@
     <script>
         //=======================抓使用者是誰======================
         async function getUser() {
+            //const data = new FormData(UserLoingForm);
             const span = document.querySelector("#UserName");
-            const response = await fetch("@Url.Content("/UserLogin/GetUserSession")")
-
+            const response = await fetch("@Url.Content("/UserLogin/GetUserSession")",{
+                //method:"Post",
+                //body:data,
+            }
+            )
             const User = await response.text();
             const LoginA = document.querySelector(".LoginA");
             if (User != "") {
