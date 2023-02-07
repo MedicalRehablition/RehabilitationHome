@@ -9,11 +9,10 @@ namespace prjRehabilitation.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        private IWebHostEnvironment _environment;
+        public HomeController(IWebHostEnvironment environment)
         {
-            _logger = logger;
+            _environment = environment;
         }
 
         public IActionResult Index()
@@ -79,7 +78,7 @@ namespace prjRehabilitation.Controllers
             string Subject = "變更密碼";
             string Body = "您的密碼為:" + newPassword;
             MailMessage msg = new MailMessage();
-            msg.From = new MailAddress("yeee880726@gmail.com", "測試郵件", System.Text.Encoding.UTF8);
+            msg.From = new MailAddress("yeeee880726@gmail.com", "測試郵件", System.Text.Encoding.UTF8);
             msg.To.Add(string.Join(",", MailList.ToArray()));//收件人
             msg.Subject = Subject; //主旨
             msg.SubjectEncoding = System.Text.Encoding.UTF8;
@@ -89,10 +88,43 @@ namespace prjRehabilitation.Controllers
             msg.Priority = MailPriority.Normal;
             SmtpClient MySmtp = new SmtpClient("smtp.gmail.com", 587);
             //寄件人
-            MySmtp.Credentials = new System.Net.NetworkCredential("yeee880726@gmail.com", "otdqmlbzkpumgsrw");
+            MySmtp.Credentials = new System.Net.NetworkCredential("yeeee880726@gmail.com", "dkyzsdpffgrgount");
             MySmtp.EnableSsl = true;
             MySmtp.Send(msg);
             return Content("已發送郵件");
+        }
+        public IActionResult ExistAccount(CLoginViewModel vm)//是否資料庫有資料
+        {
+            dbClassContext db = new dbClassContext();
+            Customer customer = db.Customers.FirstOrDefault(t => t.FEmail.Equals(vm.txtAccount));
+            string json = "";
+            if (customer != null)
+            {
+                if (customer.FEmail == vm.txtAccount)
+                {
+                    return Content("1");
+                }
+            }
+            return Content("0");
+        }
+        public IActionResult Register()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult Register(CCustomerViewModel vm)
+        {
+            dbClassContext db = new dbClassContext();
+            //if (vm.photo != null)
+            //{
+            //    string photoName = Guid.NewGuid().ToString() + ".jpg";
+            //    string path = _environment.WebRootPath + "/images/" + photoName;
+            //    vm.FPicture = photoName;
+            //    vm.photo.CopyTo(new FileStream(path, FileMode.Create));
+            //}
+            //db.Customers.Add(vm.Customer);
+            //db.SaveChanges();
+            return RedirectToAction("index");
         }
 
     }
