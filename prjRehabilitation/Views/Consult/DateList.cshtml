@@ -8,7 +8,7 @@
 
 <h1>@ViewBag.name 會談紀錄</h1>
 
-<p>
+<p class="employee">
     <a href="/Consult/Create/@ptid">新增會談紀錄</a>
 </p>
 <table class="table table-striped table-hover">
@@ -34,27 +34,43 @@
             foreach (var item in Model)
             {
                 count++;
-                <tr>
-                <td>
-                    @count
-                </td>
+                <tr id="onlysee">
+                    <td>
+                        @count
+                    </td>
 
-                <td>
-                    @Html.DisplayFor(modelItem => item.Date)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Summary)
-                </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Date)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Summary)
+                    </td>
 
-                <td>
-                    @Html.ActionLink("編輯", "Edit", new {  id=item.FConsultId}) |
+                    <td class="employee">
+                        @Html.ActionLink("編輯", "Edit", new {  id=item.FConsultId}) |
                         @Html.ActionLink("刪除", "Delete","Consult", new {  id=item.FConsultId },new{onclick = "return confirm('確定要刪除嗎')"})
-                </td>
-            </tr>
+                    </td>
+                     <td class="customer">
+                        @Html.ActionLink("檢視", "Edit", new {  id=item.FConsultId})                         
+                    </td>
+                </tr>
             }
         }
     </tbody>
 </table>
-<p>
+<p class="employee">
     <a href="/Consult/List">回列表</a>
 </p>
+
+@section Scripts {
+    <script>
+        var set = `@ViewBag.setting`;
+        //debugger;
+        if (set == "customer") {
+            $(".employee").hide();
+        }else {
+            $(".customer").hide();
+        };
+
+    </script>
+}
