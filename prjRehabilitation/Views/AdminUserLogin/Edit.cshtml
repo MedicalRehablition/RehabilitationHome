@@ -8,7 +8,7 @@
 
 <h1>編輯員工資料</h1>
 <hr />
-<form asp-action="Edit" enctype="multipart/form-data">
+<form  asp-action="Edit" enctype="multipart/form-data" name="AdminUserEdit">
     <div class="row gutters-sm">
         <div class="col-md-4 mb-3">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -21,11 +21,11 @@
                         @{
                             if (Model.Fphoto != null)
                             {
-                                <img class="rounded-circle border border-primary img" src="~/images/@Model.Fphoto" alt="Admin" width="300" height="300" />
+                            <img class="rounded-circle border border-primary img" src="~/images/@Model.Fphoto" alt="Admin" width="300" height="300" />
                             }
                             else
                             {
-                                <img class="rounded-circle border border-primary img" src="~/images/imageDefault.png" width="300" height="300" />
+                             <img class="rounded-circle border border-primary img" src="~/images/imageDefault.png" width="300" height="300" />
                             }
                         }
                     </div>
@@ -131,6 +131,16 @@
             console.log(this);
             $('.img').attr('src', objURL);
         });
+        async function Edit(){
+            
+            const data = new FormData(AdminUserEdit);
+            const response = await fetch("@Url.Content("/AdminUserLogin/Edit")",{
+                method:"post",
+                body:data,
+            });
+            
+        }
+        //$(".btn").on("click",Edit);
     </script>
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");

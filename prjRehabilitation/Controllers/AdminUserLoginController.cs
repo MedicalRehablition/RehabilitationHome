@@ -2,8 +2,10 @@
 using Microsoft.AspNetCore.Mvc;
 using prjRehabilitation.Models;
 using prjRehabilitation.ViewModel;
+using System.Net;
 using System.Net.Mail;
 using System.Text.Json;
+using System.Text.Json.Nodes;
 
 namespace prjRehabilitation.Controllers
 {
@@ -21,26 +23,26 @@ namespace prjRehabilitation.Controllers
             dbClassContext db = new dbClassContext();
             string keyword = vm.txtKeyword;
             IEnumerable<Admin> data = null;
-            if(keyword == null)
+            if (keyword == null)
             {
                 data = from c in db.Admins
                        select c;
             }
             else
             {
-                data = db.Admins.Where(c=>c.FName.Contains(keyword)).ToList();
+                data = db.Admins.Where(c => c.FName.Contains(keyword)).ToList();
             }
             List<CAdminViewModel> List = new List<CAdminViewModel>();
-            foreach(var c in data)
+            foreach (var c in data)
             {
-                CAdminViewModel a  = new CAdminViewModel();
+                CAdminViewModel a = new CAdminViewModel();
                 a.admin = c;
                 List.Add(a);
-                
+
             }
             return View(List);
         }
-       
+
         //登入寫入Session
         public IActionResult Login()
         {
@@ -66,7 +68,7 @@ namespace prjRehabilitation.Controllers
         public IActionResult ExistAccount(CLoginViewModel vm)
         {
             dbClassContext db = new dbClassContext();
-            Admin admin = db.Admins.FirstOrDefault(t => t.FEmail==vm.txtAccount);
+            Admin admin = db.Admins.FirstOrDefault(t => t.FEmail == vm.txtAccount);
 
             if (admin != null)
             {
@@ -127,8 +129,9 @@ namespace prjRehabilitation.Controllers
                 ad.FRank = vm.FRank;
                 ad.FEmail = vm.FEmail;
                 ad.FName = vm.FName;
-                ad.FBirth=vm.FBirth;
-                ad.FPassword= vm.FPassword;
+                ad.FBirth = vm.FBirth;
+                ad.FSex = vm.FSex;
+                ad.FPassword = vm.FPassword;
                 db.SaveChanges();
             }
             return RedirectToAction("List");
@@ -150,9 +153,9 @@ namespace prjRehabilitation.Controllers
             return View();
         }
         public IActionResult SendMailByGmail(CLoginViewModel vm)
-            {
+        {
             dbClassContext db = new dbClassContext();
-            Admin admin = db.Admins.FirstOrDefault(t => t.FEmail==vm.txtAccount);
+            Admin admin = db.Admins.FirstOrDefault(t => t.FEmail == vm.txtAccount);
             if (admin == null)
             {
                 return Content("請輸入信箱帳號");
@@ -200,6 +203,86 @@ namespace prjRehabilitation.Controllers
             HttpContext.Session.Remove(CDictionary.SK_ADMIN_User);
             return Content("清除session");
         }
+        public IActionResult Edit2(int? id)
+        {
+            dbClassContext db = new dbClassContext();
+            Admin ad = db.Admins.FirstOrDefault(c => c.Fid == id);
+            CAdminViewModel vm = new CAdminViewModel();
+            vm.admin = ad;
+            return View(vm);
+        }
+        [HttpPost]
+        public IActionResult Edit2(CAdminViewModel vm)
+        {
+            dbClassContext db = new dbClassContext();
+            Admin ad = db.Admins.FirstOrDefault(c => c.Fid == vm.Fid);
+            if (ad != null)
+            {
+                if (vm.photo != null)
+                {
+                    string photoName = Guid.NewGuid().ToString() + ".jpg";
+                    string path = _environment.WebRootPath + "/images/" + photoName;
+                    ad.Fphoto = photoName;
+                    vm.photo.CopyTo(new FileStream(path, FileMode.Create));
+                }
+                ad.Fid = vm.Fid;
+                ad.FRank = vm.FRank;
+                ad.FEmail = vm.FEmail;
+                ad.FName = vm.FName;
+                ad.FBirth = vm.FBirth;
+                ad.FSex = vm.FSex;
+                ad.FPassword = vm.FPassword;
+                db.SaveChanges();
+            }
+            return RedirectToAction("List");
 
+        }
+        //#todo 壞掉的區塊
+        //public async Task<IActionResult> Callback()
+        //{
+        //    if (!this.Request.Query.TryGetValue("code", out var code))
+        //    {
+        //        return this.StatusCode(400);
+        //    }
+
+        //    var (accessToken, idToken) = await this.ExchangeAccessToken(code);
+
+        //    if (accessToken == null)
+        //    {
+        //        return this.StatusCode(400);
+        //    }
+
+        //    // TODO: Save AccessToken and IdToken
+
+        //    // TODO: User Login
+
+        //    return this.Redirect("/");
+        //}
+
+        //private async Task<(string, string)> ExchangeAccessToken(string code)
+        //{
+        //    var client =this.Register();
+
+        //    var request = new HttpRequestMessage(HttpMethod.Post, "AccessTokenUrl");
+
+        //    request.Content = new FormUrlEncodedContent(
+        //        new Dictionary<string, string>
+        //        {
+        //            ["grant_type"] = "authorization_code",
+        //            ["code"] = code,
+        //            ["redirect_uri"] = "RedirectURI",
+        //            ["client_id"] = "405238953344-evflmg05d4fffkh7avfuvt3b9pnlmetk.apps.googleusercontent.com",
+        //            ["client_secret"] = "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"
+        //        });
+
+        //    var response = await client.SendAsync(request);
+        //    if (response.StatusCode != HttpStatusCode.OK) return (null, null);
+
+        //    var content = await response.Content.ReadAsStringAsync();
+
+        //    var result = JsonNode.Parse(content);
+
+        //    return (result["access_token"].GetValue<string>(), result["id_token"].GetValue<string>());
+        //}
     }
 }
