@@ -4,9 +4,9 @@
     ViewData["Title"] = "List";
 }
 
-<h1>List</h1>
+<h1>住民清單</h1>
 
-<p>
+<p style="visibility:hidden">
     <a asp-controller="Treatment" asp-action="Index">回上一頁</a>
 </p>
 <div>
@@ -47,3 +47,12 @@
         }
     </tbody>
 </table>
+@section Scripts 
+{
+<script>
+                if (!@ViewBag.keyword)
+                {
+                    $("#keyword").hide();
+                });            
+</script>
+}
