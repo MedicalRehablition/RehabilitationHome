@@ -2,12 +2,13 @@
 
 @{
     ViewData["Title"] = "CalendarApplyCensorList";
+    //if (!string.IsNullOrEmpty(ViewBag.getAdminSection)) { Layout = "AdminLayout"; }
 }
 
 <h1>CalendarApplyCensorList</h1>
 
 <p>
-    <a asp-action="CalendarApplyCensorCreate" class="genric-btn primary e-large">後端新增會客預約</a>
+    <a asp-action="CalendarApplyVisitorAdminCreate" class="genric-btn primary e-large">後端新增會客預約</a>
 </p>
 <table class="table">
     <thead>

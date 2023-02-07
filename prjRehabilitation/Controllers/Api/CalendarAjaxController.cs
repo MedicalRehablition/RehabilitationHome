@@ -9,7 +9,7 @@ namespace prjRehabilitation.Controllers.Api
 {
     public class CalendarAjaxController : Controller
     {
-        public Customer getCustomerIfSession()
+        public Customer getCustomerIfSession1()
         {
             string json = HttpContext.Session.GetString(CDictionary.SK_CUSTOMER_User);
             Customer customer = null;
@@ -20,6 +20,19 @@ namespace prjRehabilitation.Controllers.Api
             }
             return customer;
         }
+
+        //public Admin getAdminIfSession()
+        //{
+        //    string json = HttpContext.Session.GetString(CDictionary.SK_ADMIN_User);
+        //    Admin admin = null;
+
+        //    if (!string.IsNullOrEmpty(json))
+        //    {
+        //        admin = JsonSerializer.Deserialize<Admin>(json);
+        //    }
+        //    return admin;
+        //}
+
         public IActionResult Index()
         {
             return View();
@@ -30,7 +43,7 @@ namespace prjRehabilitation.Controllers.Api
             if (vm.content == null || vm.date == null) return Content("請輸入完整資料");
             if (vm.fRecorder == null) return Content("請登入後申請");
             dbClassContext db = new dbClassContext();
-            Customer getCusSession = getCustomerIfSession();
+            Customer getCusSession = getCustomerIfSession1();
             string getResident = db.PatientInfos.Where(_ => _.FCustomerid == getCusSession.Fid).FirstOrDefault().FName;//先抓出來免得不是字造成連續發信問題
             string getDate = vm.date;   //先抓出來免得不是字造成連續發信問題
             List<string> MailList = new List<string>();

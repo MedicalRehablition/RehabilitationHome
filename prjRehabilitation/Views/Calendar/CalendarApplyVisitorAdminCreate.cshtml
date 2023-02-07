@@ -1,0 +1,115 @@
+﻿@model prjRehabilitation.ViewModel.Eric.CCalendarViewModel
+
+@{
+    ViewData["Title"] = "CalendarApplyVisitorAdminCreate";
+}
+
+<h1>CalendarApplyVisitorAdminCreate</h1>
+
+<h4>CCalendarViewModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="CalendarApplyVisitorAdminCreate">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            @*   <div class="form-group">
+            <label asp-for="FId" class="control-label"></label>
+            <input asp-for="FId" class="form-control" />
+            <span asp-validation-for="FId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+            <label asp-for="FDeleteBool" class="control-label"></label>
+            <input asp-for="FDeleteBool" class="form-control" />
+            <span asp-validation-for="FDeleteBool" class="text-danger"></span>
+            </div>*@
+            <div class="form-group">
+                <label asp-for="date" class="control-label"></label>
+                <input type="date" asp-for="date" class="form-control" />
+                <span asp-validation-for="date" class="text-danger"></span>
+            </div>
+            @*<div class="form-group">
+                <label asp-for="eventName" class="control-label"></label>
+                <input asp-for="eventName" class="form-control" />
+                <span asp-validation-for="eventName" class="text-danger"></span>
+            </div>*@
+            @* <div class="form-group">
+            <label asp-for="className" class="control-label"></label>
+            <input asp-for="className" class="form-control" />
+            <span asp-validation-for="className" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+            <label asp-for="dateColor" class="control-label"></label>
+            <input asp-for="dateColor" class="form-control" />
+            <span asp-validation-for="dateColor" class="text-danger"></span>
+            </div>*@
+            @*<div class="form-group">
+            <label asp-for="title" class="control-label"></label>
+            <input asp-for="title" class="form-control" />
+            <span asp-validation-for="title" class="text-danger"></span>
+            </div>*@
+            <div class="form-group">
+                <label asp-for="content" class="control-label"></label>
+                <textarea asp-for="content" class="form-control" style="height:300px"></textarea>
+                <span asp-validation-for="content" class="text-danger"></span>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label asp-for="fRecorder" class="control-label"></label>
+                        <input asp-for="fRecorder" class="form-control" readonly />
+                        <span asp-validation-for="fRecorder" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label asp-for="fRecorderDate" class="control-label"></label>
+                       
+                        <input asp-for="fRecorderDate" class="form-control" readonly/>
+                        <span asp-validation-for="fRecorderDate" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+         
+           
+            <div class="form-group">
+                <label asp-for="FVisualHierarchy" class="control-label"></label>
+                <select class="form-control" name="FVisualHierarchy">
+                    <option>0</option>
+                    <option selected>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                </select>
+                <span asp-validation-for="FVisualHierarchy" class="text-danger"></span>
+            </div>
+            @*<div class="form-group">
+            <label asp-for="FApplyVisitor" class="control-label"></label>
+            <input asp-for="FApplyVisitor" class="form-control" />
+            <span asp-validation-for="FApplyVisitor" class="text-danger"></span>
+            </div>*@
+            <div class="form-group">
+                <label asp-for="FCustomerid" class="control-label">預約會面住民</label>
+                @*<input asp-for="FCustomerid" class="form-control" />*@
+                <select class="form-control" name="FCustomerid">
+                    @foreach (var item in Model.getAllResidentAndCustomerIDList)
+                    {
+                        <option value="@item.Key">@item.Value</option>
+                    }
+                </select>
+                @*<span asp-validation-for="FCustomerid" class="text-danger"></span>*@
+            </div>
+            <div class="form-group">
+                @*<label asp-for="FAdminId" class="control-label"></label>*@
+                <input asp-for="FAdminId" type="hidden" class="form-control" />
+                <span asp-validation-for="FAdminId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="CalendarApplyCensorList">Back to List</a>
+</div>
+

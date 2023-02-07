@@ -8,15 +8,17 @@ namespace prjRehabilitation.ViewModel.Eric
 	{
 		private TCalendar _calendar;
 
-		public CCalendarViewModel() { 
-			_calendar= new TCalendar();
+		public CCalendarViewModel() {
+			_calendar = new TCalendar();
 		}
 
-        public TCalendar calendar
-        {
-            get { return _calendar; }
-            set { _calendar = value; }
-        }
+		public TCalendar calendar
+		{
+			get { return _calendar; }
+			set { _calendar = value; }
+		}
+
+		public  Dictionary<int, string>? getAllResidentAndCustomerIDList { get; set; }
 
         public int FId { get { return _calendar.FId; } set { _calendar.FId = value; } }
         public bool? FDeleteBool { get { return _calendar.FDeleteBool; } set { _calendar.FDeleteBool = value; } }
