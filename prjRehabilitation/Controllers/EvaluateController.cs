@@ -1,8 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Newtonsoft.Json;
 using prjRehabilitation.Models;
 using prjRehabilitation.ViewModel;
 using System.Data;
+using System.Text.Json;
+using JsonSerializer = System.Text.Json.JsonSerializer;
 
 namespace prjRehabilitation.Controllers
 {
@@ -10,42 +13,55 @@ namespace prjRehabilitation.Controllers
     {
         public IActionResult List(CKeywordViewModel vm)
         {
+            string json = HttpContext.Session.GetString(CDictionary.SK_ADMIN_User);//得到工作人員的session
+            string jsonc = HttpContext.Session.GetString(CDictionary.SK_CUSTOMER_User);  //得到訪客的session
             dbClassContext db = new dbClassContext();
-            string Keyword = vm.txtKeyword;
-            IEnumerable<PatientInfo> data = null;
-            if (Keyword == null)
+            ViewBag.Keyword = false;
+            if (!string.IsNullOrEmpty(json))
             {
-                data = from p in db.PatientInfos
-                       select new PatientInfo { FName = p.FName, Fid = p.Fid };
+                string Keyword = vm.txtKeyword;
+                IEnumerable<PatientInfo> data = null;
+                if (Keyword == null)
+                {
+                    data = from p in db.PatientInfos
+                           where p.Status == true
+                           select new PatientInfo { FName = p.FName, Fid = p.Fid };
+                }
+                else
+                    data = db.PatientInfos.Where(c => c.FName.Contains(Keyword)).ToList();
+                List<CPatientsViewModel> List = new List<CPatientsViewModel>();
+                foreach (var c in data)
+                {
+                    CPatientsViewModel patient = new CPatientsViewModel();
+                    patient.Patient = c;
+                    List.Add(patient);
+                    ViewBag.Keyword = true;
+                }
+                return View(List);
             }
-            else
-                data = db.PatientInfos.Where(c => c.FName.Contains(Keyword)).ToList();
-            List<CPatientsViewModel> List = new List<CPatientsViewModel>();
-            foreach (var c in data)
+            else if (!string.IsNullOrEmpty(jsonc)) 
             {
-                CPatientsViewModel patient = new CPatientsViewModel();
-                patient.Patient = c;
-                List.Add(patient);
-            }
-            return View(List);
+            Customer customer = JsonSerializer.Deserialize<Customer>(jsonc);
+                var cus = db.PatientInfos.FirstOrDefault(c => c.FCustomerid == customer.Fid);
+                if (cus != null) 
+                {
+                    return RedirectToAction("List", "Evaluate", new { @id=cus.Fid});
+                };
+            };
+            return RedirectToAction("Index", "Home");
         }
         public IActionResult DateList(int? id)
         {
+            string jsonc = HttpContext.Session.GetString(CDictionary.SK_CUSTOMER_User);
+            ViewBag.setting = "";
+            if (jsonc != null)
+            {
+                ViewBag.setting = "customer";
+            };
             dbClassContext db = new dbClassContext();
             List<功能評估> datas = db.功能評估s.Where(c => c.Fid == id).ToList();
-            //IEnumerable<功能評估> datas = null;
-            //IEnumerable<功能評估個表> dataQ = null;
-            //var aa = from ce in db.功能評估個表s
-            //         join de in datas on ce.F功能評估Id equals de.F功能評估Id
-            //         select new {
-            //             date = de.F日期,
-            //             problem = ce.F現狀評估
-            //         };
-            //List<string> dataQ = new List<string>();           
-            //功能評估 ev = new 功能評估();
             CEvaluateViewModle cevm = null;
             List<CEvaluateViewModle> cevmList = new List<CEvaluateViewModle>();
-            //List<CEvaluateViewModle> cevmProblem = new List<CEvaluateViewModle>();
             foreach (功能評估 aa in datas) {
                 List<功能評估個表> bb = db.功能評估個表s.Where(_ => _.F功能評估Id == aa.F功能評估Id).ToList();
                 foreach (var cc in bb)
@@ -57,24 +73,6 @@ namespace prjRehabilitation.Controllers
                     cevmList.Add(cevm);
                 }
             }
-            //foreach (var aa in datas)
-            //{
-            //    cevm.F問題 = aa.;
-            //    cevmProblem.Add(cevm);
-            //}
-            //功能評估個表
-            //db.功能評估個表s.Where(b => b.F功能評估Id == item.F功能評估Id).ToList();
-            //List<CEvaluateViewModle> list = new List<CEvaluateViewModle>();
-            //foreach (var c in datas)
-            //{
-            //    CEvaluateViewModle consultation = new CEvaluateViewModle();
-            //    consultation.Evaluate = c;
-            //    list.Add(consultation);
-            //}
-            //var pin = db.PatientInfos.FirstOrDefault(t => t.Fid == id);
-            //CPatientsViewModel ptname = new CPatientsViewModel();
-            //ptname.Patient = pin != null ? pin : new PatientInfo();
-            //ViewBag.name = ptname?.Patient?.FName;
             ViewBag.ptid = id;
             return View(cevmList);
         }
