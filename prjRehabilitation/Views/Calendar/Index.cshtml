@@ -1,7 +1,11 @@
 ﻿@model prjRehabilitation.ViewModel.Eric.CCalendarTotalNeedViewModel
 
 @{
-	ViewData["Title"] = "Index";
+	ViewData["Title"] = "錯誤頁index";
+
+	if (!string.IsNullOrEmpty(Model.getBackSession)) { Layout = "AdminLayout"; }
+	else if (!string.IsNullOrEmpty(Model.getFrontSession)) { Layout = "_Layout";  }
+
 }
 
 @section Styles{

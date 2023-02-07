@@ -8,6 +8,7 @@ namespace prjRehabilitation.ViewModel.Eric
 
         public List<TCalendar> GetTodayNextAndFrontOneMonth { get; set; }
 
-
-	}
+        public string getFrontSession { get; set; }
+        public string getBackSession { get; set; }
+    }
 }

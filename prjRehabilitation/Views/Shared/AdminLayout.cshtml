@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="~/AdminBootstrap/pluginsAdminlayout/bower_components/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.css">
     <!-- Custom CSS -->
     <link href="~/AdminBootstrap/cssAdminlayout/style.min.css" rel="stylesheet">
+    @await RenderSectionAsync("Styles", required: false)
 </head>
 
 <body>
@@ -151,6 +152,12 @@
                             <a class="sidebar-link waves-effect waves-dark sidebar-link" asp-controller="Product" asp-action="List_B" aria-expanded="false">
                                 <i class="fa fa-edit" aria-hidden="true"></i>
                                 <span class="hide-menu">商品管理</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" asp-area="" asp-controller="Calendar" asp-action="List">
+                                <i class="fa fa-user" aria-hidden="true"></i>
+                                <span class="hide-menu">行事曆</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
