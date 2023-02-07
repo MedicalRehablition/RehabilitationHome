@@ -1,9 +1,9 @@
 ﻿@model prjRehabilitation.ViewModel.CLoginViewModel
 
-<div class="container py-5 h-100">
+<div class="container  h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="col-12 ">
-            <div class="card bg-dark text-white" style="border-radius: 1rem;">
+            <div class="card text-white" style="border-radius: 1rem;background-color: darkseagreen;">
                 <div class="card-body p-5 text-center">
 
                     <div class="mb-md-5 mt-md-4 pb-5">
@@ -14,18 +14,19 @@
                         <div class="form-outline form-white mb-4">
                             <label class="form-label" for="typeEmailX">電子信箱</label>
                             <input asp-for="txtAccount" type=" email" id="txtAccount" class="form-control form-control-lg" />
-                            
+
                         </div>
 
                         <div class="form-outline form-white mb-4">
                             <label class="form-label" for="typePasswordX">密碼</label>
                             <input asp-for="txtPassword" type="password" id="txtPassword" class="form-control form-control-lg" />
-                    
-                        </div>
-                        <p class="small mb-5 pb-lg-2"><a asp-area="" asp-controller="Home" asp-action="ForgetPassword">忘記密碼</a></p>
-                        <p class="small mb-5 pb-lg-2"><a asp-area="" asp-controller="Home" asp-action="Register">前往註冊</a></p>
-                    </div>
 
+                        </div>
+                        <div class="row">
+                            <p class="small mb-5 pb-lg-2"><a asp-area="" asp-controller="Home" asp-action="ForgetPassword">忘記密碼</a></p>
+                            <p class="small mb-5 pb-lg-2"><a asp-area="" asp-controller="Home" asp-action="Register">前往註冊</a></p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

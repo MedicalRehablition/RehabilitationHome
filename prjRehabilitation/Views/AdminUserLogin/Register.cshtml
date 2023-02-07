@@ -5,10 +5,11 @@
     Layout = "AdminLayout";
 }
 
-<h1>Register</h1>
-<h4>CAdminViewModel</h4>
+
+<h1>後臺員工註冊</h1>
+
 <hr />
-<form enctype="multipart/form-data" asp-action="Register">
+<form enctype="multipart/form-data" asp-action="Register" name="userRegister">
     <div class="row">
         <div class="col-md-6 mb-4">
             <div class="form-outline">
@@ -84,7 +85,7 @@
     </div>
 
     <div class="mt-4 pt-2">
-        <input class="btn btn-primary btn-lg" type="submit" value="確認" id="subbtn" />
+        <input class="btn btn-primary btn-lg" type="button" value="確認" id="subbtn" />
     </div>
  </form>
 
