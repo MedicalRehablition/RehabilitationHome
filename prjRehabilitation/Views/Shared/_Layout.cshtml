@@ -123,7 +123,18 @@
                                                 <a class="nav-link text-dark" asp-area="" asp-controller="AdminUserLogin" asp-action="Login">後臺管理系統</a>
                                             </li>
                                             <li class="nav-item">
-                                                <a class="nav-link text-dark" asp-area="" asp-controller="GroupActivity" asp-action="List">活動</a>
+                                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">治療活動紀錄</a>
+                                                <ul class="submenu">
+                                                    <li>
+                                                        <a class="nav-link text-dark" asp-area="" asp-controller="Evaluate" asp-action="List">評估紀錄</a>
+                                                    </li>
+                                                    <li>
+                                                        <a class="nav-link text-dark" asp-area="" asp-controller="Consult" asp-action="List">會談紀錄</a>
+                                                    </li>
+                                                    <li>
+                                                        <a class="nav-link text-dark" asp-area="" asp-controller="GroupActivity" asp-action="List">活動紀錄</a>
+                                                    </li>
+                                                </ul>
                                             </li>
                                             <li>
 
