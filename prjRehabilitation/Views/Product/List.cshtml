@@ -1,52 +1,62 @@
 ﻿@model IEnumerable<prjRehabilitation.ViewModel.CProductViewModel>
 
 @{
-	ViewData["Title"] = "List";
-	Layout = "_Layout";
+    ViewData["Title"] = "List";
+    Layout = "_Layout";
+}
+
+@section Styles{
+
+    @*<link href="~/css/coloshop/bootstrap.min.css" rel="stylesheet" />*@
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        @*<link rel="stylesheet" type="text/css" href="~/css/coloshop/owl.carousel.css">*@
+        @*<link rel="stylesheet" type="text/css" href="~/css/coloshop/owl.theme.default.css">*@
+        @*<link rel="stylesheet" type="text/css" href="~/css/coloshop/animate.css">*@
+    <link rel="stylesheet" type="text/css" href="~/css/coloshop/main_styles.css">
+            @*<link rel="stylesheet" type="text/css" href="~/css/coloshop/responsive.css">*@
+
 }
 
 
-<link href="~/css/coloshop/bootstrap.min.css" rel="stylesheet" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" type="text/css" href="~/css/coloshop/owl.carousel.css">
-<link rel="stylesheet" type="text/css" href="~/css/coloshop/owl.theme.default.css">
-<link rel="stylesheet" type="text/css" href="~/css/coloshop/animate.css">
-<link rel="stylesheet" type="text/css" href="~/css/coloshop/main_styles.css">
-<link rel="stylesheet" type="text/css" href="~/css/coloshop/responsive.css">
 
-@Html.ActionLink("購物車","Cart","Product",new{  },new {@class="btn btn-outline-success"})
-@*	<div class="fs_menu_overlay"></div>
+
+<!-- Slider -->
+@section DeadCessTitle{
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col">@Html.ActionLink("購物車","Cart","Product",new{  },new {@class="btn btn-outline-success"})</div>
+    </div>
+    
+    @*	<div class="fs_menu_overlay"></div>
 	<div class="hamburger_menu">
 		<div class="hamburger_close"><i class="fa fa-times" aria-hidden="true"></i></div>
 		<div class="hamburger_menu_content text-right">
 
 		</div>
 	</div>*@
-
-	<!-- Slider -->
-
-			<div class="slider-active">
-				<!-- Single Slider -->
-				<div class="slider-area position-relative" style="background-image:url('@Url.Content("~/")img/coloshop/backgroundtitle1.png')">
-		<div class=" fill_height">
-			<div class="row align-items-center fill_height">
-				<div class="col">
-					<div class="main_slider_content">
-						<h6>將這個不完美的世界，變成我們所期望的樣子</h6>
-					<h1>甜心小舖</h1>
-						<div class="red_button shop_now_button"><a href="https://technext.github.io/coloshop/index.html#">shop now</a></div>
-					</div>
-				</div>
-			</div>
-		</div>
-				<!-- Single Slider -->
-				
-
-	</div>
-</div><!--? About Start-->
+    <!-- Single Slider -->
+    <div class="slider-area main_slider" style="background-image:url('@Url.Content("~/")img/coloshop/backgroundtitle1.png');margin:0px;">
+        <div class=" fill_height">
+            <div class="row align-items-center fill_height container">
+                <div class="col-md-3"></div>
+                <div class="col">
+                    <div class="main_slider_content">
+                        <h6>將這個不完美的世界，變成我們所期望的樣子</h6>
+                        <h1>甜心小舖</h1>
+                        <div class="red_button shop_now_button"><a href="https://technext.github.io/coloshop/index.html#">shop now</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Single Slider -->
 
 
-	<!-- Banner -->
+    </div>
+    <!--? About Start-->
+    <!-- Banner -->
+}
+    
+     
 @*
 	<div class="banner">
 		<div class="container">
@@ -76,238 +86,228 @@
 		</div>
 	</div>*@
 
-	<!-- New Arrivals -->
-		<div class="new_arrivals">
-		<div class="container">
-			<div class="row">
-				<div class="col text-center">
-					<div class="section_title new_arrivals_title">
-						<h2>全品項</h2>
-					</div>
-				</div>
-			</div>
-			<div class="row align-items-center">
-				<div class="col text-center">
-					<div class="new_arrivals_sorting">
-						<ul class="arrivals_grid_sorting clearfix button-group filters-button-group">
-							<li class="grid_sorting_button button d-flex flex-column justify-content-center align-items-center active is-checked" data-filter="*">all</li>
-							<li class="grid_sorting_button button d-flex flex-column justify-content-center align-items-center" data-filter=".food">食品</li>
-							<li class="grid_sorting_button button d-flex flex-column justify-content-center align-items-center" data-filter=".accessories">手工藝品</li>
-							<li class="grid_sorting_button button d-flex flex-column justify-content-center align-items-center" data-filter=".else">其他</li>
-						</ul>
-					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col">
-					<div class="product-grid" data-isotope="{ &quot;itemSelector&quot;: &quot;.product-item&quot;, &quot;layoutMode&quot;: &quot;fitRows&quot; }" style="position: relative; height: 760px;">
+<!-- New Arrivals -->
+<div class="new_arrivals">
+    <div class="container">
+        <div class="row">
+            <div class="col text-center">
+                <div class="section_title new_arrivals_title">
+                    <h2>全品項</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row align-items-center">
+            <div class="col text-center">
+                <div class="new_arrivals_sorting">
+                    <ul class="arrivals_grid_sorting clearfix button-group filters-button-group">
+                        <li class="grid_sorting_button button d-flex flex-column justify-content-center align-items-center active is-checked" data-filter="*">all</li>
+                        <li class="grid_sorting_button button d-flex flex-column justify-content-center align-items-center" data-filter=".food">食品</li>
+                        <li class="grid_sorting_button button d-flex flex-column justify-content-center align-items-center" data-filter=".accessories">手工藝品</li>
+                        <li class="grid_sorting_button button d-flex flex-column justify-content-center align-items-center" data-filter=".else">其他</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="product-grid" data-isotope="{ &quot;itemSelector&quot;: &quot;.product-item&quot;, &quot;layoutMode&quot;: &quot;fitRows&quot; }" style="position: relative; height: 760px;">
 
-						<!-- Product 1 -->
-					@{
-						foreach (var item in Model)
-						{
-							string imgSrc = "";
-							if (item.FPhoto != null)
-							{
-								var base64 = Convert.ToBase64String(item.FPhoto);
-								imgSrc = String.Format("data:image/gif;base64,{0}", base64);
-							}
+                    <!-- Product 1 -->
+                    @{
+                        foreach (var item in Model)
+                        {
+                            string imgSrc = "";
+                            if (item.FPhoto != null)
+                            {
+                                var base64 = Convert.ToBase64String(item.FPhoto);
+                                imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+                            }
 
-							<div class="product-item @item.FType" style="position: absolute; left: 0px; top: 0px;">
-								<div class="product discount product_filter" style="border-right: 1px solid rgb(233, 233, 233);">
-									<div class="product_image">
-										@if (!string.IsNullOrEmpty(imgSrc))
-										{
-											<img class="" src="@imgSrc" alt="顯示錯誤" width="100" height="220" />
-										}
-										else
-										{
-											<img class="" src="~/images/imageDefault.png" width="100" height="220" />
-										}
-									</div>
-									<div class="favorite favorite_left"></div>
-									<div class="product_info">
-										<h6 class="product_name"><a href="">@item.FName</a></h6>
-										<div class="product_price">$@Math.Ceiling((decimal)item.FPrice)</div>
-									</div>
-								</div>
-								<div class="red_button add_to_cart_button" onclick="AddToCart(@item.Fid)">
-									add to cart
-								</div>
-							</div>
-                }
-            }
+                            <div class="product-item @item.FType" style="position: absolute; left: 0px; top: 0px;">
+                                <div class="product discount product_filter" style="border-right: 1px solid rgb(233, 233, 233);">
+                                    <div class="product_image">
+                                        @if (!string.IsNullOrEmpty(imgSrc))
+                                        {
+                                            <img class="" src="@imgSrc" alt="顯示錯誤" width="100" height="220" />
+                                        }
+                                        else
+                                        {
+                                            <img class="" src="~/images/imageDefault.png" width="100" height="220" />
+                                        }
+                                    </div>
+                                    <div class="favorite favorite_left"></div>
+                                    <div class="product_info">
+                                        <h6 class="product_name"><a href="">@item.FName</a></h6>
+                                        <div class="product_price">$@Math.Ceiling((decimal)item.FPrice)</div>
+                                    </div>
+                                </div>
+                                <div class="red_button add_to_cart_button" onclick="AddToCart(@item.Fid)">
+                                    add to cart
+                                </div>
+                            </div>
+                        }
+                    }
 
 
-					
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 @Html.ActionLink("購物車","Cart","Product",new{  },new {@class="btn btn-outline-success"})
 
-	<div class="new_arrivals">
-		<div class="container">
-			<div class="row">
-				<div class="col text-center">
-					<div class="section_title new_arrivals_title">
-						<h2>參考區</h2>
-					</div>
-				</div>
-			</div>
-			<div class="row align-items-center">
-				<div class="col text-center">
-					<div class="new_arrivals_sorting">
-						<ul class="arrivals_grid_sorting clearfix button-group filters-button-group">
-							<li class="grid_sorting_button button d-flex flex-column justify-content-center align-items-center active is-checked" data-filter="*">all</li>
-							<li class="grid_sorting_button button d-flex flex-column justify-content-center align-items-center" data-filter=".women">women's</li>
-							<li class="grid_sorting_button button d-flex flex-column justify-content-center align-items-center" data-filter=".accessories">accessories</li>
-							<li class="grid_sorting_button button d-flex flex-column justify-content-center align-items-center" data-filter=".men">men's</li>
-						</ul>
-					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col">
-					<div class="product-grid" data-isotope="{ &quot;itemSelector&quot;: &quot;.product-item&quot;, &quot;layoutMode&quot;: &quot;fitRows&quot; }" style="position: relative; height: 760px;">
+<div class="new_arrivals">
+    <div class="container">
+        <div class="row">
+            <div class="col text-center">
+                <div class="section_title new_arrivals_title">
+                    <h2>參考區</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row align-items-center">
+            <div class="col text-center">
+                <div class="new_arrivals_sorting">
+                    <ul class="arrivals_grid_sorting clearfix button-group filters-button-group">
+                        <li class="grid_sorting_button button d-flex flex-column justify-content-center align-items-center active is-checked" data-filter="*">all</li>
+                        <li class="grid_sorting_button button d-flex flex-column justify-content-center align-items-center" data-filter=".women">women's</li>
+                        <li class="grid_sorting_button button d-flex flex-column justify-content-center align-items-center" data-filter=".accessories">accessories</li>
+                        <li class="grid_sorting_button button d-flex flex-column justify-content-center align-items-center" data-filter=".men">men's</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="product-grid" data-isotope="{ &quot;itemSelector&quot;: &quot;.product-item&quot;, &quot;layoutMode&quot;: &quot;fitRows&quot; }" style="position: relative; height: 760px;">
 
-						<!-- Product 1 -->
+                    <!-- Product 1 -->
 
-						<div class="product-item men" style="position: absolute; left: 0px; top: 0px;">
-							<div class="product discount product_filter" style="border-right: 1px solid rgb(233, 233, 233);">
-								<div class="product_image">
-									<img src="~/img/coloshop/product_1.png" alt="">
-								</div>
-								<div class="favorite favorite_left"></div>
-								<div class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"><span>-$20</span></div>
-								<div class="product_info">
-									<h6 class="product_name"><a href="https://technext.github.io/coloshop/single.html">Fujifilm X100T 16 MP Digital Camera (Silver)</a></h6>
-									<div class="product_price">$520.00<span>$590.00</span></div>
-								</div>
-							</div>
-							<div class="red_button add_to_cart_button"><a href="https://technext.github.io/coloshop/index.html#">add to cart</a></div>
-						</div>
+                    <div class="product-item men" style="position: absolute; left: 0px; top: 0px;">
+                        <div class="product discount product_filter" style="border-right: 1px solid rgb(233, 233, 233);">
+                            <div class="product_image">
+                                <img src="~/img/coloshop/product_1.png" alt="">
+                            </div>
+                            <div class="favorite favorite_left"></div>
+                            <div class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"><span>-$20</span></div>
+                            <div class="product_info">
+                                <h6 class="product_name"><a href="https://technext.github.io/coloshop/single.html">Fujifilm X100T 16 MP Digital Camera (Silver)</a></h6>
+                                <div class="product_price">$520.00<span>$590.00</span></div>
+                            </div>
+                        </div>
+                        <div class="red_button add_to_cart_button"><a href="https://technext.github.io/coloshop/index.html#">add to cart</a></div>
+                    </div>
 
-						<!-- Product 2 -->
+                    <!-- Product 2 -->
 
-						<div class="product-item women" style="position: absolute; left: 222px; top: 0px;">
-							<div class="product product_filter" style="border-right: 1px solid rgb(233, 233, 233);">
-								<div class="product_image">
-									<img src="~/img/coloshop/product_2.png" alt="">
-								</div>
-								<div class="favorite"></div>
-								<div class="product_bubble product_bubble_left product_bubble_green d-flex flex-column align-items-center"><span>new</span></div>
-								<div class="product_info">
-									<h6 class="product_name"><a href="https://technext.github.io/coloshop/single.html">Samsung CF591 Series Curved 27-Inch FHD Monitor</a></h6>
-									<div class="product_price">$610.00</div>
-								</div>
-							</div>
-							<div class="red_button add_to_cart_button"><a href="https://technext.github.io/coloshop/index.html#">add to cart</a></div>
-						</div>
+                    <div class="product-item women" style="position: absolute; left: 222px; top: 0px;">
+                        <div class="product product_filter" style="border-right: 1px solid rgb(233, 233, 233);">
+                            <div class="product_image">
+                                <img src="~/img/coloshop/product_2.png" alt="">
+                            </div>
+                            <div class="favorite"></div>
+                            <div class="product_bubble product_bubble_left product_bubble_green d-flex flex-column align-items-center"><span>new</span></div>
+                            <div class="product_info">
+                                <h6 class="product_name"><a href="https://technext.github.io/coloshop/single.html">Samsung CF591 Series Curved 27-Inch FHD Monitor</a></h6>
+                                <div class="product_price">$610.00</div>
+                            </div>
+                        </div>
+                        <div class="red_button add_to_cart_button"><a href="https://technext.github.io/coloshop/index.html#">add to cart</a></div>
+                    </div>
 
-						<!-- Product 3 -->
+                    <!-- Product 3 -->
+                    <!-- Product 4 -->
 
-	
+                    <div class="product-item accessories" style="position: absolute; left: 666px; top: 0px;">
+                        <div class="product product_filter" style="border-right: 1px solid rgb(233, 233, 233);">
+                            <div class="product_image">
+                                <img src="~/img/coloshop/product_4.png" alt="">
+                            </div>
+                            <div class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"><span>sale</span></div>
+                            <div class="favorite favorite_left"></div>
+                            <div class="product_info">
+                                <h6 class="product_name"><a href="https://technext.github.io/coloshop/single.html">DYMO LabelWriter 450 Turbo Thermal Label Printer</a></h6>
+                                <div class="product_price">$410.00</div>
+                            </div>
+                        </div>
+                        <div class="red_button add_to_cart_button"><a href="https://technext.github.io/coloshop/index.html#">add to cart</a></div>
+                    </div>
 
-						<!-- Product 4 -->
 
-						<div class="product-item accessories" style="position: absolute; left: 666px; top: 0px;">
-							<div class="product product_filter" style="border-right: 1px solid rgb(233, 233, 233);">
-								<div class="product_image">
-									<img src="~/img/coloshop/product_4.png" alt="">
-								</div>
-								<div class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"><span>sale</span></div>
-								<div class="favorite favorite_left"></div>
-								<div class="product_info">
-									<h6 class="product_name"><a href="https://technext.github.io/coloshop/single.html">DYMO LabelWriter 450 Turbo Thermal Label Printer</a></h6>
-									<div class="product_price">$410.00</div>
-								</div>
-							</div>
-							<div class="red_button add_to_cart_button"><a href="https://technext.github.io/coloshop/index.html#">add to cart</a></div>
-						</div>
-
-					
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 
 
-	<!-- Deal of the week -->
+<!-- Deal of the week -->
+<!-- Best Sellers -->
+<!-- Benefit -->
+
+<div class="benefit">
+    <div class="container">
+        <div class="row benefit_row">
+            <div class="col-lg-3 benefit_col">
+                <div class="benefit_item d-flex flex-row align-items-center">
+                    <div class="benefit_icon"><i class="fa fa-truck" aria-hidden="true"></i></div>
+                    <div class="benefit_content">
+                        <h6>滿$490免運費</h6>
+                        <p>運送範圍僅限台灣本島</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 benefit_col">
+                <div class="benefit_item d-flex flex-row align-items-center">
+                    <div class="benefit_icon"><i class="fa fa-money" aria-hidden="true"></i></div>
+                    <div class="benefit_content">
+                        <h6>線上付款</h6>
+                        <p>支援綠界科技第三方支付</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 benefit_col">
+                <div class="benefit_item d-flex flex-row align-items-center">
+                    <div class="benefit_icon"><i class="fa fa-undo" aria-hidden="true"></i></div>
+                    <div class="benefit_content">
+                        <h6>7天內無條件退貨</h6>
+                        <p>僅限手工藝品，且無明顯人為損傷</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 benefit_col">
+                <div class="benefit_item d-flex flex-row align-items-center">
+                    <div class="benefit_icon"><i class="fa fa-clock-o" aria-hidden="true"></i></div>
+                    <div class="benefit_content">
+                        <h6>隨時買單，快速出貨</h6>
+                        <p>保證於購買後兩個工作日內出貨</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 
-
-	<!-- Best Sellers -->
-
-
-
-	<!-- Benefit -->
-
-	<div class="benefit">
-		<div class="container">
-			<div class="row benefit_row">
-				<div class="col-lg-3 benefit_col">
-					<div class="benefit_item d-flex flex-row align-items-center">
-						<div class="benefit_icon"><i class="fa fa-truck" aria-hidden="true"></i></div>
-						<div class="benefit_content">
-							<h6>滿$490免運費</h6>
-							<p>運送範圍僅限台灣本島</p>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-3 benefit_col">
-					<div class="benefit_item d-flex flex-row align-items-center">
-						<div class="benefit_icon"><i class="fa fa-money" aria-hidden="true"></i></div>
-						<div class="benefit_content">
-							<h6>線上付款</h6>
-							<p>支援綠界科技第三方支付</p>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-3 benefit_col">
-					<div class="benefit_item d-flex flex-row align-items-center">
-						<div class="benefit_icon"><i class="fa fa-undo" aria-hidden="true"></i></div>
-						<div class="benefit_content">
-							<h6>7天內無條件退貨</h6>
-							<p>僅限手工藝品，且無明顯人為損傷</p>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-3 benefit_col">
-					<div class="benefit_item d-flex flex-row align-items-center">
-						<div class="benefit_icon"><i class="fa fa-clock-o" aria-hidden="true"></i></div>
-						<div class="benefit_content">
-							<h6>隨時買單，快速出貨</h6>
-							<p>保證於購買後兩個工作日內出貨</p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-
-
-<script src="~/js/coloshop/popper.js"></script>
+@*<script src="~/js/coloshop/popper.js"></script>*@
 <script src="~/js/coloshop/isotope.pkgd.min.js"></script>
-<script src="~/js/coloshop/owl.carousel.js"></script>
+@*<script src="~/js/coloshop/owl.carousel.js"></script>*@
 <script src="~/js/coloshop/easing.js"></script>
 <script src="~/js/coloshop/custom.js"></script>
-	<!-- Footer -->
-
+<!-- Footer -->
 @section Scripts{
-<script>
-		async function AddToCart(id){
-			 const response =  await fetch(`@Url.Content("~/Product/AddToCart?id=${id}")`);
-			const data = await response.json();
-			const outcome = data.outcome;
-			console.log(data);
-			alert(outcome);
-		}
+    <script>
+        async function AddToCart(id) {
+            const response = await fetch(`@Url.Content("~/Product/AddToCart?id=${id}")`);
+            const data = await response.json();
+            const outcome = data.outcome;
+            console.log(data);
+            alert(outcome);
+        }
 
-</script>
+    </script>
 }
 

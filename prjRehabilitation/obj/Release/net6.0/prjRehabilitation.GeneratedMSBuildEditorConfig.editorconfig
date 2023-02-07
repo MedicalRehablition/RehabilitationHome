@@ -16,8 +16,48 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\sigma\Source\Repos\MedicalRehablition\RehabilitationHome\prjRehabilitation
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/Users/sigma/source/repos/MedicalRehablition/RehabilitationHome/prjRehabilitation/Models/Product/Cart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = TW9kZWxzXFByb2R1Y3RcQ2FydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/sigma/source/repos/MedicalRehablition/RehabilitationHome/prjRehabilitation/Models/Product/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = TW9kZWxzXFByb2R1Y3RcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/sigma/source/repos/MedicalRehablition/RehabilitationHome/prjRehabilitation/Models/Product/CreateOrder.cshtml]
+build_metadata.AdditionalFiles.TargetPath = TW9kZWxzXFByb2R1Y3RcQ3JlYXRlT3JkZXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/sigma/source/repos/MedicalRehablition/RehabilitationHome/prjRehabilitation/Models/Product/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = TW9kZWxzXFByb2R1Y3RcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/sigma/source/repos/MedicalRehablition/RehabilitationHome/prjRehabilitation/Models/Product/GetOrderInfo.cshtml]
+build_metadata.AdditionalFiles.TargetPath = TW9kZWxzXFByb2R1Y3RcR2V0T3JkZXJJbmZvLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/sigma/source/repos/MedicalRehablition/RehabilitationHome/prjRehabilitation/Models/Product/List.cshtml]
+build_metadata.AdditionalFiles.TargetPath = TW9kZWxzXFByb2R1Y3RcTGlzdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/sigma/source/repos/MedicalRehablition/RehabilitationHome/prjRehabilitation/Models/Product/List_B.cshtml]
+build_metadata.AdditionalFiles.TargetPath = TW9kZWxzXFByb2R1Y3RcTGlzdF9CLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/sigma/source/repos/MedicalRehablition/RehabilitationHome/prjRehabilitation/Models/Product/orders.cshtml]
+build_metadata.AdditionalFiles.TargetPath = TW9kZWxzXFByb2R1Y3Rcb3JkZXJzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/sigma/source/repos/MedicalRehablition/RehabilitationHome/prjRehabilitation/Models/Product/pay.cshtml]
+build_metadata.AdditionalFiles.TargetPath = TW9kZWxzXFByb2R1Y3RccGF5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/sigma/source/repos/MedicalRehablition/RehabilitationHome/prjRehabilitation/Views/AdminUserLogin/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5Vc2VyTG9naW5cRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/sigma/source/repos/MedicalRehablition/RehabilitationHome/prjRehabilitation/Views/AdminUserLogin/Edit2.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5Vc2VyTG9naW5cRWRpdDIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/sigma/source/repos/MedicalRehablition/RehabilitationHome/prjRehabilitation/Views/AdminUserLogin/ForgetPassword.cshtml]
@@ -30,6 +70,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/sigma/source/repos/MedicalRehablition/RehabilitationHome/prjRehabilitation/Views/AdminUserLogin/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5Vc2VyTG9naW5cTG9naW4uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/sigma/source/repos/MedicalRehablition/RehabilitationHome/prjRehabilitation/Views/AdminUserLogin/PartialEdit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5Vc2VyTG9naW5cUGFydGlhbEVkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/sigma/source/repos/MedicalRehablition/RehabilitationHome/prjRehabilitation/Views/AdminUserLogin/PartialLogin.cshtml]
@@ -74,6 +118,26 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/sigma/source/repos/MedicalRehablition/RehabilitationHome/prjRehabilitation/Views/Consult/List.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29uc3VsdFxMaXN0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/sigma/source/repos/MedicalRehablition/RehabilitationHome/prjRehabilitation/Views/ECPay/CallbackCustomer.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRUNQYXlcQ2FsbGJhY2tDdXN0b21lci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/sigma/source/repos/MedicalRehablition/RehabilitationHome/prjRehabilitation/Views/ECPay/CallbackReturn.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRUNQYXlcQ2FsbGJhY2tSZXR1cm4uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/sigma/source/repos/MedicalRehablition/RehabilitationHome/prjRehabilitation/Views/ECPay/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRUNQYXlcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/sigma/source/repos/MedicalRehablition/RehabilitationHome/prjRehabilitation/Views/ECPay/Privacy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRUNQYXlcUHJpdmFjeS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/sigma/source/repos/MedicalRehablition/RehabilitationHome/prjRehabilitation/Views/ECPay/SendToNewebPay.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRUNQYXlcU2VuZFRvTmV3ZWJQYXkuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/sigma/source/repos/MedicalRehablition/RehabilitationHome/prjRehabilitation/Views/Evaluate/Create.cshtml]
@@ -160,6 +224,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/sigma/source/repos/MedicalRehablition/RehabilitationHome/prjRehabilitation/Views/Home/Register.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxSZWdpc3Rlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/sigma/source/repos/MedicalRehablition/RehabilitationHome/prjRehabilitation/Views/Patients/Create_F.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGF0aWVudHNcQ3JlYXRlX0YuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -196,8 +264,16 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdFxDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/sigma/source/repos/MedicalRehablition/RehabilitationHome/prjRehabilitation/Views/Product/CreateOrder.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdFxDcmVhdGVPcmRlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/sigma/source/repos/MedicalRehablition/RehabilitationHome/prjRehabilitation/Views/Product/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdFxFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/sigma/source/repos/MedicalRehablition/RehabilitationHome/prjRehabilitation/Views/Product/GetOrderInfo.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdFxHZXRPcmRlckluZm8uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/sigma/source/repos/MedicalRehablition/RehabilitationHome/prjRehabilitation/Views/Product/List.cshtml]
@@ -206,6 +282,14 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/sigma/source/repos/MedicalRehablition/RehabilitationHome/prjRehabilitation/Views/Product/List_B.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdFxMaXN0X0IuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/sigma/source/repos/MedicalRehablition/RehabilitationHome/prjRehabilitation/Views/Product/orders.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdFxvcmRlcnMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/sigma/source/repos/MedicalRehablition/RehabilitationHome/prjRehabilitation/Views/Product/pay.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdFxwYXkuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/sigma/source/repos/MedicalRehablition/RehabilitationHome/prjRehabilitation/Views/Shared/AdminLayout.cshtml]
