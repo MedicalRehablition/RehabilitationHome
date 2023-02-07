@@ -7,10 +7,14 @@
     .try {
         border: dashed red 2px;
     }
-     textarea {
-    width: 300px;
-    height: 150px;
-    resize: none;
+
+    textarea {
+        width: 300px;
+        height: 150px;
+        resize: none;
+        overflow-x: visible;
+        overflow-y: visible;
+    }
 
 </style>
 
@@ -58,7 +62,7 @@
                     </div>
                     <div class="form-group">
                         <label asp-for="Summary" class="control-label"></label>
-                        <textarea asp-for="Summary" class="form-control" ></textarea>
+                        <textarea asp-for="Summary" class="form-control"></textarea>
                         <span asp-validation-for="Summary" class="text-danger"></span>
                     </div>
                     <div class="form-group">

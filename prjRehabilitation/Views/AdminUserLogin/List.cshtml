@@ -84,7 +84,7 @@
                         @Html.DisplayFor(modelItem => item.FBirth)
                     </td>
                     <td>
-                        @Html.ActionLink("編輯", "Edit2", new {  id=item.Fid  },new { @class="btn btn-primary"})
+                        @Html.ActionLink("編輯", "Edit", new {  id=item.Fid  },new { @class="btn btn-primary"})
                         @Html.ActionLink("刪除", "Delete", new {  id=item.Fid  },new { @class="btn btn-danger",onclick = "return confirm('是否刪除?')"})
                     </td>
                 </tr>

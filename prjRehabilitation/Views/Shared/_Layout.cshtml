@@ -117,7 +117,7 @@
                                                 <a class="nav-link text-dark" asp-area="" asp-controller="Product" asp-action="List">甜心小舖</a>
                                             </li>
                                             <li>
-                                                <a class="nav-link text-dark" asp-area="" asp-controller="Calendar" asp-action="Index">行事曆</a>
+                                                <a class="nav-link text-dark" asp-area="" asp-controller="Calendar" asp-action="List">行事曆</a>
                                             </li>
                                             <li>
                                                 <a class="nav-link text-dark" asp-area="" asp-controller="AdminUserLogin" asp-action="Login">後臺管理系統</a>
@@ -186,7 +186,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLongTitle">登入帳號</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color: red;">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
@@ -316,9 +316,13 @@
     <script>
         //=======================抓使用者是誰======================
         async function getUser() {
+            //const data = new FormData(UserLoingForm);
             const span = document.querySelector("#UserName");
-            const response = await fetch("@Url.Content("/UserLogin/GetUserSession")")
-
+            const response = await fetch("@Url.Content("/UserLogin/GetUserSession")",{
+                //method:"Post",
+                //body:data,
+            }
+            )
             const User = await response.text();
             const LoginA = document.querySelector(".LoginA");
             if (User != "") {
