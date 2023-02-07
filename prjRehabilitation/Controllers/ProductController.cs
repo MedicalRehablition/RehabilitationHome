@@ -13,6 +13,14 @@ namespace prjRehabilitation.Controllers
     public class ProductController : Controller
     {
         private IWebHostEnvironment _environment;
+        public IActionResult pay()
+        {
+            return View();
+        }
+        public IActionResult CreateOrder()
+        {
+            return View();
+        }
         public ProductController(IWebHostEnvironment environment)
         {
             _environment = environment;

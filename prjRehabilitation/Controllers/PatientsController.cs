@@ -153,7 +153,7 @@ namespace prjRehabilitation.Controllers
                     data.emerCaller2 = c;
                 count++;
             }
-            return PartialView(data);
+            return View(data);
         }
 
 

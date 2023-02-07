@@ -7,6 +7,10 @@
     .try {
         border: dashed red 2px;
     }
+     textarea {
+    width: 300px;
+    height: 150px;
+    resize: none;
 
 </style>
 
@@ -54,7 +58,7 @@
                     </div>
                     <div class="form-group">
                         <label asp-for="Summary" class="control-label"></label>
-                        <textarea asp-for="Summary" class="form-control" style="width:260;overflow-x:visible;overflow-y:visible;"></textarea>
+                        <textarea asp-for="Summary" class="form-control" ></textarea>
                         <span asp-validation-for="Summary" class="text-danger"></span>
                     </div>
                     <div class="form-group">
@@ -74,7 +78,7 @@
                     <input type="submit" value="新增會談資料" class="btn btn-primary" />
                 </div>
                 <div>
-                    <button type="button" id="demo" class="btn btn-sm">產生範例</button>
+                    <button type="button" id="demo" class="btn btn-sm btn-info">產生範例</button>
                 </div>
             </div>
         </form>

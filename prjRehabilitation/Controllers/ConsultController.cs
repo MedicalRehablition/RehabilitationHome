@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using prjRehabilitation.Models;
 using prjRehabilitation.ViewModel;
+using System.Text.Json;
 using System.Xml.Linq;
 
 namespace prjRehabilitation.Controllers
@@ -9,31 +10,54 @@ namespace prjRehabilitation.Controllers
     {
         public IActionResult List(CKeywordViewModel vm)
         {
+            string json = HttpContext.Session.GetString(CDictionary.SK_ADMIN_User);//得到工作人員的session
+            string jsonc = HttpContext.Session.GetString(CDictionary.SK_CUSTOMER_User);  //得到訪客的session
+            ViewBag.keyword = false;
             dbClassContext db = new dbClassContext();
-            string Keyword = vm.txtKeyword;
-            IEnumerable<PatientInfo> data = null;
-            if (Keyword == null)
+            if (!string.IsNullOrEmpty(json)) //員工有登入
             {
-                data = from p in db.PatientInfos
-                       where p.Status == true
-                       select new PatientInfo { FName = p.FName, Fid = p.Fid };
+                string Keyword = vm.txtKeyword;
+                IEnumerable<PatientInfo> data = null;
+                if (Keyword == null)
+                {
+                    data = from p in db.PatientInfos
+                           where p.Status == true
+                           select new PatientInfo { FName = p.FName, Fid = p.Fid };
+                }
+                else
+                    data = db.PatientInfos.Where(c => c.FName.Contains(Keyword)).ToList();
+                List<CPatientsViewModel> List = new List<CPatientsViewModel>();
+                foreach (var c in data)
+                {
+                    CPatientsViewModel patient = new CPatientsViewModel();
+                    patient.Patient = c;
+                    List.Add(patient);
+                    ViewBag.keyword = true;
+                }
+                return View(List);
             }
-            else
-                data = db.PatientInfos.Where(c => c.FName.Contains(Keyword)).ToList();
-            List<CPatientsViewModel> List = new List<CPatientsViewModel>();
-            foreach (var c in data)
+            else if (!string.IsNullOrEmpty(jsonc))//家屬有登入
             {
-                CPatientsViewModel patient = new CPatientsViewModel();
-                patient.Patient = c;
-                List.Add(patient);
-            }
-            return View(List);
+                Customer customer = JsonSerializer.Deserialize<Customer>(jsonc);
+                var pin = db.PatientInfos.FirstOrDefault(t => t.FCustomerid == customer.Fid);
+                if (pin != null)
+                {
+                    return RedirectToAction("DateList", "Consult", new { @id = pin.Fid });
+                };
+            };
+            return RedirectToAction("Index", "Home"); //其他狀況一律回主頁
         }
         public IActionResult DateList(int? id)
         {
+            //-------custoer setting-----
+            string jsonc = HttpContext.Session.GetString(CDictionary.SK_CUSTOMER_User); 
+            ViewBag.setting = "";
+            if (jsonc != null)
+            {
+                ViewBag.setting = "customer";
+            };
 
             dbClassContext db = new dbClassContext();
-
             IEnumerable<Consultation> datas = null;
             datas = db.Consultations.Where(c => c.PatinetId == id.Value).ToList();
 
@@ -83,6 +107,13 @@ namespace prjRehabilitation.Controllers
         }
         public ActionResult Edit(int? id)
         {
+            //-------custoer setting-----
+            string jsonc = HttpContext.Session.GetString(CDictionary.SK_CUSTOMER_User);
+            ViewBag.setting = "";
+            if (jsonc != null)
+            {
+                ViewBag.setting = "customer";
+            };
             dbClassContext db = new dbClassContext();
             Consultation consult = db.Consultations.FirstOrDefault(t => t.FConsultId == id);      //'查詢'頁面輸入的資料到Tptient去撈資料，並放到CProductViewMode
             CConsultationViewModel vm = new CConsultationViewModel();

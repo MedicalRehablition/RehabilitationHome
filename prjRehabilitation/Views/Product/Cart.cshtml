@@ -96,7 +96,7 @@
 
         <td class="checkoutButton ">
             <p>
-                    <a class="genric-btn primary-border radius e-large ">結帳</a>
+                    <button onclick="checkOut()" class="genric-btn primary-border radius e-large ">結帳</button>
             </p>
         </td>
      </tr>
@@ -108,6 +108,13 @@
     <script>
         checkMoney();
 
+        async function checkOut(){
+            checkMoney();
+            const price = $("#total").html();
+            //location.href=`@Url.Content("~/ECPay/Index?price=${price}")`;
+            location.href=`@Url.Content("~/Product/CreateOrder")`;
+            
+        }
         async function RemoveCartItem(id) {
             const response = await fetch(`@Url.Content("~/Product/RemoveCartItem?id=${id}")`);
             location.reload();
