@@ -2,12 +2,13 @@
 
 @{
     ViewData["Title"] = "CalendarApplyCensorList";
+    if (!string.IsNullOrEmpty(ViewBag.getAdminSection)) { Layout = "AdminLayout"; }
 }
 
 <h1>CalendarApplyCensorList</h1>
 
 <p>
-    <a asp-action="CalendarApplyCensorCreate" class="genric-btn primary e-large">後端新增會客預約</a>
+    <a asp-action="CalendarApplyVisitorAdminCreate" class="genric-btn primary e-large">後端新增會客預約</a>
 </p>
 <table class="table">
     <thead>
@@ -105,7 +106,7 @@
             @Html.DisplayFor(modelItem => item.FAdminId)
             </td>*@
                 <td>
-                    @Html.ActionLink("審核", "Edit", new { /* id=item.PrimaryKey */ })
+                    @Html.ActionLink("審核", "CalendarAuditDecision", new {  id=item.FId  })
                 </td>
             </tr>
         }

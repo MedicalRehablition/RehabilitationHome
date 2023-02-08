@@ -9,7 +9,7 @@ namespace prjRehabilitation.Controllers.Api
 {
     public class CalendarAjaxController : Controller
     {
-        public Customer getCustomerIfSession()
+        public Customer getCustomerIfSession1()
         {
             string json = HttpContext.Session.GetString(CDictionary.SK_CUSTOMER_User);
             Customer customer = null;
@@ -20,6 +20,19 @@ namespace prjRehabilitation.Controllers.Api
             }
             return customer;
         }
+
+        //public Admin getAdminIfSession()
+        //{
+        //    string json = HttpContext.Session.GetString(CDictionary.SK_ADMIN_User);
+        //    Admin admin = null;
+
+        //    if (!string.IsNullOrEmpty(json))
+        //    {
+        //        admin = JsonSerializer.Deserialize<Admin>(json);
+        //    }
+        //    return admin;
+        //}
+
         public IActionResult Index()
         {
             return View();
@@ -30,7 +43,7 @@ namespace prjRehabilitation.Controllers.Api
             if (vm.content == null || vm.date == null) return Content("請輸入完整資料");
             if (vm.fRecorder == null) return Content("請登入後申請");
             dbClassContext db = new dbClassContext();
-            Customer getCusSession = getCustomerIfSession();
+            Customer getCusSession = getCustomerIfSession1();
             string getResident = db.PatientInfos.Where(_ => _.FCustomerid == getCusSession.Fid).FirstOrDefault().FName;//先抓出來免得不是字造成連續發信問題
             string getDate = vm.date;   //先抓出來免得不是字造成連續發信問題
             List<string> MailList = new List<string>();
@@ -55,6 +68,29 @@ namespace prjRehabilitation.Controllers.Api
             return Content("已發送郵件, 請等候通知。");
         }
 
+        public IActionResult sendMailWhenAuditDecision(string AuditResultsLabel,string AuditResultsTitle,string AuditResultsContent,int FCustomerid) {
+            dbClassContext db = new dbClassContext();
+          string getEmail =  db.Customers.FirstOrDefault(_ => _.Fid == FCustomerid).FEmail;
+            List<string> MailList = new List<string>();
 
+            MailList.Add(getEmail);//新增收件人進去
+            string Subject = AuditResultsTitle + "  "  + AuditResultsLabel;
+            string Body = AuditResultsContent;
+            MailMessage msg = new MailMessage();
+            msg.From = new MailAddress("yeeee880726@gmail.com", "測試郵件", System.Text.Encoding.UTF8);
+            msg.To.Add(string.Join(",", MailList.ToArray()));//收件人
+            msg.Subject = Subject; //主旨
+            msg.SubjectEncoding = System.Text.Encoding.UTF8;
+            msg.Body = Body;//內容
+            msg.IsBodyHtml = true;
+            msg.BodyEncoding = System.Text.Encoding.UTF8;
+            msg.Priority = MailPriority.Normal;
+            SmtpClient MySmtp = new SmtpClient("smtp.gmail.com", 587);
+            //寄件人
+            MySmtp.Credentials = new System.Net.NetworkCredential("yeeee880726@gmail.com", "dkyzsdpffgrgount");
+            MySmtp.EnableSsl = true;
+            MySmtp.Send(msg);
+            return Content("已發送郵件");
+        }
     }
 }

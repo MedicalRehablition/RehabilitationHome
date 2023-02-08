@@ -39,6 +39,8 @@ namespace prjRehabilitation.Models
         public virtual DbSet<TGroupActivityClassTheme> TGroupActivityClassThemes { get; set; } = null!;
         public virtual DbSet<TGroupActivityPicAndFile> TGroupActivityPicAndFiles { get; set; } = null!;
         public virtual DbSet<TOfficialPost> TOfficialPosts { get; set; } = null!;
+        public virtual DbSet<TOrder> TOrders { get; set; } = null!;
+        public virtual DbSet<TOrderDetail> TOrderDetails { get; set; } = null!;
         public virtual DbSet<TPersonalPerformance> TPersonalPerformances { get; set; } = null!;
         public virtual DbSet<TPostComment> TPostComments { get; set; } = null!;
         public virtual DbSet<TScheduleDetail> TScheduleDetails { get; set; } = null!;
@@ -500,6 +502,10 @@ namespace prjRehabilitation.Models
                     .IsRequired()
                     .HasColumnName("fStatus")
                     .HasDefaultValueSql("('1')");
+
+                entity.Property(e => e.FType)
+                    .HasMaxLength(50)
+                    .HasColumnName("fType");
             });
 
             modelBuilder.Entity<TCalendar>(entity =>
@@ -510,6 +516,8 @@ namespace prjRehabilitation.Models
 
                 entity.Property(e => e.FId).HasColumnName("fID");
 
+                entity.Property(e => e.FAdminId).HasColumnName("fAdminId");
+
                 entity.Property(e => e.FApplyVisitor).HasColumnName("fApplyVisitor");
 
                 entity.Property(e => e.FClassName)
@@ -519,6 +527,8 @@ namespace prjRehabilitation.Models
                 entity.Property(e => e.FContent)
                     .HasMaxLength(100)
                     .HasColumnName("fContent");
+
+                entity.Property(e => e.FCustomerid).HasColumnName("fCustomerid");
 
                 entity.Property(e => e.FDate)
                     .HasMaxLength(50)
@@ -547,8 +557,6 @@ namespace prjRehabilitation.Models
                     .HasColumnName("fTitle");
 
                 entity.Property(e => e.FVisualHierarchy).HasColumnName("fVisualHierarchy");
-                entity.Property(e => e.FCustomerid).HasColumnName("fCustomerid");
-                entity.Property(e => e.FAdminId).HasColumnName("fAdminId");
             });
 
             modelBuilder.Entity<TClassThemeList>(entity =>
@@ -786,6 +794,69 @@ namespace prjRehabilitation.Models
                 entity.Property(e => e.FTitle)
                     .HasMaxLength(50)
                     .HasColumnName("fTitle");
+            });
+
+            modelBuilder.Entity<TOrder>(entity =>
+            {
+                entity.HasKey(e => e.Fid);
+
+                entity.ToTable("tOrder");
+
+                entity.Property(e => e.Fid).HasColumnName("fid");
+
+                entity.Property(e => e.FAddress)
+                    .HasMaxLength(50)
+                    .HasColumnName("fAddress");
+
+                entity.Property(e => e.FDate)
+                    .HasMaxLength(50)
+                    .HasColumnName("fDate");
+
+                entity.Property(e => e.FEmail)
+                    .HasMaxLength(50)
+                    .HasColumnName("fEmail");
+
+                entity.Property(e => e.FName)
+                    .HasMaxLength(50)
+                    .HasColumnName("fName");
+
+                entity.Property(e => e.FOrderId)
+                    .HasMaxLength(50)
+                    .HasColumnName("fOrderId");
+
+                entity.Property(e => e.FShip).HasColumnName("fShip");
+
+                entity.Property(e => e.FStatus)
+                    .IsRequired()
+                    .HasColumnName("fStatus")
+                    .HasDefaultValueSql("((1))");
+
+                entity.Property(e => e.FTotalPrice)
+                    .HasColumnType("money")
+                    .HasColumnName("fTotalPrice");
+            });
+
+            modelBuilder.Entity<TOrderDetail>(entity =>
+            {
+                entity.HasKey(e => e.Fid);
+
+                entity.ToTable("tOrderDetail");
+
+                entity.Property(e => e.Fid).HasColumnName("fid");
+
+                entity.Property(e => e.FOrderId)
+                    .HasMaxLength(50)
+                    .HasColumnName("fOrderId");
+
+                entity.Property(e => e.FPrice)
+                    .HasColumnType("money")
+                    .HasColumnName("fPrice");
+
+                entity.Property(e => e.FProductName)
+                    .HasMaxLength(50)
+                    .HasColumnName("fProductName");
+
+                entity.Property(e => e.FQty).HasColumnName("fQty");
             });
 
             modelBuilder.Entity<TPersonalPerformance>(entity =>

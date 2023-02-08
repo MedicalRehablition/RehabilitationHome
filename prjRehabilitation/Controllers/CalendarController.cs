@@ -1,15 +1,18 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using NuGet.Protocol;
+using prjRehabilitation.Controllers.Api;
 using prjRehabilitation.Models;
 using prjRehabilitation.ViewModel.Eric;
+using System.Globalization;
 using System.Text.Json;
 
 namespace prjRehabilitation.Controllers
 {
     public class CalendarController : Controller
     {
-        public Customer getCustomerIfSession() { 
-         string json = HttpContext.Session.GetString(CDictionary.SK_CUSTOMER_User);
+        public Customer getCustomerIfSession()
+        {
+            string json = HttpContext.Session.GetString(CDictionary.SK_CUSTOMER_User);
             Customer customer = null;
 
             if (!string.IsNullOrEmpty(json))
@@ -29,6 +32,10 @@ namespace prjRehabilitation.Controllers
             }
             return admin;
         }
+        //Customer customer = new CalendarAjaxController().getCustomerIfSession(); 
+        //Admin admin = new CalendarAjaxController().getAdminIfSession();
+
+
         public List<TCalendar> betweenDate(DateTime targetDay)
         {
 
@@ -49,9 +56,10 @@ namespace prjRehabilitation.Controllers
             {    //最後濾鏡，都沒登入就是只能看到0
                 targetRangeDays = targetRangeDays.Where(_ => _.FVisualHierarchy == 0).ToList();
             }
-            else if (getAdminIfSession() == null && getCustomerIfSession() != null) {   //前端有登入，後端沒有
+            else if (getAdminIfSession() == null && getCustomerIfSession() != null)
+            {   //前端有登入，後端沒有
                 List<TCalendar> findLV = targetRangeDays.Where(_ => _.FVisualHierarchy == 0).ToList();  //先把
-                findLV.AddRange( targetRangeDays.Where(_ => _.FCustomerid == getCustomerIfSession().Fid).Where(_=>_.FApplyVisitor == true).ToList()); //雖然優先度是1但是因為是本人就無視優先權
+                findLV.AddRange(targetRangeDays.Where(_ => _.FCustomerid == getCustomerIfSession().Fid).Where(_ => _.FApplyVisitor == true).ToList()); //雖然優先度是1但是因為是本人就無視優先權
                 return findLV;
             }
             return targetRangeDays;
@@ -109,7 +117,7 @@ namespace prjRehabilitation.Controllers
         public IActionResult Create()
         {
 
-            if (string.IsNullOrEmpty(HttpContext.Session.GetString(CDictionary.SK_ADMIN_User))) {  return Content("並末登入，請回首頁登入後進行"); }
+            if (string.IsNullOrEmpty(HttpContext.Session.GetString(CDictionary.SK_ADMIN_User))) { return Content("並末登入，請回首頁登入後進行"); }
             return View(new CCalendarViewModel() { fRecorder = getAdminIfSession().FName, fRecorderDate = DateTime.Today.ToShortDateString() });
 
         }
@@ -127,28 +135,34 @@ namespace prjRehabilitation.Controllers
         }
 
 
-        public IActionResult CalendarApplyVisitor() {
+        public IActionResult CalendarApplyVisitor()
+        {
 
+            if (getAdminIfSession() != null) return Content("後端登入後請上一頁利用後端新增");
+            //if (getAdminIfSession() != null)
+            //{
+            //    ViewBag.getAdminSection = HttpContext.Session.GetString(CDictionary.SK_ADMIN_User);
+            //    return View(new CCalendarViewModel() { fRecorder = getAdminIfSession().FName, fRecorderDate = DateTime.Today.ToShortDateString() });
+            //}
             if (string.IsNullOrEmpty(HttpContext.Session.GetString(CDictionary.SK_CUSTOMER_User))) { return Content("並末登入，請回首頁登入後進行"); }
-            return View(new CCalendarViewModel() { fRecorder = getCustomerIfSession().FName, fRecorderDate = DateTime.Today.ToShortDateString() });
 
+            return View(new CCalendarViewModel() { fRecorder = getCustomerIfSession().FName, fRecorderDate = DateTime.Today.ToShortDateString() });
         }
         [HttpPost]
         public IActionResult CalendarApplyVisitor(CCalendarViewModel ccvmAV)
-        {
+        { 
+            dbClassContext db = new dbClassContext();
             ccvmAV.FCustomerid = getCustomerIfSession().Fid;
             ccvmAV.FDeleteBool = true;
             ccvmAV.eventName = "申請會客";
 
-            ccvmAV.title = "申請會客";
+            ccvmAV.title = db.PatientInfos.FirstOrDefault(_ => _.FCustomerid == getCustomerIfSession().Fid).FName+ "的會客";
 
             ccvmAV.FApplyVisitor = false;
 
             ccvmAV.FVisualHierarchy = 1;    //初步將可視等級為1免得不打會0大家都看的到
-            ccvmAV.className = "genric-btn info circle arrow";
+            ccvmAV.className = "genric-btn warning circle arrow";
 
-            dbClassContext db = new dbClassContext();
-       
 
             db.Add(ccvmAV.calendar);
             db.SaveChanges();
@@ -156,17 +170,76 @@ namespace prjRehabilitation.Controllers
             return RedirectToAction("List");
         }
 
-        public IActionResult CalendarApplyCensorList() {
+        public IActionResult CalendarApplyCensorList()
+        {
+
             dbClassContext db = new dbClassContext();
-           var calendarForomDB = db.TCalendars.Where(_ => _.FApplyVisitor == false);
+            var calendarForomDB = db.TCalendars.Where(_ => _.FApplyVisitor != null);
             List<CCalendarViewModel> viewModelForList = new List<CCalendarViewModel>();
             foreach (TCalendar item in calendarForomDB)
             {
                 viewModelForList.Add(new CCalendarViewModel() { calendar = item });
             }
+            if (!string.IsNullOrEmpty(HttpContext.Session.GetString(CDictionary.SK_ADMIN_User)))
+            {
+                ViewBag.getAdminSection = HttpContext.Session.GetString(CDictionary.SK_ADMIN_User);
+            }
+            return View(viewModelForList.OrderByDescending(_ => _.fRecorderDate));
+        }
+        public IActionResult CalendarApplyVisitorAdminCreate()
+        {
+            dbClassContext db = new dbClassContext();
+            CCalendarViewModel ccvm = new CCalendarViewModel()
+            {
+                fRecorder = getAdminIfSession().FName,
+                fRecorderDate = DateTime.Today.ToShortDateString(),
+                FAdminId = getAdminIfSession().Fid,
+            };
 
-            return View(viewModelForList.OrderByDescending(_=>_.fRecorderDate));
+            IQueryable<PatientInfo> getFormDB = db.PatientInfos.Where(_ => _.Status == true);
+            ccvm.getAllResidentAndCustomerIDList = new Dictionary<int, string>();
+            foreach (PatientInfo? item in getFormDB)
+            {
+                ccvm.getAllResidentAndCustomerIDList.Add( Convert.ToInt32( item.FCustomerid), item.FName  );
+            }
+
+            return View(ccvm);
+        }
+        [HttpPost]
+        public IActionResult CalendarApplyVisitorAdminCreate(CCalendarViewModel ccvmPost)
+        {
+            dbClassContext db = new dbClassContext();
+
+            ccvmPost.eventName = "申請會客(後端)";
+            ccvmPost.FApplyVisitor = false;
+            ccvmPost.FDeleteBool = true;
+            ccvmPost.className = "genric-btn warning circle arrow";
+            ccvmPost.title = db.PatientInfos.FirstOrDefault(_ => _.FCustomerid == ccvmPost.FCustomerid).FName + "的會面";
+            db.TCalendars.Add(ccvmPost.calendar);
+            db.SaveChanges();
+
+            return RedirectToAction("CalendarApplyCensorList");
         }
 
+        public IActionResult CalendarAuditDecision(int? id) {
+
+            dbClassContext db = new dbClassContext();
+
+            CCalendarViewModel ccvm = new CCalendarViewModel();
+            ccvm.calendar = db.TCalendars.FirstOrDefault(_ => _.FId == id);
+            ccvm.FAdminId = getAdminIfSession().Fid;
+            return View(ccvm);
+        }
+        [HttpPost]
+        public IActionResult CalendarAuditDecision(CCalendarViewModel ccvm,string hiddenTF) {
+
+            dbClassContext db = new dbClassContext();
+            ccvm.FApplyVisitor = Convert.ToBoolean( hiddenTF);
+            if ((bool)ccvm.FApplyVisitor) { ccvm.className = "genric-btn info circle arrow"; }
+            else { ccvm.className = "genric-btn warning circle arrow"; }
+            db.Update(ccvm.calendar);
+            db.SaveChanges();
+            return RedirectToAction("CalendarApplyCensorList");
+        }
     }
 }

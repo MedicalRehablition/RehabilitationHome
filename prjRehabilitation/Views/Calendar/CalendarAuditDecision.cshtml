@@ -1,0 +1,219 @@
+﻿@model prjRehabilitation.ViewModel.Eric.CCalendarViewModel
+
+@{
+    ViewData["Title"] = "CalendarAuditDecision";
+    Layout = "AdminLayout";
+}
+
+<h1>會客審核頁</h1>
+
+<h4>審核內容</h4>
+<hr />
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="CalendarAuditDecision" name="auditDecisionForm">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" id="saveTrueOrFalse" name="hiddenTF"/>
+            <div class="form-group">
+                @*<label asp-for="FId" class="control-label"></label>*@
+                <input type="hidden" asp-for="FId" class="form-control" />
+                <span asp-validation-for="FId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                @*<label asp-for="FDeleteBool" class="control-label"></label>*@
+                <input type="hidden" asp-for="FDeleteBool" class="form-control" />
+                <span asp-validation-for="FDeleteBool" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="date" class="control-label"></label>
+                <input type="date" asp-for="date" class="form-control" />
+                <span asp-validation-for="date" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="eventName" class="control-label"></label>
+                <input asp-for="eventName" class="form-control" />
+                <span asp-validation-for="eventName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                @*<label asp-for="className" class="control-label"></label>*@
+                <input type="hidden" asp-for="className" class="form-control" />
+                <span asp-validation-for="className" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                @*<label asp-for="dateColor" class="control-label"></label>*@
+                <input type="hidden" asp-for="dateColor" class="form-control" />
+                <span asp-validation-for="dateColor" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="title" class="control-label"></label>
+                <input asp-for="title" class="form-control" />
+                <span asp-validation-for="title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="content" class="control-label"></label>
+                <textarea asp-for="content" class="form-control" style="height:350px"></textarea>
+                <span asp-validation-for="content" class="text-danger"></span>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label asp-for="FVisualHierarchy" class="control-label"></label>
+                        <input asp-for="FVisualHierarchy" class="form-control" readonly />
+                        <span asp-validation-for="FVisualHierarchy" class="text-danger"></span>
+                    </div>
+                </div><div class="col">
+                    <div class="form-group">
+                        <label asp-for="FApplyVisitor" class="control-label">目前核准狀態</label>
+                        <input asp-for="FApplyVisitor" class="form-control" readonly />
+                        <span asp-validation-for="FApplyVisitor" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label asp-for="FCustomerid" class="control-label">相關會員編號</label>
+                        <input asp-for="FCustomerid" class="form-control" readonly />
+                        <span asp-validation-for="FCustomerid" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label asp-for="FAdminId" class="control-label">審核員工編號</label>
+                        <input asp-for="FAdminId" class="form-control" readonly />
+                        <span asp-validation-for="FAdminId" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label asp-for="fRecorder" class="control-label"></label>
+                        <input asp-for="fRecorder" class="form-control" readonly />
+                        <span asp-validation-for="fRecorder" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label asp-for="fRecorderDate" class="control-label"></label>
+                        <input asp-for="fRecorderDate" class="form-control" readonly />
+                        <span asp-validation-for="fRecorderDate" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group mt-2">
+                <input type="button" id="successButtonID" name="true" value="核准通過" class="forJS btn btn-success" />
+                <input type="button" id="dangerButtonID" name="false" value="駁回" class="forJS btn btn-danger" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="CalendarApplyCensorList" class="btn btn-outline-primary mt-2">返回列表</a>
+</div>
+
+
+<!--bootstrap 5 modal-->
+<div class="modal fade" id="bootstrapModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="bootstrapModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="bootstrapModalLabel">審核結果發信通知內容說明</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form name="modelForm">
+                    核准狀況：<input type="text" class="form-control mt-2" id="AuditResultsLabel" name="AuditResultsLabel" readonly />
+                    抬頭：<input type="text" class="form-control mt-2" id="AuditResultsTitle" name="AuditResultsTitle" readonly />
+                    內文：<textarea class="form-control mt-2" style="height:350px" id="AuditResultsContent" name="AuditResultsContent"></textarea>
+                    <input type="hidden" asp-for="FCustomerid" />
+                    
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+                <button type="button" id="conformSent" class="btn btn-primary">確定送信</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--bootstrap 5 modal-->
+<div class="modal fade" id="bootstrapModalgetResult" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="bootstrapModalgetResultLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+         @*   <div class="modal-header">
+                <h5 class="modal-title" id="bootstrapModalgetResultLabel">審核結果發信通知內容說明</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>*@
+            <div class="modal-body" id="sentComplete">
+                
+            @*    <form name="modelForm">
+                    核准狀況：<input type="text" class="form-control mt-2" id="AuditResultsLabel" name="AuditResultsLabel" readonly />
+                    抬頭：<input type="text" class="form-control mt-2" id="AuditResultsTitle" name="AuditResultsTitle" readonly />
+                    內文：<textarea class="form-control mt-2" style="height:350px" id="AuditResultsContent" name="AuditResultsContent"></textarea>
+                    <input type="hidden" asp-for="FCustomerid" />
+                </form>*@
+            </div>
+            <div class="modal-footer">
+                @*<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>*@
+                <button type="button" id="conformResult" class="btn btn-primary">確定</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts{
+    <script>
+        //function callModal(inputButton) {
+        //    inputButton.value
+        //}
+
+        var getModalShowButton = document.querySelectorAll(".forJS");
+        var getLabel = document.querySelector("#AuditResultsLabel");
+        var getTitle = document.querySelector("#AuditResultsTitle");
+        var getContent = document.querySelector("#AuditResultsContent");
+        var getTOrF = document.querySelector("#saveTrueOrFalse");
+        for (var buttonItem of getModalShowButton) {
+            buttonItem.addEventListener("click", function () {
+                getTOrF.value = this.name;
+                getLabel.value = this.value;
+                var date = @Html.Raw(Json.Serialize(Model.date));
+                var title = @Html.Raw(Json.Serialize(Model.title));
+                getTitle.value = `在 ${date}這一天 ，的"${title}"的申請。`;
+
+                getContent.textContent = "";
+                new bootstrap.Modal(document.querySelector("#bootstrapModal"), {}).show();
+            });
+        }
+
+        document.querySelector("#conformSent").addEventListener("click",async function(){
+
+            const responseForSubmit = await fetch(`@Url.Content("~/")Calendar/CalendarAuditDecision`, {
+                method:"POST",
+                body: new FormData(auditDecisionForm)
+            });
+
+
+            const response = await fetch(`@Url.Content("~/")CalendarAjax/sendMailWhenAuditDecision`,{
+                method:"POST",
+                body: new FormData(modelForm)
+            });
+            const dataRES = response.text();
+            dataRES.then((dataINres) => document.querySelector("#sentComplete").innerHTML = dataINres);
+            
+            new bootstrap.Modal(document.querySelector("#bootstrapModalgetResult"), {}).show();
+        });
+
+        document.querySelector("#conformResult").addEventListener("click", function () {
+            window.location.href = `@Url.Content("~/")Calendar/CalendarApplyCensorList`
+        });
+
+    </script>
+}
