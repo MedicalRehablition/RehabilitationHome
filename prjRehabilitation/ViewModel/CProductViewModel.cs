@@ -1,4 +1,5 @@
 ﻿using prjRehabilitation.Models;
+using prjRehabilitation.ViewModel.Lin;
 using System.ComponentModel;
 using System.Security.AccessControl;
 
@@ -38,6 +39,11 @@ namespace prjRehabilitation.ViewModel
             get { return _product.FPrice; }
             set { _product.FPrice = value; }
         }
+        public string FType
+        {
+            get { return _product.FType; }
+            set { _product.FType = value; }
+        }
         public byte[]? FPhoto 
         { 
             get { return _product.FPhoto; } 
@@ -49,6 +55,7 @@ namespace prjRehabilitation.ViewModel
             get { return _product.FStatus; }
             set { _product.FStatus = value; }
         }
+        
         ////[DisplayName("商品圖片")]
         public IFormFile photo { get; set; }
     }

@@ -122,26 +122,6 @@
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav">
                         <!-- User Profile-->
-                        <li class="sidebar-item pt-2">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="dashboard.html"
-                               aria-expanded="false">
-                                <i class="far fa-clock" aria-hidden="true"></i>
-                                <span class="hide-menu">Dashboard</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="profile.html" aria-expanded="false">
-                                <i class="fa fa-user" aria-hidden="true"></i>
-                                <span class="hide-menu">Profile</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="basic-table.html"
-                               aria-expanded="false">
-                                <i class="fa fa-table" aria-hidden="true"></i>
-                                <span class="hide-menu">Basic Table</span>
-                            </a>
-                        </li>
                         <li class="sidebar-item">
                             <a class="sidebar-link waves-effect waves-dark sidebar-link" asp-controller="Forum" asp-action="List" aria-expanded="false">
                                 <i class="fa fa-edit" aria-hidden="true"></i>
@@ -149,26 +129,32 @@
                             </a>
                         </li>
                         <li class="sidebar-item">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" asp-controller="Product" asp-action="orders" aria-expanded="false">
+                                <i class="fa fa-truck" aria-hidden="true"></i>
+                                <span class="hide-menu">出貨管理</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
                             <a class="sidebar-link waves-effect waves-dark sidebar-link" asp-controller="Product" asp-action="List_B" aria-expanded="false">
-                                <i class="fa fa-edit" aria-hidden="true"></i>
+                                <i class="fa  fa-shopping-bag" aria-hidden="true"></i>
                                 <span class="hide-menu">商品管理</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
                             <a class="sidebar-link waves-effect waves-dark sidebar-link" asp-area="" asp-controller="Calendar" asp-action="List">
-                                <i class="fa fa-user" aria-hidden="true"></i>
+                                <i class="fa fa-calendar" aria-hidden="true"></i>
                                 <span class="hide-menu">行事曆</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
                             <a class="sidebar-link waves-effect waves-dark sidebar-link" asp-area="" asp-controller="GroupActivity" asp-action="List">
-                                <i class="fa fa-user" aria-hidden="true"></i>
+                                <i class="fa fa-tasks" aria-hidden="true"></i>
                                 <span class="hide-menu">活動</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
                             <a class="sidebar-link waves-effect waves-dark sidebar-link" asp-area="" asp-controller="AdminUserLogin" asp-action="List">
-                                <i class="fa fa-user" aria-hidden="true"></i>
+                                <i class="fa fa-book" aria-hidden="true"></i>
                                 <span class="hide-menu">員工差勤</span>
                             </a>
                         </li>
@@ -178,27 +164,27 @@
                             <span class="hide-menu">復健</span>
                             </a>*@  @*暫時先直接導向會談的list*@
                             <a class="sidebar-link waves-effect waves-dark sidebar-link" asp-area="" asp-controller="Consult" asp-action="List">
-                                <i class="fa fa-user" aria-hidden="true"></i>
+                                <i class="fa fa-coffee" aria-hidden="true"></i>
                                 <span class="hide-menu">會談</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
                             <a class="sidebar-link waves-effect waves-dark sidebar-link" asp-area="" asp-controller="Evaluate" asp-action="List">
-                                <i class="fa fa-user" aria-hidden="true"></i>
+                                <i class="fa fa-stethoscope" aria-hidden="true"></i>
                                 <span class="hide-menu">功能評估</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
                             @* <a class="sidebar-link waves-effect waves-dark sidebar-link" href="profile.html" aria-expanded="false">*@
                             <a class="sidebar-link waves-effect waves-dark sidebar-link" asp-area="" asp-controller="Patients" asp-action="List">
-                                <i class="fa fa-user" aria-hidden="true"></i>
+                                <i class="fa fa-child" aria-hidden="true"></i>
                                 <span class="hide-menu">住民</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
                             @* <a class="sidebar-link waves-effect waves-dark sidebar-link" href="profile.html" aria-expanded="false">*@
                             <a class="sidebar-link waves-effect waves-dark sidebar-link LoginA" asp-area="" asp-controller="AdminUserLogin" asp-action="Login">
-                                <i class="fa fa-user" aria-hidden="true"></i>
+                                <i class="fa fa-download" aria-hidden="true"></i>
                                 <span class="hide-menu LoginSpan" >登入</span>
                             </a>
                         </li>
@@ -210,25 +196,14 @@
                                 <span class="hide-menu">會員資料</span>
                             </a>
                         </li>
-                         <li class="sidebar-item">
-                           <a class="sidebar-link waves-effect waves-dark sidebar-link" asp-area="" asp-controller="Evaluate" asp-action="List">
-                                <i class="fa fa-user" aria-hidden="true"></i>
-                                <span class="hide-menu">功能評估</span>
-                            </a>
-                        </li>
                         <li class="sidebar-item">
                             <a class="sidebar-link waves-effect waves-dark sidebar-link" asp-area="" asp-controller="Webcam" asp-action="Camera">
-                                <i class="fa fa-user" aria-hidden="true"></i>
+                                <i class="fa fa-camera-retro" aria-hidden="true"></i>
                                 <span class="hide-menu">webcam</span>
                             </a>
                         </li>
 
-                        <li class="text-center p-20 upgrade-btn">
-                            <a href="https://www.wrappixel.com/templates/ampleadmin/"
-                               class="btn d-grid btn-danger text-white" target="_blank">
-                                Upgrade to Pro
-                            </a>
-                        </li>
+
                     </ul>
 
                 </nav>

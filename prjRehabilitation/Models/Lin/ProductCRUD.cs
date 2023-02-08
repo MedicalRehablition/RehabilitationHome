@@ -7,6 +7,39 @@ namespace prjRehabilitation.Models.Lin
 {
     public class ProductCRUD
     {
+        public void createOrder(VMOrder vm, VMCart cart)
+        {
+            dbClassContext db = new dbClassContext();
+            TOrder order = new TOrder();
+            var time = DateTime.Now.ToString("G");
+            var id = "Med" + DateTime.Now.ToString("d") + "_" + (new Random()).Next(99999);
+            order.FAddress = vm.FAddress;
+            order.FOrderId = id;
+            order.FTotalPrice = Convert.ToDecimal(vm.FPrice);
+            order.FDate = time;
+            order.FEmail = vm.FEmail;
+            db.TOrders.Add(order);
+            db.SaveChanges();
+
+            createOrderTail(cart, id);
+        }
+        private void createOrderTail(VMCart cart, string id)
+        {
+            dbClassContext db = new dbClassContext();
+            foreach (var item in cart.Item)
+            {
+                var p = db.Products.Where(p => p.Fid == item).First();
+
+                db.TOrderDetails.Add(new TOrderDetail
+                {
+                    FOrderId = id,
+                    FPrice = p.FPrice,
+                    FProductName = p.FName,
+                    FQty = 1
+                });
+            }
+            db.SaveChanges();
+        }
         public void edit(CProductViewModel vm)
         {
             dbClassContext db = new dbClassContext();
@@ -27,6 +60,7 @@ namespace prjRehabilitation.Models.Lin
                 product.FQty = vm.FQty;
                 product.FName = vm.FName;
                 product.FPhoto = vm.FPhoto;
+                product.FType = vm.FType;
                 product.FStatus= vm.FStatus;
                 db.SaveChanges();
             } 
@@ -135,5 +169,24 @@ namespace prjRehabilitation.Models.Lin
             }
             return items;
 		}
-	}
+
+        public  List<TOrder> GetOrders()
+        {
+            dbClassContext db = new dbClassContext();
+            return db.TOrders.ToList();
+        }
+
+        public object GetOrderDetail(string id)
+        {
+            dbClassContext db = new dbClassContext();
+            return db.TOrderDetails.Where(x => x.FOrderId == id).ToList();
+        }
+
+        public void Shipment(int id)
+        {
+            dbClassContext db = new dbClassContext();
+            db.TOrders.First(x => x.Fid == id).FShip = true;
+            db.SaveChanges();
+        }
+    }
 }

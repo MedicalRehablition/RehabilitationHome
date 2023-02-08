@@ -5,14 +5,17 @@
     var ptid = ViewBag.ptid;
 }
 
-<h1>DateList</h1>
+<h1>功能評估紀錄</h1>
 
-<p>
-    <a href="/Evaluate/Create/@ptid" Create">新增</a>
+<p class="employee">
+    <a href="/Evaluate/Create/@ptid">新增</a>
 </p>
 <table class="table">
     <thead>
-        <tr>      
+        <tr>
+            <th>
+                序號
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.F日期)
             </th> 
@@ -23,19 +26,47 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
+        @{
+            int count = 0;
+            foreach (var item in Model) 
+            {
+                count++;
+                <tr id="onlysee">
+                <th>
+                @count
+                </th>
                 <th>
                     @Html.DisplayFor(modelItem => item.F日期)
                 </th>
                 <th>
                     @Html.DisplayFor(modelItem => item.F問題)
                 </th>
-            <td>
+            <td class="employee">
                 @Html.ActionLink("修改", "Edit", new { id=item.F功能評估Id }) 
                 @Html.ActionLink("刪除", "Delete","Evaluate", new {  id=item.F功能評估Id },new{onclick = "return confirm('確定要刪除嗎')"})
             </td>
+            <td class="customer">
+                @Html.ActionLink("檢視", "Edit", new {  id=item.F功能評估Id})
+            </td>
         </tr>
-}
+     }
+   }
     </tbody>
 </table>
+<p>
+    <a href="Evaluate/List">回上一頁</a>
+</p>
+@section Scripts 
+{
+    <script>
+        var set = `@ViewBag.setting`;
+        if (set == "customer") 
+        {
+            $(".employee").hide();
+        } else 
+        {
+            $(".customer").hide();
+        };
+
+    </script>
+}

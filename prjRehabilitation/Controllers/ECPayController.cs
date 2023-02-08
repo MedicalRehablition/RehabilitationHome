@@ -56,12 +56,13 @@ namespace prjRehabilitation.Controllers
             }
         }
 
-        public IActionResult Index(int? price)
+        public IActionResult Index(int? price,string email)
         {
             ViewData["MerchantOrderNo"] = DateTime.Now.ToString("yyyyMMddHHmmss");  //訂單編號
             ViewData["ExpireDate"] = DateTime.Now.AddDays(3).ToString("yyyyMMdd"); //繳費有效期限
             ViewData["Amt"] = price;
             ViewData["ItemDesc"] = "關心康復之家住民手做愛心商品";
+            ViewData["Email"] = email;
             return View();
         }
 

@@ -12,6 +12,15 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="Models\Product\Cart.cshtml" />
+    <None Include="Models\Product\Create.cshtml" />
+    <None Include="Models\Product\CreateOrder.cshtml" />
+    <None Include="Models\Product\Edit.cshtml" />
+    <None Include="Models\Product\GetOrderInfo.cshtml" />
+    <None Include="Models\Product\List.cshtml" />
+    <None Include="Models\Product\List_B.cshtml" />
+    <None Include="Models\Product\orders.cshtml" />
+    <None Include="Models\Product\pay.cshtml" />
     <None Include="Views\ECPay\CallbackCustomer.cshtml" />
     <None Include="Views\ECPay\CallbackReturn.cshtml" />
     <None Include="Views\ECPay\Index.cshtml" />
@@ -37,6 +46,7 @@
     <None Include="Views\Product\GetOrderInfo.cshtml" />
     <None Include="Views\Product\List.cshtml" />
     <None Include="Views\Product\List_B.cshtml" />
+    <None Include="Views\Product\orders.cshtml" />
     <None Include="Views\Product\pay.cshtml" />
   </ItemGroup>
 

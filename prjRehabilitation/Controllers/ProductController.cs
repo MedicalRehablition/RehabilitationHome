@@ -17,9 +17,36 @@ namespace prjRehabilitation.Controllers
         {
             return View();
         }
-        public IActionResult CreateOrder()
+        public IActionResult ship(int id)
         {
-            return View();
+            (new ProductCRUD()).Shipment(id);
+            return RedirectToAction("orders");
+
+        }
+        public IActionResult GetOrderDetail(string id)
+        {
+            return Json((new ProductCRUD()).GetOrderDetail(id));
+        }
+        public IActionResult orders()
+        {
+            return View((new ProductCRUD()).GetOrders());
+        }
+        public IActionResult CreateOrder(VMOrder vm)
+        {
+			string json;
+			VMCart cart = new VMCart();
+            try
+            {
+				HttpContext.Request.Cookies.TryGetValue(CDictionary.SK_Purchased_Products_List, out json);
+				cart = JsonSerializer.Deserialize<VMCart>(json);
+			}
+            catch
+            {
+				return Json(new { outcome = "錯誤:未建立購物車" });
+			}
+
+            (new ProductCRUD()).createOrder(vm, cart);
+            return Json(new { outcome="建立訂單成功"});
         }
         public ProductController(IWebHostEnvironment environment)
         {
@@ -61,8 +88,8 @@ namespace prjRehabilitation.Controllers
             {
                 cart = JsonSerializer.Deserialize<VMCart>(json);
             }
-
-            if (cart.Item.Contains(id)) return Json(new { outcome = "該產品已加入購物車" });
+            //MOMO的作法是一個商品買幾件就跳幾筆資料，實際看來這麼做會方便於資料存取，不然在購物車做數量更動想存進資料庫有點麻煩
+            //if (cart.Item.Contains(id)) return Json(new { outcome = "該產品已加入購物車" });
 
 			cart.Item.Add(id);
             HttpContext.Response.Cookies.Append(CDictionary.SK_Purchased_Products_List, JsonSerializer.Serialize(cart));

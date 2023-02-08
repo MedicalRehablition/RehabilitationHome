@@ -88,16 +88,16 @@ namespace prjRehabilitation.Controllers
         [HttpPost]
         public IActionResult Register(CAdminViewModel vm)
         {
-            dbClassContext db = new dbClassContext();
-            if (vm.photo != null)
-            {
-                string photoName = Guid.NewGuid().ToString() + ".jpg";
-                string path = _environment.WebRootPath + "/images/" + photoName;
-                vm.Fphoto = photoName;
-                vm.photo.CopyTo(new FileStream(path, FileMode.Create));
-            }
-            db.Admins.Add(vm.admin);
-            db.SaveChanges();
+            //dbClassContext db = new dbClassContext();
+            //if (vm.photo != null)
+            //{
+            //    string photoName = Guid.NewGuid().ToString() + ".jpg";
+            //    string path = _environment.WebRootPath + "/images/" + photoName;
+            //    vm.Fphoto = photoName;
+            //    vm.photo.CopyTo(new FileStream(path, FileMode.Create));
+            //}
+            //db.Admins.Add(vm.admin);
+            //db.SaveChanges();
             return RedirectToAction("List");
         }
         //編輯
@@ -129,6 +129,7 @@ namespace prjRehabilitation.Controllers
                 ad.FName = vm.FName;
                 ad.FBirth=vm.FBirth;
                 ad.FPassword= vm.FPassword;
+                ad.FSex=vm.FSex;
                 db.SaveChanges();
             }
             return RedirectToAction("List");
@@ -207,9 +208,14 @@ namespace prjRehabilitation.Controllers
 
             if (admin == null)
             {
+                string photoName = Guid.NewGuid().ToString() + ".jpg";
+                string path = _environment.WebRootPath + "/images/" + photoName;
+                vm.Fphoto = photoName;
+                vm.photo.CopyTo(new FileStream(path, FileMode.Create));
                 db.Admins.Add(vm.admin);
                 db.SaveChanges();
-                return Content("註冊成功!");//後面要記得改
+                return Content("註冊成功!");
+                //後面要記得改
                 //return RedirectToAction("List");
             }
             return Content("此帳號已註冊使用,請前往登入");

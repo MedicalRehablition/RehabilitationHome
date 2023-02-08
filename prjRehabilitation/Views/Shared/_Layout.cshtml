@@ -175,6 +175,7 @@
             </div>
         </div>
     </header>
+    @await RenderSectionAsync("DeadCessTitle", required: false);
     <div class="container renderbody">
         <main role="main" class="pb-2">
             @RenderBody()
@@ -186,7 +187,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLongTitle">登入帳號</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color: red;">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>

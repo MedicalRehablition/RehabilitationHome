@@ -1,0 +1,117 @@
+﻿@model IEnumerable<prjRehabilitation.Models.TOrder>
+
+@{
+    ViewData["Title"] = "關心康復之家後台: 訂單列表";
+    Layout = "AdminLayout";
+}
+<table class="table  table-hover">
+    <thead>
+        <tr class="column">
+            <th>
+                訂單編號
+            </th>
+            <th>
+                下訂時間
+            </th>
+            <th>
+                Email
+            </th>
+            <th>
+                出貨地址
+            </th>
+            <th>
+                已付款
+            </th>
+            <th>
+                已出貨
+            </th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            foreach (var item in Model)
+            {
+                <tr id="order @item.Fid">
+                    <td>
+                        @item.FOrderId
+                    </td>
+
+                    <td><span class="text-dark">@item.FDate</span></td>
+                 
+                    <td><span class="text-dark">@item.FEmail</span></td>
+                    <td><span class="text-dark">@item.FAddress</span></td>
+                    <td><span class="text-dark">是</span></td>
+                    @if (item.FShip)
+                    {
+                        <td><span class="text-dark">是</span></td>
+                    }
+                    else
+                    {
+                        <td><span class="text-dark">否</span></td>
+                    }
+                    <td>
+                        @if (!(bool)item.FShip)
+                        {
+                            @Html.ActionLink("出貨","ship","Product",new{ id =item.Fid },new {@class="btn btn-outline-primary"})
+                        }
+                        <button type="button" class="btn btn-outline-info" onclick="getOrderDetail(`@item.FOrderId`)" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            檢視訂單
+                        </button>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
+
+<!-- Modal -->
+<div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable" >
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">檢視訂單詳細資料</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" id="div_detail">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">關閉</button>
+      </div>
+    </div>
+  </div>
+</div><p class="align-content-xl-start"></p>
+
+@section Scripts{
+    <script>
+        async function getOrderDetail(id){
+            console.log("讀取中:" + id);
+            $("#div_detail").html("展開中．．．");
+
+            const response = await fetch(`@Url.Content("~/Product/GetOrderDetail?id=${id}")`);
+            const data = await response.json();
+            var count = 0;
+
+            var html = data.map(x => {
+                            count++;
+                            const name = x.fProductName;
+                            const qty = x.fQty 
+
+                            return `
+                                                            <p class="align-content-xl-start"><span class="text-dark">${name}   *${qty}</span></p>
+                                           `;
+                            }
+                        );
+                    
+            $("#div_detail").html(html.join(""));
+        }
+
+
+
+
+
+    </script>
+
+
+}
