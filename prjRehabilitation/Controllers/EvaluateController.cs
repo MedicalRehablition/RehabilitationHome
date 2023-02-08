@@ -15,8 +15,8 @@ namespace prjRehabilitation.Controllers
         {
             string json = HttpContext.Session.GetString(CDictionary.SK_ADMIN_User);//得到工作人員的session
             string jsonc = HttpContext.Session.GetString(CDictionary.SK_CUSTOMER_User);  //得到訪客的session
+            ViewBag.keyword = false;
             dbClassContext db = new dbClassContext();
-            ViewBag.Keyword = false;
             if (!string.IsNullOrEmpty(json))
             {
                 string Keyword = vm.txtKeyword;
@@ -45,7 +45,7 @@ namespace prjRehabilitation.Controllers
                 var cus = db.PatientInfos.FirstOrDefault(c => c.FCustomerid == customer.Fid);
                 if (cus != null) 
                 {
-                    return RedirectToAction("List", "Evaluate", new { @id=cus.Fid});
+                    return RedirectToAction("DateList", "Evaluate", new { @id=cus.Fid});
                 };
             };
             return RedirectToAction("Index", "Home");
@@ -111,6 +111,12 @@ namespace prjRehabilitation.Controllers
         }
         public IActionResult Edit(int? id) 
         {
+            string jsonc = HttpContext.Session.GetString(CDictionary.SK_CUSTOMER_User);
+            ViewBag.setting = "";
+            if (jsonc != null)
+            {
+                ViewBag.setting = "customer";
+            };
             dbClassContext db = new dbClassContext();
             功能評估 ev1 = db.功能評估s.FirstOrDefault(c => c.F功能評估Id == id);
             var bbb = ev1.F功能評估Id;

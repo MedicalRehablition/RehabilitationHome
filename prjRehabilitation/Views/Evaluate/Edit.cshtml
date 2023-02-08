@@ -3,10 +3,18 @@
 @{
     ViewData["Title"] = "Edit";
 }
-
-<h1>Edit</h1>
-
-<h4>CEvaluateViewModle</h4>
+<style>
+    textarea 
+    {
+        width: 300px;
+        height: 150px;
+        resize: none;
+        overflow-x: visible;
+        overflow-y: visible;
+    }
+</style>
+@*<h1>修改評估資料</h1>*@
+<h4 class="custtitle">修改評估資料</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -99,8 +107,20 @@
         </form>
     </div>
 </div>
-
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a href="/Evaluate/DateList/@Model.Fid" class="cancel">取消修改作業</a>
 </div>
-
+@section Scripts 
+{
+ @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    var set = `@ViewBag.setting`;
+    if (set == "customer") {
+            $(".cancel").text("回上一頁");
+            $(".custtitle").text("評估紀錄");
+            $(".chcust").prop("disabled", true);//checkbox不能修改
+            $(".cust").prop("readOnly", true);  //textarea只能讀
+            $(".employee").hide();//存檔按鈕藏起來
+        }
+}
