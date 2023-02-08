@@ -18,7 +18,7 @@ namespace prjRehabilitation.ViewModel.Eric
 			set { _calendar = value; }
 		}
 
-		public  Dictionary<int, string>? getAllResidentAndCustomerIDList { get; set; }
+		public  Dictionary<int, string>? getAllResidentAndCustomerIDList { get; set; }	//很不願意放在這的字典，大家都可以用
 
         public int FId { get { return _calendar.FId; } set { _calendar.FId = value; } }
         public bool? FDeleteBool { get { return _calendar.FDeleteBool; } set { _calendar.FDeleteBool = value; } }

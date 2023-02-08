@@ -56,12 +56,12 @@
             <div class="row">
                 <div class="form-group col">
                     <label asp-for="fRecorder" class="control-label"></label>
-                    <input asp-for="fRecorder" class="form-control" />
+                    <input asp-for="fRecorder" class="form-control" readonly/>
                     <span asp-validation-for="fRecorder" class="text-danger"></span>
                 </div>
                 <div class="form-group col">
                     <label asp-for="fRecorderDate" class="control-label"></label>
-                    <input asp-for="fRecorderDate" class="form-control" />
+                    <input asp-for="fRecorderDate" class="form-control" readonly/>
                     <span asp-validation-for="fRecorderDate" class="text-danger"></span>
                 </div>
             </div>
@@ -76,6 +76,9 @@
             <input asp-for="FApplyVisitor" class="form-control" />
             <span asp-validation-for="FApplyVisitor" class="text-danger"></span>
             </div>*@
+            <label class="form-control col mt-2 mb-2">
+                <h5>按下申請後將會寄送 Email 到您信箱，請查收。</h5>
+            </label>
             <div class="form-group">
                 <input type="submit" id="sendApply" value="送出申請" class="btn btn-primary" />
             </div>
@@ -98,8 +101,8 @@
                 ...
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Understood</button>
+                @*<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>*@
+                <button type="button" id="resultConfrom" class="btn btn-primary">確認</button>
             </div>
         </div>
     </div>
@@ -112,19 +115,23 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/4.0.0/jquery.validate.unobtrusive.min.js" integrity="sha512-xq+Vm8jC94ynOikewaQXMEkJIOBp7iArs3IhFWSWdRT3Pq8wFz46p+ZDFAR7kHnSFf+zUv52B3prRYnbDRdgog==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
-        //document.querySelector("#sendApply").addEventListener("click", async function () {
+        document.querySelector("#sendApply").addEventListener("click", async function () {
 
 
-        //    const response = await fetch("@Url.Content("~/")CalendarAjax/SendMailByGmail", {
+            const response = await fetch("@Url.Content("~/")CalendarAjax/SendMailByGmail", {
 
-        //        method: 'POST',
-        //        body: new FormData(applyForm)
-        //    });
-        //    const text = await response.text();
-        //    //alert(text);
-        //    document.querySelector("#messageboxBody").innerHTML = text;
-        //    new bootstrap.Modal(document.querySelector("#staticBackdrop"), {}).show();
-        //});
+                method: 'POST',
+                body: new FormData(applyForm)
+            });
+            //const text = await response.text();
+            ////alert(text);
+            //document.querySelector("#messageboxBody").innerHTML = text;
+            //new bootstrap.Modal(document.querySelector("#staticBackdrop"), {}).show();
+        });
+
+         //document.querySelector("#resultConfrom").addEventListener("click",function(){
+         //   window.location.href = `@Url.Content("~/")Calendar/List`
+         //});
 
     </script>
 }

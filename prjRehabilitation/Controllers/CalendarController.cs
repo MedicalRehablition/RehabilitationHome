@@ -3,6 +3,7 @@ using NuGet.Protocol;
 using prjRehabilitation.Controllers.Api;
 using prjRehabilitation.Models;
 using prjRehabilitation.ViewModel.Eric;
+using System.Globalization;
 using System.Text.Json;
 
 namespace prjRehabilitation.Controllers
@@ -173,7 +174,7 @@ namespace prjRehabilitation.Controllers
         {
 
             dbClassContext db = new dbClassContext();
-            var calendarForomDB = db.TCalendars.Where(_ => _.FApplyVisitor == false);
+            var calendarForomDB = db.TCalendars.Where(_ => _.FApplyVisitor != null);
             List<CCalendarViewModel> viewModelForList = new List<CCalendarViewModel>();
             foreach (TCalendar item in calendarForomDB)
             {
@@ -220,5 +221,25 @@ namespace prjRehabilitation.Controllers
             return RedirectToAction("CalendarApplyCensorList");
         }
 
+        public IActionResult CalendarAuditDecision(int? id) {
+
+            dbClassContext db = new dbClassContext();
+
+            CCalendarViewModel ccvm = new CCalendarViewModel();
+            ccvm.calendar = db.TCalendars.FirstOrDefault(_ => _.FId == id);
+            ccvm.FAdminId = getAdminIfSession().Fid;
+            return View(ccvm);
+        }
+        [HttpPost]
+        public IActionResult CalendarAuditDecision(CCalendarViewModel ccvm,string hiddenTF) {
+
+            dbClassContext db = new dbClassContext();
+            ccvm.FApplyVisitor = Convert.ToBoolean( hiddenTF);
+            if ((bool)ccvm.FApplyVisitor) { ccvm.className = "genric-btn info circle arrow"; }
+            else { ccvm.className = "genric-btn warning circle arrow"; }
+            db.Update(ccvm.calendar);
+            db.SaveChanges();
+            return RedirectToAction("CalendarApplyCensorList");
+        }
     }
 }
