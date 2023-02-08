@@ -12,7 +12,6 @@ namespace prjRehabilitation.Controllers
         {
             string json = HttpContext.Session.GetString(CDictionary.SK_ADMIN_User);//得到工作人員的session
             string jsonc = HttpContext.Session.GetString(CDictionary.SK_CUSTOMER_User);  //得到訪客的session
-            ViewBag.keyword = false;
             dbClassContext db = new dbClassContext();
             if (!string.IsNullOrEmpty(json)) //員工有登入
             {
@@ -32,7 +31,7 @@ namespace prjRehabilitation.Controllers
                     CPatientsViewModel patient = new CPatientsViewModel();
                     patient.Patient = c;
                     List.Add(patient);
-                    ViewBag.keyword = true;
+                   
                 }
                 return View(List);
             }
