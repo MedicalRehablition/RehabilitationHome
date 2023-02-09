@@ -104,7 +104,7 @@
                 $("#" + value).prop("checked", true);
             });
         //-----customer setting----------------
-        var set = `@ViewBag.setting`;
+        var set = `@ViewBag.setting`; //家屬有登入變成customer，不然為"";
         //debugger;
         if (set == "customer") {
             $(".cancel").text("回上一頁");

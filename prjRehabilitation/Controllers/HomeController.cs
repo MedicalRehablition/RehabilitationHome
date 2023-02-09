@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using prjRehabilitation.Models;
 using prjRehabilitation.ViewModel;
 using System.Diagnostics;
@@ -126,6 +128,6 @@ namespace prjRehabilitation.Controllers
             //db.SaveChanges();
             return RedirectToAction("index");
         }
-
+     
     }
 }

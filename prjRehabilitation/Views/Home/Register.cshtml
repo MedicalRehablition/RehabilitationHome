@@ -81,6 +81,7 @@
             let xhr = new XMLHttpRequest();
             xhr.addEventListener("load", function () {
                 alert(xhr.responseText);
+                window.location.href = "/Home/Index";
             })
             const Data = new FormData(document.userRegister);
             xhr.open("POST", "@Url.Content("/UserLogin/AccountAlive")");

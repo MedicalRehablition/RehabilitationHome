@@ -65,6 +65,6 @@ namespace prjRehabilitation.ViewModel
             set { _admin.FBirth = value; }
         }
 
-        public IFormFile photo { get; set; }
+        public IFormFile? photo { get; set; }
     }
 }

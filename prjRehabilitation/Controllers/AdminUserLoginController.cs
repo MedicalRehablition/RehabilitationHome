@@ -7,14 +7,14 @@ using System.Text.Json;
 
 namespace prjRehabilitation.Controllers
 {
-    public class AdminUserLoginController : Controller
+    public class AdminUserLoginController : SuperController
     {
         private IWebHostEnvironment _environment;
         public AdminUserLoginController(IWebHostEnvironment environment)
         {
             _environment = environment;
         }
-
+        
         //show出員工名單
         public IActionResult List(CKeywordViewModel vm)
         {
