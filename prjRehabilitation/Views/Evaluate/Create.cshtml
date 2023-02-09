@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "Create";
+    Layout = "AdminLayout";
 }
 
 <h1>Create</h1>
@@ -60,22 +61,22 @@
             </div>
             <div class="form-group">
                 <label asp-for="F現狀評估" class="control-label"></label>
-                <input asp-for="F現狀評估" class="form-control" />
+                <textarea asp-for="F現狀評估" class="form-control cust" ></textarea>
                 <span asp-validation-for="F現狀評估" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="F問題" class="control-label"></label>
-                <input asp-for="F問題" class="form-control" />
+                <textarea asp-for="F問題" class="form-control" ></textarea>
                 <span asp-validation-for="F問題" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="F復健目標" class="control-label"></label>
-                <input asp-for="F復健目標" class="form-control" />
+                <textarea asp-for="F復健目標" class="form-control" ></textarea>
                 <span asp-validation-for="F復健目標" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="F復健計畫" class="control-label"></label>
-                <input asp-for="F復健計畫" class="form-control" />
+                <textarea asp-for="F復健計畫" class="form-control" ></textarea>
                 <span asp-validation-for="F復健計畫" class="text-danger"></span>
             </div>
             <div class="form-group">

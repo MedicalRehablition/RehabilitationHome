@@ -122,8 +122,8 @@ namespace prjRehabilitation.Controllers
             var bbb = ev1.F功能評估Id;
             功能評估個表 ev2 = db.功能評估個表s.FirstOrDefault(c => c.F功能評估Id == ev1.F功能評估Id);
             CEvaluateViewModle eva = new CEvaluateViewModle();
-            eva.Evaluate = ev1;
             eva.Evaluate2 = ev2;
+            eva.Evaluate = ev1;
             return View(eva); 
         }
         [HttpPost]
