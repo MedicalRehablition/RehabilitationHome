@@ -5,11 +5,12 @@
 
 }
 @foreach (TScheduleDetail tsdItem in Model.tsd) {
-    TimeSpan dt = Convert.ToDateTime(tsdItem.FEndTime) - Convert.ToDateTime(tsdItem.FStartTime);
-    <ul class="list-group list-group-horizontal-lg">
-        <li class="list-group-item"><label>開始時間：</label><input type="time" value="@tsdItem.FStartTime"/></li>
-        <li class="list-group-item"><label>結束時間：</label><input type="time" value="@tsdItem.FEndTime" /></li>
-        <li class="list-group-item"><label>耗時：</label>@dt</li>
-        <li class="list-group-item"><label>大綱說明：</label><input type="text" value="@tsdItem.FDepiction" /></li>
+    @*TimeSpan dt = Convert.ToDateTime(tsdItem.FEndTime) - Convert.ToDateTime(tsdItem.FStartTime);*@
+    <ul class="list-group list-group-horizontal-md">
+        <li class="list-group-item"><label>開始時間：</label><input type="time" value="@tsdItem.FStartTime" id="startTime"/></li>
+        <li class="list-group-item"><label>結束時間：</label><input type="time" value="@tsdItem.FEndTime" id="endTime"/></li>
+ @* <li class="list-group-item"><label>耗時：</label>@dt</li>*@
+        <li class="list-group-item"><label>大綱說明：</label><input type="text" value="@tsdItem.FDepiction" id="depiction"/></li>
+        <li class="list-group-item" style="border-radius:0px  20px 20px 0px" onclick="this.parentElement.remove()"><i class="fas fa-minus-circle" style="font-size:24px;color:red;position: relative;top: 50%; left: 50%;-ms-transform: translate(-50%, -50%);transform: translate(-50%, -50%);"></i></li>
     </ul>
 }

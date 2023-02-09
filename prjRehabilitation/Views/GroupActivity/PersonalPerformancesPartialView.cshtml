@@ -12,36 +12,39 @@
 
     <div class="card mt-1">
         <div class="card-body" >
-            <div class="row"><label class="h5 genric-btn info circle">@name</label></div>
             <div class="row">
-                <div class="col-4"><label class="badge rounded-pill bg-info text-dark">表情情緒：</label><br />
-                    <select asp-for="tpp[i].FEmotions" asp-items="@(new SelectList(Model.comboxEmotions))" class="mt-2"></select>
+                <label class="h5 badge bg-primary rounded cardIDandName col" id="@Model.tpp[i].FResidentId" >@name</label>
+                <input type="button" id="@Model.tpp[i].FResidentId-removeCard" class="btn btn-danger col-1" value="刪除" onclick="this.parentElement.parentElement.parentElement.remove()" />
+            </div>
+            <div class="row " style="background-color:lightgray">
+                <div class="col-4"><label class="badge bg-success rounded">表情情緒：</label><br />
+                    <select asp-for="tpp[i].FEmotions" asp-items="@(new SelectList(Model.comboxEmotions))" id="@Model.tpp[i].FResidentId-comboxEmotions" class="forPPdataE form-select shadow-none  border-top"></select>
                    
                     </div>
-                <div class="col-4"><label class="badge rounded-pill bg-info text-dark">持續度：</label><br />
-                    <select asp-for="tpp[i].FParticipatePersistence" asp-items="@(new SelectList(Model.comboxParticipatePersistence))" class="mt-2"></select>
+                <div class="col-4"><label class="badge bg-success rounded">持續度：</label><br />
+                    <select asp-for="tpp[i].FParticipatePersistence" asp-items="@(new SelectList(Model.comboxParticipatePersistence))" id="@Model.tpp[i].FResidentId-comboxParticipatePersistence" class="forPPdataP form-select shadow-none  border-top"></select>
                  
                     </div>
-                <div class="col-4"><label class="badge rounded-pill bg-info text-dark">配合度：</label><br />
-                    <select asp-for="tpp[i].FCooperate" asp-items="@(new SelectList(Model.comboxCooperate))" class="mt-2"></select>
+                <div class="col-4"><label class="badge bg-success rounded">配合度：</label><br />
+                    <select asp-for="tpp[i].FCooperate" asp-items="@(new SelectList(Model.comboxCooperate))" id="@Model.tpp[i].FResidentId-comboxCooperate" class="forPPdataC form-select shadow-none  border-top"></select>
                     
                     </div>
             </div>
-            <div class="row">
-                <div class="col-4"><label class="badge rounded-pill bg-info text-dark">人際互動：</label><br />
-                    <select asp-for="tpp[i].FHumanInteraction" asp-items="@(new SelectList(Model.comboxHumanInteraction))" class="mt-2"></select>
+            <div class="row"style="background-color:lightgray">
+                <div class="col-4"><label class="badge bg-success rounded">人際互動：</label><br />
+                    <select asp-for="tpp[i].FHumanInteraction" asp-items="@(new SelectList(Model.comboxHumanInteraction))" id="@Model.tpp[i].FResidentId-comboxHumanInteraction" class="forPPdataH form-select shadow-none  border-top"></select>
                     
                     </div>
-                <div class="col-4"><label class="badge rounded-pill bg-info text-dark">注意力：</label><br />
-                    <select asp-for="tpp[i].FAttention" asp-items="@(new SelectList(Model.comboxAttentionRes))" class="mt-2"></select>
+                <div class="col-4"><label class="badge bg-success rounded">注意力：</label><br />
+                    <select asp-for="tpp[i].FAttention" asp-items="@(new SelectList(Model.comboxAttentionRes))" id="@Model.tpp[i].FResidentId-comboxAttentionRes" class="forPPdataA form-select shadow-none  border-top"></select>
                     
                     </div>
-                <div class="col-4"><label class="badge rounded-pill bg-info text-dark">參與表現：</label><br />
-                    <select asp-for="tpp[i].FParticipatePerformance" asp-items="@(new SelectList(Model.comboxParticipatePerformance))" class="mt-2"></select>
+                <div class="col-4"><label class="badge bg-success rounded">參與表現：</label><br />
+                    <select asp-for="tpp[i].FParticipatePerformance" asp-items="@(new SelectList(Model.comboxParticipatePerformance))" id="@Model.tpp[i].FResidentId-comboxParticipatePerformance" class="forPPdataPP form-select shadow-none  border-top"></select>
                    
                     </div>
             </div>
-            <div class="row"><label class="col-auto badge rounded-pill bg-info text-dark m-2">備註：</label><br /><input type="text" asp-for="tpp[i].FDepiction" class=""/></div>
+            <div class="row"><label class="col-auto badge bg-success rounded ">備註：</label><br /><input type="text" asp-for="tpp[i].FDepiction" class="forPPdataD" id="@Model.tpp[i].FResidentId-Depiction" /></div>
         </div>
     </div>
 }
