@@ -13,7 +13,7 @@
 
 
 <div class="layout">
-    <h1>EDIT</h1>
+    <h1>編輯住民資料</h1>
 
     <hr />
     <form asp-action="Create_F" id="form1" enctype="multipart/form-data">
@@ -68,12 +68,12 @@
         @*身分證、居住到期日、電話、性別*@
         <div class="row">
             <div class="form-group col-3">
-                <label asp-for="fIdnum" class="control-label">身分證字號</label>
-                <input asp-for="fIdnum" class="form-control" />
-                <span asp-validation-for="fIdnum"></span>
+                <label id="idnum" class="control-label">身分證字號</label>
+                <input onblur="checkID()" asp-for="fIdnum" class="form-control" required />
+                <span id="error_fIdnum" style="color:red"></span>
             </div>
             <div class="form-group col-3">
-                <label asp-for="fExpireDate" class="control-label">展延到期日</label>
+                <label  class="control-label">入住到期日(預設到期日為入住日+1y-1d)</label>
                 <input type="date" asp-for="fExpireDate" class="form-control" />
                 <span asp-validation-for="fExpireDate"></span>
             </div>
@@ -232,7 +232,7 @@
         <div>
             @*疾病搜尋和新增(ICD10編碼)*@
             <div class="row">
-                <input type="button" id="btn_dis" onclick="adddis()" value="測試用" />
+                <input type="hidden" id="btn_dis" onclick="adddis()" value="測試用" />
                 <label>疾病資料(1.在輸入框填入ICD10疾病編碼或名稱 2.選擇最符合的疾病 3.若無結果，可點擊下方新增)</label>
                 <div class="form-group col-4">
                     <input style="margin-right:1em" class="form-control " id="disease" />
@@ -243,6 +243,11 @@
                 @*div_disease用來裝動態生成的疾病資料*@
                 <div id="div_disease">
                 </div>
+                <br />
+                <div class="col">
+                <button type="button" class="btn btn-success col-1" style="color:white" onclick="AddNewDisease()">手動新增</button>
+                </div>
+
             </div>
 
         </div>
@@ -322,18 +327,31 @@
 </div>
 
     <script>
+        $("#fCheckin").change(function () {
+            var checkin = $("#fCheckin").val()
+
+            var day = checkin.substr(8, 2) - 1;
+            var month = checkin.substr(5, 2);
+            var year = parseInt(checkin.substr(0, 4)) + 1;
+
+        if (day < 10) day = "0" + day;
+
+            var date = year + "-" + month + "-" + day;
+
+            $("#fExpireDate").val(date);
+        });
         $(document).ready(function () {
             //動態表單用ajax另外拉出來
             fetchDisease();
 
             $("#btn").click(() => {
                 //getIDYAndGrant();
-                fetch("~\Patient\Edit", {
+                fetch(`@Url.Content("~/Patients/Edit")`, {
                     method: "POST",
                     //別忘了把主體参數轉成字串，否則資料會變成[object Object]，它無法被成功儲存在後台
                     body: new FormData(form1)
-                })
-                .then(() => { history.go(-1) })
+                })  
+                .then(() => { location.href=`@Url.Content("/Patients/patients")`; })
                     .catch(function (error) { console.log("失敗") });
 
             });
@@ -351,7 +369,7 @@
                 console.log(diseaseName);
                 $.ajax({
                     type: "Post",
-                    url: "~\Edit?disease=" + diseaseName,
+                    url: "\Edit?disease=" + diseaseName,
                     data: '{}',
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
@@ -472,6 +490,76 @@
             }
             reader.readAsDataURL(input.files[0]);
         }
+    }
+    function checkID() {
+        const idStr = $(event.target).val();
+        console.log(idStr);
+        // 依照字母的編號排列，存入陣列備用。
+        var letters = new Array('A', 'B', 'C', 'D',
+            'E', 'F', 'G', 'H', 'J', 'K', 'L', 'M',
+            'N', 'P', 'Q', 'R', 'S', 'T', 'U', 'V',
+            'X', 'Y', 'W', 'Z', 'I', 'O');
+        // 儲存各個乘數
+        var multiply = new Array(1, 9, 8, 7, 6, 5,
+            4, 3, 2, 1);
+        var nums = new Array(2);
+        var firstChar;
+        var firstNum;
+        var lastNum;
+        var total = 0;
+        // 撰寫「正規表達式」。第一個字為英文字母，
+        // 第二個字為1或2，後面跟著8個數字，不分大小寫。
+        var regExpID = /^[a-z](1|2)\d{8}$/i;
+        // 使用「正規表達式」檢驗格式
+        if (idStr.search(regExpID) == -1) {
+            $("#error_fIdnum").html("格式錯誤");
+            $("#idnum").html("身分證字號&#10060;");
+            // 基本格式錯誤
+            return false;
+        } else {
+            // 取出第一個字元和最後一個數字。
+            firstChar = idStr.charAt(0).toUpperCase();
+            lastNum = idStr.charAt(9);
+        }
+        // 找出第一個字母對應的數字，並轉換成兩位數數字。
+        for (var i = 0; i < 26; i++) {
+            if (firstChar == letters[i]) {
+                firstNum = i + 10;
+                nums[0] = Math.floor(firstNum / 10);
+                nums[1] = firstNum - (nums[0] * 10);
+                break;
+            }
+        }
+        // 執行加總計算
+        for (var i = 0; i < multiply.length; i++) {
+            if (i < 2) {
+                total += nums[i] * multiply[i];
+            } else {
+                total += parseInt(idStr.charAt(i - 1)) *
+                    multiply[i];
+            }
+        }
+        // 和最後一個數字比對
+        if ((10 - (total % 10)) != lastNum) {
+            $("#error_fIdnum").html("身分證字號不合法");
+            $("#idnum").html("身分證字號&#10060;");
+            return false;
+        }
+        $("#error_fIdnum").html("");
+
+        $("#idnum").html("身分證字號&#9989;");
+        return true;
+    }
+    function AddNewDisease() {
+        count_disease++;
+        var div = document.getElementById("div_disease");
+        var html = `<div id='disdiv${count_disease}'' class='row' style='background-color:antiquewhite'>`;
+        html += `<div class='col-3'><label class='col-form-label'>編號</label><input id='disease${count_disease}.ID_Disease'  name='disease${count_disease}.ID_Disease' class='form-control'   " /></div>`;
+        html += `<div class='col-6'><label class='col-form-label'>疾病中文名稱</label><input  name='disease${count_disease}.DiseaseChineseName'  id='disease${count_disease}.DiseaseChineseName'  class='form-control' /></div>`;
+        html += `<div class='col'><br>`;
+        html += `<input type="button" class='btn btn-danger' style="color:white;" id='${count_disease}' onclick='disease_delete()' value="刪除">`;
+        html += "</div> </div>";
+        div.innerHTML += html;
     }
     </script>
 

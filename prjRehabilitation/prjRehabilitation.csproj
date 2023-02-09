@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -21,6 +21,7 @@
     <None Include="Models\Product\List_B.cshtml" />
     <None Include="Models\Product\orders.cshtml" />
     <None Include="Models\Product\pay.cshtml" />
+    <None Include="Views\ChatBot\Index.cshtml" />
     <None Include="Views\ECPay\CallbackCustomer.cshtml" />
     <None Include="Views\ECPay\CallbackReturn.cshtml" />
     <None Include="Views\ECPay\Index.cshtml" />
@@ -51,6 +52,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="ChatGPT.Net" Version="1.1.5" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Google" Version="6.0.13" />
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="6.0.12" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.12" />
