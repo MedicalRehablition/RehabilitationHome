@@ -60,6 +60,6 @@ namespace prjRehabilitation.ViewModel
             get { return _Customer.FPicture; }
             set { _Customer.FPicture = value; }
         }
-        public IFormFile photo { get; set; }
+        public IFormFile? photo { get; set; }
     }
 }

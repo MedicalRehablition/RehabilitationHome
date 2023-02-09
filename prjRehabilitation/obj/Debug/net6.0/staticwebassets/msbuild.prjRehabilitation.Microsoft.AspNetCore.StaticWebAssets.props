@@ -10416,6 +10416,22 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\images\557bae5d-b718-4c5f-aed1-a2e0ceb73bcf.jpg))</OriginalItemSpec>
     </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\images\597de8dc-91f8-49bc-b9fa-ffc88c18aed2.jpg))">
+      <SourceType>Package</SourceType>
+      <SourceId>prjRehabilitation</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/prjRehabilitation</BasePath>
+      <RelativePath>images/597de8dc-91f8-49bc-b9fa-ffc88c18aed2.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\images\597de8dc-91f8-49bc-b9fa-ffc88c18aed2.jpg))</OriginalItemSpec>
+    </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\images\5d8eab7c-fbd8-4468-bb95-097f1f34173b.jpg))">
       <SourceType>Package</SourceType>
       <SourceId>prjRehabilitation</SourceId>

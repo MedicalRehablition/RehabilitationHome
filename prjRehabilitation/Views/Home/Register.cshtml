@@ -8,6 +8,7 @@
 <h1>Register</h1>
 <h4>註冊帳號</h4>
 <hr />
+
 <form enctype="multipart/form-data" asp-action="Register" name="userRegister">
     <div class="row">
         <div class="col-md-6 mb-4">
@@ -80,7 +81,12 @@
             event.preventDefault();
             let xhr = new XMLHttpRequest();
             xhr.addEventListener("load", function () {
-                alert(xhr.responseText);
+                $('.alert-autocloseable-warning').attr("hidden", false);
+                    $('.alert-autocloseable-warning').delay(2000).fadeOut("slow", function () {
+                        $('.alert-autocloseable-warning').attr("hidden", true);
+                        $('.alert-autocloseable-warning').removeAttr("style");
+                    });
+                    $('#shippingmsgText').text(xhr.responseText);
                 window.location.href = "/Home/Index";
             })
             const Data = new FormData(document.userRegister);
