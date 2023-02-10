@@ -1,4 +1,4 @@
-@using prjRehabilitation.ViewModel.Eric
+﻿@using prjRehabilitation.ViewModel.Eric
 @model CGroupActivityEditViewModel
 
 @{
@@ -32,7 +32,7 @@
     <div class="col">
         <form asp-action="Edit" enctype="multipart/form-data" method="post" name="formData">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" name="cgavm.FGroupActivityId" value=@Model.cgavm.FGroupActivityId />
+            
 
             <div class="form-group">
                 <label asp-for="cgavm.FEventType" class="control-label"></label>
@@ -115,16 +115,9 @@
                         <input class="form-control" type="file" accept=".jpg,.gif,.png" id="formFile1" name="FPicture1">
                     </div>
                     <a href="" class="img-pop-up">
-                        @if (Model.tgapaf.FPicture1 != null)
-                        {
-                            var base64 = Convert.ToBase64String(Model.tgapaf.FPicture1);
-                            string imgSrc = String.Format("data:image/gif;base64,{0}", base64);
-                            <img id="formFile1Pic" name="" src="@imgSrc" style="width:100%" />
-                        }
-                        else
-                        {
+                        
                             <img id="formFile1Pic" name="" src="" style="width:100%" />
-                        }
+                        
 
                     </a>
 
@@ -135,16 +128,9 @@
                         <input class="form-control" type="file" accept=".jpg,.gif,.png" id="formFile2" name="FPicture2">
                     </div>
                     <a href="" class="img-pop-up">
-                        @if (Model.tgapaf.FPicture2 != null)
-                        {
-                            var base64 = Convert.ToBase64String(Model.tgapaf.FPicture2);
-                            string imageString = String.Format("data:image/gif;base64,{0}", base64);
-                            <img id="formFile2Pic" name="" src="@imageString" style="width:100%" />
-                        }
-                        else
-                        {
+                   
                             <img id="formFile2Pic" name="" src="" style="width:100%" />
-                        }
+                        
 
                     </a>
                 </div>
@@ -154,16 +140,9 @@
                         <input class="form-control" type="file" accept=".jpg,.gif,.png" id="formFile3" name="FPicture3">
                     </div>
                     <a href="" class="img-pop-up">
-                        @if (Model.tgapaf.FPicture3 != null)
-                        {
-                            var base64 = Convert.ToBase64String(Model.tgapaf.FPicture3);
-                            string stringForImage = String.Format("data:image/gif;base64,{0}", base64);
-                            <img id="formFile3Pic" name="" src="@stringForImage" style="width:100%" />
-                        }
-                        else
-                        {
+                   
                             <img id="formFile3Pic" name="" src="" style="width:100%" />
-                        }
+                        
 
                     </a>
                 </div>
@@ -173,16 +152,9 @@
                         <input class="form-control" type="file" accept=".jpg,.gif,.png" id="formFile4" name="FPicture4">
                     </div>
                     <a href="" class="img-pop-up">
-                        @if (Model.tgapaf.FPicture4 != null)
-                        {
-                            var base64 = Convert.ToBase64String(Model.tgapaf.FPicture4);
-                            string pic4StringforImg = String.Format("data:image/gif;base64,{0}", base64);
-                            <img id="formFile4Pic" name="" src="@pic4StringforImg" style="width:100%" />
-                        }
-                        else
-                        {
+                
                             <img id="formFile4Pic" name="" src="" style="width:100%" />
-                        }
+                        
 
                     </a>
                 </div>
@@ -229,8 +201,8 @@
             <br />
             <div class="form-group">
                 <input type="submit" id="submitButtonForAjax" value="送出" class="btn btn-primary" />
-              
-                @Html.ActionLink("刪除", "delete", new {  id=Model.cgavm.FGroupActivityId },new{@class="btn btn-danger"})
+
+               
             </div>
         </form>
     </div>
@@ -248,49 +220,47 @@
 
     <script>
 
-        $("#EventType").load("@Url.Content("~/")GroupActivity/ClassThemesPartialView/@Model.cgavm.FGroupActivityId");
-        $("#TScheduleDetails").load("@Url.Content("~/")GroupActivity/ScheduleDetailsPartialView/@Model.cgavm.FGroupActivityId");
-        $("#TPersonalPerformances").load("@Url.Content("~/")GroupActivity/PersonalPerformancesPartialView/@Model.cgavm.FGroupActivityId");
-        
+     
+
         document.querySelector("#classThemeAdd").addEventListener("click", function () {
             document.querySelector("#EventType").insertAdjacentHTML("beforeend", `
 
-                        <div class="row">
-                <div class="col">
-                    <select class="mt-2  form-select shadow-none  border-top" id="ClassThemesEach_1_" name="ClassThemesEach[1]">
-                    <option selected="selected">衛生習慣  </option>
-        <option>居家清潔  </option>
-        <option>飲食起居  </option>
-        <option>認知能力  </option>
-        <option>體能表現  </option>
-        <option>人際互動  </option>
-        <option>烹飪能力  </option>
-        <option>休閒安排  </option>
-        <option>財務管理  </option>
-        <option>健康促進  </option>
-        </select>
-                </div>
-                <div class="col-2" style="text-align: center;position: relative;   " onclick="this.parentElement.remove()">
-                    <i class="fas fa-minus-circle" style="font-size:24px;color:red;position: absolute;top: 50%; left: 50%;-ms-transform: translate(-50%, -50%);transform: translate(-50%, -50%);"></i>
-                </div>
-            </div>
+                                <div class="row">
+                        <div class="col">
+                            <select class="mt-2  form-select shadow-none  border-top" id="ClassThemesEach_1_" name="ClassThemesEach[1]">
+                            <option selected="selected">衛生習慣  </option>
+                <option>居家清潔  </option>
+                <option>飲食起居  </option>
+                <option>認知能力  </option>
+                <option>體能表現  </option>
+                <option>人際互動  </option>
+                <option>烹飪能力  </option>
+                <option>休閒安排  </option>
+                <option>財務管理  </option>
+                <option>健康促進  </option>
+                </select>
+                        </div>
+                        <div class="col-2" style="text-align: center;position: relative;   " onclick="this.parentElement.remove()">
+                            <i class="fas fa-minus-circle" style="font-size:24px;color:red;position: absolute;top: 50%; left: 50%;-ms-transform: translate(-50%, -50%);transform: translate(-50%, -50%);"></i>
+                        </div>
+                    </div>
 
-                    `)
+                            `)
         });
 
-        document.querySelector("#ScheduleDetailAdd").addEventListener("click", function (){
+        document.querySelector("#ScheduleDetailAdd").addEventListener("click", function () {
             document.querySelector("#TScheduleDetails").insertAdjacentHTML("beforeend", `
 
-            <ul class="list-group list-group-horizontal-md">
-                        <li class="list-group-item"><label>開始時間：</label><input type="time" id="startTime" /></li>
-                        <li class="list-group-item"><label>結束時間：</label><input type="time" id="endTime"/></li>
-                        <li class="list-group-item"><label>大綱說明：</label><input type="text" id="depiction"/></li>
-                <li class="list-group-item" style="border-radius:0px  20px 20px 0px" onclick="this.parentElement.remove()"><i class="fas fa-minus-circle" style="font-size:24px;color:red;position: relative;top: 50%; left: 50%;-ms-transform: translate(-50%, -50%);transform: translate(-50%, -50%);"></i></li>
-            </ul>
+                    <ul class="list-group list-group-horizontal-md">
+                                <li class="list-group-item"><label>開始時間：</label><input type="time" id="startTime" /></li>
+                                <li class="list-group-item"><label>結束時間：</label><input type="time" id="endTime"/></li>
+                                <li class="list-group-item"><label>大綱說明：</label><input type="text" id="depiction"/></li>
+                        <li class="list-group-item" style="border-radius:0px  20px 20px 0px" onclick="this.parentElement.remove()"><i class="fas fa-minus-circle" style="font-size:24px;color:red;position: relative;top: 50%; left: 50%;-ms-transform: translate(-50%, -50%);transform: translate(-50%, -50%);"></i></li>
+                    </ul>
 
-            `);
+                    `);
         });
-        
+
 
         for (var i = 1; i <= 4; i++) {
 
@@ -311,28 +281,7 @@
             });
         }
 
-        //var forTest = Convert.ToBase64String(@Model.tgapaf.FPicture1);
-        //if (forTest != null) {
-        //    console.log(@Model.tgapaf.FPicture1);
-        //    //var getString = Convert.ToBase64String(@Model.tgapaf.FPicture1);
-        //    var base64 = String.Format("data:image/gif;base64,{0}", forTest);
-        //    $("#formFile1Pic").attr('src', `data:image/gif;base64,${base64}`);
-        //}
-
-        //async function savePic (){    //改由submit直接存了
-
-        //    const formDataPic = new FormData(formData);
-
-        //    const response = await fetch("@Url.Content("~/")GroupActivity/PicAndFileSaveIn/@Model.cgavm.FGroupActivityId", {
-        //        method:"POST",
-        //        body: formDataPic
-        //    });
-
-        //}
-        //$("#formFile1").change(function () {
-
-        //    //savePic();
-        //});
+      
 
         async function getResidentInPersonalPerformancesSelectPanel() {
             const pplist = document.querySelector('#PersonalListPanel');
@@ -350,51 +299,51 @@
                     const getResidentData = JSON.parse(JSON.parse(await response.text()));
                     //console.log(this.id);
                     document.querySelector("#TPersonalPerformances").insertAdjacentHTML("beforeend", `
-                                                         <div class="card mt-1">
-                                                            <div class="card-body">
-                                                                        <div class="row">
-                                                                                    <label class="h5 badge bg-primary rounded cardIDandName col" id="${this.id}">${this.value}</label>
-                                                                                    <input type="button" id="${this.id}-removeCard" class="btn btn-danger col-1" value="刪除"/>
+                                                                 <div class="card mt-1">
+                                                                    <div class="card-body">
+                                                                                <div class="row">
+                                                                                            <label class="h5 badge bg-primary rounded cardIDandName col" id="${this.id}">${this.value}</label>
+                                                                                            <input type="button" id="${this.id}-removeCard" class="btn btn-danger col-1" value="刪除"/>
+                                                                                </div>
+                                                                                <div class="row " style="background-color:lightgray">
+                                                                            <div class="col-4">
+                                                                                <label class="badge bg-success rounded">表情情緒：</label><br />
+                                                                                                                <select id="${this.id}-comboxEmotions"  class="forPPdataE form-select shadow-none  border-top"></select>
+
+                                                                            </div>
+                                                                            <div class="col-4">
+                                                                                <label class="badge bg-success rounded">持續度：</label><br />
+                                                                                                        <select id="${this.id}-comboxParticipatePersistence"  class="forPPdataP form-select shadow-none  border-top"></select>
+
+                                                                            </div>
+                                                                            <div class="col-4">
+                                                                                <label class="badge bg-success rounded">配合度：</label><br />
+                                                                                                        <select id="${this.id}-comboxCooperate"  class="forPPdataC form-select shadow-none  border-top"></select>
+
+                                                                            </div>
                                                                         </div>
-                                                                        <div class="row " style="background-color:lightgray">
-                                                                    <div class="col-4">
-                                                                        <label class="badge bg-success rounded">表情情緒：</label><br />
-                                                                                                        <select id="${this.id}-comboxEmotions"  class="forPPdataE form-select shadow-none  border-top"></select>
+                                                                            <div class="row " style="background-color:lightgray">
+                                                                            <div class="col-4">
+                                                                                <label class="badge bg-success rounded">人際互動：</label><br />
+                                                                                                        <select id="${this.id}-comboxHumanInteraction"  class="forPPdataH form-select shadow-none  border-top"></select>
 
-                                                                    </div>
-                                                                    <div class="col-4">
-                                                                        <label class="badge bg-success rounded">持續度：</label><br />
-                                                                                                <select id="${this.id}-comboxParticipatePersistence"  class="forPPdataP form-select shadow-none  border-top"></select>
+                                                                            </div>
+                                                                            <div class="col-4">
+                                                                                <label class="badge bg-success rounded">注意力：</label><br />
+                                                                                                        <select id="${this.id}-comboxAttentionRes" class="forPPdataA form-select shadow-none  border-top"></select>
 
-                                                                    </div>
-                                                                    <div class="col-4">
-                                                                        <label class="badge bg-success rounded">配合度：</label><br />
-                                                                                                <select id="${this.id}-comboxCooperate"  class="forPPdataC form-select shadow-none  border-top"></select>
+                                                                            </div>
+                                                                            <div class="col-4">
+                                                                                <label class="badge bg-success rounded">參與表現：</label><br />
+                                                                                                <select id="${this.id}-comboxParticipatePerformance" class="forPPdataPP form-select shadow-none  border-top"></select>
 
-                                                                    </div>
-                                                                </div>
-                                                                    <div class="row " style="background-color:lightgray">
-                                                                    <div class="col-4">
-                                                                        <label class="badge bg-success rounded">人際互動：</label><br />
-                                                                                                <select id="${this.id}-comboxHumanInteraction"  class="forPPdataH form-select shadow-none  border-top"></select>
-
-                                                                    </div>
-                                                                    <div class="col-4">
-                                                                        <label class="badge bg-success rounded">注意力：</label><br />
-                                                                                                <select id="${this.id}-comboxAttentionRes" class="forPPdataA form-select shadow-none  border-top"></select>
-
-                                                                    </div>
-                                                                    <div class="col-4">
-                                                                        <label class="badge bg-success rounded">參與表現：</label><br />
-                                                                                        <select id="${this.id}-comboxParticipatePerformance" class="forPPdataPP form-select shadow-none  border-top"></select>
-
+                                                                            </div>
+                                                                        </div>
+                                                                                        <div class="row"><label class="col-auto badge bg-success rounded ">備註：</label><br /><input type="text"  class="forPPdataD" id="${this.id}-Depiction"/></div>
                                                                     </div>
                                                                 </div>
-                                                                                <div class="row"><label class="col-auto badge bg-success rounded ">備註：</label><br /><input type="text"  class="forPPdataD" id="${this.id}-Depiction"/></div>
-                                                            </div>
-                                                        </div>
 
-                                                                    `);
+                                                                            `);
                     const comboxEmotionsID = document.getElementById(`${this.id}-comboxEmotions`);
                     const comboxParticipatePersistenceID = document.getElementById(`${this.id}-comboxParticipatePersistence`);
                     const comboxCooperateID = document.getElementById(`${this.id}-comboxCooperate`);
@@ -438,7 +387,7 @@
 
         //getButtonAjax.addEventListener("click",editCantSubmit);
 
-        var groupActivityID = @Html.Raw(Json.Serialize(@Model.cgavm.FGroupActivityId));
+        var groupActivityID = "";
 
         async function getParticipatePerformances() {
             var ppPanel = document.querySelector("#TPersonalPerformances");
@@ -471,7 +420,7 @@
                 body: JSON.stringify(fetchList)
             });
             //console.log(await goAjax.text());
-             //window.location.href = `@Url.Content("~/")GroupActivity/List`
+            //window.location.href = `@Url.Content("~/")GroupActivity/List`
         }
 
 
@@ -480,7 +429,7 @@
             var ScheduleDetailInPanel = ScheduleDetailPanel.querySelectorAll("ul");
             var ScheduleDetails = [];
 
-            for (var item of ScheduleDetailInPanel){
+            for (var item of ScheduleDetailInPanel) {
                 ScheduleDetails.push({
                     FGroupActivityId: `${groupActivityID}`,
                     FStartTime: `${item.querySelector("#startTime").value}`,
@@ -490,7 +439,7 @@
             }
 
             await fetch(`@Url.Content("~/")GroupActivityAjax/ScheduleDetailPanelAjax`, {
-                method:"post",
+                method: "post",
                 headers: { 'Content-type': 'application/json' },
                 body: JSON.stringify(ScheduleDetails)
             })
@@ -521,14 +470,14 @@
         }
 
 
-        //async function editCantSubmit(){
-        //    const getEditResult = await fetch(`@Url.Content("~/")GroupActivity/Edit`, {
-        //        method:"post",
-        //        body: new FormData(formData)
-        //    })
+                //async function editCantSubmit(){
+                //    const getEditResult = await fetch(`@Url.Content("~/")GroupActivity/Edit`, {
+                //        method:"post",
+                //        body: new FormData(formData)
+                //    })
 
-           
-        //}
+
+                //}
 
     </script>
 
