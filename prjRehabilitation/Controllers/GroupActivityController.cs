@@ -308,7 +308,8 @@ namespace prjRehabilitation.Controllers
         #endregion
 
         public IActionResult Create() {
-            return View();
+            
+            return View(new CGroupActivityEditViewModel());
         }
         [HttpPost]
         public IActionResult Create(CGroupActivityEditViewModel vm, IFormFile FPicture1, IFormFile FPicture2, IFormFile FPicture3, IFormFile FPicture4)
