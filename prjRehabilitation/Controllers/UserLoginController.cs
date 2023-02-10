@@ -32,6 +32,7 @@ namespace prjRehabilitation.Controllers
             dbClassContext db = new dbClassContext();
             Customer customer = db.Customers.FirstOrDefault(t => t.FEmail.Equals(vm.txtAccount) && t.FPassword.Equals(vm.txtPassword));
             string json = "";
+            
             if (customer != null)
             {
                 if (customer.FEmail.Equals(vm.txtAccount) && customer.FPassword.Equals(vm.txtPassword))
@@ -48,6 +49,16 @@ namespace prjRehabilitation.Controllers
             dbClassContext db = new dbClassContext();
             Customer customer = db.Customers.FirstOrDefault(t => t.FEmail.Equals(vm.txtAccount));
             string json = "";
+            using (var cryptoMD5 = System.Security.Cryptography.MD5.Create())
+            {
+                vm.txtPassword += "putSomeSalt";
+                var bytes = Encoding.UTF8.GetBytes(vm.txtPassword);
+                var hash = cryptoMD5.ComputeHash(bytes);
+                var md5 = BitConverter.ToString(hash)
+                  .Replace("-", String.Empty)
+                  .ToUpper();
+                vm.txtPassword = md5;
+            }
             if (customer != null)
             {
                 if (customer.FEmail == vm.txtAccount && customer.FPassword != vm.txtPassword)
@@ -79,7 +90,16 @@ namespace prjRehabilitation.Controllers
         {
             dbClassContext db = new dbClassContext();
             Customer customer = db.Customers.FirstOrDefault(t => t.FEmail == vm.FEmail);
-
+            using (var cryptoMD5 = System.Security.Cryptography.MD5.Create())
+            {
+                vm.FPassword += "putSomeSalt";
+                var bytes = Encoding.UTF8.GetBytes(vm.FPassword);
+                var hash = cryptoMD5.ComputeHash(bytes);
+                var md5 = BitConverter.ToString(hash)
+                  .Replace("-", String.Empty)
+                  .ToUpper();
+                vm.FPassword = md5;
+            }
             if (customer == null)
             {
                 string photoName = Guid.NewGuid().ToString() + ".jpg";
@@ -138,14 +158,14 @@ namespace prjRehabilitation.Controllers
             HttpContext.Session.Remove(CDictionary.SK_CUSTOMER_User);
             return Content("清除session");
         }
-        private bool checkMD5(CLoginViewModel vm)
+        private bool checkMD5(string input, string password)
         {
             //input=網頁使用者填的 & password=資料庫儲存經MD5處理的密碼
             using (var cryptoMD5 = System.Security.Cryptography.MD5.Create())
             {
                 //將輸入的字串編碼成 UTF8 位元組陣列
-                vm.txtAccount += "putSomeSalt"; //加鹽，避免駭客知道加密方法後回推密碼
-                var bytes = Encoding.UTF8.GetBytes(vm.txtAccount);
+                input += "putSomeSalt"; //加鹽，避免駭客知道加密方法後回推密碼
+                var bytes = Encoding.UTF8.GetBytes(input);
 
                 //取得雜湊值位元組陣列
                 var hash = cryptoMD5.ComputeHash(bytes);
@@ -156,7 +176,7 @@ namespace prjRehabilitation.Controllers
                   .ToUpper();
 
                 //雜湊化密碼相同即回傳正確
-                if (md5 == vm.txtPassword) return true;
+                if (md5 == password) return true;
                 return false;
             }
         }

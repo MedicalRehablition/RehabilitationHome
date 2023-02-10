@@ -71,6 +71,6 @@ namespace prjRehabilitation.ViewModel
             set { _admin.FQrcode = value; }
         }
 
-        public IFormFile photo { get; set; }
+        public IFormFile? photo { get; set; }
     }
 }

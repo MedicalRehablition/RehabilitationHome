@@ -13,7 +13,7 @@
         <tr class="column">
             <th>
                 <label>全選
-                    <input type="checkbox" checked id="cbAll" class="form-check-input mt-0" />
+                    <input type="checkbox" id="cbAll" class="form-check-input mt-0" checked />
                 </label>
             </th>
             <th></th>
@@ -50,7 +50,7 @@
                     }
                     <td><span class="text-dark">@item.FName</span></td>
                     <td>
-                        <span class="text-dark">庫存量:@item.FQty</span>
+                        <span class="text-dark">庫存量:充足</span>
                     </td>
                     <td>
                             <input type="hidden" name="num" value="1" max="@item.FQty" min="1" onchange="checkNum(value,event)">
@@ -74,18 +74,19 @@
     <div class="col-md-5 col-lg-4 order-md-last">
         <br />
         <h4 class="d-flex justify-content-between align-items-center mb-3">
-            <span class="text-primary">購買產品</span>
+            <span class="text-primary">購買產品(未滿$499酌收運費$60元)</span>
         </h4>
         <br />
 
         <ul class="list-group mb-3">
             <li class="list-group-item d-flex justify-content-between lh-sm">
-                <div>
-                    <h6 class="my-0">關心康復之家住民手做愛心商品</h6>
-                    <small class="text-muted"></small>
-                </div>
+                    <span>關心康復之家住民手做愛心商品</span>
+                    <strong>$<span id="p_price"></span></strong>
             </li>
-
+            <li class="list-group-item d-flex justify-content-between lh-sm">
+                    <span>運費</span>
+                    <strong>$<span id="ShipPrice"></span></strong>
+            </li>
             <li class="list-group-item d-flex justify-content-between">
                 <span>總價 (NTD)</span>
                 <strong>$<span id="total"></span></strong>
@@ -187,6 +188,10 @@
         $("#city").change(loadtown);
         $("#town").change(displayzip);
 
+        async function setPurchaseList(id,type){
+            await fetch(`/Product/CheckPurchasedItem?id=${id}&type=${type}`);
+        }
+
         async function CreateOrder(){
             var address = $("#address").val();
             var town = $("#town option:selected").html();
@@ -198,6 +203,25 @@
                  })
             KeepGoing();
         }
+        $("input[type='checkbox']").click(function(event){
+                const id = event.target.id;
+                console.log(event.target.id);
+                if($(event.target).prop("checked"))  setPurchaseList(id,1);
+                else  setPurchaseList(id,2);
+                checkMoney();
+            }
+        );
+        $("#cbAll").click(function () {
+            if ($("#cbAll").prop("checked")) {//如果全選按鈕有被選擇的話（被選擇是true）
+                $("input[type='checkbox']").prop("checked", true);//把所有的核取方框的變成勾選
+                setPurchaseList(0,3);
+            } else {
+                $("input[type='checkbox']").prop("checked", false);//把所有的核取方框都取消勾選
+                setPurchaseList(0, 4);
+            }
+            checkMoney();
+        })
+
         function KeepGoing(){
             checkMoney();
             var price = $("#total").html();
@@ -238,11 +262,20 @@
         function checkMoney(){
             var total = 0;
             $("tr[name='order']").each(function(){
+                if(!$(this).find("input").prop("checked")) return;  //有勾選的商品才算錢
                 var num = $(this).find("td:eq(4)").find("input").val();
                 var price = $(this).find("td:eq(5)").find("input").val();
                  total += parseInt(num) * parseInt(price);
             })
-            $("#total").html(total);
+            $("#p_price").html(total);
+            if(total<499){
+                $("#ShipPrice").html(60);
+                $("#total").html(total + 60);
+            }
+            else{
+                $("#ShipPrice").html(0);
+                $("#total").html(total);
+            }
             $("#FPrice").val(total);
         }
 

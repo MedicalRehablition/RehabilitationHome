@@ -3,6 +3,10 @@
 @{
     ViewData["Title"] = "DateList";
     var ptid = ViewBag.ptid;
+    if (ViewBag.setting != "customer")
+    {
+        Layout = "AdminLayout";
+    };
 }
 
 <h1>功能評估紀錄</h1>
@@ -53,8 +57,8 @@
    }
     </tbody>
 </table>
-<p>
-    <a href="Evaluate/List">回上一頁</a>
+<p class="employee">
+    <a href="/Evaluate/List">回上一頁</a>
 </p>
 @section Scripts 
 {

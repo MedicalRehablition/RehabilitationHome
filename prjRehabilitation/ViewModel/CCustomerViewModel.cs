@@ -50,7 +50,6 @@ namespace prjRehabilitation.ViewModel
             get { return _Customer.FAddress; }
             set { _Customer.FAddress = value; }
         }
-        [DisplayName("QR code")]
         public string? FQrcode
         {
             get { return _Customer.FQrcode; }
@@ -61,7 +60,6 @@ namespace prjRehabilitation.ViewModel
             get { return _Customer.FPicture; }
             set { _Customer.FPicture = value; }
         }
-       
-        public IFormFile photo { get; set; }
+        public IFormFile? photo { get; set; }
     }
 }

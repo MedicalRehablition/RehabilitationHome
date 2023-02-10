@@ -327,6 +327,12 @@
             document.getElementById("post").innerHTML += html.join("");
             //加載完把讀取動畫關掉
             $(".spinner-border").remove();
+            $("html,body").animate(
+                {
+                    scrollTop: 150,
+                },
+                0
+            );
         }
         function redirectToPage(id) {
             location.href =`@Url.Content("~/Forum/PostDetail/${id}")`;

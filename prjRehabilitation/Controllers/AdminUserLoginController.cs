@@ -4,18 +4,19 @@ using prjRehabilitation.Models;
 using prjRehabilitation.ViewModel;
 using System.Drawing.Imaging;
 using System.Net.Mail;
+using System.Text;
 using System.Text.Json;
 
 namespace prjRehabilitation.Controllers
 {
-    public class AdminUserLoginController : Controller
+    public class AdminUserLoginController : SuperController
     {
         private IWebHostEnvironment _environment;
         public AdminUserLoginController(IWebHostEnvironment environment)
         {
             _environment = environment;
         }
-
+        
         //show出員工名單
         public IActionResult List(CKeywordViewModel vm)
         {
@@ -68,7 +69,16 @@ namespace prjRehabilitation.Controllers
         {
             dbClassContext db = new dbClassContext();
             Admin admin = db.Admins.FirstOrDefault(t => t.FEmail==vm.txtAccount);
-
+            using (var cryptoMD5 = System.Security.Cryptography.MD5.Create())
+            {
+                vm.txtPassword += "putSomeSalt";
+                var bytes = Encoding.UTF8.GetBytes(vm.txtPassword);
+                var hash = cryptoMD5.ComputeHash(bytes);
+                var md5 = BitConverter.ToString(hash)
+                  .Replace("-", String.Empty)
+                  .ToUpper();
+                vm.txtPassword = md5;
+            }
             if (admin != null)
             {
                 if (admin.FEmail == vm.txtAccount && admin.FPassword != vm.txtPassword)
@@ -210,7 +220,16 @@ namespace prjRehabilitation.Controllers
         {
             dbClassContext db = new dbClassContext();
             Admin admin = db.Admins.FirstOrDefault(t => t.FEmail == vm.FEmail);
-
+            using (var cryptoMD5 = System.Security.Cryptography.MD5.Create())
+            {
+                vm.FPassword += "putSomeSalt";
+                var bytes = Encoding.UTF8.GetBytes(vm.FPassword);
+                var hash = cryptoMD5.ComputeHash(bytes);
+                var md5 = BitConverter.ToString(hash)
+                  .Replace("-", String.Empty)
+                  .ToUpper();
+                vm.FPassword = md5;
+            }
             if (admin == null)
             {
                 string photoName = Guid.NewGuid().ToString() + ".jpg";
@@ -248,6 +267,12 @@ namespace prjRehabilitation.Controllers
             }
             return Content("此帳號已註冊使用,請前往登入");
 
+        }
+        public IActionResult ResetPassword(CAdminViewModel vm)
+        {
+            dbClassContext db = new dbClassContext();
+            Admin ad = db.Admins.FirstOrDefault(t => t.FEmail == vm.FEmail);
+            return View();
         }
     }
 }

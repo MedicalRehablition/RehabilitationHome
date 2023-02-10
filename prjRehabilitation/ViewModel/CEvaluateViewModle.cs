@@ -1,4 +1,5 @@
 ﻿using prjRehabilitation.Models;
+using System.ComponentModel;
 
 namespace prjRehabilitation.ViewModel
 {
@@ -23,7 +24,7 @@ namespace prjRehabilitation.ViewModel
             get { return _功能評估個表; }
             set { _功能評估個表 = value; }
         }
-
+        [DisplayName("功能評估Id")]
         public int F功能評估Id
         {
             get { return _功能評估.F功能評估Id; } 
@@ -33,16 +34,19 @@ namespace prjRehabilitation.ViewModel
             get { return _功能評估.Fid; } 
             set { _功能評估.Fid = value; } 
         }
+        [DisplayName("日期")]
         public string? F日期 
         {
             get { return _功能評估.F日期; }
             set { _功能評估.F日期 = value; }
         }
+        [DisplayName("身高")]
         public decimal? F身高 
         {
             get { return _功能評估.F身高; }
             set { _功能評估.F身高 = value; }
         }
+        [DisplayName("體重")]
         public decimal? F體重 
         {
             get { return _功能評估.F體重; }
@@ -63,26 +67,31 @@ namespace prjRehabilitation.ViewModel
             get { return _功能評估個表.F功能評估Id; }
             set { _功能評估個表.F功能評估Id = value; }
         }
+        [DisplayName("評估項目")]
         public int? F評估項目 
         {
             get { return _功能評估個表.F評估項目; }
             set { _功能評估個表.F評估項目 = value; }
         }
+        [DisplayName("現狀評估")]
         public string? F現狀評估 
         {
             get { return _功能評估個表.F現狀評估; }
             set { _功能評估個表.F現狀評估 = value; }
         }
+        [DisplayName("問題")]
         public string? F問題 
         {
             get { return _功能評估個表.F問題; }
             set { _功能評估個表.F問題 = value; }
         }
+        [DisplayName("復健目標")]
         public string? F復健目標
         {
             get { return _功能評估個表.F復健目標; }
             set { _功能評估個表.F復健目標 = value; }
         }
+        [DisplayName("復健計畫")]
         public string? F復健計畫 
         {
             get { return _功能評估個表.F復健計畫; }

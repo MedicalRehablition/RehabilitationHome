@@ -53,8 +53,8 @@
                     <td>
                         @if (!(bool)item.FShip)
                         {
-                            @Html.ActionLink("出貨","ship","Product",new{ id =item.Fid },new {@class="btn btn-outline-primary"})
-                        }
+                            @Html.ActionLink("出貨","ship","Product",new{ id =item.Fid, email=item.FEmail },new {@class="btn btn-outline-primary"})
+                    }
                         <button type="button" class="btn btn-outline-info" onclick="getOrderDetail(`@item.FOrderId`)" data-bs-toggle="modal" data-bs-target="#exampleModal">
                             檢視訂單
                         </button>

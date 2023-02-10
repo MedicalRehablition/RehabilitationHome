@@ -173,7 +173,7 @@ namespace prjRehabilitation.Models.Lin
         public  List<TOrder> GetOrders()
         {
             dbClassContext db = new dbClassContext();
-            return db.TOrders.ToList();
+            return db.TOrders.OrderByDescending(x=>x.Fid).ToList();
         }
 
         public object GetOrderDetail(string id)
