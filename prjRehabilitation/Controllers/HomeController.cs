@@ -1,10 +1,12 @@
 ﻿using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion.Internal;
 using prjRehabilitation.Models;
 using prjRehabilitation.ViewModel;
 using System.Diagnostics;
 using System.Net.Mail;
+using System.Text;
 using System.Text.Json;
 
 namespace prjRehabilitation.Controllers
@@ -73,8 +75,19 @@ namespace prjRehabilitation.Controllers
             }
             customer.FEmail = vm.txtAccount;
             customer.FPassword = Guid.NewGuid().ToString();
+            string beforePassword = customer.FPassword;//加密前密碼
+            using (var cryptoMD5 = System.Security.Cryptography.MD5.Create())
+            {
+               string afterPassword=beforePassword + "putSomeSalt";
+                var bytes = Encoding.UTF8.GetBytes(afterPassword);
+                var hash = cryptoMD5.ComputeHash(bytes);
+                var md5 = BitConverter.ToString(hash)
+                  .Replace("-", String.Empty)
+                  .ToUpper();
+                customer.FPassword = md5; //加密後密碼
+            }
             db.SaveChanges();
-            string newPassword = customer.FPassword;
+            string newPassword = beforePassword;
             List<string> MailList = new List<string>();
             MailList.Add(vm.txtAccount);//新增收件人進去
             string Subject = "變更密碼";
