@@ -1,11 +1,21 @@
 ﻿@model prjRehabilitation.ViewModel.Eric.CClassThemesPartialViewViewModel
 
 
-    
+
 @for (int i = 0; i < Model.ClassThemesEach.Length; i++)
 {
-    <select asp-for="ClassThemesEach[i]" asp-items="@(new SelectList(Model.ClassThemesList))" class="mt-2 form-control">
-    </select>
+    <div class="row ">
+        <div class="col">
+            <select asp-for="ClassThemesEach[i]" asp-items="@(new SelectList(Model.ClassThemesList))" class="mt-2  form-select shadow-none  border-top">
+            </select>
+        </div>
+        <div class="col-2" style="text-align: center;position: relative;   " onclick="this.parentElement.remove()">
+            <i class="fas fa-minus-circle" style="font-size:24px;color:red;position: absolute;top: 50%; left: 50%;-ms-transform: translate(-50%, -50%);transform: translate(-50%, -50%);"></i>
+        </div>
+    </div>
+
+
+
 
 }
 @*@foreach (string itemEach in Model.ClassThemesEach)
@@ -17,11 +27,11 @@
             if (itemEach == itemList)
             {
                 <option selected="selected">@itemList</option>
-            } 
+            }
             else { <option>@itemList</option> }
         }
 
         </select>
 
     }*@
-    
+

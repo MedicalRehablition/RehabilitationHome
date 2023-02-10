@@ -1,8 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using NuGet.Frameworks;
+using NuGet.Protocol;
 using prjRehabilitation.Models;
 using prjRehabilitation.ViewModel.Eric;
 
 using System.Text.Json;
+using static prjRehabilitation.Controllers.Api.GroupActivityAjaxController;
 
 namespace prjRehabilitation.Controllers.Api
 {
@@ -111,5 +114,173 @@ namespace prjRehabilitation.Controllers.Api
             return Json(JsonSerializer.Serialize(toJosn));
         }
 
+
+
+        [HttpPost]
+        public async Task<IActionResult> PersonalPerformancesEditAjax([FromBody] List<FetchList> fetchList)
+        {
+            dbClassContext db = new dbClassContext();
+
+            IQueryable<TPersonalPerformance> oldGroupActivity = db.TPersonalPerformances.Where(_ => _.FGroupActivityId == Convert.ToInt32(fetchList[0].groupActivityID)).Where(_ => _.FDeleteBool == "1");
+
+            List<string> oldCount = new List<string>();
+            List<string> newCount = new List<string>();
+            foreach (TPersonalPerformance oldGroupActivityItem in oldGroupActivity)
+            {
+                oldCount.Add(oldGroupActivityItem.FResidentId.ToString());
+            }
+
+            foreach (FetchList fetchListItem in fetchList)
+            {
+                newCount.Add(fetchListItem.ResidentId);
+            }
+
+            List<string> oldIntersectNew = oldCount.Intersect(newCount).ToList();       //先求一樣的
+            List<string> oldExceptNew = oldCount.Except(newCount).ToList();         //再求舊的被刪掉的抓出來
+            List<string> newExceptOld = newCount.Except(oldCount).ToList();         //再求新的要加的抓出來
+
+            //===================================================
+            if (oldIntersectNew.Count > 0)
+            {
+                foreach (string item in oldIntersectNew)
+                {
+                    FetchList formFetchList = fetchList.FirstOrDefault(_ => _.ResidentId == item);
+
+
+                    TPersonalPerformance tpp = db.TPersonalPerformances.Where(_ => _.FGroupActivityId == Convert.ToInt32(formFetchList.groupActivityID)).FirstOrDefault(_ => _.FResidentId == Convert.ToInt32(formFetchList.ResidentId));
+
+                    //tpp.FGroupActivityId = Convert.ToInt32(formFetchList.groupActivityID);  //為了快速update而留
+                    //tpp.FResidentId = Convert.ToInt32(formFetchList.ResidentId);    //同上
+                    //tpp.FDeleteBool = "1";
+                    tpp.FEmotions = formFetchList.Emotions;
+                    tpp.FParticipatePersistence = formFetchList.ParticipatePersistence;
+                    tpp.FCooperate = formFetchList.Cooperate;
+                    tpp.FHumanInteraction = formFetchList.HumanInteraction;
+                    tpp.FAttention = formFetchList.AttentionRes;
+                    tpp.FParticipatePerformance = formFetchList.ParticipatePerformance;
+                    tpp.FDepiction = formFetchList.Depiction;
+
+                    db.Update(tpp);
+                }
+            }
+            //================================================
+            if (oldExceptNew.Count > 0)
+            {
+                foreach (string item in oldExceptNew)
+                {
+                    TPersonalPerformance tpp = oldGroupActivity.FirstOrDefault(_ => _.FResidentId == Convert.ToInt32(item));
+                    tpp.FDeleteBool = "0";
+                    db.Update(tpp);
+                }
+            }
+
+            if (newExceptOld.Count > 0)
+            {
+                foreach (string item in newExceptOld)
+                {
+                    FetchList formFetchList = fetchList.FirstOrDefault(_ => _.ResidentId == item);
+
+                    TPersonalPerformance tpp = new TPersonalPerformance()
+                    {
+                        FGroupActivityId = Convert.ToInt32(formFetchList.groupActivityID),
+                        FResidentId = Convert.ToInt32(formFetchList.ResidentId),
+                        FDeleteBool = "1",
+                        FEmotions = formFetchList.Emotions,
+                        FParticipatePersistence = formFetchList.ParticipatePersistence,
+                        FCooperate = formFetchList.Cooperate,
+                        FHumanInteraction = formFetchList.HumanInteraction,
+                        FAttention = formFetchList.AttentionRes,
+                        FParticipatePerformance = formFetchList.ParticipatePerformance,
+                        FDepiction = formFetchList.Depiction
+                    };
+                    db.Add(tpp);
+                }
+            }
+
+
+            db.SaveChanges();
+            return Json("");
+        }
+
+
+        public class FetchList  //應該設計直接跟modal一樣
+        {
+            public string groupActivityID { get; set; }
+            public string ResidentId { get; set; }
+            public string Emotions { get; set; }
+            public string ParticipatePersistence { get; set; }
+            public string Cooperate { get; set; }
+            public string HumanInteraction { get; set; }
+            public string AttentionRes { get; set; }
+            public string ParticipatePerformance { get; set; }
+            public string Depiction { get; set; }
+
+
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> ClassThemeAjax([FromBody] List<TGroupActivityClassTheme> gaClass)
+        {
+
+            dbClassContext db = new dbClassContext();
+            List<string> oldCount = new List<string>();
+            List<string> newCount = new List<string>();
+            var getFormDB = db.TGroupActivityClassThemes.Where(_ => _.FGroupActivityId == gaClass[0].FGroupActivityId).Where(_=>_.FDeleteBool == true);
+
+            foreach (var item in getFormDB)
+            {
+                oldCount.Add(item.FClassThemeId.ToString());
+            }
+            foreach (var item in gaClass)
+            {
+              if ( newCount.Contains(item.FClassThemeId.ToString()))continue;
+                newCount.Add(item.FClassThemeId.ToString());
+            }
+
+            List<string> oldIntersectNew = oldCount.Intersect(newCount).ToList();       //先求一樣的，這次可以不用管"一樣"的情況
+            List<string> oldExceptNew = oldCount.Except(newCount).ToList();         //再求舊的被刪掉的抓出來
+            List<string> newExceptOld = newCount.Except(oldCount).ToList();         //再求新的要加的抓出來
+
+            if (oldExceptNew.Count > 0)
+            {
+                foreach (string item in oldExceptNew)
+                {
+                    TGroupActivityClassTheme tgact =  getFormDB.Where(_ => _.FClassThemeId == Convert.ToInt32(item)).FirstOrDefault();
+
+                    tgact.FDeleteBool = false;
+                    db.Update(tgact);
+                }
+            }
+            if (newExceptOld.Count > 0) {
+                foreach (string item in newExceptOld)
+                {
+                    TGroupActivityClassTheme tgact = new TGroupActivityClassTheme();
+
+                    tgact.FDeleteBool = true;
+                    tgact.FGroupActivityId =Convert.ToInt32( gaClass[0].FGroupActivityId);
+                    tgact.FClassThemeId = Convert.ToInt32( item);
+                    db.Add(tgact);
+                }
+            }
+
+            db.SaveChanges();
+
+
+            return Json("");
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> ScheduleDetailPanelAjax([FromBody] List<TScheduleDetail> tsd) {
+
+            dbClassContext db = new dbClassContext();
+
+            db.RemoveRange(db.TScheduleDetails.Where(_=>_.FGroupActivityId == tsd[0].FGroupActivityId));
+
+            db.AddRange(tsd);
+            db.SaveChanges();
+            return Json("");
+        }
     }
 }
