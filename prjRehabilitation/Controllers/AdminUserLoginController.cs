@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using prjRehabilitation.Models;
 using prjRehabilitation.ViewModel;
+using System.Drawing.Imaging;
 using System.Net.Mail;
 using System.Text;
 using System.Text.Json;
@@ -108,6 +109,9 @@ namespace prjRehabilitation.Controllers
             //}
             //db.Admins.Add(vm.admin);
             //db.SaveChanges();
+            //-----qrcode生成及儲存-----
+            //qrcode內容="e" + admins.fid
+            //長寬各150
             return RedirectToAction("List");
         }
         //編輯
@@ -141,6 +145,7 @@ namespace prjRehabilitation.Controllers
                 ad.FPassword= vm.FPassword;
                 ad.FSex=vm.FSex;
                 db.SaveChanges();
+                
             }
             return RedirectToAction("List");
         }
@@ -232,7 +237,30 @@ namespace prjRehabilitation.Controllers
                 vm.Fphoto = photoName;
                 vm.photo.CopyTo(new FileStream(path, FileMode.Create));
                 db.Admins.Add(vm.admin);
-                db.SaveChanges();
+                db.SaveChanges();                
+                //-----qrcode生成及儲存-----
+                //長寬各150               
+                CCreateqrcode cqr = new CCreateqrcode();
+                string emp = "e" + vm.admin.Fid; //圖片要存的內容
+                var QRpic = cqr.createqrcode(emp); //生成bitmap類型的圖片
+                string qrname = emp + ".jpg";
+                string qrpath = _environment.WebRootPath + "/images/" + qrname;
+                Admin qradmin = db.Admins.FirstOrDefault(t => t.Fid == vm.Fid);//
+                if (qradmin != null)
+                {
+                    qradmin.FQrcode = qrname;
+                    using (var stream = new MemoryStream())
+                    {
+                        QRpic.Save(stream, ImageFormat.Jpeg);//把bitmap轉png
+                        stream.Position = 0;
+                        using (var fileStream = new FileStream(qrpath, FileMode.Create))
+                        {
+                            stream.CopyTo(fileStream);
+                        }
+                    }
+                    db.SaveChanges();
+                }
+                //呼叫寄信把QRpic寄給員工
                 return Content("註冊成功!");
                 //後面要記得改
                 //return RedirectToAction("List");

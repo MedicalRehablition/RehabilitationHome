@@ -6,17 +6,39 @@ using prjRehabilitation.ViewModel.Eric;
 using System.Diagnostics.Metrics;
 using System.Dynamic;
 using System.Security.Claims;
+using System.Text.Json;
 
 namespace prjRehabilitation.Controllers
 {
     public class GroupActivityController : Controller
     {
-        
+        public Customer getCustomerIfSession()
+        {
+            string json = HttpContext.Session.GetString(CDictionary.SK_CUSTOMER_User);
+            Customer customer = null;
+
+            if (!string.IsNullOrEmpty(json))
+            {
+                customer = JsonSerializer.Deserialize<Customer>(json);
+            }
+            return customer;
+        }
+        public Admin getAdminIfSession()
+        {
+            string json = HttpContext.Session.GetString(CDictionary.SK_ADMIN_User);
+            Admin admin = null;
+
+            if (!string.IsNullOrEmpty(json))
+            {
+                admin = JsonSerializer.Deserialize<Admin>(json);
+            }
+            return admin;
+        }
 
         public IActionResult List()
         {
             dbClassContext db = new dbClassContext();
-            List<TGroupActivity> gaList = db.TGroupActivities.ToList();
+            List<TGroupActivity> gaList = db.TGroupActivities.Where(_=>_.FDeleteBool == true).ToList();
 
             List<CGroupActivityViewModel> gavmList = new List<CGroupActivityViewModel>();
 
@@ -32,6 +54,8 @@ namespace prjRehabilitation.Controllers
 
         public ActionResult Edit(int? id)
         {
+            if (getAdminIfSession() == null) { return Content("此功能需後端登入。"); }
+
             dbClassContext db = new dbClassContext();
             TGroupActivity? tempTGA = db.TGroupActivities.FirstOrDefault(_ => _.FGroupActivityId == id);
             CGroupActivityViewModel cgavm = new CGroupActivityViewModel();
@@ -156,7 +180,7 @@ namespace prjRehabilitation.Controllers
         {
             dbClassContext db = new dbClassContext();
             //int aa = (int)id;
-            int[] aa = db.TGroupActivityClassThemes.Where(_ => _.FGroupActivityId == id).Select(_ => _.FClassThemeId).ToArray();
+            int[] aa = db.TGroupActivityClassThemes.Where(_ => _.FGroupActivityId == id).Where(_=>_.FDeleteBool == true).Select(_ => _.FClassThemeId).ToArray();
             string[] resultArray = new string[aa.Count()];
             CClassThemesPartialViewViewModel cctpvvm = new CClassThemesPartialViewViewModel();
             for (int i = 0; i < resultArray.Length; i++)
@@ -186,7 +210,7 @@ namespace prjRehabilitation.Controllers
             dbClassContext db = new dbClassContext();
             CPersonalPerformancesPartialViewViewModel cpppvvm = new CPersonalPerformancesPartialViewViewModel();
 
-            cpppvvm.tpp = db.TPersonalPerformances.Where(_ => _.FGroupActivityId == id).ToArray();
+            cpppvvm.tpp = db.TPersonalPerformances.Where(_ => _.FGroupActivityId == id).Where(_=>_.FDeleteBool == "1").ToArray();
 
          var Patients = from tempAA in db.PatientInfos select new { tempAA.Fid,tempAA.FName  };
 
@@ -205,6 +229,18 @@ namespace prjRehabilitation.Controllers
         }
 
 
+        public IActionResult delete(int? id) {
+
+            dbClassContext db = new dbClassContext();
+
+            db.TGroupActivities.FirstOrDefault(_ => _.FGroupActivityId == id).FDeleteBool = false;
+
+            db.SaveChanges();
+
+            return RedirectToAction("List");
+        }
+
+        #region
         //public IActionResult PicAndFileSaveIn(int? id, IFormFile FPicture1, IFormFile FPicture2, IFormFile FPicture3, IFormFile FPicture4) {  //改由submit直接存了
         //    dbClassContext db = new dbClassContext();
         //    var ifGetId = db.TGroupActivityPicAndFiles.FirstOrDefault(_ => _.FGroupActivityId == id);
@@ -269,6 +305,16 @@ namespace prjRehabilitation.Controllers
         //    db.SaveChanges();
         //    return View();
         //}
+        #endregion
 
+        public IActionResult Create() {
+            
+            return View(new CGroupActivityEditViewModel());
+        }
+        [HttpPost]
+        public IActionResult Create(CGroupActivityEditViewModel vm, IFormFile FPicture1, IFormFile FPicture2, IFormFile FPicture3, IFormFile FPicture4)
+        {
+            return View();
+        }
     }
 }

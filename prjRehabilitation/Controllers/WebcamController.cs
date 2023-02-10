@@ -21,8 +21,8 @@ namespace prjRehabilitation.Controllers
             //BarcodeReader r = new BarcodeReader();
             if (imageData != null)
             {
-                //var image = (Bitmap)new ImageConverter().ConvertFrom(Convert.FromBase64String(imageData.Split(',')[1]));
-                var image = (Bitmap)Image.FromFile("D:\\github\\期末測試用\\testRehabilitationHome\\prjRehabilitation\\wwwroot\\images\\e24.png");//員工測試
+                var image = (Bitmap)new ImageConverter().ConvertFrom(Convert.FromBase64String(imageData.Split(',')[1]));
+                //var image = (Bitmap)Image.FromFile("D:\\github\\期末測試用\\testRehabilitationHome\\prjRehabilitation\\wwwroot\\images\\e24.png");//員工測試
                 //var image = (Bitmap)Image.FromFile("D:\\github\\期末測試用\\testRehabilitationHome\\prjRehabilitation\\wwwroot\\images\\c10.png");//訪客測試
                 dbClassContext db = new dbClassContext();
                 CQrcodeinfo qr = new CQrcodeinfo();

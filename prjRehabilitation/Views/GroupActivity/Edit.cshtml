@@ -4,12 +4,22 @@
 @{
     ViewData["Title"] = "Edit";
     //DateTime dd = new DateTime(Convert.ToInt32(Model.cgavm.FDate.Split('-')[0]), Convert.ToInt32(Model.cgavm.FDate.Split('-')[1]), Convert.ToInt32(Model.cgavm.FDate.Split('-')[2]));  //只有-才讀的到的血淚史，之前用斜線讀不到還要這樣拆，用-就不用了(其實單引號裡的是/，因為… 很長不打了)
-    //Layout = "AdminLayout";
+    Layout = "AdminLayout";
 }
 
 @section Styles{
     <style>
+        .form-control {
+            height: auto;
+        }
 
+        .card > .card-body > .row * {
+            margin: 2px 0px;
+        }
+
+        body, .small, .badge {
+            font-size: 1rem; /*解開束縛而已*/
+        }
     </style>
 }
 
@@ -26,7 +36,7 @@
 
             <div class="form-group">
                 <label asp-for="cgavm.FEventType" class="control-label"></label>
-                <select asp-for="cgavm.FEventType" asp-items="@(new SelectList(Model.GroupActivityType))" class="form-control"></select>
+                <select asp-for="cgavm.FEventType" asp-items="@(new SelectList(Model.GroupActivityType))" class="form-control form-select shadow-none  border-top col-md-6"></select>
                 <span asp-validation-for="cgavm.FEventType" class="text-danger"></span>
             </div>
             <div class="row">
@@ -57,7 +67,10 @@
                         <span asp-validation-for="cgavm.FClassName" class="text-danger"></span>
                     </div>
                 </div>
-                <div class="col-4 mt-3 form-group" id="EventType" style="border-radius: 10px; background-color:gray;"></div>
+                <div class="col-4">
+                    <div class=" form-group p-2" id="EventType" style="border-radius: 10px; background-color:gray;"></div>
+                    <i id="classThemeAdd" class="fa fa-plus-circle" style="font-size:24px;color:darkgreen"></i>
+                </div>
             </div>
             <div class="form-group">
                 <label asp-for="cgavm.FGoal" class="control-label"></label>
@@ -77,28 +90,28 @@
                 </div>
                 <div class="form-group  col-4">
                     <label asp-for="cgavm.FLeader" class="control-label"></label>
-                    <input asp-for="cgavm.FLeader" class="form-control" />
+                    <input asp-for="cgavm.FLeader" class="form-control" readonly />
                     <span asp-validation-for="cgavm.FLeader" class="text-danger"></span>
                 </div>
                 <div class="form-group  col-4">
                     <label asp-for="cgavm.FRecorder" class="control-label"></label>
-                    <input asp-for="cgavm.FRecorder" class="form-control" />
+                    <input asp-for="cgavm.FRecorder" class="form-control" readonly />
                     <span asp-validation-for="cgavm.FRecorder" class="text-danger"></span>
                 </div>
             </div>
             <label asp-for="cgavm.TScheduleDetails" class="control-label"></label>
             <div class=" mt-3 form-group form-control" id="TScheduleDetails" style=" background-color:gray; "></div>
-
+            <i id="ScheduleDetailAdd" class="fa fa-plus-circle p-2" style="font-size:24px;color:darkgreen;background-color:lightblue;border-bottom-right-radius:15px"></i>
             <div class="form-group">
                 <label asp-for="cgavm.FProcess" class="control-label"></label>
-                <textarea asp-for="cgavm.FProcess" class="form-control"></textarea>
+                <textarea asp-for="cgavm.FProcess" class="form-control" style="height:250px"></textarea>
                 <span asp-validation-for="cgavm.FProcess" class="text-danger"></span>
             </div>
             <div class="row gallery-item p-2" style=" background-color:gray;">
                 <div class="col-md-3">
 
                     <div class="mb-3">
-                        <label for="formFile" class="form-label">Default file input example</label>
+                        <label for="formFile" class="form-label">圖片一</label>
                         <input class="form-control" type="file" accept=".jpg,.gif,.png" id="formFile1" name="FPicture1">
                     </div>
                     <a href="" class="img-pop-up">
@@ -107,7 +120,9 @@
                             var base64 = Convert.ToBase64String(Model.tgapaf.FPicture1);
                             string imgSrc = String.Format("data:image/gif;base64,{0}", base64);
                             <img id="formFile1Pic" name="" src="@imgSrc" style="width:100%" />
-                        }else{
+                        }
+                        else
+                        {
                             <img id="formFile1Pic" name="" src="" style="width:100%" />
                         }
 
@@ -116,7 +131,7 @@
                 </div>
                 <div class="col-md-3">
                     <div class="mb-3">
-                        <label for="formFile" class="form-label">Default file input example</label>
+                        <label for="formFile" class="form-label">圖片二</label>
                         <input class="form-control" type="file" accept=".jpg,.gif,.png" id="formFile2" name="FPicture2">
                     </div>
                     <a href="" class="img-pop-up">
@@ -135,7 +150,7 @@
                 </div>
                 <div class="col-md-3">
                     <div class="mb-3">
-                        <label for="formFile" class="form-label">Default file input example</label>
+                        <label for="formFile" class="form-label">圖片三</label>
                         <input class="form-control" type="file" accept=".jpg,.gif,.png" id="formFile3" name="FPicture3">
                     </div>
                     <a href="" class="img-pop-up">
@@ -154,7 +169,7 @@
                 </div>
                 <div class="col-md-3">
                     <div class="mb-3">
-                        <label for="formFile" class="form-label">Default file input example</label>
+                        <label for="formFile" class="form-label">圖片四</label>
                         <input class="form-control" type="file" accept=".jpg,.gif,.png" id="formFile4" name="FPicture4">
                     </div>
                     <a href="" class="img-pop-up">
@@ -175,11 +190,11 @@
 
             <div class="form-group">
                 <label asp-for="cgavm.FAchievement" class="control-label"></label>
-                <textarea asp-for="cgavm.FAchievement" class="form-control"></textarea>
+                <textarea asp-for="cgavm.FAchievement" class="form-control" style="height:250px"></textarea>
                 <span asp-validation-for="cgavm.FAchievement" class="text-danger"></span>
             </div>
 
-            <label asp-for="cgavm.TPersonalPerformances" class="control-label"></label>
+            <label asp-for="cgavm.TPersonalPerformances" class="control-label">成員情緒表現</label>
             <div class="row">
                 <div class="col-md-2">
                     @*<i id="PerformanceAddPersonal" class="fa fa-plus fa-2x" aria-hidden="true"></i>*@
@@ -196,12 +211,12 @@
             <div class="row">
                 <div class="form-group col-sm">
                     <label asp-for="cgavm.FFillFormStaff" class="control-label"></label>
-                    <input asp-for="cgavm.FFillFormStaff" class="form-control" />
+                    <input asp-for="cgavm.FFillFormStaff" class="form-control" readonly />
                     <span asp-validation-for="cgavm.FFillFormStaff" class="text-danger"></span>
                 </div>
                 <div class="form-group col-sm">
                     <label asp-for="cgavm.FFillFormDate" class="control-label"></label>
-                    <input asp-for="cgavm.FFillFormDate" class="form-control" />
+                    <input asp-for="cgavm.FFillFormDate" class="form-control" readonly />
                     <span asp-validation-for="cgavm.FFillFormDate" class="text-danger"></span>
                 </div>
                 @*        <div class="form-group col-sm-4">
@@ -213,7 +228,9 @@
             </div>
             <br />
             <div class="form-group">
-                <input type="submit" value="送出" class="btn btn-primary" />
+                <input type="submit" id="submitButtonForAjax" value="送出" class="btn btn-primary" />
+              
+                @Html.ActionLink("刪除", "delete", new {  id=Model.cgavm.FGroupActivityId },new{@class="btn btn-danger"})
             </div>
         </form>
     </div>
@@ -234,6 +251,46 @@
         $("#EventType").load("@Url.Content("~/")GroupActivity/ClassThemesPartialView/@Model.cgavm.FGroupActivityId");
         $("#TScheduleDetails").load("@Url.Content("~/")GroupActivity/ScheduleDetailsPartialView/@Model.cgavm.FGroupActivityId");
         $("#TPersonalPerformances").load("@Url.Content("~/")GroupActivity/PersonalPerformancesPartialView/@Model.cgavm.FGroupActivityId");
+        
+        document.querySelector("#classThemeAdd").addEventListener("click", function () {
+            document.querySelector("#EventType").insertAdjacentHTML("beforeend", `
+
+                        <div class="row">
+                <div class="col">
+                    <select class="mt-2  form-select shadow-none  border-top" id="ClassThemesEach_1_" name="ClassThemesEach[1]">
+                    <option selected="selected">衛生習慣  </option>
+        <option>居家清潔  </option>
+        <option>飲食起居  </option>
+        <option>認知能力  </option>
+        <option>體能表現  </option>
+        <option>人際互動  </option>
+        <option>烹飪能力  </option>
+        <option>休閒安排  </option>
+        <option>財務管理  </option>
+        <option>健康促進  </option>
+        </select>
+                </div>
+                <div class="col-2" style="text-align: center;position: relative;   " onclick="this.parentElement.remove()">
+                    <i class="fas fa-minus-circle" style="font-size:24px;color:red;position: absolute;top: 50%; left: 50%;-ms-transform: translate(-50%, -50%);transform: translate(-50%, -50%);"></i>
+                </div>
+            </div>
+
+                    `)
+        });
+
+        document.querySelector("#ScheduleDetailAdd").addEventListener("click", function (){
+            document.querySelector("#TScheduleDetails").insertAdjacentHTML("beforeend", `
+
+            <ul class="list-group list-group-horizontal-md">
+                        <li class="list-group-item"><label>開始時間：</label><input type="time" id="startTime" /></li>
+                        <li class="list-group-item"><label>結束時間：</label><input type="time" id="endTime"/></li>
+                        <li class="list-group-item"><label>大綱說明：</label><input type="text" id="depiction"/></li>
+                <li class="list-group-item" style="border-radius:0px  20px 20px 0px" onclick="this.parentElement.remove()"><i class="fas fa-minus-circle" style="font-size:24px;color:red;position: relative;top: 50%; left: 50%;-ms-transform: translate(-50%, -50%);transform: translate(-50%, -50%);"></i></li>
+            </ul>
+
+            `);
+        });
+        
 
         for (var i = 1; i <= 4; i++) {
 
@@ -262,7 +319,6 @@
         //    $("#formFile1Pic").attr('src', `data:image/gif;base64,${base64}`);
         //}
 
-
         //async function savePic (){    //改由submit直接存了
 
         //    const formDataPic = new FormData(formData);
@@ -283,7 +339,7 @@
             const response = await fetch(`@Url.Content("~/")GroupActivityAjax/getResident`);
             const getResidentData = JSON.parse(await response.text());
             for (let aa of getResidentData) {
-                pplist.insertAdjacentHTML("beforeend", `<input type="button" id="selectPanel-${aa.fid}" class="addintoR genric-btn info circle arrow  small mt-1 form-control" value="${aa.fName}">`)
+                pplist.insertAdjacentHTML("beforeend", `<input type="button" id="${aa.fid}" class="addintoR genric-btn info circle arrow  small mt-1 form-control" value="${aa.fName}">`)
             }
 
             const alladdintoRQuery = document.querySelectorAll('.addintoR');
@@ -294,54 +350,57 @@
                     const getResidentData = JSON.parse(JSON.parse(await response.text()));
                     //console.log(this.id);
                     document.querySelector("#TPersonalPerformances").insertAdjacentHTML("beforeend", `
-                                                                        <div class="card mt-1">
-                                                    <div class="card-body">
-                                                        <div class="row"><label class="h5 genric-btn info circle">${this.value}</label></div>
-                                                        <div class="row">
-                                                            <div class="col-4">
-                                                                <label class="badge rounded-pill bg-info text-dark">表情情緒：</label><br />
-                                                                                <select id="${this.id}-${this.value}-comboxEmotions" class="mt-2"></select>
+                                                         <div class="card mt-1">
+                                                            <div class="card-body">
+                                                                        <div class="row">
+                                                                                    <label class="h5 badge bg-primary rounded cardIDandName col" id="${this.id}">${this.value}</label>
+                                                                                    <input type="button" id="${this.id}-removeCard" class="btn btn-danger col-1" value="刪除"/>
+                                                                        </div>
+                                                                        <div class="row " style="background-color:lightgray">
+                                                                    <div class="col-4">
+                                                                        <label class="badge bg-success rounded">表情情緒：</label><br />
+                                                                                                        <select id="${this.id}-comboxEmotions"  class="forPPdataE form-select shadow-none  border-top"></select>
 
-                                                            </div>
-                                                            <div class="col-4">
-                                                                <label class="badge rounded-pill bg-info text-dark">持續度：</label><br />
-                                                                                <select id="${this.id}-${this.value}-comboxParticipatePersistence"  class="mt-2"></select>
+                                                                    </div>
+                                                                    <div class="col-4">
+                                                                        <label class="badge bg-success rounded">持續度：</label><br />
+                                                                                                <select id="${this.id}-comboxParticipatePersistence"  class="forPPdataP form-select shadow-none  border-top"></select>
 
-                                                            </div>
-                                                            <div class="col-4">
-                                                                <label class="badge rounded-pill bg-info text-dark">配合度：</label><br />
-                                                                                <select id="${this.id}-${this.value}-comboxCooperate"  class="mt-2"></select>
+                                                                    </div>
+                                                                    <div class="col-4">
+                                                                        <label class="badge bg-success rounded">配合度：</label><br />
+                                                                                                <select id="${this.id}-comboxCooperate"  class="forPPdataC form-select shadow-none  border-top"></select>
 
+                                                                    </div>
+                                                                </div>
+                                                                    <div class="row " style="background-color:lightgray">
+                                                                    <div class="col-4">
+                                                                        <label class="badge bg-success rounded">人際互動：</label><br />
+                                                                                                <select id="${this.id}-comboxHumanInteraction"  class="forPPdataH form-select shadow-none  border-top"></select>
+
+                                                                    </div>
+                                                                    <div class="col-4">
+                                                                        <label class="badge bg-success rounded">注意力：</label><br />
+                                                                                                <select id="${this.id}-comboxAttentionRes" class="forPPdataA form-select shadow-none  border-top"></select>
+
+                                                                    </div>
+                                                                    <div class="col-4">
+                                                                        <label class="badge bg-success rounded">參與表現：</label><br />
+                                                                                        <select id="${this.id}-comboxParticipatePerformance" class="forPPdataPP form-select shadow-none  border-top"></select>
+
+                                                                    </div>
+                                                                </div>
+                                                                                <div class="row"><label class="col-auto badge bg-success rounded ">備註：</label><br /><input type="text"  class="forPPdataD" id="${this.id}-Depiction"/></div>
                                                             </div>
                                                         </div>
-                                                        <div class="row">
-                                                            <div class="col-4">
-                                                                <label class="badge rounded-pill bg-info text-dark">人際互動：</label><br />
-                                                                                <select id="${this.id}-${this.value}-comboxHumanInteraction"  class="mt-2"></select>
 
-                                                            </div>
-                                                            <div class="col-4">
-                                                                <label class="badge rounded-pill bg-info text-dark">注意力：</label><br />
-                                                                                <select id="${this.id}-${this.value}-comboxAttentionRes" class="mt-2"></select>
-
-                                                            </div>
-                                                            <div class="col-4">
-                                                                <label class="badge rounded-pill bg-info text-dark">參與表現：</label><br />
-                                                                                <select id="${this.id}-${this.value}-comboxParticipatePerformance" class="mt-2"></select>
-
-                                                            </div>
-                                                        </div>
-                                                        <div class="row"><label class="col-auto badge rounded-pill bg-info text-dark m-2">備註：</label><br /><input type="text"  class="" /></div>
-                                                    </div>
-                                                </div>
-
-                                                            `);
-                    const comboxEmotionsID = document.querySelector(`#${this.id}-${this.value}-comboxEmotions`);
-                    const comboxParticipatePersistenceID = document.querySelector(`#${this.id}-${this.value}-comboxParticipatePersistence`);
-                    const comboxCooperateID = document.querySelector(`#${this.id}-${this.value}-comboxCooperate`);
-                    const comboxHumanInteractionID = document.querySelector(`#${this.id}-${this.value}-comboxHumanInteraction`);
-                    const comboxAttentionResID = document.querySelector(`#${this.id}-${this.value}-comboxAttentionRes`);
-                    const comboxParticipatePerformanceID = document.querySelector(`#${this.id}-${this.value}-comboxParticipatePerformance`);
+                                                                    `);
+                    const comboxEmotionsID = document.getElementById(`${this.id}-comboxEmotions`);
+                    const comboxParticipatePersistenceID = document.getElementById(`${this.id}-comboxParticipatePersistence`);
+                    const comboxCooperateID = document.getElementById(`${this.id}-comboxCooperate`);
+                    const comboxHumanInteractionID = document.getElementById(`${this.id}-comboxHumanInteraction`);
+                    const comboxAttentionResID = document.getElementById(`${this.id}-comboxAttentionRes`);
+                    const comboxParticipatePerformanceID = document.getElementById(`${this.id}-comboxParticipatePerformance`);
                     for (var comboxEmotionsItem of getResidentData[0]) {
                         comboxEmotionsID.insertAdjacentHTML("beforeend", `<option>${comboxEmotionsItem}</option>`)
                     }
@@ -361,14 +420,115 @@
                         comboxParticipatePerformanceID.insertAdjacentHTML("beforeend", `<option>${comboxParticipatePerformanceItem}</option>`)
                     }
 
+                    document.getElementById(`${this.id}-removeCard`).addEventListener("click", function () {
+                        this.parentElement.parentElement.parentElement.remove();
+                    })
+
                 });
             }
         }
         getResidentInPersonalPerformancesSelectPanel();//叫出所有人列表
 
+        //開始抓板內然後巡迴出內容(有三種)
+
+        var getButtonAjax = document.querySelector("#submitButtonForAjax");
+        getButtonAjax.addEventListener("click", getParticipatePerformances);    //先把沙b密的按鈕綁好
+        getButtonAjax.addEventListener("click", getScheduleDetails);
+        getButtonAjax.addEventListener("click", getClassThemes);
+
+        //getButtonAjax.addEventListener("click",editCantSubmit);
+
+        var groupActivityID = @Html.Raw(Json.Serialize(@Model.cgavm.FGroupActivityId));
+
+        async function getParticipatePerformances() {
+            var ppPanel = document.querySelector("#TPersonalPerformances");
+            var ppData = ppPanel.querySelectorAll(".card");
+
+
+            var fetchList = [];
+
+
+            for (var pp of ppData) {
+
+                fetchList.push({
+                    groupActivityID: `${groupActivityID}`,
+                    ResidentId: `${pp.querySelector(".cardIDandName").id}`,
+                    Emotions: `${pp.querySelector(".forPPdataE").value}`,
+                    ParticipatePersistence: `${pp.querySelector(".forPPdataP").value}`,
+                    Cooperate: `${pp.querySelector(".forPPdataC").value}`,
+                    HumanInteraction: `${pp.querySelector(".forPPdataH").value}`,
+                    AttentionRes: `${pp.querySelector(".forPPdataA").value}`,
+                    ParticipatePerformance: `${pp.querySelector(".forPPdataPP").value}`,
+                    Depiction: `${pp.querySelector(".forPPdataD").value}`
+                });
+            }
+
+            //console.log(fetchArray);
+
+            const goAjax = await fetch(`@Url.Content("~/")GroupActivityAjax/PersonalPerformancesEditAjax`, {
+                method: "post",
+                headers: { 'Content-type': 'application/json' },
+                body: JSON.stringify(fetchList)
+            });
+            //console.log(await goAjax.text());
+             //window.location.href = `@Url.Content("~/")GroupActivity/List`
+        }
+
+
+        async function getScheduleDetails() {
+            var ScheduleDetailPanel = document.querySelector("#TScheduleDetails");
+            var ScheduleDetailInPanel = ScheduleDetailPanel.querySelectorAll("ul");
+            var ScheduleDetails = [];
+
+            for (var item of ScheduleDetailInPanel){
+                ScheduleDetails.push({
+                    FGroupActivityId: `${groupActivityID}`,
+                    FStartTime: `${item.querySelector("#startTime").value}`,
+                    FEndTime: `${item.querySelector("#endTime").value}`,
+                    FDepiction: `${item.querySelector("#depiction").value}`
+                });
+            }
+
+            await fetch(`@Url.Content("~/")GroupActivityAjax/ScheduleDetailPanelAjax`, {
+                method:"post",
+                headers: { 'Content-type': 'application/json' },
+                body: JSON.stringify(ScheduleDetails)
+            })
+
+
+        }
 
 
 
+        async function getClassThemes() {
+            var eventTypePanel = document.querySelector("#EventType");
+            var eventTypesInPanel = eventTypePanel.querySelectorAll("select");
+            var classThemes = [];
+
+            for (var item of eventTypesInPanel) {
+                classThemes.push({
+                    FGroupActivityId: `${groupActivityID}`,
+                    FClassThemeId: `${item.selectedIndex + 1}`
+                });
+            }
+
+            await fetch(`@Url.Content("~/")GroupActivityAjax/ClassThemeAjax`, {
+                method: "post",
+                headers: { 'Content-type': 'application/json' },
+                body: JSON.stringify(classThemes)
+            });
+
+        }
+
+
+        //async function editCantSubmit(){
+        //    const getEditResult = await fetch(`@Url.Content("~/")GroupActivity/Edit`, {
+        //        method:"post",
+        //        body: new FormData(formData)
+        //    })
+
+           
+        //}
 
     </script>
 

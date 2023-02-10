@@ -6,6 +6,7 @@ namespace prjRehabilitation.ViewModel
     public class CConsultationViewModel
     {
         public List<int> Typeconsult { get; set; }
+        public List<int?> Typeevaluate { get; set; }
 
         private CounsultTypeRecord _CounsultTypeRecord;
         private Consultation _consult;

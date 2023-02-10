@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "Register";
+    Layout = "AdminLayout";
 }
 <style>
     .try {
@@ -14,6 +15,13 @@
         resize: none;
         overflow-x: visible;
         overflow-y: visible;
+    }
+
+    .lastEvaluate {
+        /*border: solid 1px red;*/
+        font-weight: bold;
+        font-style: italic;
+        /*background-color:lightcyan;*/
     }
 
 </style>
@@ -29,25 +37,25 @@
             <div class="row">
                 <div class="col-3 col-md-3">
                     <input type="checkbox" id="1" name="Typeconsult" value="1">
-                    <label for="1">衛生習慣</label><br />
+                    <label for="1" id="lbl1">衛生習慣</label><br />
                     <input type="checkbox" id="2" name="Typeconsult" value="2">
-                    <label for="2">居家清潔</label><br />
+                    <label for="2" id="lbl2">居家清潔</label><br />
                     <input type="checkbox" id="3" name="Typeconsult" value="3">
-                    <label for="3">飲食起居</label><br />
+                    <label for="3" id="lbl3">飲食起居</label><br />
                     <input type="checkbox" id="4" name="Typeconsult" value="4">
-                    <label for="4">認知能力</label><br />
+                    <label for="4" id="lbl4">認知能力</label><br />
                     <input type="checkbox" id="5" name="Typeconsult" value="5">
-                    <label for="5">體能表現</label><br />
+                    <label for="5" id="lbl5">體能表現</label><br />
                     <input type="checkbox" id="6" name="Typeconsult" value="6">
-                    <label for="6">人際互動</label><br />
+                    <label for="6" id="lbl6">人際互動</label><br />
                     <input type="checkbox" id="7" name="Typeconsult" value="7">
-                    <label for="7">烹飪能力</label><br />
+                    <label for="7" id="lbl7">烹飪能力</label><br />
                     <input type="checkbox" id="8" name="Typeconsult" value="8">
-                    <label for="8">休閒安排</label><br />
+                    <label for="8" id="lbl8">休閒安排</label><br />
                     <input type="checkbox" id="9" name="Typeconsult" value="9">
-                    <label for="9">財務管理</label><br />
+                    <label for="9" id="lbl9">財務管理</label><br />
                     <input type="checkbox" id="10" name="Typeconsult" value="10">
-                    <label for="10">健康促進</label><br />
+                    <label for="10" id="lbl10">健康促進</label><br />
                 </div>
                 <div class="col col-md-9">
                     <div class="form-group">
@@ -98,10 +106,23 @@
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
     <script>
+        //----------抓評估資料-------
+        debugger;
+        var evalulist = [];
+        @for (int i = 0; i < Model.Typeevaluate.Count(); i++)
+        {
+            <text>evalulist.push(@Model.Typeevaluate[i]);</text>
+        };
+         $.each(evalulist, function (index, value)
+        {
+            $("#lbl" + value).addClass("lastEvaluate");
+            //document.querySelector('"#lbl" + value').className = 'lastEvaluate';
+        });
+        
         $("#demo").click(function () {
             $("#Summary").text("討論過年期間是否有返家過年，與家屬相處狀況");
             $("#Assessment").text("住民表示家屬過年期間帶自己回家過年，除夕到初二，後來就回來了。家人有包紅包給自己，想說先存起來，以後再使用");
             $("#Result").text("住民對返家感開心，與家屬互動狀況良好；財務管理表現良");
-        })
+        });
     </script>
     }

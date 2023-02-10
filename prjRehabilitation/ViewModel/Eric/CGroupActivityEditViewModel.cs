@@ -26,5 +26,9 @@ namespace prjRehabilitation.ViewModel.Eric
         }
 
         public TGroupActivityPicAndFile tgapaf { get; set; }
+
+        public List<TScheduleDetail> ScheduleS { get; set; }
+        public List<TGroupActivityClassTheme> ClassThemeS { get; set; }
+        public List<TPersonalPerformance> PersonalPerformanceS { get; set; }
     }
 }
