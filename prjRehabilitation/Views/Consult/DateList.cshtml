@@ -4,6 +4,10 @@
     ViewData["Title"] = "DateList";
     var cc = Model.Where(x => x.PatinetId != null).FirstOrDefault(x => x.PatinetId != null)?.PatinetId;
     var ptid = ViewBag.ptid;
+    if (ViewBag.setting == "emp")
+    {
+        Layout = "AdminLayout";
+    }
 }
 
 <h1>@ViewBag.name 會談紀錄</h1>

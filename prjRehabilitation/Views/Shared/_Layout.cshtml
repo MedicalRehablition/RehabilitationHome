@@ -122,7 +122,7 @@
                                             <li>
                                                 <a class="nav-link text-dark" asp-area="" asp-controller="AdminUserLogin" asp-action="Login">後臺管理系統</a>
                                             </li>
-                                            <li class="nav-item">
+                                            <li class="nav-item" id="treat">
                                                 <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">治療活動紀錄</a>
                                                 <ul class="submenu">
                                                     <li>
@@ -316,6 +316,7 @@
     @await RenderSectionAsync("Scripts", required: false)
     <script>
         //=======================抓使用者是誰======================
+        $("#treat").hide();
         async function getUser() {
             //const data = new FormData(UserLoingForm);
             const span = document.querySelector("#UserName");
@@ -332,6 +333,7 @@
                 $(".MyFamily").show(); //登入後顯示出來
                 $(".modal-backdrop").hide();
                 $(".modal").hide();
+                $("#treat").show();
                 span.innerText = User + " 歡迎!";
             }
         }

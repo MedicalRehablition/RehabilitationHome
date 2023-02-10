@@ -49,12 +49,16 @@ namespace prjRehabilitation.Controllers
         public IActionResult DateList(int? id)
         {
             //-------custoer setting-----
+            string json = HttpContext.Session.GetString(CDictionary.SK_ADMIN_User);
             string jsonc = HttpContext.Session.GetString(CDictionary.SK_CUSTOMER_User); 
             ViewBag.setting = "";
             if (jsonc != null)
             {
                 ViewBag.setting = "customer";
-            };
+            }else if (json != null)
+            {
+                ViewBag.setting = "emp";
+            }
 
             dbClassContext db = new dbClassContext();
             IEnumerable<Consultation> datas = null;
@@ -79,6 +83,14 @@ namespace prjRehabilitation.Controllers
             CConsultationViewModel consult = new CConsultationViewModel();
             consult.PatinetId = id;
             ViewBag.pid = id;
+            //------抓這個月內的評估資料------
+            dbClassContext db = new dbClassContext();
+            DateTime getToday = DateTime.Today;
+            string getFront30 = getToday.AddDays(-30).ToString("yyyy-MM-dd");
+            consult.Typeevaluate = (from e in db.功能評估s
+                               join p in db.功能評估個表s on e.F功能評估Id equals p.F功能評估Id
+                               where (e.Fid == consult.PatinetId && string.Compare(e.F日期, getFront30) >= 0)
+                               select p.F評估項目).ToList();
 
             return View(consult);
         }
@@ -107,12 +119,17 @@ namespace prjRehabilitation.Controllers
         public ActionResult Edit(int? id)
         {
             //-------custoer setting-----
+            string json = HttpContext.Session.GetString(CDictionary.SK_ADMIN_User);
             string jsonc = HttpContext.Session.GetString(CDictionary.SK_CUSTOMER_User);
             ViewBag.setting = "";
             if (jsonc != null)
             {
                 ViewBag.setting = "customer";
-            };
+            }
+            else if (json != null)
+            {
+                ViewBag.setting = "emp";
+            }
             dbClassContext db = new dbClassContext();
             Consultation consult = db.Consultations.FirstOrDefault(t => t.FConsultId == id);      //'查詢'頁面輸入的資料到Tptient去撈資料，並放到CProductViewMode
             CConsultationViewModel vm = new CConsultationViewModel();
@@ -122,6 +139,13 @@ namespace prjRehabilitation.Controllers
                      where cc.FConsultId == id
                      select cc.TypeNameId).ToList();
             vm.Typeconsult = q;
+            //------抓這個月內的評估資料------
+            DateTime getday = DateTime.Parse(consult.Date);
+            string getFront30 = getday.AddDays(-30).ToString("yyyy-MM-dd");
+            vm.Typeevaluate = (from e in db.功能評估s
+                               join p in db.功能評估個表s on e.F功能評估Id equals p.F功能評估Id
+                               where (e.Fid == consult.PatinetId && string.Compare(e.F日期, getFront30) >= 0)
+                               select p.F評估項目).ToList();
             return View(vm);
         }
         [HttpPost]

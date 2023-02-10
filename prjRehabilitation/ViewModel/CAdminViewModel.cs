@@ -64,6 +64,12 @@ namespace prjRehabilitation.ViewModel
             get { return _admin.FBirth; }
             set { _admin.FBirth = value; }
         }
+        [DisplayName("QR code")]
+        public string? FQrcode
+        {
+            get { return _admin.FQrcode; }
+            set { _admin.FQrcode = value; }
+        }
 
         public IFormFile photo { get; set; }
     }
