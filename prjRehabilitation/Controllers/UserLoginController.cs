@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 
 using prjRehabilitation.Models;
 using prjRehabilitation.ViewModel;
+using System.Drawing.Imaging;
+using System.Runtime.ConstrainedExecution;
 using System.Security.Policy;
 using System.Text;
 using System.Text.Json;
@@ -106,6 +108,27 @@ namespace prjRehabilitation.Controllers
                 vm.photo.CopyTo(new FileStream(path, FileMode.Create));
                 db.Customers.Add(vm.Customer);
                 db.SaveChanges();
+                //---------qrcode生成及儲存-----
+                CCreateqrcode cqr = new CCreateqrcode();
+                string emp = "c" + vm.Customer.Fid; //圖片要存的內容
+                var QRpic = cqr.createqrcode(emp); //生成bitmap類型的圖片
+                string qrname = emp + ".jpg";
+                string qrpath = _environment.WebRootPath + "/images/" + qrname;
+                Customer aqcust = db.Customers.FirstOrDefault(t => t.Fid == vm.Fid);               
+                if (aqcust != null)
+                {
+                    aqcust.FQrcode = qrname;
+                    using (var stream = new MemoryStream())
+                    {
+                        QRpic.Save(stream, ImageFormat.Jpeg);//把bitmap轉png
+                        stream.Position = 0;
+                        using (var fileStream = new FileStream(qrpath, FileMode.Create))
+                        {
+                            stream.CopyTo(fileStream);
+                        }
+                    }
+                    db.SaveChanges();
+                }
                 return Content("註冊成功!");//後面要記得改
                 //return RedirectToAction("List");
             }
