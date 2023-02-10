@@ -87,7 +87,7 @@
                         $('.alert-autocloseable-warning').removeAttr("style");
                     });
                     $('#shippingmsgText').text(xhr.responseText);
-                window.location.href = "/Home/Index";
+                setTimeout('location.href="/Home/Index"', 2000);
             })
             const Data = new FormData(document.userRegister);
             xhr.open("POST", "@Url.Content("/UserLogin/AccountAlive")");

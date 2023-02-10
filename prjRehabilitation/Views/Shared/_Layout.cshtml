@@ -206,7 +206,7 @@
     </header>
     
     @await RenderSectionAsync("DeadCessTitle", required: false);
-    <div class="alert-autocloseable-warning" id="shippingmsgbox" hidden>
+    <div class="alert-autocloseable-warning" id="shippingmsgbox" hidden role="alert">
         <div class="alert-autocloseable-warning" id="shippingmsgText">
         </div>
     </div>
@@ -390,7 +390,6 @@
                         $('.alert-autocloseable-warning').removeAttr("style");
                     });
                     $('#shippingmsgText').text("無此使用者或輸入錯誤");
-                    alert("無此使用者或輸入錯誤");
                 }
                 else if (User == "1") {
                     $('.alert-autocloseable-warning').attr("hidden", false);
