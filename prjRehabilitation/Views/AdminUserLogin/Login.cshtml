@@ -86,7 +86,7 @@
     </div>
 
     <!-- Submit button -->
-    <input type="submit" class="btn btn-primary btn-block mb-4" id="logbtn" value="登入"></input>
+    <input type="button" class="btn btn-primary btn-block mb-4" id="logbtn" value="登入"></input>
 
     <!-- Register buttons -->
     <div class="text-center">
@@ -155,7 +155,7 @@
                 }
                 else if (xhr.responseText == "密碼錯誤"){
                     $('.alert-autocloseable-warning').attr("hidden", false);
-                    $('.alert-autocloseable-warning').delay(2000000).fadeOut("slow", function () {
+                    $('.alert-autocloseable-warning').delay(2000).fadeOut("slow", function () {
                         $('.alert-autocloseable-warning').attr("hidden", true);
                         $('.alert-autocloseable-warning').removeAttr("style");
                     });
