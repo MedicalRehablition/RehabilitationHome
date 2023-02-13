@@ -117,8 +117,9 @@ namespace prjRehabilitation.Controllers.Api
 
 
         [HttpPost]
-        public async Task<IActionResult> PersonalPerformancesEditAjax([FromBody] List<FetchList> fetchList)
+        public async Task<IActionResult> PersonalPerformancesEditAjax([FromBody] List<FetchList> fetchList) //因為這邊是拿我設計的class來接所以不用打fid，下面因為是拿現成的modal來接所以沒打fid不承認
         {
+            if (fetchList.Count <= 0) { return Json("參與住民為空(後台檢測回覆)"); }
             dbClassContext db = new dbClassContext();
 
             IQueryable<TPersonalPerformance> oldGroupActivity = db.TPersonalPerformances.Where(_ => _.FGroupActivityId == Convert.ToInt32(fetchList[0].groupActivityID)).Where(_ => _.FDeleteBool == "1");
@@ -220,8 +221,11 @@ namespace prjRehabilitation.Controllers.Api
 
 
         [HttpPost]
-        public async Task<IActionResult> ClassThemeAjax([FromBody] List<TGroupActivityClassTheme> gaClass)
+        public async Task<IActionResult> ClassThemeAjax([FromBody] List<TGroupActivityClassTheme> gaClass)  //要填fid不然會null
         {
+            if (gaClass.Count <= 0) { return Json("課程主題為空(後台檢測回覆)"); }
+
+            var aa = HttpContext.Request.Headers;
 
             dbClassContext db = new dbClassContext();
             List<string> oldCount = new List<string>();
@@ -272,8 +276,8 @@ namespace prjRehabilitation.Controllers.Api
 
 
         [HttpPost]
-        public async Task<IActionResult> ScheduleDetailPanelAjax([FromBody] List<TScheduleDetail> tsd) {
-
+        public async Task<IActionResult> ScheduleDetailPanelAjax([FromBody] List<TScheduleDetail> tsd) {  //要填fid不然會null
+            if(tsd.Count <= 0) { return Json("行程為空(後台檢測回覆)"); }     
             dbClassContext db = new dbClassContext();
 
             db.RemoveRange(db.TScheduleDetails.Where(_=>_.FGroupActivityId == tsd[0].FGroupActivityId));

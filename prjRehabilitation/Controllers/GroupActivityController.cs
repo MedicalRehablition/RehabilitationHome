@@ -3,10 +3,13 @@ using NuGet.Protocol;
 using prjRehabilitation.Models;
 using prjRehabilitation.ViewModel;
 using prjRehabilitation.ViewModel.Eric;
+using System.Collections.Generic;
+using System.Diagnostics;
 using System.Diagnostics.Metrics;
 using System.Dynamic;
 using System.Security.Claims;
 using System.Text.Json;
+using static prjRehabilitation.Controllers.Api.GroupActivityAjaxController;
 
 namespace prjRehabilitation.Controllers
 {
@@ -38,7 +41,7 @@ namespace prjRehabilitation.Controllers
         public IActionResult List()
         {
             dbClassContext db = new dbClassContext();
-            List<TGroupActivity> gaList = db.TGroupActivities.Where(_=>_.FDeleteBool == true).ToList();
+            List<TGroupActivity> gaList = db.TGroupActivities.Where(_ => _.FDeleteBool == true).ToList();
 
             List<CGroupActivityViewModel> gavmList = new List<CGroupActivityViewModel>();
 
@@ -65,7 +68,7 @@ namespace prjRehabilitation.Controllers
                 CGroupActivityEditViewModel mymodel = new CGroupActivityEditViewModel();
                 mymodel.cgavm = cgavm;
 
-              TGroupActivityPicAndFile TgroupactitypicandfileifNull = db.TGroupActivityPicAndFiles.FirstOrDefault(_=>_.FGroupActivityId == id) ;    //帶圖的內容過去
+                TGroupActivityPicAndFile TgroupactitypicandfileifNull = db.TGroupActivityPicAndFiles.FirstOrDefault(_ => _.FGroupActivityId == id);    //帶圖的內容過去
                 if (TgroupactitypicandfileifNull != null) { mymodel.tgapaf = TgroupactitypicandfileifNull; }
                 else { mymodel.tgapaf = new TGroupActivityPicAndFile(); }//還是要給一個空的不然那邊連null都沒辦法判定。
 
@@ -104,68 +107,14 @@ namespace prjRehabilitation.Controllers
                 //byte[]? imgByte = null;
                 if (ifGetId != null)
                 {
-                    using (var memoryStream = new MemoryStream())
-                    {
-                        if (FPicture1 != null)
-                        {
-                            FPicture1.CopyTo(memoryStream);
-                            ifGetId.FPicture1 = memoryStream.ToArray();
-                            ifGetId.FPicture1Path = FPicture1.FileName;
-                        }
-                        if (FPicture2 != null)
-                        {
-                            FPicture2.CopyTo(memoryStream);
-                            ifGetId.FPicture2 = memoryStream.ToArray();
-                            ifGetId.FPicture2Path = FPicture2.FileName;
-                        }
-                        if (FPicture3 != null)
-                        {
-                            FPicture3.CopyTo(memoryStream);
-                            ifGetId.FPicture3 = memoryStream.ToArray();
-                            ifGetId.FPicture3Path = FPicture3.FileName;
-                        }
-                        if (FPicture4 != null)
-                        {
-                            FPicture4.CopyTo(memoryStream);
-                            ifGetId.FPicture4 = memoryStream.ToArray();
-                            ifGetId.FPicture4Path = FPicture4.FileName;
-                        }
-                    }
+
+                    getImamge(ifGetId, FPicture1, FPicture2, FPicture3, FPicture4);
+
                 }
                 else
                 {
-                    TGroupActivityPicAndFile tPicAndFile = new TGroupActivityPicAndFile();
-                    tPicAndFile.FGroupActivityId = Convert.ToInt32(vm.cgavm.FGroupActivityId);
-                    using (var memoryStream = new MemoryStream())
-                    {
-                        ifGetId = new TGroupActivityPicAndFile();
-                        if (FPicture1 != null)
-                        {
-                            FPicture1.CopyTo(memoryStream);
-                            tPicAndFile.FPicture1 = memoryStream.ToArray();
-                            ifGetId.FPicture1Path = FPicture1.FileName;
-                        }
-                        if (FPicture2 != null)
-                        {
-                            FPicture2.CopyTo(memoryStream);
-                            tPicAndFile.FPicture2 = memoryStream.ToArray();
-                            ifGetId.FPicture2Path = FPicture2.FileName;
-                        }
-                        if (FPicture3 != null)
-                        {
-                            FPicture3.CopyTo(memoryStream);
-                            tPicAndFile.FPicture3 = memoryStream.ToArray();
-                            ifGetId.FPicture3Path = FPicture3.FileName;
-                        }
-                        if (FPicture4 != null)
-                        {
-                            FPicture4.CopyTo(memoryStream);
-                            tPicAndFile.FPicture4 = memoryStream.ToArray();
-                            ifGetId.FPicture4Path = FPicture4.FileName;
-                        }
-                    }
 
-                    db.TGroupActivityPicAndFiles.Add(tPicAndFile);
+                    db.TGroupActivityPicAndFiles.Add(getImamge(new TGroupActivityPicAndFile() { FGroupActivityId = vm.cgavm.FGroupActivityId }, FPicture1, FPicture2, FPicture3, FPicture4));
                 }
 
 
@@ -180,7 +129,7 @@ namespace prjRehabilitation.Controllers
         {
             dbClassContext db = new dbClassContext();
             //int aa = (int)id;
-            int[] aa = db.TGroupActivityClassThemes.Where(_ => _.FGroupActivityId == id).Where(_=>_.FDeleteBool == true).Select(_ => _.FClassThemeId).ToArray();
+            int[] aa = db.TGroupActivityClassThemes.Where(_ => _.FGroupActivityId == id).Where(_ => _.FDeleteBool == true).Select(_ => _.FClassThemeId).ToArray();
             string[] resultArray = new string[aa.Count()];
             CClassThemesPartialViewViewModel cctpvvm = new CClassThemesPartialViewViewModel();
             for (int i = 0; i < resultArray.Length; i++)
@@ -210,9 +159,9 @@ namespace prjRehabilitation.Controllers
             dbClassContext db = new dbClassContext();
             CPersonalPerformancesPartialViewViewModel cpppvvm = new CPersonalPerformancesPartialViewViewModel();
 
-            cpppvvm.tpp = db.TPersonalPerformances.Where(_ => _.FGroupActivityId == id).Where(_=>_.FDeleteBool == "1").ToArray();
+            cpppvvm.tpp = db.TPersonalPerformances.Where(_ => _.FGroupActivityId == id).Where(_ => _.FDeleteBool == "1").ToArray();
 
-         var Patients = from tempAA in db.PatientInfos select new { tempAA.Fid,tempAA.FName  };
+            var Patients = from tempAA in db.PatientInfos select new { tempAA.Fid, tempAA.FName };
 
             string[] names = new string[Patients.Count()];
             int count = 0;
@@ -229,7 +178,8 @@ namespace prjRehabilitation.Controllers
         }
 
 
-        public IActionResult delete(int? id) {
+        public IActionResult delete(int? id)
+        {
 
             dbClassContext db = new dbClassContext();
 
@@ -307,14 +257,110 @@ namespace prjRehabilitation.Controllers
         //}
         #endregion
 
-        public IActionResult Create() {
-            
-            return View(new CGroupActivityEditViewModel());
+        public IActionResult Create()
+        {
+
+            if (getAdminIfSession() == null) { return Content("此功能需後端登入。"); }
+            string name = getAdminIfSession().FName;
+            dbClassContext db = new dbClassContext();
+            //TGroupActivity? tempTGA = db.TGroupActivities.FirstOrDefault(_ => _.FGroupActivityId == id);
+            CGroupActivityViewModel cgavm = new CGroupActivityViewModel();
+            cgavm.FRecorder = name;
+            cgavm.FLeader = name;
+            cgavm.FFillFormStaff = name;
+            cgavm.FFillFormDate = DateTime.Today.ToString("yyyy-MM-dd");
+            CGroupActivityEditViewModel mymodel = new CGroupActivityEditViewModel();
+            mymodel.cgavm = cgavm;
+
+            //mymodel.tgapaf = new TGroupActivityPicAndFile();
+
+
+
+
+            return View(mymodel);
+
+
         }
+
+
+        public TGroupActivityPicAndFile getImamge(TGroupActivityPicAndFile tgapf, IFormFile FPicture1, IFormFile FPicture2, IFormFile FPicture3, IFormFile FPicture4)
+        {
+
+            if (FPicture1 != null)
+            {
+                using (MemoryStream memoryStream = new MemoryStream())
+                {
+                    FPicture1.CopyTo(memoryStream);
+                    tgapf.FPicture1 = memoryStream.ToArray();
+                    tgapf.FPicture1Path = FPicture1.FileName;
+                }
+            }
+            if (FPicture2 != null)
+            {
+                using (MemoryStream memoryStream = new MemoryStream())
+                {
+                    FPicture2.CopyTo(memoryStream);
+                    tgapf.FPicture2 = memoryStream.ToArray();
+                    tgapf.FPicture2Path = FPicture2.FileName;
+                }
+            }
+            if (FPicture3 != null)
+            {
+                using (MemoryStream memoryStream = new MemoryStream())
+                {
+                    FPicture3.CopyTo(memoryStream);
+                    tgapf.FPicture3 = memoryStream.ToArray();
+                    tgapf.FPicture3Path = FPicture3.FileName;
+                }
+            }
+            if (FPicture4 != null)
+            {
+                using (MemoryStream memoryStream = new MemoryStream())
+                {
+                    FPicture4.CopyTo(memoryStream);
+                    tgapf.FPicture4 = memoryStream.ToArray();
+                    tgapf.FPicture4Path = FPicture4.FileName;
+                }
+            }
+
+            return tgapf;
+        }
+
+       
         [HttpPost]
         public IActionResult Create(CGroupActivityEditViewModel vm, IFormFile FPicture1, IFormFile FPicture2, IFormFile FPicture3, IFormFile FPicture4)
         {
-            return View();
+
+            dbClassContext db = new dbClassContext();
+            vm.cgavm.FDeleteBool = true;
+          
+            vm.cgavm.TGroupActivityClassThemes = vm.cgavm.TGroupActivityClassThemes.DistinctBy(_ => _.FClassThemeId).ToList();
+
+            foreach (var item in vm.cgavm.TGroupActivityClassThemes)
+            {
+                item.FDeleteBool = true;
+            }
+
+            foreach (TPersonalPerformance item in vm.cgavm.TPersonalPerformances)
+            {
+                item.FDeleteBool = "1";
+            }
+            db.Add(vm.cgavm.groupActivity);
+            db.SaveChanges();
+
+            int gaFidLast = Convert.ToInt32(db.TGroupActivities.OrderBy(_ => _.FGroupActivityId).LastOrDefault().FGroupActivityId);
+
+            db.TGroupActivityPicAndFiles.Add(getImamge(new TGroupActivityPicAndFile() { FGroupActivityId = gaFidLast }, FPicture1, FPicture2, FPicture3, FPicture4));
+
+
+            db.SaveChanges();
+
+            return RedirectToAction("List");
         }
+
+
+
+
+
     }
 }

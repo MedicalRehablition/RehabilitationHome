@@ -26,11 +26,11 @@
 
 <h1>活動記錄</h1>
 
-<h4>編輯</h4>
+<h4 id="demoPress">新增</h4>
 <hr />
 <div class="row">
     <div class="col">
-        <form asp-action="Edit" enctype="multipart/form-data" method="post" name="formData">
+        <form asp-action="Create" enctype="multipart/form-data" method="post" name="formData">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             
 
@@ -43,27 +43,27 @@
                 <div class="col">
                     <div class="form-group">
                         <label asp-for="cgavm.FDate" class="control-label"></label>
-                        <input asp-for="cgavm.FDate" type="date" class="form-control" name="cgavm.FDate" />
+                        <input asp-for="cgavm.FDate" type="date" id="formDate" class="form-control" name="cgavm.FDate" />
                         <span asp-validation-for="cgavm.FDate" class="text-danger"></span>
                     </div>
                     <div class="form-group">
                         <label asp-for="cgavm.FStartTime" class="control-label"></label>
-                        <input type="time" asp-for="cgavm.FStartTime" class="form-control" />
+                        <input type="time" asp-for="cgavm.FStartTime" id="startTime" class="form-control" />
                         <span asp-validation-for="cgavm.FStartTime" class="text-danger"></span>
                     </div>
                     <div class="form-group">
                         <label asp-for="cgavm.FEndTime" class="control-label"></label>
-                        <input type="time" asp-for="cgavm.FEndTime" class="form-control" />
+                        <input type="time" asp-for="cgavm.FEndTime" id="endTime" class="form-control" />
                         <span asp-validation-for="cgavm.FEndTime" class="text-danger"></span>
                     </div>
                     <div class="form-group">
                         <label asp-for="cgavm.FGroupName" class="control-label"></label>
-                        <input asp-for="cgavm.FGroupName" class="form-control" />
+                        <input asp-for="cgavm.FGroupName" id="groupName" class="form-control" />
                         <span asp-validation-for="cgavm.FGroupName" class="text-danger"></span>
                     </div>
                     <div class="form-group">
                         <label asp-for="cgavm.FClassName" class="control-label"></label>
-                        <input asp-for="cgavm.FClassName" class="form-control" />
+                        <input asp-for="cgavm.FClassName" id="className" class="form-control" />
                         <span asp-validation-for="cgavm.FClassName" class="text-danger"></span>
                     </div>
                 </div>
@@ -74,18 +74,18 @@
             </div>
             <div class="form-group">
                 <label asp-for="cgavm.FGoal" class="control-label"></label>
-                <input asp-for="cgavm.FGoal" class="form-control" />
+                <input asp-for="cgavm.FGoal" id="goal" class="form-control" />
                 <span asp-validation-for="cgavm.FGoal" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="cgavm.FLocation" class="control-label"></label>
-                <input asp-for="cgavm.FLocation" class="form-control" />
+                <input asp-for="cgavm.FLocation" id="location" class="form-control" />
                 <span asp-validation-for="cgavm.FLocation" class="text-danger"></span>
             </div>
             <div class="row">
                 <div class="form-group col-4">
                     <label asp-for="cgavm.FPeopleCount" class="control-label"></label>
-                    <input asp-for="cgavm.FPeopleCount" class="form-control" />
+                    <input asp-for="cgavm.FPeopleCount" id="peopleCount" class="form-control" />
                     <span asp-validation-for="cgavm.FPeopleCount" class="text-danger"></span>
                 </div>
                 <div class="form-group  col-4">
@@ -171,10 +171,10 @@
                 <div class="col-md-2">
                     @*<i id="PerformanceAddPersonal" class="fa fa-plus fa-2x" aria-hidden="true"></i>*@
 
-                    <div id="PersonalListPanel" class=" mt-3 form-group form-control" style=" background-color:gray;"></div>
+                    <div  id="PersonalListPanel" class=" mt-3 form-group form-control" style=" background-color:gray;"></div>
                 </div>
                 <div class="col-md-10">
-                    <div class=" mt-3 form-group form-control" id="TPersonalPerformances" style=" background-color:gray;"></div>
+                    <div class=" mt-3 form-group form-control" name="TPersonalPerformances" id="TPersonalPerformances" style=" background-color:gray;"></div>
                 </div>
             </div>
 
@@ -188,7 +188,7 @@
                 </div>
                 <div class="form-group col-sm">
                     <label asp-for="cgavm.FFillFormDate" class="control-label"></label>
-                    <input asp-for="cgavm.FFillFormDate" class="form-control" readonly />
+                    <input type="date" asp-for="cgavm.FFillFormDate" class="form-control" readonly />
                     <span asp-validation-for="cgavm.FFillFormDate" class="text-danger"></span>
                 </div>
                 @*        <div class="form-group col-sm-4">
@@ -212,6 +212,26 @@
     <a asp-action="List">回列表</a>
 </div>
 
+<!-- Modal -->
+<div class="modal fade" id="BootstrapModal1" tabindex="-1" aria-labelledby="BootstrapModal1Label" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="BootstrapModal1Label">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" id="checkModalBody">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 @section Scripts {
 
     @{
@@ -220,45 +240,51 @@
 
     <script>
 
-     
 
+        var classThemeCount = 0;
+        var scheduleDetailsCount = 0;
+        var TPersonalPerformancesCount =0;
         document.querySelector("#classThemeAdd").addEventListener("click", function () {
+
+            
             document.querySelector("#EventType").insertAdjacentHTML("beforeend", `
 
-                                <div class="row">
-                        <div class="col">
-                            <select class="mt-2  form-select shadow-none  border-top" id="ClassThemesEach_1_" name="ClassThemesEach[1]">
-                            <option selected="selected">衛生習慣  </option>
-                <option>居家清潔  </option>
-                <option>飲食起居  </option>
-                <option>認知能力  </option>
-                <option>體能表現  </option>
-                <option>人際互動  </option>
-                <option>烹飪能力  </option>
-                <option>休閒安排  </option>
-                <option>財務管理  </option>
-                <option>健康促進  </option>
-                </select>
-                        </div>
-                        <div class="col-2" style="text-align: center;position: relative;   " onclick="this.parentElement.remove()">
-                            <i class="fas fa-minus-circle" style="font-size:24px;color:red;position: absolute;top: 50%; left: 50%;-ms-transform: translate(-50%, -50%);transform: translate(-50%, -50%);"></i>
-                        </div>
-                    </div>
-
+             <div class="row">
+                <div class="col">
+                                           <select class="mt-2  form-select shadow-none  border-top" id="ClassThemesEach_1_" name="cgavm.TGroupActivityClassThemes[${classThemeCount++}].FClassThemeId">
+                            <option selected="selected" value="1">衛生習慣  </option>
+                            <option value="2">居家清潔  </option>
+                            <option value="3">飲食起居  </option>
+                            <option value="4">認知能力  </option>
+                            <option value="5">體能表現  </option>
+                            <option value="6">人際互動  </option>
+                            <option value="7">烹飪能力  </option>
+                            <option value="8">休閒安排  </option>
+                            <option value="9">財務管理  </option>
+                            <option value="10">健康促進  </option>
+                   </select>
+               </div>
+               <div class="col-2" style="text-align: center;position: relative;   " onclick="this.parentElement.remove()">
+                   <i class="fas fa-minus-circle" style="font-size:24px;color:red;position: absolute;top: 50%; left: 50%;-ms-transform: translate(-50%, -50%);transform: translate(-50%, -50%);"></i>
+               </div>
+             </div>
                             `)
+            
         });
 
         document.querySelector("#ScheduleDetailAdd").addEventListener("click", function () {
+
             document.querySelector("#TScheduleDetails").insertAdjacentHTML("beforeend", `
 
                     <ul class="list-group list-group-horizontal-md">
-                                <li class="list-group-item"><label>開始時間：</label><input type="time" id="startTime" /></li>
-                                <li class="list-group-item"><label>結束時間：</label><input type="time" id="endTime"/></li>
-                                <li class="list-group-item"><label>大綱說明：</label><input type="text" id="depiction"/></li>
+                                                        <li class="list-group-item"><label>開始時間：</label><input type="time" id="startTime" name="cgavm.TScheduleDetails[${scheduleDetailsCount}].FStartTime"/></li>
+                                        <li class="list-group-item"><label>結束時間：</label><input type="time" id="endTime" name="cgavm.TScheduleDetails[${scheduleDetailsCount}].FEndTime"/></li>
+                                        <li class="list-group-item"><label>大綱說明：</label><input type="text" id="depiction" name="cgavm.TScheduleDetails[${scheduleDetailsCount}].FDepiction"/></li>
                         <li class="list-group-item" style="border-radius:0px  20px 20px 0px" onclick="this.parentElement.remove()"><i class="fas fa-minus-circle" style="font-size:24px;color:red;position: relative;top: 50%; left: 50%;-ms-transform: translate(-50%, -50%);transform: translate(-50%, -50%);"></i></li>
                     </ul>
 
                     `);
+                    scheduleDetailsCount++;
         });
 
 
@@ -303,47 +329,49 @@
                                                                     <div class="card-body">
                                                                                 <div class="row">
                                                                                             <label class="h5 badge bg-primary rounded cardIDandName col" id="${this.id}">${this.value}</label>
+                                                                                            <input type="hidden" value="${this.id}" name="cgavm.TPersonalPerformances[${TPersonalPerformancesCount}].FResidentId" />
                                                                                             <input type="button" id="${this.id}-removeCard" class="btn btn-danger col-1" value="刪除"/>
                                                                                 </div>
                                                                                 <div class="row " style="background-color:lightgray">
                                                                             <div class="col-4">
                                                                                 <label class="badge bg-success rounded">表情情緒：</label><br />
-                                                                                                                <select id="${this.id}-comboxEmotions"  class="forPPdataE form-select shadow-none  border-top"></select>
+                                     <select id="${this.id}-comboxEmotions"  class="forPPdataE form-select shadow-none  border-top" name="cgavm.TPersonalPerformances[${TPersonalPerformancesCount}].FEmotions"></select>
 
                                                                             </div>
                                                                             <div class="col-4">
                                                                                 <label class="badge bg-success rounded">持續度：</label><br />
-                                                                                                        <select id="${this.id}-comboxParticipatePersistence"  class="forPPdataP form-select shadow-none  border-top"></select>
+                                   <select id="${this.id}-comboxParticipatePersistence"  class="forPPdataP form-select shadow-none  border-top" name="cgavm.TPersonalPerformances[${TPersonalPerformancesCount}].FParticipatePersistence"></select>
 
                                                                             </div>
                                                                             <div class="col-4">
                                                                                 <label class="badge bg-success rounded">配合度：</label><br />
-                                                                                                        <select id="${this.id}-comboxCooperate"  class="forPPdataC form-select shadow-none  border-top"></select>
+                                          <select id="${this.id}-comboxCooperate"  class="forPPdataC form-select shadow-none  border-top" name="cgavm.TPersonalPerformances[${TPersonalPerformancesCount}].FCooperate"></select>
 
                                                                             </div>
                                                                         </div>
                                                                             <div class="row " style="background-color:lightgray">
                                                                             <div class="col-4">
                                                                                 <label class="badge bg-success rounded">人際互動：</label><br />
-                                                                                                        <select id="${this.id}-comboxHumanInteraction"  class="forPPdataH form-select shadow-none  border-top"></select>
+                                      <select id="${this.id}-comboxHumanInteraction"  class="forPPdataH form-select shadow-none  border-top" name="cgavm.TPersonalPerformances[${TPersonalPerformancesCount}].FHumanInteraction"></select>
 
                                                                             </div>
                                                                             <div class="col-4">
                                                                                 <label class="badge bg-success rounded">注意力：</label><br />
-                                                                                                        <select id="${this.id}-comboxAttentionRes" class="forPPdataA form-select shadow-none  border-top"></select>
+                                                    <select id="${this.id}-comboxAttentionRes" class="forPPdataA form-select shadow-none  border-top" name="cgavm.TPersonalPerformances[${TPersonalPerformancesCount}].FAttention"></select>
 
                                                                             </div>
                                                                             <div class="col-4">
                                                                                 <label class="badge bg-success rounded">參與表現：</label><br />
-                                                                                                <select id="${this.id}-comboxParticipatePerformance" class="forPPdataPP form-select shadow-none  border-top"></select>
+                                                      <select id="${this.id}-comboxParticipatePerformance" class="forPPdataPP form-select shadow-none  border-top" name="cgavm.TPersonalPerformances[${TPersonalPerformancesCount}].FParticipatePerformance"></select>
 
                                                                             </div>
                                                                         </div>
-                                                                                        <div class="row"><label class="col-auto badge bg-success rounded ">備註：</label><br /><input type="text"  class="forPPdataD" id="${this.id}-Depiction"/></div>
+                                                                                                        <div class="row"><label class="col-auto badge bg-success rounded ">備註：</label><br /><input type="text"  class="forPPdataD" id="${this.id}-Depiction" name="cgavm.TPersonalPerformances[${TPersonalPerformancesCount}].FDepiction"/></div>
                                                                     </div>
                                                                 </div>
 
                                                                             `);
+                    TPersonalPerformancesCount++;   //這邊只有在click時才會++，在製做時因為要for，所以下面要先歸0不然就會一直加。
                     const comboxEmotionsID = document.getElementById(`${this.id}-comboxEmotions`);
                     const comboxParticipatePersistenceID = document.getElementById(`${this.id}-comboxParticipatePersistence`);
                     const comboxCooperateID = document.getElementById(`${this.id}-comboxCooperate`);
@@ -351,22 +379,22 @@
                     const comboxAttentionResID = document.getElementById(`${this.id}-comboxAttentionRes`);
                     const comboxParticipatePerformanceID = document.getElementById(`${this.id}-comboxParticipatePerformance`);
                     for (var comboxEmotionsItem of getResidentData[0]) {
-                        comboxEmotionsID.insertAdjacentHTML("beforeend", `<option>${comboxEmotionsItem}</option>`)
+                        comboxEmotionsID.insertAdjacentHTML("beforeend", `<option value="${comboxEmotionsItem}">${comboxEmotionsItem}</option>`)
                     }
                     for (var comboxParticipatePersistenceItem of getResidentData[1]) {
-                        comboxParticipatePersistenceID.insertAdjacentHTML("beforeend", `<option>${comboxParticipatePersistenceItem}</option>`)
+                        comboxParticipatePersistenceID.insertAdjacentHTML("beforeend", `<option value="${comboxParticipatePersistenceItem}">${comboxParticipatePersistenceItem}</option>`)
                     }
                     for (var comboxCooperateItem of getResidentData[2]) {
-                        comboxCooperateID.insertAdjacentHTML("beforeend", `<option>${comboxCooperateItem}</option>`)
+                        comboxCooperateID.insertAdjacentHTML("beforeend", `<option value="${comboxCooperateItem}">${comboxCooperateItem}</option>`)
                     }
                     for (var comboxHumanInteractionItem of getResidentData[3]) {
-                        comboxHumanInteractionID.insertAdjacentHTML("beforeend", `<option>${comboxHumanInteractionItem}</option>`)
+                        comboxHumanInteractionID.insertAdjacentHTML("beforeend", `<option value="${comboxHumanInteractionItem}">${comboxHumanInteractionItem}</option>`)
                     }
                     for (var comboxAttentionResItem of getResidentData[4]) {
-                        comboxAttentionResID.insertAdjacentHTML("beforeend", `<option>${comboxAttentionResItem}</option>`)
+                        comboxAttentionResID.insertAdjacentHTML("beforeend", `<option value="${comboxAttentionResItem}">${comboxAttentionResItem}</option>`)
                     }
                     for (var comboxParticipatePerformanceItem of getResidentData[5]) {
-                        comboxParticipatePerformanceID.insertAdjacentHTML("beforeend", `<option>${comboxParticipatePerformanceItem}</option>`)
+                        comboxParticipatePerformanceID.insertAdjacentHTML("beforeend", `<option value="${comboxParticipatePerformanceItem}">${comboxParticipatePerformanceItem}</option>`)
                     }
 
                     document.getElementById(`${this.id}-removeCard`).addEventListener("click", function () {
@@ -374,6 +402,8 @@
                     })
 
                 });
+
+                TPersonalPerformancesCount = 0; //迴圈還在跑就要歸0，等跑完只有click時才++;
             }
         }
         getResidentInPersonalPerformancesSelectPanel();//叫出所有人列表
@@ -381,104 +411,76 @@
         //開始抓板內然後巡迴出內容(有三種)
 
         var getButtonAjax = document.querySelector("#submitButtonForAjax");
-        getButtonAjax.addEventListener("click", getParticipatePerformances);    //先把沙b密的按鈕綁好
-        getButtonAjax.addEventListener("click", getScheduleDetails);
-        getButtonAjax.addEventListener("click", getClassThemes);
-
-        //getButtonAjax.addEventListener("click",editCantSubmit);
-
-        var groupActivityID = "";
-
-        async function getParticipatePerformances() {
+ 
+        getButtonAjax.addEventListener("click",function(event){
             var ppPanel = document.querySelector("#TPersonalPerformances");
             var ppData = ppPanel.querySelectorAll(".card");
 
-
-            var fetchList = [];
-
-
-            for (var pp of ppData) {
-
-                fetchList.push({
-                    groupActivityID: `${groupActivityID}`,
-                    ResidentId: `${pp.querySelector(".cardIDandName").id}`,
-                    Emotions: `${pp.querySelector(".forPPdataE").value}`,
-                    ParticipatePersistence: `${pp.querySelector(".forPPdataP").value}`,
-                    Cooperate: `${pp.querySelector(".forPPdataC").value}`,
-                    HumanInteraction: `${pp.querySelector(".forPPdataH").value}`,
-                    AttentionRes: `${pp.querySelector(".forPPdataA").value}`,
-                    ParticipatePerformance: `${pp.querySelector(".forPPdataPP").value}`,
-                    Depiction: `${pp.querySelector(".forPPdataD").value}`
-                });
-            }
-
-            //console.log(fetchArray);
-
-            const goAjax = await fetch(`@Url.Content("~/")GroupActivityAjax/PersonalPerformancesEditAjax`, {
-                method: "post",
-                headers: { 'Content-type': 'application/json' },
-                body: JSON.stringify(fetchList)
-            });
-            //console.log(await goAjax.text());
-            //window.location.href = `@Url.Content("~/")GroupActivity/List`
-        }
-
-
-        async function getScheduleDetails() {
             var ScheduleDetailPanel = document.querySelector("#TScheduleDetails");
             var ScheduleDetailInPanel = ScheduleDetailPanel.querySelectorAll("ul");
-            var ScheduleDetails = [];
 
-            for (var item of ScheduleDetailInPanel) {
-                ScheduleDetails.push({
-                    FGroupActivityId: `${groupActivityID}`,
-                    FStartTime: `${item.querySelector("#startTime").value}`,
-                    FEndTime: `${item.querySelector("#endTime").value}`,
-                    FDepiction: `${item.querySelector("#depiction").value}`
-                });
-            }
-
-            await fetch(`@Url.Content("~/")GroupActivityAjax/ScheduleDetailPanelAjax`, {
-                method: "post",
-                headers: { 'Content-type': 'application/json' },
-                body: JSON.stringify(ScheduleDetails)
-            })
-
-
-        }
-
-
-
-        async function getClassThemes() {
             var eventTypePanel = document.querySelector("#EventType");
             var eventTypesInPanel = eventTypePanel.querySelectorAll("select");
-            var classThemes = [];
 
-            for (var item of eventTypesInPanel) {
-                classThemes.push({
-                    FGroupActivityId: `${groupActivityID}`,
-                    FClassThemeId: `${item.selectedIndex + 1}`
-                });
+            if(ppData.length == 0 || ScheduleDetailInPanel.length ==0|| eventTypesInPanel.length ==0){
+                event.preventDefault();
+                var errorString = "";
+                if (ppData.length == 0) { errorString += "住民情緒無資料。</br>"; }
+                if (ScheduleDetailInPanel.length == 0) { errorString += "行程無資料。</br>"; }
+                if (eventTypesInPanel.length == 0) { errorString += "課程主題空白。</br>"; }
+                document.querySelector("#checkModalBody").innerHTML = errorString;
+                new bootstrap.Modal(document.querySelector("#BootstrapModal1")).show()
             }
 
-            await fetch(`@Url.Content("~/")GroupActivityAjax/ClassThemeAjax`, {
-                method: "post",
-                headers: { 'Content-type': 'application/json' },
-                body: JSON.stringify(classThemes)
-            });
-
-        }
+        });
 
 
-                //async function editCantSubmit(){
-                //    const getEditResult = await fetch(`@Url.Content("~/")GroupActivity/Edit`, {
-                //        method:"post",
-                //        body: new FormData(formData)
-                //    })
 
 
-                //}
+        document.querySelector("#demoPress").addEventListener("click",function(){
+            document.querySelector("#formDate").value = "2023-02-24";
+            document.querySelector("#startTime").value = "12:30";
+            document.querySelector("#endTime").value = "14:25";
+            document.querySelector("#groupName").value = "青春揮灑行動";
+            document.querySelector("#className").value = "課程名稱";
+            document.querySelector("#goal").value = "學習如何正確的休閒活動";
+            document.querySelector("#location").value = "新生街活動中心";
+            document.querySelector("#peopleCount").value = 1;
+            document.querySelector("#EventType").insertAdjacentHTML("beforeend", `
 
+                                        <div class="row">
+                                <div class="col">
+                                                    <select class="mt-2  form-select shadow-none  border-top" name="cgavm.TGroupActivityClassThemes[${classThemeCount++}].FClassThemeId">
+                                    <option selected="selected" value="1">衛生習慣  </option>
+                                <option value="2">居家清潔  </option>
+                        <option value="3">飲食起居  </option>
+                        <option value="4">認知能力  </option>
+                        <option value="5">體能表現  </option>
+                        <option value="6">人際互動  </option>
+                        <option value="7">烹飪能力  </option>
+                        <option value="8">休閒安排  </option>
+                        <option value="9">財務管理  </option>
+                                <option value="10">健康促進  </option>
+                        </select>
+                                </div>
+                                <div class="col-2" style="text-align: center;position: relative;   " onclick="this.parentElement.remove()">
+                                    <i class="fas fa-minus-circle" style="font-size:24px;color:red;position: absolute;top: 50%; left: 50%;-ms-transform: translate(-50%, -50%);transform: translate(-50%, -50%);"></i>
+                                </div>
+                            </div>
+                         
+                                    `);
+            document.querySelector("#TScheduleDetails").insertAdjacentHTML("beforeend", `
+
+                            <ul class="list-group list-group-horizontal-md">
+                                        <li class="list-group-item"><label>開始時間：</label><input type="time" id="startTime" name="cgavm.TScheduleDetails[${scheduleDetailsCount}].FStartTime"/></li>
+                                                <li class="list-group-item"><label>結束時間：</label><input type="time" id="endTime" name="cgavm.TScheduleDetails[${scheduleDetailsCount}].FEndTime"/></li>
+                                                <li class="list-group-item"><label>大綱說明：</label><input type="text" id="depiction" name="cgavm.TScheduleDetails[${scheduleDetailsCount}].FDepiction"/></li>
+                                <li class="list-group-item" style="border-radius:0px  20px 20px 0px" onclick="this.parentElement.remove()"><i class="fas fa-minus-circle" style="font-size:24px;color:red;position: relative;top: 50%; left: 50%;-ms-transform: translate(-50%, -50%);transform: translate(-50%, -50%);"></i></li>
+                            </ul>
+
+                            `);
+            scheduleDetailsCount++;
+        });
     </script>
 
 }
