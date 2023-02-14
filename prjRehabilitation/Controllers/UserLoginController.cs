@@ -32,7 +32,7 @@ namespace prjRehabilitation.Controllers
             dbClassContext db = new dbClassContext();
             Customer customer = db.Customers.FirstOrDefault(t => t.FEmail.Equals(vm.txtAccount) && t.FPassword.Equals(vm.txtPassword));
             string json = "";
-            
+
             if (customer != null)
             {
                 if (customer.FEmail.Equals(vm.txtAccount) && customer.FPassword.Equals(vm.txtPassword))
@@ -90,6 +90,8 @@ namespace prjRehabilitation.Controllers
         {
             dbClassContext db = new dbClassContext();
             Customer customer = db.Customers.FirstOrDefault(t => t.FEmail == vm.FEmail);
+            PatientInfo patient = db.PatientInfos.FirstOrDefault(t => t.FName == vm.PatientName && t.FIdnum == vm.PatientIDNum);
+
             using (var cryptoMD5 = System.Security.Cryptography.MD5.Create())
             {
                 vm.FPassword += "putSomeSalt";
@@ -102,35 +104,48 @@ namespace prjRehabilitation.Controllers
             }
             if (customer == null)
             {
-                string photoName = Guid.NewGuid().ToString() + ".jpg";
-                string path = _environment.WebRootPath + "/images/" + photoName;
-                vm.FPicture = photoName;
-                vm.photo.CopyTo(new FileStream(path, FileMode.Create));
-                db.Customers.Add(vm.Customer);
-                db.SaveChanges();
-                //---------qrcode生成及儲存-----
-                CCreateqrcode cqr = new CCreateqrcode();
-                string emp = "c" + vm.Customer.Fid; //圖片要存的內容
-                var QRpic = cqr.createqrcode(emp); //生成bitmap類型的圖片
-                string qrname = emp + ".jpg";
-                string qrpath = _environment.WebRootPath + "/images/" + qrname;
-                Customer aqcust = db.Customers.FirstOrDefault(t => t.Fid == vm.Fid);               
-                if (aqcust != null)
+                if (patient != null)
                 {
-                    aqcust.FQrcode = qrname;
-                    using (var stream = new MemoryStream())
+                    if (patient.FCustomerid == null)
                     {
-                        QRpic.Save(stream, ImageFormat.Jpeg);//把bitmap轉png
-                        stream.Position = 0;
-                        using (var fileStream = new FileStream(qrpath, FileMode.Create))
-                        {
-                            stream.CopyTo(fileStream);
-                        }
+                        string photoName = Guid.NewGuid().ToString() + ".jpg";
+                        string path = _environment.WebRootPath + "/images/" + photoName;
+                        vm.FPicture = photoName;
+                        vm.photo.CopyTo(new FileStream(path, FileMode.Create));
+                        db.Customers.Add(vm.Customer);
+                        db.SaveChanges();
+                        int? Customerid = vm.Fid;
+                        patient.FCustomerid = Customerid;
+                        db.SaveChanges();
                     }
-                    db.SaveChanges();
+                    else
+                    {
+                        return Content("此住民以綁定會員資料");
+                    }
+                    //---------qrcode生成及儲存-----
+                    CCreateqrcode cqr = new CCreateqrcode();
+                    string emp = "c" + vm.Customer.Fid; //圖片要存的內容
+                    var QRpic = cqr.createqrcode(emp); //生成bitmap類型的圖片
+                    string qrname = emp + ".jpg";
+                    string qrpath = _environment.WebRootPath + "/images/" + qrname;
+                    Customer aqcust = db.Customers.FirstOrDefault(t => t.Fid == vm.Fid);
+                    if (aqcust != null)
+                    {
+                        aqcust.FQrcode = qrname;
+                        using (var stream = new MemoryStream())
+                        {
+                            QRpic.Save(stream, ImageFormat.Jpeg);//把bitmap轉png
+                            stream.Position = 0;
+                            using (var fileStream = new FileStream(qrpath, FileMode.Create))
+                            {
+                                stream.CopyTo(fileStream);
+                            }
+                        }
+                        db.SaveChanges();
+                    }
+                    return Content("註冊成功!");
                 }
-                return Content("註冊成功!");//後面要記得改
-                //return RedirectToAction("List");
+                return Content("無此住民或資料輸入錯誤");
             }
             return Content("此帳號已註冊使用,請前往登入");
 

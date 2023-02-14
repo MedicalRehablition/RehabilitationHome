@@ -14,7 +14,7 @@
         <div class="col-md-6 mb-4">
             <div class="form-outline">
                 <label class="form-label" for="lastName">姓名</label>
-                <input asp-for="FName" type="text" id="lastName" class="form-control form-control-lg" />
+                <input asp-for="FName" type="text" id="txtName" class="form-control form-control-lg" required />
             </div>
 
         </div>
@@ -25,7 +25,7 @@
 
             <div class="form-outline datepicker w-100">
                 <label asp-for="FEmail" class="control-label">電子信箱</label>
-                <input type="email"  asp-for="FEmail" class="form-control" />
+                <input type="email" asp-for="FEmail" class="form-control"id="txtemail" required />
                 <span asp-validation-for="FEmail" class="text-danger"></span>
             </div>
 
@@ -34,7 +34,7 @@
 
             <div class="form-outline datepicker w-100">
                 <label asp-for="FPhone" class="control-label">行動電話</label>
-                <input type="number"  asp-for="FPhone" class="form-control" />
+                <input type="number" asp-for="FPhone" class="form-control"id="txtPhone" required />
                 <span asp-validation-for="FPhone" class="text-danger"></span>
             </div>
         </div>
@@ -46,13 +46,27 @@
         <div class="col-md-6 mb-4 pb-2">
             <div class="form-outline">
                 <label class="form-label" for="emailAddress">密碼</label>
-                <input asp-for="FPassword" type="password" id="emailAddress" class="form-control form-control-lg" />
+                <input asp-for="FPassword" type="password" id="txtPassword" class="form-control form-control-lg" required />
             </div>
         </div>
         <div class="col-md-6 mb-4 pb-2">
             <div class="form-outline">
                 <label class="form-label" for="phoneNumber">居住地址</label>
-                <input asp-for="FAddress"id="phoneNumber" class="form-control form-control-lg" />
+                <input asp-for="FAddress" id="txtAddress" class="form-control form-control-lg" required />
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 mb-4 pb-2">
+            <div class="form-outline">
+                <label class="form-label" for="emailAddress">住民姓名</label>
+                <input asp-for="PatientName" type="text" id="txtPatientName" class="form-control form-control-lg" required />
+            </div>
+        </div>
+        <div class="col-md-6 mb-4 pb-2">
+            <div class="form-outline">
+                <label class="form-label" for="phoneNumber">住民身份證字號</label>
+                <input asp-for="PatientIDNum" id="txtPatientNum" class="form-control form-control-lg" required />
             </div>
         </div>
     </div>
@@ -60,10 +74,15 @@
         <label asp-for="photo" class="control-label">照片</label>
         <input type="file" asp-for="photo" class="form-control" />
     </div>
-
-    <div class="mt-4 pt-2">
-        <input class="btn btn-primary btn-lg" type="submit" value="確認" id="subbtn" />
+    <div class="row">
+        <div class="col-md-1 mb-4 pb-2">
+            <input class="btn btn-primary btn-lg" type="submit" value="確認" id="subbtn" />
+        </div>
+        <div class="col-md-1 mb-4 pb-2">
+            <input class="btn btn-primary btn-lg" type="button" value="Demo" id="Demobtn" />
+        </div>
     </div>
+
 </form>
 
 
@@ -81,18 +100,47 @@
             event.preventDefault();
             let xhr = new XMLHttpRequest();
             xhr.addEventListener("load", function () {
-                $('.alert-autocloseable-warning').attr("hidden", false);
+                if (xhr.responseText == "註冊成功!") {
+                    $('.alert-autocloseable-warning').attr("hidden", false);
                     $('.alert-autocloseable-warning').delay(2000).fadeOut("slow", function () {
                         $('.alert-autocloseable-warning').attr("hidden", true);
                         $('.alert-autocloseable-warning').removeAttr("style");
                     });
                     $('#shippingmsgText').text(xhr.responseText);
-                setTimeout('location.href="/Home/Index"', 2000);
+                    setTimeout('location.href="/Home/Index"', 2000);
+                }
+                else if (xhr.responseText == "無此住民或資料輸入錯誤") {
+                    $('.alert-autocloseable-warning').attr("hidden", false);
+                    $('.alert-autocloseable-warning').delay(2000).fadeOut("slow", function () {
+                        $('.alert-autocloseable-warning').attr("hidden", true);
+                        $('.alert-autocloseable-warning').removeAttr("style");
+                    });
+                    $('#shippingmsgText').text(xhr.responseText);
+                }
+                else if (xhr.responseText == "此帳號已註冊使用,請前往登入") {
+                    $('.alert-autocloseable-warning').attr("hidden", false);
+                    $('.alert-autocloseable-warning').delay(2000).fadeOut("slow", function () {
+                        $('.alert-autocloseable-warning').attr("hidden", true);
+                        $('.alert-autocloseable-warning').removeAttr("style");
+                    });
+                    $('#shippingmsgText').text(xhr.responseText);
+                }
+                else if (xhr.responseText == "此住民以綁定會員資料") {
+                    $('.alert-autocloseable-warning').attr("hidden", false);
+                    $('.alert-autocloseable-warning').delay(2000).fadeOut("slow", function () {
+                        $('.alert-autocloseable-warning').attr("hidden", true);
+                        $('.alert-autocloseable-warning').removeAttr("style");
+                    });
+                    $('#shippingmsgText').text(xhr.responseText);
+                }
             })
             const Data = new FormData(document.userRegister);
             xhr.open("POST", "@Url.Content("/UserLogin/AccountAlive")");
             xhr.send(Data);
 
+        })
+        $("#Demobtn").on("click",function(){
+            $("#txtName").attr("Value","吳帥哥");
         })
     </script>
 
