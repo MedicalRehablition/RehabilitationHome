@@ -1,0 +1,19 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<h3>付款完成</h3>
+<p>已寄送訂購訊息至您的Email，您的商品將盡快安排出貨。</p>
+@section Scripts{
+    <script>
+        ch();
+        function check(){
+            return confirm("付款完成，是否返回甜心小舖")
+        }
+        function ch() {
+            if(check()) location.href = `@Url.Content("~/Product/List")`;
+        }
+    </script>
+
+}

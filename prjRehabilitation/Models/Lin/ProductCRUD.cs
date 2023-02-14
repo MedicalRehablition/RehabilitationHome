@@ -15,6 +15,7 @@ namespace prjRehabilitation.Models.Lin
             var id = "Med" + DateTime.Now.ToString("d") + "_" + (new Random()).Next(99999);
             order.FAddress = vm.FAddress;
             order.FOrderId = id;
+            order.FName= vm.FName;
             order.FTotalPrice = Convert.ToDecimal(vm.FPrice);
             order.FDate = time;
             order.FEmail = vm.FEmail;
@@ -138,7 +139,7 @@ namespace prjRehabilitation.Models.Lin
 		public object GetTakeUpProducts()
 		{
 			dbClassContext db = new dbClassContext();
-			var data = db.Products.Where(x => x.FStatus==true).ToList();
+			var data = db.Products.Where(x => x.FStatus==true&&x.FQty>0).ToList();
 			List<CProductViewModel> list = new List<CProductViewModel>();
 
 			foreach (var c in data)

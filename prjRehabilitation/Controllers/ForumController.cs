@@ -14,6 +14,15 @@ namespace prjRehabilitation.Controllers
         {
             return RedirectToAction("PostDetail");
         }
+        public IActionResult DeleteReply(int id)
+        {
+            (new CommentCRUD()).DeleteReply(id);
+            return Json(new { outcome = "刪除成功"});
+        }
+        public IActionResult GetReplyList(int id)
+        {
+            return Json((new CommentCRUD()).GetPostComments(id));
+        }
         public IActionResult PostDelete(int id)
         {
             (new ArticalCRUD()).PostDelete(id);
