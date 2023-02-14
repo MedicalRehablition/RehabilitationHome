@@ -67,7 +67,7 @@ namespace Commerce.Service
                 { "ReturnURL",  $"{Config.GetSection("HostURL").Value}/Notify/CallbackNotify?option=ECPay"},
 
                 //付款完成後導頁
-                { "OrderResultURL", $"{Config.GetSection("HostURL").Value}/Home/CallbackReturn?option=ECPay"},
+                { "OrderResultURL", $"https://localhost:7164/Product/ok"},
 
 
                 //付款方式為 ATM 時，當使用者於綠界操作結束時，綠界回傳 虛擬帳號資訊至 此URL

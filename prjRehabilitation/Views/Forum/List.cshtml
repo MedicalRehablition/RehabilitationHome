@@ -3,6 +3,66 @@
     ViewData["Title"] = "List";
     Layout = "AdminLayout";
 }
+
+    
+<style>
+    .reply{
+        padding:5px;
+        margin-top:5px;
+        margin-bottom:0px;
+        border-radius:3px;
+        background-color:antiquewhite
+    }
+     .card-reply {
+        padding-top: 0.5em;
+        padding-bottom: 0.5em;
+        background-color: antiquewhite;
+    }
+
+        .card-reply:hover {
+            background-color: beige;
+        }
+
+    .varifyHidden {
+        display: none;
+    }
+
+
+    .reply-name {
+        color: #0089ac;
+    }
+
+    .reply_lauout {
+        padding-left: 3em;
+    }
+
+    .reply_addon {
+        font-size: 13px;
+        color: gray;
+        padding-top: 0.7em;
+        display: flex;
+        justify-content: flex-start;
+    }
+
+    .reply_content {
+        font-size: 18px;
+        padding-left: 10px;
+        display: flex;
+        justify-content: flex-start;
+    }
+
+    .reply_panel {
+        float: left;
+        width: 10px;
+        height: 4em;
+    }
+
+    .reply_icon {
+        border-radius: 2em;
+        width: 4em;
+        height: 4em;
+    }
+</style>
 <br />
 <a  class="btn btn-outline-primary" href="@Url.Content("~/Forum/NewPost")">發布新文章</a>
 <div class="my-3 p-3 bg-body rounded shadow-sm" id="list">
@@ -44,12 +104,17 @@
                                                 <div class="d-flex justify-content-between">
                                                     <h5 class="text-dark">${title}</h5>
                                                     <div>
+                                                          <a class="btn btn-outline-info" onclick="GetReplyList(${id})" id="replybtn${id}" data-replybtn="false">展開留言</a>
                                                          <a class="btn btn-outline-success" href="@Url.Content("~/Forum/PostEdit?id=${id}")">修改</a>
-                                                                <a class="btn btn-outline-danger" onclick="deletePost(${id})">刪除</a>
+                                                          <a class="btn btn-outline-danger" onclick="deletePost(${id})">刪除</a>
                                                     </div>
                                                 </div>
-                                            </div>
+                                                 <div class="pb-3 mb-0 small lh-sm "  id="replydiv${id}">
+                                             </div>
+                                           </div>
                                         </div>
+
+
                                  `;
                            })
             document.getElementById("list").innerHTML += html.join("");
@@ -58,8 +123,53 @@
 
             //加載完把讀取動畫關掉
          }
+         async function GetReplyList(id){
+            var btn = document.getElementById(`replybtn${id}`);
 
+               if(btn.dataset.replybtn=="true"){
+                btn.dataset.replybtn = "false";
+                 document.getElementById(`replydiv${id}`).innerHTML = "";
+                  btn.innerHTML = "展開留言";
 
+                 return;
+             }
+             btn.innerHTML = "摺疊留言"
+            btn.dataset.replybtn = "true";
+
+            const response = await fetch(`@Url.Content("~/Forum/GetReplyList?id=${id}")`);
+            const data = await response.json();
+
+            var html = data.map(x => {
+                const title = x.fName;
+                const main = x.fContent;
+                const date = x.fDate;
+                const id = x.fid;
+                return `
+                                            <div class="card-reply col-12 " name="${id}-reply" id="${id}-reply">
+                                         <div class=" col" id="Commendcontent_3315820" name="comment_parent" >
+                                                 <div class="row reply_lauout">
+                                                     <div class="reply_content col">
+                                                               <a class="btn btn-outline-danger" onclick="deleteComment(${id})">刪除留言</a>
+
+                                                         <span class="reply-name">　${title}：</span>
+                                                         <article class="col artical text-dark">${main}</article>
+                                                     </div>
+
+                                                     <div class=" reply_addon">
+                                                         <div class="" data-tooltipped="" aria-describedby="tippy-tooltip-39" data-original-title="${date}"> ${date}</div>
+                                                     </div>
+                                             </div>
+                                         </div>
+                                 </div>
+                                         `;
+            })
+            document.getElementById(`replydiv${id}`).innerHTML += html.join("");
+         }
+        async function deleteComment(id){
+            if(!confirm("留言刪除後無法恢復，是否刪除?")) return;
+            document.getElementById(`${id}-reply`).remove();
+            await fetch(`@Url.Content("~/Forum/DeleteReply?id=${id}")`);
+        }
 
 </script>
 
