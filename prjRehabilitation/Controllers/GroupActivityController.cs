@@ -348,9 +348,9 @@ namespace prjRehabilitation.Controllers
             db.Add(vm.cgavm.groupActivity);
             db.SaveChanges();
 
-            int gaFidLast = Convert.ToInt32(db.TGroupActivities.OrderBy(_ => _.FGroupActivityId).LastOrDefault().FGroupActivityId);
+            //int gaFidLast = Convert.ToInt32(db.TGroupActivities.OrderBy(_ => _.FGroupActivityId).LastOrDefault().FGroupActivityId);
 
-            db.TGroupActivityPicAndFiles.Add(getImamge(new TGroupActivityPicAndFile() { FGroupActivityId = gaFidLast }, FPicture1, FPicture2, FPicture3, FPicture4));
+            db.TGroupActivityPicAndFiles.Add(getImamge(new TGroupActivityPicAndFile() { FGroupActivityId = vm.cgavm.FGroupActivityId }, FPicture1, FPicture2, FPicture3, FPicture4));
 
 
             db.SaveChanges();

@@ -1,0 +1,180 @@
+﻿@model IEnumerable<prjRehabilitation.Models.TPersonalPerformance>
+
+@{
+
+    ViewData["Title"] = "List";
+    if (ViewBag.admin != null) { Layout = "AdminLayout"; }
+}
+@if (ViewBag.admin != null)
+{
+
+    <h1>後端活動參與人列表</h1>
+}
+else
+{
+    <h1>@ViewBag.ResidentName 活動參與列表</h1>
+
+}
+
+@*<p>
+    <a asp-action="Create">Create New</a>
+</p>*@
+<table class="table">
+    <thead>
+        <tr>
+
+            <th>姓名</th>
+            <th>
+                @*@Html.DisplayNameFor(model => model.FGroupActivityId)*@
+                參與活動
+            </th>
+            @*<th>
+            @Html.DisplayNameFor(model => model.FResidentId)
+            住民編號
+            </th>*@
+            <th>
+                @*@Html.DisplayNameFor(model => model.FEmotions)*@
+                表情情緒
+            </th>
+            <th>
+                @*@Html.DisplayNameFor(model => model.FParticipatePersistence)*@
+                持續度
+            </th>
+            <th>
+                @*@Html.DisplayNameFor(model => model.FCooperate)*@
+                配合度
+            </th>
+            <th>
+                @*@Html.DisplayNameFor(model => model.FHumanInteraction)*@
+                人際互動
+            </th>
+            <th>
+                @*@Html.DisplayNameFor(model => model.FAttention)*@
+                注意力
+            </th>
+            <th>
+                @*@Html.DisplayNameFor(model => model.FParticipatePerformance)*@
+                參與表現
+            </th>
+            @*<th>
+            @Html.DisplayNameFor(model => model.FDepiction)
+            備註
+            </th>*@
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            int count = 0;
+            foreach (var item in Model)
+            {
+
+                <tr>
+
+                    <td>@ViewBag.names[count]</td>
+                    <td>
+                        @if(ViewBag.admin != null) {@Html.ActionLink("編輯", "Edit","GroupActivity", new {  id=item.FGroupActivityId },new{@class="btn btn-success"})}
+                        @*@Html.DisplayFor(modelItem => item.FGroupActivityId)*@
+                        @ViewBag.joinGroupActivity[count].FClassName
+                        <input type="hidden" value="@item.FGroupActivityId" name="gaName" id="gaID" />
+                    </td>
+                    @*<td>
+            @Html.DisplayFor(modelItem => item.FResidentId)
+            </td>*@
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FEmotions)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FParticipatePersistence)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FCooperate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FHumanInteraction)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FAttention)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FParticipatePerformance)
+                    </td>
+                    @*<td>
+            @Html.DisplayFor(modelItem => item.FDepiction)
+            </td>*@
+                    <td>
+                        <input type="button" id="groupActivityDetailButton-@ViewBag.joinGroupActivity[count].FGroupActivityId" class="btn btn-primary" value="詳細" data-bs-toggle="modal" data-bs-target="#exampleModal-@ViewBag.joinGroupActivity[count].FGroupActivityId" />
+                        @*@Html.ActionLink("Details", "Details", new {  id=item.  }) *@
+                    </td>
+                </tr>
+
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal-@ViewBag.joinGroupActivity[count].FGroupActivityId" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">活動詳細</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <label >日期</label>             <input type="text" class="form-control" id="FDateModalID" value="@ViewBag.joinGroupActivity[count].FDate" readonly />
+                                <div class="row">
+                                    <div class="col">
+                                        <label >開始時間</label>    <input type="text" class="form-control" id="FStartTimeModalID" value="@ViewBag.joinGroupActivity[count].FStartTime" readonly />
+                                    </div>
+                                    <div class="col">
+                                        <label >結束時間</label>    <input type="text" class="form-control" id="FEndTimeModalID" value="@ViewBag.joinGroupActivity[count].FEndTime" readonly />
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <label >團體名稱</label>    <input type="text" class="form-control" id="FGroupNameModalID" value="@ViewBag.joinGroupActivity[count].FGroupName" readonly />
+                                    </div>
+                                    <div class="col">
+                                        <label >課程名稱</label>    <input type="text" class="form-control" id="FClassNameModalID" value="@ViewBag.joinGroupActivity[count].FClassName" readonly />
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <label >團體目的</label>    <input type="text" class="form-control" id="FGoalModalID" value="@ViewBag.joinGroupActivity[count].FGoal" readonly />
+                                    </div>
+                                    <div class="col">
+                                        <label >地點</label>             <input type="text" class="form-control" id="FLocationModalID" value="@ViewBag.joinGroupActivity[count].FLocation" readonly />
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <label >團體人數</label>    <input type="text" class="form-control" id="FPeopleCountModalID" value="@ViewBag.joinGroupActivity[count].FPeopleCount" readonly />
+                                    </div>
+                                    <div class="col">
+                                        <label >團體領導</label>    <input type="text" class="form-control" id="FLeaderModalID" value="@ViewBag.joinGroupActivity[count].FLeader" readonly />
+                                    </div>
+                                </div>
+
+                                <label>活動中過程摘要</label>    <textarea type="text" class="form-control" id="FProcessModalID"  readonly>@ViewBag.joinGroupActivity[count].FProcess</textarea>
+                                <label>活動的成果簡述</label>    <textarea type="text" class="form-control" id="FAchievementModalID"  readonly>@ViewBag.joinGroupActivity[count].FAchievement</textarea>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                count++;
+            }
+        }
+    </tbody>
+</table>
+
+
+
+@section Scripts{
+    <script>
+
+
+
+
+    </script>
+}
