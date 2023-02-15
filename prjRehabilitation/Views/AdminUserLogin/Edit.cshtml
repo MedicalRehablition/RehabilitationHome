@@ -21,11 +21,11 @@
                         @{
                             if (Model.Fphoto != null)
                             {
-                            <img class="rounded-circle border border-primary img" src="~/images/@Model.Fphoto" alt="Admin" width="300" height="300" />
+                            <img class="rounded-circle border border-primary Aimg" src="~/images/@Model.Fphoto" alt="Admin" width="300" height="300" />
                             }
                             else
                             {
-                             <img class="rounded-circle border border-primary img" src="~/images/imageDefault.png" width="300" height="300" />
+                             <img class="rounded-circle border border-primary Aimg" src="~/images/imageDefault.png" width="300" height="300" />
                             }
                         }
                     </div>
@@ -147,7 +147,7 @@
             const file = this.files[0];
             const objURL = URL.createObjectURL(file);
             console.log(this);
-            $('.img').attr('src', objURL);
+            $('.Aimg').attr('src', objURL);
         });
         async function Edit(){
             
