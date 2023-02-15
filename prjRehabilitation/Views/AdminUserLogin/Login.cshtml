@@ -45,73 +45,60 @@
     }
 </style>
 
-<h1>登入系統</h1>
-<div class="alert-autocloseable-warning" id="shippingmsgbox" hidden >
+
+<div class="alert-autocloseable-warning" id="shippingmsgbox" hidden>
     <div class="alert-autocloseable-warning" id="shippingmsgText">
     </div>
 </div>
-<form asp-action="Login" name="userLogin">
-    <!-- Email input -->
-    <div class="form-group mb-4">
-        <label class="form-label" for="form2Example1" style="
-               font-size: xxx-large;">電子信箱:</label>
-        <input type="email" id="txtAccount" class="form-control" placeholder="Enter email" name="txtAccount" style="
-               font-size: xx-large;"/>
-        <div id="div1"></div>
-    </div>
+<section class="vh-100">
+    <div class="container py-5 h-100">
+        <div class="row d-flex align-items-center justify-content-center h-100">
+            <div class="col-md-8 col-lg-7 col-xl-6">
+                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.svg"
+                     class="img-fluid" alt="Phone image">
+            </div>
+            <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
+                <form asp-action="Login" name="userLogin">
+                    <!-- Email input -->
+                    <div class="form-outline mb-4">
+                        <input type="email" id="txtAccount" class="form-control form-control-lg" placeholder="Enter email" name="txtAccount" />
+                        <label class="form-label" for="txtAccount">Email電子信箱</label>
+                    </div>
 
-    <!-- Password input -->
-    <div class="form-outline mb-4">
-        <label class="form-label" for="form2Example2" style="
-               font-size: xxx-large;">密碼:</label>
-        <input type="password" id="txtPassword" class="form-control" placeholder="Enter Password" name="txtPassword" style="
-               font-size: xx-large;" />
-        <div id="div2"></div>
-    </div>
-    <div id="show"></div>
-    <!-- 2 column grid layout for inline styling -->
-    <div class="row mb-4">
-        <div class="col d-flex justify-content-center">
-            <!-- Checkbox -->
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="form2Example31" checked />
-                <label class="form-check-label" for="form2Example31"> Remember me </label>
+                    <!-- Password input -->
+                    <div class="form-outline mb-4">
+                        <input type="password" id="txtPassword" class="form-control form-control-lg" name="txtPassword" />
+                        <label class="form-label" for="txtPassword">密碼</label>
+                    </div>
+
+                    <div class="d-flex justify-content-around align-items-center mb-4">
+                        <!-- Checkbox -->
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="form1Example3" checked />
+                            <label class="form-check-label" for="form1Example3"> Remember me </label>
+                        </div>
+                        <a asp-controller="AdminUserLogin" asp-action="ForgetPassword">忘記密碼?</a>
+                    </div>
+
+                    <!-- Submit button -->
+                    <button type="button" class="btn btn-primary btn-lg btn-block" id="logbtn">登入</button>
+
+                    <div class="divider d-flex align-items-center my-4">
+                        <p class="text-center fw-bold mx-3 mb-0 text-muted">OR</p>
+                    </div>
+                    <div class="divider d-flex align-items-center my-4">
+                        <a asp-action="Register">點我註冊</a>
+                    </div>
+                    <a class="btn btn-primary btn-lg btn-block" style="background-color: #dd4b39" href="#!"
+                       role="button">
+                        <i class="fab fa-google me-2"></i>Continue with Google
+                    </a>
+
+                </form>
             </div>
         </div>
-
-        <div class="col">
-            <!-- Simple link -->
-            <a class="nav-link text-dark" asp-area="" asp-controller="AdminUserLogin" asp-action="ForgetPassword">忘記密碼</a>
-        </div>
     </div>
-
-    <!-- Submit button -->
-    <input type="button" class="btn btn-primary btn-block mb-4" id="logbtn" value="登入"></input>
-
-    <!-- Register buttons -->
-    <div class="text-center">
-        <a asp-action="Register">點我註冊</a>
-        <p>or sign up with:</p>
-        <a class=" text-white" style="background-color: #3b5998;" href="#!" role="button">
-            <i class="fab fa-facebook"></i>
-        </a>
-
-        <a class=" text-white" style="background-color: #dd4b39;" href="#!" role="button">
-            <i class="fab fa-google"></i>
-        </a>
-
-        <a class=" text-white" style="background-color: #55acee;" href="#!" role="button">
-            <i class="fab fa-twitter"></i>
-        </a>
-
-        <a class=" text-white" style="background-color: #ac2bac;" href="#!" role="button">
-            <i class="fab fa-github"></i>
-        </a>
-        <a class=" text-white" style="background-color: #ec4a89;" href="#!" role="button">
-            <i class="fab fa-instagram"></i>
-        </a>
-    </div>
-</form>
+</section>
 @section Scripts{
     <script>
         let logbtn = document.querySelector("#logbtn");
@@ -145,25 +132,25 @@
                 //    $('.alert-autocloseable-warning').attr("hidden", true);
                 //    $('.alert-autocloseable-warning').removeAttr("style");
                 //});
-                if (xhr.responseText == "無此帳號,請重新登入"){
+                if (xhr.responseText == "無此帳號,請重新登入") {
                     $('.alert-autocloseable-warning').attr("hidden", false);
                     $('.alert-autocloseable-warning').delay(30000).fadeOut("slow", function () {
                         $('.alert-autocloseable-warning').attr("hidden", true);
                         $('.alert-autocloseable-warning').removeAttr("style");
                     });
-                     $('#shippingmsgText').text(xhr.responseText);
+                    $('#shippingmsgText').text(xhr.responseText);
                 }
-                else if (xhr.responseText == "密碼錯誤"){
+                else if (xhr.responseText == "密碼錯誤") {
                     $('.alert-autocloseable-warning').attr("hidden", false);
                     $('.alert-autocloseable-warning').delay(2000).fadeOut("slow", function () {
                         $('.alert-autocloseable-warning').attr("hidden", true);
                         $('.alert-autocloseable-warning').removeAttr("style");
                     });
-                     $('#shippingmsgText').text(xhr.responseText);
-                }
-                else{
                     $('#shippingmsgText').text(xhr.responseText);
-                window.location.href = "/AdminUserLogin/List";
+                }
+                else {
+                    $('#shippingmsgText').text(xhr.responseText);
+                    window.location.href = "/AdminUserLogin/List";
                 }
             })
             const Data = new FormData(document.userLogin);
