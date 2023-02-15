@@ -17,32 +17,68 @@ namespace prjRehabilitation.Controllers
         {
             _environment = environment;
         }
-        
+
         //show出員工名單
         public IActionResult List(CKeywordViewModel vm)
         {
-            dbClassContext db = new dbClassContext();
-            string keyword = vm.txtKeyword;
-            IEnumerable<Admin> data = null;
-            if(keyword == null)
+            //dbClassContext db = new dbClassContext();
+            //string keyword = vm.txtKeyword;
+            //IEnumerable<Admin> data = null;
+            //if(keyword == null)
+            //{
+            //    data = from c in db.Admins
+            //           select c;
+            //}
+            //else
+            //{
+            //    data = db.Admins.Where(c=>c.FName.Contains(keyword)).ToList();
+            //}
+            //List<CAdminViewModel> List = new List<CAdminViewModel>();
+            //foreach(var c in data)
+            //{
+            //    CAdminViewModel a  = new CAdminViewModel();
+            //    a.admin = c;
+            //    List.Add(a);
+
+            //}
+            //return View(List);
+            string json = HttpContext.Session.GetString(CDictionary.SK_ADMIN_User);//得到工作人員的session
+            if (json != null)
             {
-                data = from c in db.Admins
-                       select c;
-            }
-            else
-            {
-                data = db.Admins.Where(c=>c.FName.Contains(keyword)).ToList();
-            }
-            List<CAdminViewModel> List = new List<CAdminViewModel>();
-            foreach(var c in data)
-            {
-                CAdminViewModel a  = new CAdminViewModel();
-                a.admin = c;
-                List.Add(a);
-                
-            }
-            return View(List);
+                Admin admin = JsonSerializer.Deserialize<Admin>(json);
+                string rank = admin.FRank; //看是誰進來
+                ViewBag.ank = rank;
+                dbClassContext db = new dbClassContext();
+                string keyword = vm.txtKeyword;
+                IEnumerable<Admin> data = null;
+                if (rank == "經理")
+                {
+                    if (keyword == null)
+                    {
+                        data = from c in db.Admins
+                               select c;
+                    }
+                    else
+                    {
+                        data = db.Admins.Where(c => c.FName.Contains(keyword)).ToList();
+                    }
+                }
+                else
+                {
+                    data = db.Admins.Where(c => c.Fid == admin.Fid).ToList();
+                }
+                List<CAdminViewModel> List = new List<CAdminViewModel>();
+                foreach (var c in data)
+                {
+                    CAdminViewModel a = new CAdminViewModel();
+                    a.admin = c;
+                    List.Add(a);
+                }
+                return View(List);
+            };
+            return View("Login", "AdminUserLogin");
         }
+    
        
         //登入寫入Session
         public IActionResult Login()
