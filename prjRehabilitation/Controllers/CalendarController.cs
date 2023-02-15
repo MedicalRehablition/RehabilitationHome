@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using NuGet.Frameworks;
 using NuGet.Protocol;
 using prjRehabilitation.Controllers.Api;
 using prjRehabilitation.Models;
@@ -184,9 +185,9 @@ namespace prjRehabilitation.Controllers
             ccvmAV.title = db.PatientInfos.FirstOrDefault(_ => _.FCustomerid == getCustomerIfSession().Fid).FName+ "的會客";
 
             ccvmAV.FApplyVisitor = false;
-
+            ccvmAV.dateColor = "Chocolate";
             ccvmAV.FVisualHierarchy = 1;    //初步將可視等級為1免得不打會0大家都看的到
-            ccvmAV.className = "genric-btn warning circle arrow";
+            ccvmAV.className = "genric-btn warning circle arrow small";
 
 
             db.Add(ccvmAV.calendar);
@@ -209,7 +210,7 @@ namespace prjRehabilitation.Controllers
             {
                 ViewBag.getAdminSection = HttpContext.Session.GetString(CDictionary.SK_ADMIN_User);
             }
-            return View(viewModelForList.OrderByDescending(_ => _.fRecorderDate));
+            return View(viewModelForList.OrderByDescending(_ => _.FId));
         }
         public IActionResult CalendarApplyVisitorAdminCreate()
         {
@@ -221,9 +222,10 @@ namespace prjRehabilitation.Controllers
                 FAdminId = getAdminIfSession().Fid,
             };
 
-            IQueryable<PatientInfo> getFormDB = db.PatientInfos.Where(_ => _.Status == true);
+			List<PatientInfo> getFormDB = db.PatientInfos.Where(_ => _.Status == true).Where(_=>_.FCustomerid >0).ToList();
+            List<PatientInfo> AfterDis = getFormDB.DistinctBy(_=>_.FCustomerid).ToList();
             ccvm.getAllResidentAndCustomerIDList = new Dictionary<int, string>();
-            foreach (PatientInfo? item in getFormDB)
+            foreach (PatientInfo? item in AfterDis)
             {
                 ccvm.getAllResidentAndCustomerIDList.Add( Convert.ToInt32( item.FCustomerid), item.FName  );
             }
@@ -238,7 +240,8 @@ namespace prjRehabilitation.Controllers
             ccvmPost.eventName = "申請會客(後端)";
             ccvmPost.FApplyVisitor = false;
             ccvmPost.FDeleteBool = true;
-            ccvmPost.className = "genric-btn warning circle arrow";
+            ccvmPost.dateColor = "Chocolate";
+            ccvmPost.className = "genric-btn warning circle arrow small";
             ccvmPost.title = db.PatientInfos.FirstOrDefault(_ => _.FCustomerid == ccvmPost.FCustomerid).FName + "的會面";
             db.TCalendars.Add(ccvmPost.calendar);
             db.SaveChanges();
@@ -260,8 +263,8 @@ namespace prjRehabilitation.Controllers
 
             dbClassContext db = new dbClassContext();
             ccvm.FApplyVisitor = Convert.ToBoolean( hiddenTF);
-            if ((bool)ccvm.FApplyVisitor) { ccvm.className = "genric-btn info circle arrow"; }
-            else { ccvm.className = "genric-btn warning circle arrow"; }
+            if ((bool)ccvm.FApplyVisitor) { ccvm.className = "genric-btn info circle arrow small"; }
+            else { ccvm.className = "genric-btn warning circle arrow small"; }
             db.Update(ccvm.calendar);
             db.SaveChanges();
             return RedirectToAction("CalendarApplyCensorList");
