@@ -31,32 +31,16 @@
                     var base64 = Convert.ToBase64String(item.fphoto);
                     imgSrc = String.Format("data:image/gif;base64,{0}", base64);
                 }
-                //<div class="card mt-3 border-primary text-primary w-auto" style="margin:1em">
-                //    @if (!string.IsNullOrEmpty(imgSrc))
-                //    {
-                //        <img class="card-img-top" src="@imgSrc" alt="顯示錯誤" width="100" height="100" />
-                //    }
-                //    else
-                //    {
-                //        <img class="card-img-top" src="~/images/imageDefault.png" width="100" height="100" />
-                //    }
-                //    <div class="card-body">
-                //        <h5 class="card-title">@item.fName</h5>
-                //        <p class="card-text col">
-                //            <button class="btn  btn-primary " onclick="showiframe(event)" id="@item.fid">編輯</button>
-                //            @Html.ActionLink("刪除", "Delete", new { id=item.fid },new { @class="btn btn-danger",onclick = "return confirm('是否刪除?')"})
-                //        </p>
-                //    </div>
-                //</div>
+
                 <div class="col-lg-3 col-md-6 col-12 mt-4 pt-2">
                     <div class="team text-center rounded p-3 py-4">
                         @if (!string.IsNullOrEmpty(imgSrc))
                         {
-                            <img class="img-fluid avatar avatar-medium shadow rounded-pill" src="@imgSrc" alt="顯示錯誤" width="200px" height="200px" />
+                            <img class="img-fluid avatar avatar-medium shadow rounded-pill" src="@imgSrc" alt="顯示錯誤" width="200" height="200" />
                         }
                         else
                         {
-                            <img class="img-fluid avatar avatar-medium shadow rounded-pill" src="~/images/imageDefault.png" width="200px" height="200px" />
+                            <img class="img-fluid avatar avatar-medium shadow rounded-pill" src="~/images/imageDefault.png" width="200" height="200" />
                         }
                         <div class="content mt-3">
                             <h4 class="title mb-0">@Html.DisplayFor(modelItem=>item.fName)</h4>

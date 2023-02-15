@@ -12,15 +12,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="Models\Product\Cart.cshtml" />
-    <None Include="Models\Product\Create.cshtml" />
-    <None Include="Models\Product\CreateOrder.cshtml" />
-    <None Include="Models\Product\Edit.cshtml" />
-    <None Include="Models\Product\GetOrderInfo.cshtml" />
-    <None Include="Models\Product\List.cshtml" />
-    <None Include="Models\Product\List_B.cshtml" />
-    <None Include="Models\Product\orders.cshtml" />
-    <None Include="Models\Product\pay.cshtml" />
     <None Include="Views\ChatBot\Index.cshtml" />
     <None Include="Views\ECPay\CallbackCustomer.cshtml" />
     <None Include="Views\ECPay\CallbackReturn.cshtml" />
@@ -33,13 +24,11 @@
     <None Include="Views\Forum\OfficialPost.cshtml" />
     <None Include="Views\Forum\PostDetail.cshtml" />
     <None Include="Views\Forum\PostEdit.cshtml" />
-    <None Include="Views\Patients\Create_F.cshtml" />
     <None Include="Views\Patients\Edit.cshtml" />
     <None Include="Views\Patients\Empty.cshtml" />
     <None Include="Views\Patients\form.cshtml" />
     <None Include="Views\Patients\layout.cshtml" />
     <None Include="Views\Patients\List.cshtml" />
-    <None Include="Views\Patients\patients.cshtml" />
     <None Include="Views\Product\Cart.cshtml" />
     <None Include="Views\Product\Create.cshtml" />
     <None Include="Views\Product\CreateOrder.cshtml" />
@@ -47,6 +36,7 @@
     <None Include="Views\Product\GetOrderInfo.cshtml" />
     <None Include="Views\Product\List.cshtml" />
     <None Include="Views\Product\List_B.cshtml" />
+    <None Include="Views\Product\ok.cshtml" />
     <None Include="Views\Product\orders.cshtml" />
     <None Include="Views\Product\pay.cshtml" />
   </ItemGroup>

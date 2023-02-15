@@ -115,7 +115,7 @@
                         <!-- Logo -->
                         <div class="col-xl-2 col-lg-2 col-md-1">
                             <div class="logo">
-                                <a asp-controller="Home" asp-action="index"><img src="~/img/logo/logo.png" alt=""></a>
+                                <a asp-controller="Home" asp-action="index"><img src="~/img/logo/careBIG.png" alt=""></a>
                             </div>
                         </div>
                         <div class="col-xl-10 col-lg-10 col-md-10">
@@ -161,7 +161,7 @@
                                                         <a class="nav-link text-dark" asp-area="" asp-controller="Consult" asp-action="List">會談紀錄</a>
                                                     </li>
                                                     <li>
-                                                        <a class="nav-link text-dark" asp-area="" asp-controller="GroupActivity" asp-action="List">活動紀錄</a>
+                                                        <a class="nav-link text-dark" asp-area="" asp-controller="GroupActivityForCustomer" asp-action="List">活動紀錄</a>
                                                     </li>
                                                 </ul>
                                             </li>
@@ -206,7 +206,7 @@
     </header>
     
     @await RenderSectionAsync("DeadCessTitle", required: false);
-    <div class="alert-autocloseable-warning" id="shippingmsgbox" hidden>
+    <div class="alert-autocloseable-warning" id="shippingmsgbox" hidden role="alert">
         <div class="alert-autocloseable-warning" id="shippingmsgText">
         </div>
     </div>
@@ -390,7 +390,6 @@
                         $('.alert-autocloseable-warning').removeAttr("style");
                     });
                     $('#shippingmsgText').text("無此使用者或輸入錯誤");
-                    alert("無此使用者或輸入錯誤");
                 }
                 else if (User == "1") {
                     $('.alert-autocloseable-warning').attr("hidden", false);

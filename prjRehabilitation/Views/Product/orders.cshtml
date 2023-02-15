@@ -35,10 +35,9 @@
                 <tr id="order @item.Fid">
                     <td>
                         @item.FOrderId
+                        <input type="hidden" id="@item.Fid+name" value="@item.FName">
                     </td>
-
                     <td><span class="text-dark">@item.FDate</span></td>
-                 
                     <td><span class="text-dark">@item.FEmail</span></td>
                     <td><span class="text-dark">@item.FAddress</span></td>
                     <td><span class="text-dark">是</span></td>
@@ -55,7 +54,7 @@
                         {
                             @Html.ActionLink("出貨","ship","Product",new{ id =item.Fid, email=item.FEmail },new {@class="btn btn-outline-primary"})
                     }
-                        <button type="button" class="btn btn-outline-info" onclick="getOrderDetail(`@item.FOrderId`)" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        <button type="button" class="btn btn-outline-info" onclick="getOrderDetail(`@item.FOrderId`,`@item.Fid`)" data-bs-toggle="modal" data-bs-target="#exampleModal">
                             檢視訂單
                         </button>
                     </td>
@@ -85,26 +84,30 @@
 
 @section Scripts{
     <script>
-        async function getOrderDetail(id){
+        async function getOrderDetail(id,fid){
             console.log("讀取中:" + id);
             $("#div_detail").html("展開中．．．");
+            const b_name =document.getElementById(`${fid}+name`).value;
+            var html_name = `<p class="align-content-xl-start" > <span class="text-dark" >買家姓名：${b_name}</span></p >
+                                                    <p class="align-content-xl-start" > <span class="text-dark" >訂購商品：</span></p >
+            `;
 
             const response = await fetch(`@Url.Content("~/Product/GetOrderDetail?id=${id}")`);
             const data = await response.json();
             var count = 0;
-
-            var html = data.map(x => {
+            var html= data.map(x => {
                             count++;
                             const name = x.fProductName;
                             const qty = x.fQty 
 
+
                             return `
-                                                            <p class="align-content-xl-start"><span class="text-dark">${name}   *${qty}</span></p>
+                                                <p class="align-content-xl-start"><span class="text-dark">　　${name}   *${qty}</span></p>
                                            `;
                             }
                         );
                     
-            $("#div_detail").html(html.join(""));
+            $("#div_detail").html(html_name+html.join(""));
         }
 
 

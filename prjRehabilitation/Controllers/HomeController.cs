@@ -54,7 +54,7 @@ namespace prjRehabilitation.Controllers
                     return RedirectToAction("Index");
                 }
             }
-            
+
             return View();
         }
         public IActionResult PartialLogin()
@@ -78,7 +78,7 @@ namespace prjRehabilitation.Controllers
             string beforePassword = customer.FPassword;//加密前密碼
             using (var cryptoMD5 = System.Security.Cryptography.MD5.Create())
             {
-               string afterPassword=beforePassword + "putSomeSalt";
+                string afterPassword = beforePassword + "putSomeSalt";
                 var bytes = Encoding.UTF8.GetBytes(afterPassword);
                 var hash = cryptoMD5.ComputeHash(bytes);
                 var md5 = BitConverter.ToString(hash)
@@ -141,6 +141,27 @@ namespace prjRehabilitation.Controllers
             //db.SaveChanges();
             return RedirectToAction("index");
         }
-     
+        public IActionResult ResetPassword(CCustomerViewModel vm)
+        {
+            dbClassContext db = new dbClassContext();
+            Customer customer = db.Customers.FirstOrDefault(t => t.Fid == vm.Fid);
+            if (customer != null)
+            {
+                if (vm.photo != null)
+                {
+                    string photoName = Guid.NewGuid().ToString() + ".jpg";
+                    string path = _environment.WebRootPath + "/images/" + photoName;
+                    customer.FPicture = photoName;
+                    vm.photo.CopyTo(new FileStream(path, FileMode.Create));
+                }
+                customer.Fid = vm.Fid;
+                customer.FAddress = vm.FAddress;
+                customer.FName = vm.FName;
+                customer.FPhone = vm.FPhone;
+                customer.FPassword = vm.FPassword;
+                db.SaveChanges();
+            }
+            return RedirectToAction("Index");
+        }
     }
 }

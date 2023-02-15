@@ -19,6 +19,10 @@ namespace prjRehabilitation.Controllers
         {
             _environment = environment;
         }
+        public IActionResult ok()
+        {
+            return View();
+        }
         public IActionResult pay()
         {
             return View();
@@ -47,16 +51,8 @@ namespace prjRehabilitation.Controllers
         public IActionResult CreateOrder(VMOrder vm)
         {
 			string json;
-			VMCart cart = new VMCart();
-            try
-            {
-				HttpContext.Request.Cookies.TryGetValue(CDictionary.SK_Purchased_Products_List, out json);
-				cart = JsonSerializer.Deserialize<VMCart>(json);
-			}
-            catch
-            {
-				return Json(new { outcome = "錯誤:未建立購物車" });
-			}
+            HttpContext.Request.Cookies.TryGetValue(CDictionary.SK_Purchased_Products_List, out json);
+            VMCart cart = JsonSerializer.Deserialize<VMCart>(json);
 
             (new ProductCRUD()).createOrder(vm, cart);
             string title = "【通知】關心康復之家已收到您的訂單";
@@ -176,7 +172,8 @@ namespace prjRehabilitation.Controllers
         }
         public IActionResult Cart()
         {
-			string json;
+            CartToPurchase();
+            string json;
 			VMCart cart = null;
 			if (HttpContext.Request.Cookies.TryGetValue(CDictionary.SK_Cart_Products_List, out json))
 			{
@@ -184,7 +181,7 @@ namespace prjRehabilitation.Controllers
 			}
 			else
 			{
-				return RedirectToAction("List_B");
+				return RedirectToAction("List");
 			}
 			return View((new ProductCRUD()).GetCartItems(cart));
         }

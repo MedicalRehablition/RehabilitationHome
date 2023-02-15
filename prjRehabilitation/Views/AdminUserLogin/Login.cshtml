@@ -46,7 +46,7 @@
 </style>
 
 <h1>登入系統</h1>
-<div class="alert-autocloseable-warning" id="shippingmsgbox" hidden>
+<div class="alert-autocloseable-warning" id="shippingmsgbox" hidden >
     <div class="alert-autocloseable-warning" id="shippingmsgText">
     </div>
 </div>
@@ -86,7 +86,7 @@
     </div>
 
     <!-- Submit button -->
-    <input type="submit" class="btn btn-primary btn-block mb-4" id="logbtn" value="登入"></input>
+    <input type="button" class="btn btn-primary btn-block mb-4" id="logbtn" value="登入"></input>
 
     <!-- Register buttons -->
     <div class="text-center">
@@ -136,15 +136,35 @@
 
 
         logbtn.addEventListener("click", function (event) {
+            debugger
             //event.preventDefault();
             let xhr = new XMLHttpRequest();
             xhr.addEventListener("load", function () {
-                $('.alert-autocloseable-warning').attr("hidden", false);
-                $('.alert-autocloseable-warning').delay(200000).fadeOut("slow", function () {
-                    $('.alert-autocloseable-warning').attr("hidden", true);
-                    $('.alert-autocloseable-warning').removeAttr("style");
-                });
-                $('#shippingmsgText').text(xhr.responseText);
+                //$('.alert-autocloseable-warning').attr("hidden", false);
+                //$('.alert-autocloseable-warning').delay(200000).fadeOut("slow", function () {
+                //    $('.alert-autocloseable-warning').attr("hidden", true);
+                //    $('.alert-autocloseable-warning').removeAttr("style");
+                //});
+                if (xhr.responseText == "無此帳號,請重新登入"){
+                    $('.alert-autocloseable-warning').attr("hidden", false);
+                    $('.alert-autocloseable-warning').delay(30000).fadeOut("slow", function () {
+                        $('.alert-autocloseable-warning').attr("hidden", true);
+                        $('.alert-autocloseable-warning').removeAttr("style");
+                    });
+                     $('#shippingmsgText').text(xhr.responseText);
+                }
+                else if (xhr.responseText == "密碼錯誤"){
+                    $('.alert-autocloseable-warning').attr("hidden", false);
+                    $('.alert-autocloseable-warning').delay(2000).fadeOut("slow", function () {
+                        $('.alert-autocloseable-warning').attr("hidden", true);
+                        $('.alert-autocloseable-warning').removeAttr("style");
+                    });
+                     $('#shippingmsgText').text(xhr.responseText);
+                }
+                else{
+                    $('#shippingmsgText').text(xhr.responseText);
+                window.location.href = "/AdminUserLogin/List";
+                }
             })
             const Data = new FormData(document.userLogin);
             xhr.open("POST", "@Url.Content("/AdminUserLogin/ExistAccount")");

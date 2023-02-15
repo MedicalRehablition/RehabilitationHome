@@ -1,0 +1,487 @@
+﻿@using prjRehabilitation.ViewModel.Eric
+@model CGroupActivityEditViewModel
+
+@{
+    ViewData["Title"] = "Edit";
+    //DateTime dd = new DateTime(Convert.ToInt32(Model.cgavm.FDate.Split('-')[0]), Convert.ToInt32(Model.cgavm.FDate.Split('-')[1]), Convert.ToInt32(Model.cgavm.FDate.Split('-')[2]));  //只有-才讀的到的血淚史，之前用斜線讀不到還要這樣拆，用-就不用了(其實單引號裡的是/，因為… 很長不打了)
+    Layout = "AdminLayout";
+}
+
+@section Styles{
+    <style>
+        .form-control {
+            height: auto;
+        }
+
+        .card > .card-body > .row * {
+            margin: 2px 0px;
+        }
+
+        body, .small, .badge {
+            font-size: 1rem; /*解開束縛而已*/
+        }
+    </style>
+}
+
+
+<h1>活動記錄</h1>
+
+<h4 id="demoPress">新增</h4>
+<hr />
+<div class="row">
+    <div class="col">
+        <form asp-action="Create" enctype="multipart/form-data" method="post" name="formData">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            
+
+            <div class="form-group">
+                <label asp-for="cgavm.FEventType" class="control-label"></label>
+                <select asp-for="cgavm.FEventType" asp-items="@(new SelectList(Model.GroupActivityType))" class="form-control form-select shadow-none  border-top col-md-6"></select>
+                <span asp-validation-for="cgavm.FEventType" class="text-danger"></span>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label asp-for="cgavm.FDate" class="control-label"></label>
+                        <input asp-for="cgavm.FDate" type="date" id="formDate" class="form-control" name="cgavm.FDate" />
+                        <span asp-validation-for="cgavm.FDate" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="cgavm.FStartTime" class="control-label"></label>
+                        <input type="time" asp-for="cgavm.FStartTime" id="startTime" class="form-control" />
+                        <span asp-validation-for="cgavm.FStartTime" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="cgavm.FEndTime" class="control-label"></label>
+                        <input type="time" asp-for="cgavm.FEndTime" id="endTime" class="form-control" />
+                        <span asp-validation-for="cgavm.FEndTime" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="cgavm.FGroupName" class="control-label"></label>
+                        <input asp-for="cgavm.FGroupName" id="groupName" class="form-control" />
+                        <span asp-validation-for="cgavm.FGroupName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="cgavm.FClassName" class="control-label"></label>
+                        <input asp-for="cgavm.FClassName" id="className" class="form-control" />
+                        <span asp-validation-for="cgavm.FClassName" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class=" form-group p-2" id="EventType" style="border-radius: 10px; background-color:gray;"></div>
+                    <i id="classThemeAdd" class="fa fa-plus-circle" style="font-size:24px;color:darkgreen"></i>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="cgavm.FGoal" class="control-label"></label>
+                <input asp-for="cgavm.FGoal" id="goal" class="form-control" />
+                <span asp-validation-for="cgavm.FGoal" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="cgavm.FLocation" class="control-label"></label>
+                <input asp-for="cgavm.FLocation" id="location" class="form-control" />
+                <span asp-validation-for="cgavm.FLocation" class="text-danger"></span>
+            </div>
+            <div class="row">
+                <div class="form-group col-4">
+                    <label asp-for="cgavm.FPeopleCount" class="control-label"></label>
+                    <input asp-for="cgavm.FPeopleCount" id="peopleCount" class="form-control" />
+                    <span asp-validation-for="cgavm.FPeopleCount" class="text-danger"></span>
+                </div>
+                <div class="form-group  col-4">
+                    <label asp-for="cgavm.FLeader" class="control-label"></label>
+                    <input asp-for="cgavm.FLeader" class="form-control" readonly />
+                    <span asp-validation-for="cgavm.FLeader" class="text-danger"></span>
+                </div>
+                <div class="form-group  col-4">
+                    <label asp-for="cgavm.FRecorder" class="control-label"></label>
+                    <input asp-for="cgavm.FRecorder" class="form-control" readonly />
+                    <span asp-validation-for="cgavm.FRecorder" class="text-danger"></span>
+                </div>
+            </div>
+            <label asp-for="cgavm.TScheduleDetails" class="control-label"></label>
+            <div class=" mt-3 form-group form-control" id="TScheduleDetails" style=" background-color:gray; "></div>
+            <i id="ScheduleDetailAdd" class="fa fa-plus-circle p-2" style="font-size:24px;color:darkgreen;background-color:lightblue;border-bottom-right-radius:15px"></i>
+            <div class="form-group">
+                <label asp-for="cgavm.FProcess" class="control-label"></label>
+                <textarea asp-for="cgavm.FProcess" class="form-control" style="height:250px"></textarea>
+                <span asp-validation-for="cgavm.FProcess" class="text-danger"></span>
+            </div>
+            <div class="row gallery-item p-2" style=" background-color:gray;">
+                <div class="col-md-3">
+
+                    <div class="mb-3">
+                        <label for="formFile" class="form-label">圖片一</label>
+                        <input class="form-control" type="file" accept=".jpg,.gif,.png" id="formFile1" name="FPicture1">
+                    </div>
+                    <a href="" class="img-pop-up">
+                        
+                            <img id="formFile1Pic" name="" src="" style="width:100%" />
+                        
+
+                    </a>
+
+                </div>
+                <div class="col-md-3">
+                    <div class="mb-3">
+                        <label for="formFile" class="form-label">圖片二</label>
+                        <input class="form-control" type="file" accept=".jpg,.gif,.png" id="formFile2" name="FPicture2">
+                    </div>
+                    <a href="" class="img-pop-up">
+                   
+                            <img id="formFile2Pic" name="" src="" style="width:100%" />
+                        
+
+                    </a>
+                </div>
+                <div class="col-md-3">
+                    <div class="mb-3">
+                        <label for="formFile" class="form-label">圖片三</label>
+                        <input class="form-control" type="file" accept=".jpg,.gif,.png" id="formFile3" name="FPicture3">
+                    </div>
+                    <a href="" class="img-pop-up">
+                   
+                            <img id="formFile3Pic" name="" src="" style="width:100%" />
+                        
+
+                    </a>
+                </div>
+                <div class="col-md-3">
+                    <div class="mb-3">
+                        <label for="formFile" class="form-label">圖片四</label>
+                        <input class="form-control" type="file" accept=".jpg,.gif,.png" id="formFile4" name="FPicture4">
+                    </div>
+                    <a href="" class="img-pop-up">
+                
+                            <img id="formFile4Pic" name="" src="" style="width:100%" />
+                        
+
+                    </a>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="cgavm.FAchievement" class="control-label"></label>
+                <textarea asp-for="cgavm.FAchievement" class="form-control" style="height:250px"></textarea>
+                <span asp-validation-for="cgavm.FAchievement" class="text-danger"></span>
+            </div>
+
+            <label asp-for="cgavm.TPersonalPerformances" class="control-label">成員情緒表現</label>
+            <div class="row">
+                <div class="col-md-2">
+                    @*<i id="PerformanceAddPersonal" class="fa fa-plus fa-2x" aria-hidden="true"></i>*@
+
+                    <div  id="PersonalListPanel" class=" mt-3 form-group form-control" style=" background-color:gray;"></div>
+                </div>
+                <div class="col-md-10">
+                    <div class=" mt-3 form-group form-control" name="TPersonalPerformances" id="TPersonalPerformances" style=" background-color:gray;"></div>
+                </div>
+            </div>
+
+
+
+            <div class="row">
+                <div class="form-group col-sm">
+                    <label asp-for="cgavm.FFillFormStaff" class="control-label"></label>
+                    <input asp-for="cgavm.FFillFormStaff" class="form-control" readonly />
+                    <span asp-validation-for="cgavm.FFillFormStaff" class="text-danger"></span>
+                </div>
+                <div class="form-group col-sm">
+                    <label asp-for="cgavm.FFillFormDate" class="control-label"></label>
+                    <input type="date" asp-for="cgavm.FFillFormDate" class="form-control" readonly />
+                    <span asp-validation-for="cgavm.FFillFormDate" class="text-danger"></span>
+                </div>
+                @*        <div class="form-group col-sm-4">
+                <label class="control-label"> 修改日期</label>
+                <input class="form-control" type="date" value="@DateTime.Today.ToString("yyyy-MM-dd")" disabled="disabled" />
+
+                </div>*@
+
+            </div>
+            <br />
+            <div class="form-group">
+                <input type="submit" id="submitButtonForAjax" value="送出" class="btn btn-primary" />
+
+               
+            </div>
+        </form>
+    </div>
+</div>
+<br />
+<div>
+    <a asp-action="List">回列表</a>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="BootstrapModal1" tabindex="-1" aria-labelledby="BootstrapModal1Label" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="BootstrapModal1Label">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" id="checkModalBody">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+@section Scripts {
+
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+    <script>
+
+
+        var classThemeCount = 0;
+        var scheduleDetailsCount = 0;
+        var TPersonalPerformancesCount =0;
+        document.querySelector("#classThemeAdd").addEventListener("click", function () {
+
+            
+            document.querySelector("#EventType").insertAdjacentHTML("beforeend", `
+
+             <div class="row">
+                <div class="col">
+                                           <select class="mt-2  form-select shadow-none  border-top" id="ClassThemesEach_1_" name="cgavm.TGroupActivityClassThemes[${classThemeCount++}].FClassThemeId">
+                            <option selected="selected" value="1">衛生習慣  </option>
+                            <option value="2">居家清潔  </option>
+                            <option value="3">飲食起居  </option>
+                            <option value="4">認知能力  </option>
+                            <option value="5">體能表現  </option>
+                            <option value="6">人際互動  </option>
+                            <option value="7">烹飪能力  </option>
+                            <option value="8">休閒安排  </option>
+                            <option value="9">財務管理  </option>
+                            <option value="10">健康促進  </option>
+                   </select>
+               </div>
+               <div class="col-2" style="text-align: center;position: relative;   " onclick="this.parentElement.remove()">
+                   <i class="fas fa-minus-circle" style="font-size:24px;color:red;position: absolute;top: 50%; left: 50%;-ms-transform: translate(-50%, -50%);transform: translate(-50%, -50%);"></i>
+               </div>
+             </div>
+                            `)
+            
+        });
+
+        document.querySelector("#ScheduleDetailAdd").addEventListener("click", function () {
+
+            document.querySelector("#TScheduleDetails").insertAdjacentHTML("beforeend", `
+
+                    <ul class="list-group list-group-horizontal-md">
+                                                        <li class="list-group-item"><label>開始時間：</label><input type="time" id="startTime" name="cgavm.TScheduleDetails[${scheduleDetailsCount}].FStartTime"/></li>
+                                        <li class="list-group-item"><label>結束時間：</label><input type="time" id="endTime" name="cgavm.TScheduleDetails[${scheduleDetailsCount}].FEndTime"/></li>
+                                        <li class="list-group-item"><label>大綱說明：</label><input type="text" id="depiction" name="cgavm.TScheduleDetails[${scheduleDetailsCount}].FDepiction"/></li>
+                        <li class="list-group-item" style="border-radius:0px  20px 20px 0px" onclick="this.parentElement.remove()"><i class="fas fa-minus-circle" style="font-size:24px;color:red;position: relative;top: 50%; left: 50%;-ms-transform: translate(-50%, -50%);transform: translate(-50%, -50%);"></i></li>
+                    </ul>
+
+                    `);
+                    scheduleDetailsCount++;
+        });
+
+
+        for (var i = 1; i <= 4; i++) {
+
+            const getInput = $(`#formFile${i}`);
+            const getOutput = $(`#formFile${i}Pic`);
+
+            getInput.change(function () {
+
+                if (this.files && this.files[0]) {
+                    var reader = new FileReader();
+                    reader.onload = function (e) {
+                        getOutput.attr('src', e.target.result);
+
+                    }
+                    reader.readAsDataURL(this.files[0]);
+                }
+
+            });
+        }
+
+      
+
+        async function getResidentInPersonalPerformancesSelectPanel() {
+            const pplist = document.querySelector('#PersonalListPanel');
+            const response = await fetch(`@Url.Content("~/")GroupActivityAjax/getResident`);
+            const getResidentData = JSON.parse(await response.text());
+            for (let aa of getResidentData) {
+                pplist.insertAdjacentHTML("beforeend", `<input type="button" id="${aa.fid}" class="addintoR genric-btn info circle arrow  small mt-1 form-control" value="${aa.fName}">`)
+            }
+
+            const alladdintoRQuery = document.querySelectorAll('.addintoR');
+            for (let i = 0; i < alladdintoRQuery.length; i++) {
+                alladdintoRQuery[i].addEventListener("click", async function () {
+
+                    const response = await fetch(`@Url.Content("~/")GroupActivityAjax/CPersonalPerformancesPartialViewViewModelList`);
+                    const getResidentData = JSON.parse(JSON.parse(await response.text()));
+                    //console.log(this.id);
+                    document.querySelector("#TPersonalPerformances").insertAdjacentHTML("beforeend", `
+                                                                 <div class="card mt-1">
+                                                                    <div class="card-body">
+                                                                                <div class="row">
+                                                                                            <label class="h5 badge bg-primary rounded cardIDandName col" id="${this.id}">${this.value}</label>
+                                                                                            <input type="hidden" value="${this.id}" name="cgavm.TPersonalPerformances[${TPersonalPerformancesCount}].FResidentId" />
+                                                                                            <input type="button" id="${this.id}-removeCard" class="btn btn-danger col-1" value="刪除"/>
+                                                                                </div>
+                                                                                <div class="row " style="background-color:lightgray">
+                                                                            <div class="col-4">
+                                                                                <label class="badge bg-success rounded">表情情緒：</label><br />
+                                     <select id="${this.id}-comboxEmotions"  class="forPPdataE form-select shadow-none  border-top" name="cgavm.TPersonalPerformances[${TPersonalPerformancesCount}].FEmotions"></select>
+
+                                                                            </div>
+                                                                            <div class="col-4">
+                                                                                <label class="badge bg-success rounded">持續度：</label><br />
+                                   <select id="${this.id}-comboxParticipatePersistence"  class="forPPdataP form-select shadow-none  border-top" name="cgavm.TPersonalPerformances[${TPersonalPerformancesCount}].FParticipatePersistence"></select>
+
+                                                                            </div>
+                                                                            <div class="col-4">
+                                                                                <label class="badge bg-success rounded">配合度：</label><br />
+                                          <select id="${this.id}-comboxCooperate"  class="forPPdataC form-select shadow-none  border-top" name="cgavm.TPersonalPerformances[${TPersonalPerformancesCount}].FCooperate"></select>
+
+                                                                            </div>
+                                                                        </div>
+                                                                            <div class="row " style="background-color:lightgray">
+                                                                            <div class="col-4">
+                                                                                <label class="badge bg-success rounded">人際互動：</label><br />
+                                      <select id="${this.id}-comboxHumanInteraction"  class="forPPdataH form-select shadow-none  border-top" name="cgavm.TPersonalPerformances[${TPersonalPerformancesCount}].FHumanInteraction"></select>
+
+                                                                            </div>
+                                                                            <div class="col-4">
+                                                                                <label class="badge bg-success rounded">注意力：</label><br />
+                                                    <select id="${this.id}-comboxAttentionRes" class="forPPdataA form-select shadow-none  border-top" name="cgavm.TPersonalPerformances[${TPersonalPerformancesCount}].FAttention"></select>
+
+                                                                            </div>
+                                                                            <div class="col-4">
+                                                                                <label class="badge bg-success rounded">參與表現：</label><br />
+                                                      <select id="${this.id}-comboxParticipatePerformance" class="forPPdataPP form-select shadow-none  border-top" name="cgavm.TPersonalPerformances[${TPersonalPerformancesCount}].FParticipatePerformance"></select>
+
+                                                                            </div>
+                                                                        </div>
+                                                                                                        <div class="row"><label class="col-auto badge bg-success rounded ">備註：</label><br /><input type="text"  class="forPPdataD" id="${this.id}-Depiction" name="cgavm.TPersonalPerformances[${TPersonalPerformancesCount}].FDepiction"/></div>
+                                                                    </div>
+                                                                </div>
+
+                                                                            `);
+                    TPersonalPerformancesCount++;   //這邊只有在click時才會++，在製做時因為要for，所以下面要先歸0不然就會一直加。
+                    const comboxEmotionsID = document.getElementById(`${this.id}-comboxEmotions`);
+                    const comboxParticipatePersistenceID = document.getElementById(`${this.id}-comboxParticipatePersistence`);
+                    const comboxCooperateID = document.getElementById(`${this.id}-comboxCooperate`);
+                    const comboxHumanInteractionID = document.getElementById(`${this.id}-comboxHumanInteraction`);
+                    const comboxAttentionResID = document.getElementById(`${this.id}-comboxAttentionRes`);
+                    const comboxParticipatePerformanceID = document.getElementById(`${this.id}-comboxParticipatePerformance`);
+                    for (var comboxEmotionsItem of getResidentData[0]) {
+                        comboxEmotionsID.insertAdjacentHTML("beforeend", `<option value="${comboxEmotionsItem}">${comboxEmotionsItem}</option>`)
+                    }
+                    for (var comboxParticipatePersistenceItem of getResidentData[1]) {
+                        comboxParticipatePersistenceID.insertAdjacentHTML("beforeend", `<option value="${comboxParticipatePersistenceItem}">${comboxParticipatePersistenceItem}</option>`)
+                    }
+                    for (var comboxCooperateItem of getResidentData[2]) {
+                        comboxCooperateID.insertAdjacentHTML("beforeend", `<option value="${comboxCooperateItem}">${comboxCooperateItem}</option>`)
+                    }
+                    for (var comboxHumanInteractionItem of getResidentData[3]) {
+                        comboxHumanInteractionID.insertAdjacentHTML("beforeend", `<option value="${comboxHumanInteractionItem}">${comboxHumanInteractionItem}</option>`)
+                    }
+                    for (var comboxAttentionResItem of getResidentData[4]) {
+                        comboxAttentionResID.insertAdjacentHTML("beforeend", `<option value="${comboxAttentionResItem}">${comboxAttentionResItem}</option>`)
+                    }
+                    for (var comboxParticipatePerformanceItem of getResidentData[5]) {
+                        comboxParticipatePerformanceID.insertAdjacentHTML("beforeend", `<option value="${comboxParticipatePerformanceItem}">${comboxParticipatePerformanceItem}</option>`)
+                    }
+
+                    document.getElementById(`${this.id}-removeCard`).addEventListener("click", function () {
+                        this.parentElement.parentElement.parentElement.remove();
+                    })
+
+                });
+
+                TPersonalPerformancesCount = 0; //迴圈還在跑就要歸0，等跑完只有click時才++;
+            }
+        }
+        getResidentInPersonalPerformancesSelectPanel();//叫出所有人列表
+
+        //開始抓板內然後巡迴出內容(有三種)
+
+        var getButtonAjax = document.querySelector("#submitButtonForAjax");
+ 
+        getButtonAjax.addEventListener("click",function(event){
+            var ppPanel = document.querySelector("#TPersonalPerformances");
+            var ppData = ppPanel.querySelectorAll(".card");
+
+            var ScheduleDetailPanel = document.querySelector("#TScheduleDetails");
+            var ScheduleDetailInPanel = ScheduleDetailPanel.querySelectorAll("ul");
+
+            var eventTypePanel = document.querySelector("#EventType");
+            var eventTypesInPanel = eventTypePanel.querySelectorAll("select");
+
+            if(ppData.length == 0 || ScheduleDetailInPanel.length ==0|| eventTypesInPanel.length ==0){
+                event.preventDefault();
+                var errorString = "";
+                if (ppData.length == 0) { errorString += "住民情緒無資料。</br>"; }
+                if (ScheduleDetailInPanel.length == 0) { errorString += "行程無資料。</br>"; }
+                if (eventTypesInPanel.length == 0) { errorString += "課程主題空白。</br>"; }
+                document.querySelector("#checkModalBody").innerHTML = errorString;
+                new bootstrap.Modal(document.querySelector("#BootstrapModal1")).show()
+            }
+
+        });
+
+
+
+
+        document.querySelector("#demoPress").addEventListener("click",function(){
+            document.querySelector("#formDate").value = "2023-02-24";
+            document.querySelector("#startTime").value = "12:30";
+            document.querySelector("#endTime").value = "14:25";
+            document.querySelector("#groupName").value = "青春揮灑行動";
+            document.querySelector("#className").value = "課程名稱";
+            document.querySelector("#goal").value = "學習如何正確的休閒活動";
+            document.querySelector("#location").value = "新生街活動中心";
+            document.querySelector("#peopleCount").value = 1;
+            document.querySelector("#EventType").insertAdjacentHTML("beforeend", `
+
+                                        <div class="row">
+                                <div class="col">
+                                                    <select class="mt-2  form-select shadow-none  border-top" name="cgavm.TGroupActivityClassThemes[${classThemeCount++}].FClassThemeId">
+                                    <option selected="selected" value="1">衛生習慣  </option>
+                                <option value="2">居家清潔  </option>
+                        <option value="3">飲食起居  </option>
+                        <option value="4">認知能力  </option>
+                        <option value="5">體能表現  </option>
+                        <option value="6">人際互動  </option>
+                        <option value="7">烹飪能力  </option>
+                        <option value="8">休閒安排  </option>
+                        <option value="9">財務管理  </option>
+                                <option value="10">健康促進  </option>
+                        </select>
+                                </div>
+                                <div class="col-2" style="text-align: center;position: relative;   " onclick="this.parentElement.remove()">
+                                    <i class="fas fa-minus-circle" style="font-size:24px;color:red;position: absolute;top: 50%; left: 50%;-ms-transform: translate(-50%, -50%);transform: translate(-50%, -50%);"></i>
+                                </div>
+                            </div>
+                         
+                                    `);
+            document.querySelector("#TScheduleDetails").insertAdjacentHTML("beforeend", `
+
+                            <ul class="list-group list-group-horizontal-md">
+                                        <li class="list-group-item"><label>開始時間：</label><input type="time" id="startTime" name="cgavm.TScheduleDetails[${scheduleDetailsCount}].FStartTime"/></li>
+                                                <li class="list-group-item"><label>結束時間：</label><input type="time" id="endTime" name="cgavm.TScheduleDetails[${scheduleDetailsCount}].FEndTime"/></li>
+                                                <li class="list-group-item"><label>大綱說明：</label><input type="text" id="depiction" name="cgavm.TScheduleDetails[${scheduleDetailsCount}].FDepiction"/></li>
+                                <li class="list-group-item" style="border-radius:0px  20px 20px 0px" onclick="this.parentElement.remove()"><i class="fas fa-minus-circle" style="font-size:24px;color:red;position: relative;top: 50%; left: 50%;-ms-transform: translate(-50%, -50%);transform: translate(-50%, -50%);"></i></li>
+                            </ul>
+
+                            `);
+            scheduleDetailsCount++;
+        });
+    </script>
+
+}
+

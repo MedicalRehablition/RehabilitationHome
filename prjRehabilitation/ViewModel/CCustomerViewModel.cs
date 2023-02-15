@@ -61,5 +61,8 @@ namespace prjRehabilitation.ViewModel
             set { _Customer.FPicture = value; }
         }
         public IFormFile? photo { get; set; }
+        public string? PatientIDNum { get;set; }
+        public string? PatientName { get; set; }
+
     }
 }
