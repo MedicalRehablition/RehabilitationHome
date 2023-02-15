@@ -96,7 +96,7 @@
 
     <div class="col-md-7 col-lg-8">
         <br />
-        <h4 class="text-primary mb-3">甜心小舖結帳區</h4>
+        <h4 class="text-primary mb-3">甜心小舖結帳區</h4> <button class="btn btn-outline-info" onclick="demo()">Demo</button>
         <form asp-action="CreateOrder" class="needs-validation" novalidate="" enctype="multipart/form-data" id="form" name="form">
             <div class="row g-3">
                 <div class="col-sm-12">
@@ -189,6 +189,11 @@
         $("#city").change(loadtown);
         $("#town").change(displayzip);
 
+        function demo(){
+            $("#FName").val("張淑卿");
+            $("#FEmail").val("nekodaisukidane@gmail.com");
+            $("#address").val("中山路307巷20號");
+        }
         async function setPurchaseList(id,type){
             await fetch(`/Product/CheckPurchasedItem?id=${id}&type=${type}`);
         }
