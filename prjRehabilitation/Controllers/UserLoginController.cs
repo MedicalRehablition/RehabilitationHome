@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 
 using prjRehabilitation.Models;
+using prjRehabilitation.Models.Lin;
 using prjRehabilitation.ViewModel;
 using System.Drawing.Imaging;
 using System.Runtime.ConstrainedExecution;
@@ -120,7 +121,7 @@ namespace prjRehabilitation.Controllers
                     }
                     else
                     {
-                        return Content("此住民以綁定會員資料");
+                        return Content("此住民已綁定會員資料");
                     }
                     //---------qrcode生成及儲存-----
                     CCreateqrcode cqr = new CCreateqrcode();
@@ -142,6 +143,23 @@ namespace prjRehabilitation.Controllers
                             }
                         }
                         db.SaveChanges();
+                        //呼叫寄信把QRpic寄給會員
+                        Gmail sendmail = new Gmail();
+                        string root = _environment.WebRootPath;
+                        string imagePath = Path.Combine(root, "images", $"{qrname}");
+                        var sendto = $"{vm.FEmail}";
+                        var subject = "這是你的QRcode";
+
+                        byte[] image = null;
+                        if (System.IO.File.Exists(imagePath))//如果這個路徑有東西的話
+                        {
+                            image = System.IO.File.ReadAllBytes(imagePath); // 讀取文件並轉成 byte 陣列
+
+                            var imageData = Convert.ToBase64String(image);
+                            var htmlBody = $"<html><body><p>你好，你的QR code如下，請妥善保管，謝謝。</p><img src='data:image/jpeg;base64,{imageData}' /></body></html>";
+                            var body = htmlBody;
+                            sendmail.SendByGmail(sendto, body, subject);
+                        }//------mail------
                     }
                     return Content("註冊成功!");
                 }
