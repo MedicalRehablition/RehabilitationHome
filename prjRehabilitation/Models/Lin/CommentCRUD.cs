@@ -18,7 +18,14 @@ namespace prjRehabilitation.Models.Lin
 
             return data.ToList();
         }
+        public void DeleteReply(int id)
+        {
+            var db = new dbClassContext();
+            var c = db.TPostComments.Where(x => x.Fid == id).FirstOrDefault();
+            db.TPostComments.Remove(c);
+            db.SaveChanges();
 
+        }
 
     }
 }

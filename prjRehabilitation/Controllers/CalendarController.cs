@@ -41,10 +41,10 @@ namespace prjRehabilitation.Controllers
 
             dbClassContext db = new dbClassContext();
 
-            DateTime getToday = DateTime.Today;
+            DateTime getToday = targetDay;
 
-            string getFront30 = getToday.AddDays(-30).ToString("yyyy-MM-dd");
-            string getNext30 = getToday.AddDays(30).ToString("yyyy-MM-dd");
+            string getFront30 = getToday.AddDays(-60).ToString("yyyy-MM-dd");
+            string getNext30 = getToday.AddDays(60).ToString("yyyy-MM-dd");
 
             List<TCalendar> targetRangeDays = (from d in db.TCalendars
                                                where (string.Compare(d.FDate, getFront30) >= 0) && (string.Compare(d.FDate, getNext30) <= 0)
@@ -74,10 +74,29 @@ namespace prjRehabilitation.Controllers
 
             if (!string.IsNullOrEmpty(HttpContext.Session.GetString(CDictionary.SK_ADMIN_User)))//假設後台有登入就全秀
             {
-
-                cctnvm.ResidentReVisitDay = (from p in db.Consultations
+                List<Consultation> coverStandBy = new List<Consultation>();
+                List<Consultation> StandBy  = (from p in db.Consultations
                                              group p by p.PatinetId into grp
                                              select grp.OrderByDescending(g => g.Date).First()).ToList();
+
+                var clearJsonIssues = db.PatientInfos.Where(_ => _.Status == true).ToList();
+
+                foreach (var item in clearJsonIssues)
+                {
+                    item.Consultations = null; //這一欄會干涉前端json讀取
+                    foreach (var item2 in StandBy)  //因為有人出院了但是記錄還在，要篩掉
+                    {
+                        if (item.Fid == item2.PatinetId) {
+                            coverStandBy.Add(item2);
+                            break;
+                        }
+                    }
+                }
+
+                cctnvm.ResidentExpireDate = clearJsonIssues;
+
+                cctnvm.ResidentReVisitDay = coverStandBy;
+
             }
             else if (!string.IsNullOrEmpty(HttpContext.Session.GetString(CDictionary.SK_CUSTOMER_User)))
             {    //前台有登入的話就秀相關人
@@ -93,17 +112,23 @@ namespace prjRehabilitation.Controllers
                 {
                     int? getResidentID = db.PatientInfos.FirstOrDefault(_ => _.FCustomerid == customer.Fid).Fid;
 
-                    var getgusaa = db.Consultations.Where(_ => _.PatinetId == getResidentID).OrderBy(_ => _.Date).Last();
+                    Consultation getgusaa = db.Consultations.Where(_ => _.PatinetId == getResidentID).OrderBy(_ => _.Date).Last();
 
                     getgusaa.Patinet = null;    //這一欄會干涉前端json讀取
 
                     cctnvm.ResidentReVisitDay = new List<Consultation> { getgusaa };
+
+                    List<PatientInfo> clearJsonIssues = db.PatientInfos.Where(_ => _.Status == true).Where(_ => _.FCustomerid == customer.Fid).ToList();    //其實是上面的全撈有事… 我想說上次是這邊有事就先搞這邊結果是上面
+
+
+                    cctnvm.ResidentExpireDate = clearJsonIssues;
                 }
-                else { cctnvm.ResidentReVisitDay = new List<Consultation>(); }
+                else { cctnvm.ResidentReVisitDay = new List<Consultation>(); cctnvm.ResidentExpireDate = new List<PatientInfo>(); }
             }
             else
             {
-                cctnvm.ResidentReVisitDay = new List<Consultation>();
+                cctnvm.ResidentReVisitDay = new List<Consultation>();   //只是怕null掛掉，至少給他框框
+                cctnvm.ResidentExpireDate = new List<PatientInfo>();
             }
 
             cctnvm.GetTodayNextAndFrontOneMonth = betweenDate(DateTime.Today);

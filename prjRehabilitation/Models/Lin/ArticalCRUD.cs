@@ -208,7 +208,7 @@ namespace prjRehabilitation.Models.Lin
             dbClassContext db = new dbClassContext();
             TOfficialPost c;
             if(id.HasValue)
-                c = db.TOfficialPosts.First(x => x.FStatus != false && x.FPostId == id);
+                c = db.TOfficialPosts.FirstOrDefault(x => x.FStatus != false && x.FPostId == id);
             else
                 c = db.TOfficialPosts.Where(x => x.FStatus != false).OrderByDescending(x=>x.FPostId).First();
             var post = new VMNewPost();

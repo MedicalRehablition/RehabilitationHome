@@ -78,10 +78,7 @@ namespace prjRehabilitation.Controllers
             }
             return View(List);
         }
-        public IActionResult Create()
-        {
-            return View();
-        }
+
 
         [HttpPost]
         public IActionResult Edit(VMPatientInfoDetail vm, string? disease)
@@ -165,13 +162,14 @@ namespace prjRehabilitation.Controllers
         [HttpPost]
         public IActionResult Create_F(VMPatientInfoDetail vm, string disease, string id, string name)
         {
-            if (id != null) goto part2;
             if (!string.IsNullOrEmpty(disease))
             {
                 string json = JsonSerializer.Serialize((new DiseaseCRUD()).search(disease));
                 return Json(json);
             }
-        part2:
+            return Json("");
+        }
+        public IActionResult Create(VMPatientInfoDetail vm) {
             if (vm.fidy_健保 == true) vm.fIDY += "健保";
             if (vm.fidy_福保 == true) vm.fIDY += "福保";
             if (vm.fidy_身心障礙 == true) vm.fIDY += "身障";
@@ -184,9 +182,10 @@ namespace prjRehabilitation.Controllers
             var tool = new PatientInfoCRUD();
             //TODO 回傳字串處理
             string message = tool.c_PatientInfo(vm);
-            return RedirectToAction("List");
+            if (message == "失敗: 該住民已被註冊") return Json(new { outcome = "錯誤" });
+            return Json(new { outcome = "ok" });
+            //return RedirectToAction("List");
         }
-
 
     }
 

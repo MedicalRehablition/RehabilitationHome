@@ -10,7 +10,7 @@
 
 @section Styles{
     <link rel="stylesheet" href="~/css/style.css">
-  
+
     <link href="@Url.Content("~/")css/calendar/calendar-gc.min.css" rel="stylesheet" />
     <style>
         html,
@@ -20,7 +20,7 @@
         }
 
         .form-control {
-            height:auto;
+            height: auto;
         }
     </style>
 }
@@ -38,8 +38,9 @@
     </div>
     <div class="col">
         <div id="calendar" style="padding: 1rem;"></div>
+        @*<input type="button" class="genric-btn" id="testFly" value="fly" />*@
         <div id="adminPanel" style=" flex-direction: row-reverse;display:none;">
-            @*<input type="button" class="genric-btn" id="testFly" value="fly"/>*@
+
             <a asp-action="Create" id="calendrAdd" class="genric-btn primary e-large" style="  ">新增</a>
             <a asp-action="CalendarApplyCensorList" id="CalendarCensor" class="genric-btn primary e-large" style=" ">審核</a>
         </div>
@@ -98,17 +99,23 @@
         }
         var calendar;
         $(function (e) {
-             calendar = $("#calendar").calendarGC({
-                dayBegin: 0,
+            calendar = $("#calendar").calendarGC({
+                dayNames: ['日', '一', '二', '三', '四', '五', '六'],
+
+                monthNames: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'],
+                dayBegin: 1,
                 prevIcon: '&#x3c;',
                 nextIcon: '&#x3e;',
                 onPrevMonth: function (e) {
-                    console.log("prev");
-                    console.log(e);
+                    //console.log("prev");
+                    //console.log(e);
+                    getRe60DaysEvent(e);
+
                 },
                 onNextMonth: function (e) {
-                    console.log("next");
-                    console.log(e);
+                    //console.log("next");
+                    //console.log(e);
+                    getRe60DaysEvent(e);
                 },
                 events: startAllShowList(),
                 onclickDate: function (e, data) {
@@ -123,17 +130,55 @@
 
         });
 
-        function startAllShowList() {
+      async function getRe60DaysEvent(targetDayFetch) {
+            var date = targetDayFetch;
+            var day = date.getDate();       // yields date
+            var month = date.getMonth() + 1;    // yields month (add one as '.getMonth()' is zero indexed)
+            var year = date.getFullYear();  // yields year
 
-            var events = [];
+            var parseToDate = year + "/" + month + "/" + day
+            
+            const getNew60 = await fetch(`@Url.Content("~/")Calendar/betweenDate?targetDay=${parseToDate}`)
+
+            const data = await getNew60.text();
+
+            //console.log(data);
+
+            const getJson =  JSON.parse(data);
+
+            for(var tempItem of getJson){
+
+                //console.log(events.find(_=>_.fid == tempItem.fId));
+
+               if( events.find(_=>_.fid == tempItem.fId) != undefined){ //重覆的跳過
+                    continue;
+                }
+                events.push({
+                    date: new Date(tempItem.fDate),
+                    eventName: tempItem.fEventName,
+                    className: tempItem.fClassName,
+
+                    dateColor: tempItem.fDateColor,
+                    fTitle: tempItem.fTitle,
+                    fContent: tempItem.fContent,
+                    fid: tempItem.fId,
+                    onclick(e, data) {
+                        console.log(data);
+                        getContentModal(data.fTitle, data.fContent);
+                    }
+                })
+            }
+
+        }
 
 
 
-            const getFrontAndNextTargetRange = @Html.Raw(Json.Serialize(Model.GetTodayNextAndFrontOneMonth));	//加行事曆
+        function getOneMonthNextAndFront(eventsNeed, dayRange) {
+            const getFrontAndNextTargetRange = dayRange;	//加行事曆
 
             for (var RangeItem of getFrontAndNextTargetRange) {
 
-                events.push({
+                eventsNeed.push({
                     date: new Date(RangeItem.fDate),
                     eventName: RangeItem.fEventName,
                     className: RangeItem.fClassName,
@@ -141,6 +186,7 @@
                     dateColor: RangeItem.fDateColor,
                     fTitle: RangeItem.fTitle,
                     fContent: RangeItem.fContent,
+                    fid: RangeItem.fId,
                     onclick(e, data) {
                         console.log(data);
                         getContentModal(data.fTitle, data.fContent);
@@ -149,19 +195,52 @@
 
             }
 
-          
+        }
+
+        var events = [];
+        function startAllShowList() {
+            const ResidentExpireDate = @Html.Raw(Json.Serialize(Model.ResidentExpireDate));
+            for (var ExpireItem of ResidentExpireDate) {
+             
+                //console.log(ExpireItem.date);
+                events.push({
+                    date: new Date(ExpireItem.fExpireDate),
+                    eventName: `${ExpireItem.fName} 到期延展日`,
+                    className: "genric-btn primary-border circle arrow small",
+
+                    dateColor: "SeaGreen",
+                    fTitle: `Title ${ExpireItem.fName} 到期延展日`,
+                    fContent: `content ${ExpireItem.fName} 到期延展日`,
+                    fid: 0,
+                    onclick(e, data) {
+                        console.log(data);
+                        getContentModal(data.fTitle, data.fContent);
+                    }
+                });
+
+
+            }
+
             const data = @Html.Raw(Json.Serialize(Model.ResidentReVisitDay));
             for (var item of data) {
                 var getItemDate = new Date(item.date);
                 //console.log(item.date);
+                var ResidentName = "";
+
+                for (var getName of ResidentExpireDate) {
+
+                    if (item.patinetId == getName.fid){ ResidentName = getName.fName }
+                }
+
                 events.push({
                     date: new Date(getItemDate.setDate(getItemDate.getDate() + 28)),
-                    eventName: `${item.patinetId} 回診日`,
+                    eventName: `${ResidentName} 回診日`,
                     className: "genric-btn primary-border circle arrow small",
 
                     dateColor: "Chocolate",
-                    fTitle: `Title ${item.patinetId} 回診日`,
-                    fContent: `content ${item.patinetId} 回診日`,
+                    fTitle: `Title ${ResidentName} 回診日`,
+                    fContent: `content ${ResidentName} 回診日`,
+                    fid: 0,
                     onclick(e, data) {
                         console.log(data);
                         getContentModal(data.fTitle, data.fContent);
@@ -173,6 +252,7 @@
 
 
 
+            getOneMonthNextAndFront(events, @Html.Raw(Json.Serialize(Model.GetTodayNextAndFrontOneMonth)))
             return events;
         }
 
@@ -183,10 +263,10 @@
             const getResidentData = JSON.parse(await response.text());
             for (let aItem of getResidentData) {
                 pplist.insertAdjacentHTML("beforeend", `<input type="button" id="selectPanel-${aItem.fid}" class="addintoR genric-btn info circle arrow  small mt-1 form-control" value="${aItem.fName}">`)
-                document.querySelector(`#selectPanel-${aItem.fid}`).addEventListener("click",function(){
+                document.querySelector(`#selectPanel-${aItem.fid}`).addEventListener("click", function () {
                     var getItemDate = new Date(aItem.date);
                     calendar.setDate(`${new Date(getItemDate.setDate(getItemDate.getDate() + 28)).toString("yyyy-MM-dd")}`)
-                    
+
                 });
             }
             //$("input[type=button]").on("click", function () {
@@ -207,29 +287,13 @@
             document.querySelector("#message-text").textContent = content;
 
             new bootstrap.Modal(document.querySelector("#calendarModal"), {}).show();
-            //document.onreadystatechange = function () {
-            //myModal.show();
-            //};
+
 
         }
 
-                                //=================================================bootstrap modal start
-                                //var calendarModal = document.getElementById('calendarModal')
-                                //calendarModal.addEventListener('show.bs.modal', function (event) {
-                                //	// Button that triggered the modal
-                                //	var button = event.relatedTarget
-                                //	// Extract info from data-bs-* attributes
-                                //	var recipient = button.getAttribute('data-bs-whatever')
-                                //	// If necessary, you could initiate an AJAX request here
-                                //	// and then do the updating in a callback.
-                                //	//
-                                //	// Update the modal's content.
-                                //	var modalTitle = calendarModal.querySelector('.modal-title')
-                                //	var modalBodyInput = calendarModal.querySelector('.modal-body input')
 
-                                //	modalTitle.textContent = 'New message to ' + recipient
-                                //	modalBodyInput.value = recipient
-                                //})
-                                        //=====================================================bootstrap modal end
+
+
+
     </script>
 }
