@@ -20,10 +20,30 @@ namespace prjRehabilitation.Controllers
         {
             _environment = environment;
         }
+        public IActionResult G_Patients()
+        {
+            dbClassContext db = new dbClassContext();
+            IEnumerable<PatientInfo> data = db.PatientInfos.Where(x => x.Status == false);
+            List<VMPatientList> List = new List<VMPatientList>();
+            foreach (var c in data.ToList())
+            {
+                VMPatientList p = new VMPatientList();
+                p.fid = (int)c.Fid;
+                p.fName = c.FName;
+                p.fPhone = c.FPhone;
+                p.fidnum = c.FIdnum;
+                if (c.FPhotoFile != null)
+                {
+                    p.fphoto = c.FPhotoFile;
+                }
+                List.Add(p);
+            }
+            return View(List);
+        }
         public IActionResult patients()
         {
             dbClassContext db = new dbClassContext();
-            IEnumerable<PatientInfo> data = db.PatientInfos.Where(x => x.Status != false).Take(100);
+            IEnumerable<PatientInfo> data = db.PatientInfos.Where(x => x.Status != false);
             List<VMPatientList> List = new List<VMPatientList>();
             foreach (var c in data.ToList())
             {
@@ -56,7 +76,12 @@ namespace prjRehabilitation.Controllers
         public IActionResult Delete(int id)
         {
             (new PatientInfoCRUD()).c_Delete(id);
-            return  RedirectToAction("patients");
+            return RedirectToAction("patients");
+        }
+        public IActionResult Recover(int id)
+        {
+            (new PatientInfoCRUD()).c_Recover(id);
+            return RedirectToAction("G_Patients");
         }
         public IActionResult List(VMPatientList vm)
         {
