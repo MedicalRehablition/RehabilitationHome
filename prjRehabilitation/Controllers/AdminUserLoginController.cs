@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.AspNetCore.Mvc;
 using prjRehabilitation.Models;
+using prjRehabilitation.Models.Lin;
 using prjRehabilitation.ViewModel;
 using System.Drawing.Imaging;
 using System.Net.Mail;
@@ -261,7 +262,24 @@ namespace prjRehabilitation.Controllers
                     db.SaveChanges();
                 }
                 //呼叫寄信把QRpic寄給員工
-                return Content("註冊成功!");
+                Gmail sendmail = new Gmail();
+                string root = _environment.WebRootPath;
+                string imagePath = Path.Combine(root, "images", $"{qrname}");
+                var sendto = $"{vm.FEmail}";
+                var subject = "這是你的QRcode";
+
+                byte[] image = null;
+                if (System.IO.File.Exists(imagePath))//如果這個路徑有東西的話
+                {
+                    image = System.IO.File.ReadAllBytes(imagePath); // 讀取文件並轉成 byte 陣列
+
+                    var imageData = Convert.ToBase64String(image);
+                    var htmlBody = $"<html><body><p>你好，你的QR code如下，請妥善保管，謝謝。</p><img src='data:image/jpeg;base64,{imageData}' /></body></html>";
+                    var body = htmlBody;
+                    sendmail.SendByGmail(sendto,body,subject);
+                }//------mail finish------
+
+                return Content("註冊成功!請至信箱查看QR code");
                 //後面要記得改
                 //return RedirectToAction("List");
             }
