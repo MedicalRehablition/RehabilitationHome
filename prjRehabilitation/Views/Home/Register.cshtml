@@ -25,7 +25,7 @@
 
             <div class="form-outline datepicker w-100">
                 <label asp-for="FEmail" class="control-label">電子信箱</label>
-                <input type="email" asp-for="FEmail" class="form-control"id="txtemail" required />
+                <input type="email" asp-for="FEmail" class="form-control" id="txtemail" required />
                 <span asp-validation-for="FEmail" class="text-danger"></span>
             </div>
 
@@ -34,7 +34,7 @@
 
             <div class="form-outline datepicker w-100">
                 <label asp-for="FPhone" class="control-label">行動電話</label>
-                <input type="number" asp-for="FPhone" class="form-control"id="txtPhone" required />
+                <input type="number" asp-for="FPhone" class="form-control" id="txtPhone" required />
                 <span asp-validation-for="FPhone" class="text-danger"></span>
             </div>
         </div>
@@ -139,8 +139,14 @@
             xhr.send(Data);
 
         })
-        $("#Demobtn").on("click",function(){
-            $("#txtName").attr("Value","吳帥哥");
+        $("#Demobtn").on("click", function () {
+            $("#txtName").attr("Value", "吳帥哥");
+            $("#txtemail").attr("Value", "a0983760928@gmail.com");
+            $("#txtPhone").attr("Value", "0983274924");
+            $("#txtPassword").attr("Value", "l3nita8a");
+            $("#txtAddress").attr("Value", "台中市南屯區黎明路2段200號");
+            $("#txtPatientName").attr("Value", "吳靜");
+            $("#txtPatientNum").attr("Value", "A227621546");
         })
     </script>
 
