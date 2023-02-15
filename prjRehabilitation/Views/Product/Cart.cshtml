@@ -101,7 +101,7 @@
             <div class="row g-3">
                 <div class="col-sm-12">
                     <label for="firstName" class="form-label">姓名</label>
-                    <input  type="text" class="form-control" id="FName"  name="FName"  required="">
+                    <input  type="text" class="form-control" id="FName"  name="FName"  required>
                     <div class="invalid-feedback">
                         姓名必填
                     </div>
@@ -109,7 +109,7 @@
 
                 <div class="col-12">
                     <label for="email" class="form-label">Email <span class="text-muted"></span></label>
-                    <input type="email" class="form-control" id="FEmail" name="FEmail" placeholder="John0721@gmail.com" required="">
+                    <input type="email" class="form-control" id="FEmail" name="FEmail" placeholder="John0721@gmail.com" required>
                     <div class="invalid-feedback">
                         信箱必填
                     </div>
@@ -177,6 +177,7 @@
 
             <button class="w-100 btn btn-primary btn-lg" type="button" onclick="CreateOrder()">繼續付款</button>
         </form>
+        <img id="load"  src="~/img/201212131559535.gif" hidden/>
     </div>
 </div>
 
@@ -194,6 +195,13 @@
 
         async function CreateOrder(){
             var address = $("#address").val();
+            if(address==""){
+                alert("請確實填寫買家資訊");
+                document.getElementById("address").focus();
+                return;
+            }
+            document.getElementById("load").removeAttribute("hidden");
+
             var town = $("#town option:selected").html();
            $("#FAddress").val($("#zip").val()+$("#city").val()+town+address);
             
@@ -310,6 +318,8 @@
                 }
             }
         }
+
+
     </script>
 
 

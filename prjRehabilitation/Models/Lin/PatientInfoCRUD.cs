@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore.Scaffolding.Metadata;
 using prjRehabilitation.ViewModel.Lin;
 using System.Drawing.Text;
+using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Text.Json;
@@ -303,6 +304,13 @@ namespace prjRehabilitation.Models.Lin
         {
 
 
+        }
+
+        internal void c_Recover(int id)
+        {
+            var p = db.PatientInfos.Where(x => x.Fid == id).FirstOrDefault();
+            p.Status = true;
+            db.SaveChanges();
         }
     }
 }
