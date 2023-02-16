@@ -31,6 +31,7 @@ namespace prjRehabilitation.Models.Lin
             {
                 var p = db.Products.Where(p => p.Fid == item).FirstOrDefault();
 
+                if (p == null) continue;
                 db.TOrderDetails.Add(new TOrderDetail
                 {
                     FOrderId = id,
