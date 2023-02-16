@@ -8,7 +8,7 @@
 
 <h1>編輯員工資料</h1>
 <hr />
-<form  asp-action="Edit" enctype="multipart/form-data" name="AdminUserEdit">
+<form asp-action="Edit" enctype="multipart/form-data" name="AdminUserEdit">
     <div class="row gutters-sm">
         <div class="col-md-4 mb-3">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -21,17 +21,17 @@
                         @{
                             if (Model.Fphoto != null)
                             {
-                            <img class="rounded-circle border border-primary Aimg" src="~/images/@Model.Fphoto" alt="Admin" width="300" height="300" />
+                                                <img class="rounded-circle border border-primary Aimg" src="~/images/@Model.Fphoto" alt="Admin" width="300" height="300" />
                             }
                             else
                             {
-                             <img class="rounded-circle border border-primary Aimg" src="~/images/imageDefault.png" width="300" height="300" />
+                                                <img class="rounded-circle border border-primary Aimg" src="~/images/imageDefault.png" width="300" height="300" />
                             }
                         }
                     </div>
                     <div>
                         <input type="file" asp-for="photo" class="form-control" id="file" />
-                       
+
                     </div>
                 </div>
             </div>
@@ -42,11 +42,11 @@
                         @{
                             if (Model.Fphoto != null)
                             {
-                                <img class=" border border-primary img" src="~/images/@Model.FQrcode" alt="無QRcode" width="150" height="150" />
+                                                <img class=" border border-primary img" src="~/images/@Model.FQrcode" alt="無QRcode" width="150" height="150" />
                             }
                             else
                             {
-                                <img class=" border border-primary img" src="~/images/imageDefault.png" width="150" height="150" />
+                                                <img class=" border border-primary img" src="~/images/imageDefault.png" width="150" height="150" />
                             }
                         }
                     </div>
@@ -85,11 +85,12 @@
                         <div class="row">
                             <div class="col-12">
                                 <label asp-for="FRank" class="control-label">職級</label>
-                                <select asp-for="FRank" class="form-select" aria-label="Default select example">
-                                    <option value="1">經理</option>
-                                    <option value="2">副理</option>
-                                    <option value="3">員工</option>
-                                </select>
+                                            <select asp-for="FRank" class="form-select" aria-label="Default select example">
+                                                <option value="主任">主任</option>
+                                                <option value="醫事人員">醫事人員</option>
+                                                <option value="專任管理員">專任管理員</option>
+                                            </select>
+                               
                             </div>
                         </div>
                         <hr>
@@ -143,22 +144,31 @@
 
 @section Scripts{
     <script>
+        GetLoginUser();
         $('#file').on('change', function (e) {
             const file = this.files[0];
             const objURL = URL.createObjectURL(file);
             console.log(this);
             $('.Aimg').attr('src', objURL);
         });
-        async function Edit(){
-            
+        async function Edit() {
             const data = new FormData(AdminUserEdit);
-            const response = await fetch("@Url.Content("/AdminUserLogin/Edit")",{
-                method:"post",
-                body:data,
+            const response = await fetch("@Url.Content("/AdminUserLogin/Edit")", {
+                method: "post",
+                body: data,
             });
-            
         }
-        //$(".btn").on("click",Edit);
+        async function GetLoginUser() {
+            const response = await fetch("@Url.Content("/AdminUserLogin/GetUserSession")");
+            const User = await response.json();
+            debugger
+            if(User.fRank!="經理"){
+                $(".form-select").attr("disabled", "disabled");
+            }
+            GetLoginUser();
+        }
+
+                //$(".btn").on("click",Edit);
     </script>
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");

@@ -22,27 +22,6 @@ namespace prjRehabilitation.Controllers
         //show出員工名單
         public IActionResult List(CKeywordViewModel vm)
         {
-            //dbClassContext db = new dbClassContext();
-            //string keyword = vm.txtKeyword;
-            //IEnumerable<Admin> data = null;
-            //if(keyword == null)
-            //{
-            //    data = from c in db.Admins
-            //           select c;
-            //}
-            //else
-            //{
-            //    data = db.Admins.Where(c=>c.FName.Contains(keyword)).ToList();
-            //}
-            //List<CAdminViewModel> List = new List<CAdminViewModel>();
-            //foreach(var c in data)
-            //{
-            //    CAdminViewModel a  = new CAdminViewModel();
-            //    a.admin = c;
-            //    List.Add(a);
-
-            //}
-            //return View(List);
             string json = HttpContext.Session.GetString(CDictionary.SK_ADMIN_User);//得到工作人員的session
             if (json != null)
             {
@@ -52,6 +31,7 @@ namespace prjRehabilitation.Controllers
                 dbClassContext db = new dbClassContext();
                 string keyword = vm.txtKeyword;
                 IEnumerable<Admin> data = null;
+                List<CAdminViewModel> List = new List<CAdminViewModel>();
                 if (rank == "經理")
                 {
                     if (keyword == null)
@@ -63,24 +43,24 @@ namespace prjRehabilitation.Controllers
                     {
                         data = db.Admins.Where(c => c.FName.Contains(keyword)).ToList();
                     }
+                    foreach (var c in data)
+                    {
+                        CAdminViewModel a = new CAdminViewModel();
+                        a.admin = c;
+                        List.Add(a);
+                    }
+                    return View(List);
                 }
                 else
                 {
-                    data = db.Admins.Where(c => c.Fid == admin.Fid).ToList();
+                    return RedirectToAction("Edit", "AdminUserLogin", new { @id = admin.Fid });
                 }
-                List<CAdminViewModel> List = new List<CAdminViewModel>();
-                foreach (var c in data)
-                {
-                    CAdminViewModel a = new CAdminViewModel();
-                    a.admin = c;
-                    List.Add(a);
-                }
-                return View(List);
+
             };
             return View("Login", "AdminUserLogin");
         }
-    
-       
+
+
         //登入寫入Session
         public IActionResult Login()
         {
@@ -106,7 +86,7 @@ namespace prjRehabilitation.Controllers
         public IActionResult ExistAccount(CLoginViewModel vm)
         {
             dbClassContext db = new dbClassContext();
-            Admin admin = db.Admins.FirstOrDefault(t => t.FEmail==vm.txtAccount);
+            Admin admin = db.Admins.FirstOrDefault(t => t.FEmail == vm.txtAccount);
             using (var cryptoMD5 = System.Security.Cryptography.MD5.Create())
             {
                 vm.txtPassword += "putSomeSalt";
@@ -179,11 +159,11 @@ namespace prjRehabilitation.Controllers
                 ad.FRank = vm.FRank;
                 ad.FEmail = vm.FEmail;
                 ad.FName = vm.FName;
-                ad.FBirth=vm.FBirth;
-                ad.FPassword= vm.FPassword;
-                ad.FSex=vm.FSex;
+                ad.FBirth = vm.FBirth;
+                ad.FPassword = vm.FPassword;
+                ad.FSex = vm.FSex;
                 db.SaveChanges();
-                
+
             }
             return RedirectToAction("List");
         }
@@ -204,17 +184,28 @@ namespace prjRehabilitation.Controllers
             return View();
         }
         public IActionResult SendMailByGmail(CLoginViewModel vm)
-            {
+        {
             dbClassContext db = new dbClassContext();
-            Admin admin = db.Admins.FirstOrDefault(t => t.FEmail==vm.txtAccount);
+            Admin admin = db.Admins.FirstOrDefault(t => t.FEmail == vm.txtAccount);
             if (admin == null)
             {
                 return Content("請輸入信箱帳號");
             }
             admin.FEmail = vm.txtAccount;
             admin.FPassword = Guid.NewGuid().ToString();
+            string beforePassword = admin.FPassword;//加密前密碼
+            using (var cryptoMD5 = System.Security.Cryptography.MD5.Create())
+            {
+                string afterPassword = beforePassword + "putSomeSalt";
+                var bytes = Encoding.UTF8.GetBytes(afterPassword);
+                var hash = cryptoMD5.ComputeHash(bytes);
+                var md5 = BitConverter.ToString(hash)
+                  .Replace("-", String.Empty)
+                  .ToUpper();
+                admin.FPassword = md5; //加密後密碼
+            }
             db.SaveChanges();
-            string newPassword = admin.FPassword;
+            string newPassword = beforePassword;
             List<string> MailList = new List<string>();
             MailList.Add(vm.txtAccount);//新增收件人進去
             string Subject = "變更密碼";
@@ -275,7 +266,7 @@ namespace prjRehabilitation.Controllers
                 vm.Fphoto = photoName;
                 vm.photo.CopyTo(new FileStream(path, FileMode.Create));
                 db.Admins.Add(vm.admin);
-                db.SaveChanges();                
+                db.SaveChanges();
                 //-----qrcode生成及儲存-----
                 //長寬各150               
                 CCreateqrcode cqr = new CCreateqrcode();
@@ -313,7 +304,7 @@ namespace prjRehabilitation.Controllers
                     var imageData = Convert.ToBase64String(image);
                     var htmlBody = $"<html><body><p>你好，你的QR code如下，請妥善保管，謝謝。</p><img src='data:image/jpeg;base64,{imageData}' /></body></html>";
                     var body = htmlBody;
-                    sendmail.SendByGmail(sendto,body,subject);
+                    sendmail.SendByGmail(sendto, body, subject);
                 }//------mail finish------
 
                 return Content("註冊成功!請至信箱查看QR code");
@@ -328,87 +319,6 @@ namespace prjRehabilitation.Controllers
             dbClassContext db = new dbClassContext();
             Admin ad = db.Admins.FirstOrDefault(t => t.FEmail == vm.FEmail);
             return View();
-        }
-        public IActionResult GoogleLogin()
-        {
-            string? formCredential = Request.Form["credential"]; //回傳憑證
-            string? formToken = Request.Form["g_csrf_token"]; //回傳令牌
-            string? cookiesToken = Request.Cookies["g_csrf_token"]; //Cookie 令牌
-
-            // 驗證 Google Token
-            GoogleJsonWebSignature.Payload? payload = VerifyGoogleToken(formCredential, formToken, cookiesToken).Result;
-            if (payload == null)
-            {
-                // 驗證失敗
-                ViewData["Msg"] = "驗證 Google 授權失敗";
-            }
-            else
-            {
-                //驗證成功，取使用者資訊內容
-                ViewData["Msg"] = "驗證 Google 授權成功" + "<br>";
-                ViewData["Msg"] += "Email:" + payload.Email + "<br>";
-                ViewData["Msg"] += "Name:" + payload.Name + "<br>";
-                ViewData["Msg"] += "Picture:" + payload.Picture;
-            }
-
-            return View();
-        }
-
-        /// <summary>
-        /// 驗證 Google Token
-        /// </summary>
-        /// <param name="formCredential"></param>
-        /// <param name="formToken"></param>
-        /// <param name="cookiesToken"></param>
-        /// <returns></returns>
-        public async Task<GoogleJsonWebSignature.Payload?> VerifyGoogleToken(string? formCredential, string? formToken, string? cookiesToken)
-        {
-            // 檢查空值
-            if (formCredential == null || formToken == null && cookiesToken == null)
-            {
-                return null;
-            }
-
-            GoogleJsonWebSignature.Payload? payload;
-            try
-            {
-                // 驗證 token
-                if (formToken != cookiesToken)
-                {
-                    return null;
-                }
-
-                // 驗證憑證
-                IConfiguration Config = new ConfigurationBuilder().AddJsonFile("appSettings.json").Build();
-                string GoogleApiClientId = Config.GetSection("GoogleApiClientId").Value;
-                var settings = new GoogleJsonWebSignature.ValidationSettings()
-                {
-                    Audience = new List<string>() { GoogleApiClientId }
-                };
-                payload = await GoogleJsonWebSignature.ValidateAsync(formCredential, settings);
-                if (!payload.Issuer.Equals("accounts.google.com") && !payload.Issuer.Equals("https://accounts.google.com"))
-                {
-                    return null;
-                }
-                if (payload.ExpirationTimeSeconds == null)
-                {
-                    return null;
-                }
-                else
-                {
-                    DateTime now = DateTime.Now.ToUniversalTime();
-                    DateTime expiration = DateTimeOffset.FromUnixTimeSeconds((long)payload.ExpirationTimeSeconds).DateTime;
-                    if (now > expiration)
-                    {
-                        return null;
-                    }
-                }
-            }
-            catch
-            {
-                return null;
-            }
-            return payload;
         }
     }
 }
