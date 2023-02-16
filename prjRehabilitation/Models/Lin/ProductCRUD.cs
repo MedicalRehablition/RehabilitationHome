@@ -29,8 +29,9 @@ namespace prjRehabilitation.Models.Lin
             dbClassContext db = new dbClassContext();
             foreach (var item in cart.Item)
             {
-                var p = db.Products.Where(p => p.Fid == item).First();
+                var p = db.Products.Where(p => p.Fid == item).FirstOrDefault();
 
+                if (p == null) continue;
                 db.TOrderDetails.Add(new TOrderDetail
                 {
                     FOrderId = id,
