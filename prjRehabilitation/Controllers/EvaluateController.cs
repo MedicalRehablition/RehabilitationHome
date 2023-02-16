@@ -73,6 +73,10 @@ namespace prjRehabilitation.Controllers
                     cevmList.Add(cevm);
                 }
             }
+            var pin = db.PatientInfos.FirstOrDefault(t => t.Fid == id);
+            CPatientsViewModel ptname = new CPatientsViewModel();
+            ptname.Patient = pin != null ? pin : new PatientInfo();
+            ViewBag.name = ptname?.Patient?.FName;
             ViewBag.ptid = id;
             return View(cevmList);
         }
@@ -119,7 +123,7 @@ namespace prjRehabilitation.Controllers
             };
             dbClassContext db = new dbClassContext();
             功能評估 ev1 = db.功能評估s.FirstOrDefault(c => c.F功能評估Id == id);
-            var bbb = ev1.F功能評估Id;
+            //var bbb = ev1.F功能評估Id;
             功能評估個表 ev2 = db.功能評估個表s.FirstOrDefault(c => c.F功能評估Id == ev1.F功能評估Id);
             CEvaluateViewModle eva = new CEvaluateViewModle();
             eva.Evaluate2 = ev2;
