@@ -14,9 +14,9 @@
 	</style>
 }
 
-<h1>Create</h1>
+<h1>新增行事曆</h1>
 
-<h4>CCalendarViewModel</h4>
+<h4 id="newCalendarDemo">新增</h4>
 <hr />
 <div class="row">
 	<div class="col-md-7">
@@ -24,40 +24,41 @@
 			<div asp-validation-summary="ModelOnly" class="text-danger"></div>
 			<div class="form-group">
 				<label asp-for="date" class="control-label"></label>
-				<input asp-for="date" type="date" class="form-control" />
+				<input asp-for="date" type="date" class="form-control" id="calendarDate"/>
 				<span asp-validation-for="date" class="text-danger"></span>
 			</div>
 			<div class="form-group">
 				<label asp-for="eventName" class="control-label"></label>
-				<input asp-for="eventName" class="form-control" />
+				<input asp-for="eventName" class="form-control" id="eventNameID"/>
 				<span asp-validation-for="eventName" class="text-danger"></span>
 			</div>
 
 			<div class="form-group">
 				<label asp-for="title" class="control-label"></label>
-				<input asp-for="title" class="form-control" />
+				<input asp-for="title" class="form-control" id="titleID" />
 				<span asp-validation-for="title" class="text-danger"></span>
 			</div>
 			<div class="form-group">
 				<label asp-for="content" class="control-label"></label>
-				<textarea asp-for="content" class="form-control" style="height:250px"></textarea>
+				<textarea asp-for="content" class="form-control" style="height:250px" id="contentID"></textarea>
 				<span asp-validation-for="content" class="text-danger"></span>
 			</div>
 			<div class="row">
 				<div class="col">
 					<label asp-for="fRecorder" class="control-label"></label>
-					<input asp-for="fRecorder" class="form-control" />
+					<input asp-for="fRecorder" class="form-control" readonly/>
 					<span asp-validation-for="content" class="text-danger"></span>
 				</div>
 				<div class="col">
 					<label asp-for="fRecorderDate" class="control-label"></label>
-					<input asp-for="fRecorderDate" class="form-control" />
+					<input asp-for="fRecorderDate" class="form-control" readonly/>
 					<span asp-validation-for="content" class="text-danger"></span>
 				</div>
 				<div class="col">
                     <label asp-for="FVisualHierarchy" class="control-label"></label>(0為全可視)
 					<select asp-for="FVisualHierarchy" class="form-control">
-						@for (int FVisualHierarchyI = 0; FVisualHierarchyI < 15; FVisualHierarchyI++)
+						<option >0(公開)</option>
+						@for (int FVisualHierarchyI = 1; FVisualHierarchyI < 15; FVisualHierarchyI++)
 						{
 							<option selected>@FVisualHierarchyI</option>
 						}
@@ -67,7 +68,7 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<input type="submit" value="Create" class="btn btn-primary" />
+				<input type="submit" value="新增" class="mt-2 btn btn-primary" />
 			</div>
 		</form>
 	</div>
@@ -77,7 +78,7 @@
 
 
 <div>
-	<a asp-action="List">Back to List</a>
+	<a asp-action="List" class="btn btn-info small">返回</a>
 </div>
 
 
@@ -108,6 +109,14 @@
 		});
 
 
+		document.querySelector("#newCalendarDemo").addEventListener("click", function () {
+
+			document.querySelector("#calendarDate").value = "2023-02-26";
+			document.querySelector("#eventNameID").value = "家屬座談會";
+			document.querySelector("#titleID").value = "家屬座談會";
+			document.querySelector("#contentID").innerHTML = "可讓全體家屬一起會談，互相認識，順便看看住民";
+
+		});
 	</script>
 }
 

@@ -153,6 +153,8 @@ namespace prjRehabilitation.Controllers
             dbClassContext db = new dbClassContext();
             ccvm.FDeleteBool = true;
             ccvm.FAdminId = getAdminIfSession().Fid;
+            ccvm.className = "genric-btn success small circle";
+            ccvm.dateColor = "Chocolate";
 
             db.Add(ccvm.calendar);
             db.SaveChanges();

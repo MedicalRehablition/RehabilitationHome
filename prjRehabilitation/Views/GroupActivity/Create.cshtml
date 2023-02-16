@@ -104,7 +104,7 @@
             <i id="ScheduleDetailAdd" class="fa fa-plus-circle p-2" style="font-size:24px;color:darkgreen;background-color:lightblue;border-bottom-right-radius:15px"></i>
             <div class="form-group">
                 <label asp-for="cgavm.FProcess" class="control-label"></label>
-                <textarea asp-for="cgavm.FProcess" class="form-control" style="height:250px"></textarea>
+                <textarea asp-for="cgavm.FProcess" class="form-control" style="height:250px" id="FProcessID"></textarea>
                 <span asp-validation-for="cgavm.FProcess" class="text-danger"></span>
             </div>
             <div class="row gallery-item p-2" style=" background-color:gray;">
@@ -162,7 +162,7 @@
 
             <div class="form-group">
                 <label asp-for="cgavm.FAchievement" class="control-label"></label>
-                <textarea asp-for="cgavm.FAchievement" class="form-control" style="height:250px"></textarea>
+                <textarea asp-for="cgavm.FAchievement" class="form-control" style="height:250px" id="FAchievementID"></textarea>
                 <span asp-validation-for="cgavm.FAchievement" class="text-danger"></span>
             </div>
 
@@ -439,25 +439,27 @@
 
         document.querySelector("#demoPress").addEventListener("click",function(){
             document.querySelector("#formDate").value = "2023-02-24";
-            document.querySelector("#startTime").value = "12:30";
-            document.querySelector("#endTime").value = "14:25";
-            document.querySelector("#groupName").value = "青春揮灑行動";
-            document.querySelector("#className").value = "課程名稱";
-            document.querySelector("#goal").value = "學習如何正確的休閒活動";
-            document.querySelector("#location").value = "新生街活動中心";
-            document.querySelector("#peopleCount").value = 1;
+            document.querySelector("#startTime").value = "09:40";
+            document.querySelector("#endTime").value = "11:45";
+            document.querySelector("#groupName").value = "愛心餅乾碰出來";
+            document.querySelector("#className").value = "烹飪活動";
+            document.querySelector("#goal").value = "學習如何正確的碰出餅乾";
+            document.querySelector("#location").value = "17F烹飪教室";
+            document.querySelector("#peopleCount").value = 5;
+            document.querySelector("#FProcessID").innerHTML = 5;
+            document.querySelector("#FAchievementID").innerHTML = 5;
             document.querySelector("#EventType").insertAdjacentHTML("beforeend", `
 
                                         <div class="row">
                                 <div class="col">
                                                     <select class="mt-2  form-select shadow-none  border-top" name="cgavm.TGroupActivityClassThemes[${classThemeCount++}].FClassThemeId">
-                                    <option selected="selected" value="1">衛生習慣  </option>
+                                    <option  value="1">衛生習慣  </option>
                                 <option value="2">居家清潔  </option>
                         <option value="3">飲食起居  </option>
                         <option value="4">認知能力  </option>
                         <option value="5">體能表現  </option>
                         <option value="6">人際互動  </option>
-                        <option value="7">烹飪能力  </option>
+                                <option selected="selected" value="7">烹飪能力  </option>
                         <option value="8">休閒安排  </option>
                         <option value="9">財務管理  </option>
                                 <option value="10">健康促進  </option>
@@ -472,9 +474,9 @@
             document.querySelector("#TScheduleDetails").insertAdjacentHTML("beforeend", `
 
                             <ul class="list-group list-group-horizontal-md">
-                                        <li class="list-group-item"><label>開始時間：</label><input type="time" id="startTime" name="cgavm.TScheduleDetails[${scheduleDetailsCount}].FStartTime"/></li>
-                                                <li class="list-group-item"><label>結束時間：</label><input type="time" id="endTime" name="cgavm.TScheduleDetails[${scheduleDetailsCount}].FEndTime"/></li>
-                                                <li class="list-group-item"><label>大綱說明：</label><input type="text" id="depiction" name="cgavm.TScheduleDetails[${scheduleDetailsCount}].FDepiction"/></li>
+                                        <li class="list-group-item"><label>開始時間：</label><input type="time" id="startTime" name="cgavm.TScheduleDetails[${scheduleDetailsCount}].FStartTime" value="10:00"/></li>
+                                                <li class="list-group-item"><label>結束時間：</label><input type="time" id="endTime" name="cgavm.TScheduleDetails[${scheduleDetailsCount}].FEndTime" value="11:30"/></li>
+                                                        <li class="list-group-item"><label>大綱說明：</label><input type="text" id="depiction" name="cgavm.TScheduleDetails[${scheduleDetailsCount}].FDepiction" value="烤餅乾"/></li>
                                 <li class="list-group-item" style="border-radius:0px  20px 20px 0px" onclick="this.parentElement.remove()"><i class="fas fa-minus-circle" style="font-size:24px;color:red;position: relative;top: 50%; left: 50%;-ms-transform: translate(-50%, -50%);transform: translate(-50%, -50%);"></i></li>
                             </ul>
 

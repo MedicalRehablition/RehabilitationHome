@@ -7,7 +7,7 @@
 
 <h1>會員申請會面</h1>
 
-<h4>申請表</h4>
+<h4 id="newApplyVisitorID">申請表</h4>
 <hr />
 <div class="row">
     <div class="col-md-6">
@@ -25,7 +25,7 @@
             </div>*@
             <div class="form-group">
                 <label class="control-label">申請日期</label>
-                <input asp-for="date" type="date" class="form-control" />
+                <input asp-for="date" type="date" class="form-control" id="ApplyVisitorDateID" />
                 <span asp-validation-for="date" class="text-danger"></span>
             </div>
             @* <div class="form-group">
@@ -50,7 +50,7 @@
             </div>*@
             <div class="form-group">
                 <label asp-for="content" class="control-label"></label>
-                <textarea asp-for="content" class="form-control" style="height:350px"> </textarea>
+                <textarea asp-for="content" class="form-control" style="height:350px" id="ApplyVisitorContentID"> </textarea>
                 <span asp-validation-for="content" class="text-danger"></span>
             </div>
             <div class="row">
@@ -87,7 +87,7 @@
 </div>
 
 <div>
-    <a asp-action="List">Back to List</a>
+    <a asp-action="List" class="btn btn-info small">返回</a>
 </div>
 
 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -132,6 +132,11 @@
          //document.querySelector("#resultConfrom").addEventListener("click",function(){
          //   window.location.href = `@Url.Content("~/")Calendar/List`
          //});
+
+        document.querySelector("#newApplyVisitorID").addEventListener("click",function(){
+            document.querySelector("#ApplyVisitorDateID").value = "2023-02-25"
+            document.querySelector("#ApplyVisitorContentID").innerHTML = "帶衣物，水杯，幾本書。 給阿祥，會面。"
+        });
 
     </script>
 }
