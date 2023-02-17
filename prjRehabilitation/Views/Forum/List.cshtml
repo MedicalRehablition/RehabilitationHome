@@ -63,6 +63,8 @@
         height: 4em;
     }
 </style>
+
+
 <br />
 <a  class="btn btn-outline-primary" href="@Url.Content("~/Forum/NewPost")">發布新文章</a>
 <div class="my-3 p-3 bg-body rounded shadow-sm" id="list">
@@ -102,7 +104,9 @@
                                                      <svg class="bd-placeholder-img flex-shrink-0 me-2 rounded circle " width="24" height="24"  role="img" aria-label="Placeholder: 24x24" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#5B5B5B"></rect><text x="50%" y="50%" fill="#5B5B5B" dy=".3em">24x24</text></svg>
                                             <div class="pb-3 mb-0 small lh-sm border-bottom w-100">
                                                 <div class="d-flex justify-content-between">
-                                                    <h5 class="text-dark">${title}</h5>
+                                                        <a href="@Url.Content("~/Forum/PostDetail?id=${id}")">
+                                                            <h5 class="text-dark">${title}</h5>
+                                                        </a>
                                                     <div>
                                                           <a class="btn btn-outline-info" onclick="GetReplyList(${id})" id="replybtn${id}" data-replybtn="false">展開留言</a>
                                                          <a class="btn btn-outline-success" href="@Url.Content("~/Forum/PostEdit?id=${id}")">修改</a>
