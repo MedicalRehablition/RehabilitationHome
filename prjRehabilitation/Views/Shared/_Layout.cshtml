@@ -110,19 +110,21 @@
             margin-top: 0;
             margin-bottom: 0rem;
         }
+
     </style>
 </head>
 <body>
     <!--大標題-->
     <header>
         <div class="header-area">
-            <div class="main-header header-sticky">
+            <div class="main-header header-sticky" style="padding: 14px 130px;
+">
                 <div class="container-fluid">
                     <div class="row align-items-center">
                         <!-- Logo -->
                         <div class="col-xl-2 col-lg-2 col-md-1">
                             <div class="logo">
-                                <a asp-controller="Home" asp-action="index"><img src="~/img/logo/careBIG.png" style="height:50px;" alt=""></a>
+                                <a asp-controller="Home" asp-action="index"><img src="~/img/logo/careBIG.png" style="height:90px;width:90%" alt=""></a>
                             </div>
                         </div>
                         <div class="col-xl-10 col-lg-10 col-md-10">
@@ -140,15 +142,13 @@
                                                     <li>
                                                         <a class="nav-link text-dark" asp-area="" asp-controller="UserInformation" asp-action="GetUserPatient">家人資料</a>
                                                     </li>
-                                                    <li>
-                                                        <a class="nav-link text-dark" asp-area="" asp-controller="UserInformation" asp-action="NewPost">家人???</a>
-                                                    </li>
+
 
                                                 </ul>
                                             </li>
                                             <li>
                                                 <button type="button" class="Loginbtn" data-toggle="modal" data-target="#exampleModalCenter" id="textbtn">
-                                                    <i class="fa-solid fa-user" style="color:black">登入</i>
+                                                    <i class="fa-solid fa-user" style="color:black;font-size: x-large;">登入</i>
                                                 </button>
                                             </li>
                                             <li>
@@ -272,7 +272,7 @@
                         <div class="single-footer-caption mb-50">
                             <div class="footer-number mb-50">
                                 <h4> 02 6631 6588</h4>
-                              
+
                             </div>
                             <!-- Form -->
                             <div class="footer-form">
@@ -315,7 +315,7 @@
                 </div>
             </div>
         </div>
-       
+
     </div>
     <!-- Footer End-->
     <div id="back-top" style="display: block;">

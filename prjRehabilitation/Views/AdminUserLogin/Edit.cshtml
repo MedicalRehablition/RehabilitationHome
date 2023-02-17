@@ -162,7 +162,7 @@
             const response = await fetch("@Url.Content("/AdminUserLogin/GetUserSession")");
             const User = await response.json();
             debugger
-            if(User.fRank!="經理"){
+            if(User.fRank!="主任"){
                 $(".form-select").attr("disabled", "disabled");
             }
             GetLoginUser();

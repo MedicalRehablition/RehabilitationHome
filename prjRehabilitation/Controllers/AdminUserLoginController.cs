@@ -32,7 +32,7 @@ namespace prjRehabilitation.Controllers
                 string keyword = vm.txtKeyword;
                 IEnumerable<Admin> data = null;
                 List<CAdminViewModel> List = new List<CAdminViewModel>();
-                if (rank == "經理")
+                if (rank == "主任")
                 {
                     if (keyword == null)
                     {

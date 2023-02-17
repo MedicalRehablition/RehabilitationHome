@@ -9057,7 +9057,7 @@ html[dir="ltr"] body .p-l-0 {
     /*Vertical with mini-sidebar*/
     /*Fixed sidebar with minisidebar*/ }
     #main-wrapper[data-layout="vertical"][data-sidebartype="full"] .topbar .top-navbar .navbar-header {
-      width: 250px; }
+      width: 400px; }
     #main-wrapper[data-layout="vertical"][data-sidebar-position="fixed"][data-sidebartype="full"] .topbar .top-navbar .navbar-collapse {
       margin-left: 250px; }
     #main-wrapper[data-layout="vertical"][data-sidebar-position="fixed"][data-sidebartype="mini-sidebar"] .topbar .top-navbar .navbar-collapse {

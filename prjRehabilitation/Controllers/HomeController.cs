@@ -92,7 +92,8 @@ namespace prjRehabilitation.Controllers
             List<string> MailList = new List<string>();
             MailList.Add(vm.txtAccount);//新增收件人進去
             string Subject = "變更密碼";
-            string Body = "您的密碼為:" + newPassword;
+            string Body = ">>>>>>";
+            Body += "<a href = https://localhost:7164/Home/ResetPassword>點我重設密碼</a>";
             MailMessage msg = new MailMessage();
             msg.From = new MailAddress("yeeee880726@gmail.com", "測試郵件", System.Text.Encoding.UTF8);
             msg.To.Add(string.Join(",", MailList.ToArray()));//收件人
@@ -142,27 +143,35 @@ namespace prjRehabilitation.Controllers
             //db.SaveChanges();
             return RedirectToAction("index");
         }
+        public IActionResult ResetPassword()
+        {
+            return View();
+        }
+        [HttpPost]
         public IActionResult ResetPassword(CCustomerViewModel vm)
         {
             dbClassContext db = new dbClassContext();
-            Customer customer = db.Customers.FirstOrDefault(t => t.Fid == vm.Fid);
+            Customer customer = db.Customers.FirstOrDefault(t => t.FEmail == vm.FEmail);
             if (customer != null)
             {
-                if (vm.photo != null)
+                using (var cryptoMD5 = System.Security.Cryptography.MD5.Create())
                 {
-                    string photoName = Guid.NewGuid().ToString() + ".jpg";
-                    string path = _environment.WebRootPath + "/images/" + photoName;
-                    customer.FPicture = photoName;
-                    vm.photo.CopyTo(new FileStream(path, FileMode.Create));
+                    vm.FPassword += "putSomeSalt";
+                    var bytes = Encoding.UTF8.GetBytes(vm.FPassword);
+                    var hash = cryptoMD5.ComputeHash(bytes);
+                    var md5 = BitConverter.ToString(hash)
+                      .Replace("-", String.Empty)
+                      .ToUpper();
+                    vm.FPassword = md5;
                 }
-                customer.Fid = vm.Fid;
-                customer.FAddress = vm.FAddress;
-                customer.FName = vm.FName;
-                customer.FPhone = vm.FPhone;
                 customer.FPassword = vm.FPassword;
                 db.SaveChanges();
+                return Content("已更改成功!");
             }
-            return RedirectToAction("Index");
+            else
+            {
+                return Content("帳號輸入錯誤,請重新輸入");
+            }
         }
         public IActionResult ValidGoogleLogin()
         {
