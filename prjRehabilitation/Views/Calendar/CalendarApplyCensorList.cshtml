@@ -5,10 +5,10 @@
     if (!string.IsNullOrEmpty(ViewBag.getAdminSection)) { Layout = "AdminLayout"; }
 }
 
-<h1>CalendarApplyCensorList</h1>
+<h1>行事曆-會員申請審核頁</h1>
 
 <p>
-    <a asp-action="CalendarApplyVisitorAdminCreate" class="genric-btn primary e-large">後端新增會客預約</a>
+    <a asp-action="CalendarApplyVisitorAdminCreate" class="btn btn-info rounded" style="color:white">後端新增會客預約</a>
 </p>
 <table class="table">
     <thead>
@@ -34,9 +34,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.title)
             </th>
-            <th>
+          @*  <th>
                 @Html.DisplayNameFor(model => model.content)
-            </th>
+            </th>*@
             <th>
                 @Html.DisplayNameFor(model => model.fRecorder)
             </th>
@@ -49,9 +49,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.FApplyVisitor)
             </th>
-            <th>
+          @*  <th>
                 填表人ID
-            </th>
+            </th>*@
             @*<th>
             @Html.DisplayNameFor(model => model.FAdminId)
             </th>*@
@@ -83,9 +83,9 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.title)
                 </td>
-                <td>
+           @*     <td>
                     @Html.DisplayFor(modelItem => item.content)
-                </td>
+                </td>*@
                 <td>
                     @Html.DisplayFor(modelItem => item.fRecorder)
                 </td>
@@ -99,14 +99,14 @@
                     @*@Html.DisplayFor(modelItem => item.FApplyVisitor)*@
                     <input id="calendarAV" class="calendarAVs" asp-for="@item.FApplyVisitor" disabled="disabled" />
                 </td>
-                <td>
+             @*   <td>
                     @Html.DisplayFor(modelItem => item.FCustomerid)
-                </td>
+                </td>*@
                 @*<td>
             @Html.DisplayFor(modelItem => item.FAdminId)
             </td>*@
                 <td>
-                    @Html.ActionLink("審核", "CalendarAuditDecision", new {  id=item.FId  })
+                    @Html.ActionLink("審核", "CalendarAuditDecision", new {  id=item.FId  },new{@class="btn btn-primary rounded"})
                 </td>
             </tr>
         }

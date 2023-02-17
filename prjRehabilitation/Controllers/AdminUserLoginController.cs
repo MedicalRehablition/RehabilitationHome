@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Components.Forms;
+﻿using Google.Apis.Auth;
+using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.AspNetCore.Mvc;
 using prjRehabilitation.Models;
 using prjRehabilitation.Models.Lin;
@@ -17,33 +18,49 @@ namespace prjRehabilitation.Controllers
         {
             _environment = environment;
         }
-        
+
         //show出員工名單
         public IActionResult List(CKeywordViewModel vm)
         {
-            dbClassContext db = new dbClassContext();
-            string keyword = vm.txtKeyword;
-            IEnumerable<Admin> data = null;
-            if(keyword == null)
+            string json = HttpContext.Session.GetString(CDictionary.SK_ADMIN_User);//得到工作人員的session
+            if (json != null)
             {
-                data = from c in db.Admins
-                       select c;
-            }
-            else
-            {
-                data = db.Admins.Where(c=>c.FName.Contains(keyword)).ToList();
-            }
-            List<CAdminViewModel> List = new List<CAdminViewModel>();
-            foreach(var c in data)
-            {
-                CAdminViewModel a  = new CAdminViewModel();
-                a.admin = c;
-                List.Add(a);
-                
-            }
-            return View(List);
+                Admin admin = JsonSerializer.Deserialize<Admin>(json);
+                string rank = admin.FRank; //看是誰進來
+                ViewBag.ank = rank;
+                dbClassContext db = new dbClassContext();
+                string keyword = vm.txtKeyword;
+                IEnumerable<Admin> data = null;
+                List<CAdminViewModel> List = new List<CAdminViewModel>();
+                if (rank == "經理")
+                {
+                    if (keyword == null)
+                    {
+                        data = from c in db.Admins
+                               select c;
+                    }
+                    else
+                    {
+                        data = db.Admins.Where(c => c.FName.Contains(keyword)).ToList();
+                    }
+                    foreach (var c in data)
+                    {
+                        CAdminViewModel a = new CAdminViewModel();
+                        a.admin = c;
+                        List.Add(a);
+                    }
+                    return View(List);
+                }
+                else
+                {
+                    return RedirectToAction("Edit", "AdminUserLogin", new { @id = admin.Fid });
+                }
+
+            };
+            return View("Login", "AdminUserLogin");
         }
-       
+
+
         //登入寫入Session
         public IActionResult Login()
         {
@@ -69,7 +86,7 @@ namespace prjRehabilitation.Controllers
         public IActionResult ExistAccount(CLoginViewModel vm)
         {
             dbClassContext db = new dbClassContext();
-            Admin admin = db.Admins.FirstOrDefault(t => t.FEmail==vm.txtAccount);
+            Admin admin = db.Admins.FirstOrDefault(t => t.FEmail == vm.txtAccount);
             using (var cryptoMD5 = System.Security.Cryptography.MD5.Create())
             {
                 vm.txtPassword += "putSomeSalt";
@@ -142,11 +159,11 @@ namespace prjRehabilitation.Controllers
                 ad.FRank = vm.FRank;
                 ad.FEmail = vm.FEmail;
                 ad.FName = vm.FName;
-                ad.FBirth=vm.FBirth;
-                ad.FPassword= vm.FPassword;
-                ad.FSex=vm.FSex;
+                ad.FBirth = vm.FBirth;
+                ad.FPassword = vm.FPassword;
+                ad.FSex = vm.FSex;
                 db.SaveChanges();
-                
+
             }
             return RedirectToAction("List");
         }
@@ -167,17 +184,28 @@ namespace prjRehabilitation.Controllers
             return View();
         }
         public IActionResult SendMailByGmail(CLoginViewModel vm)
-            {
+        {
             dbClassContext db = new dbClassContext();
-            Admin admin = db.Admins.FirstOrDefault(t => t.FEmail==vm.txtAccount);
+            Admin admin = db.Admins.FirstOrDefault(t => t.FEmail == vm.txtAccount);
             if (admin == null)
             {
                 return Content("請輸入信箱帳號");
             }
             admin.FEmail = vm.txtAccount;
             admin.FPassword = Guid.NewGuid().ToString();
+            string beforePassword = admin.FPassword;//加密前密碼
+            using (var cryptoMD5 = System.Security.Cryptography.MD5.Create())
+            {
+                string afterPassword = beforePassword + "putSomeSalt";
+                var bytes = Encoding.UTF8.GetBytes(afterPassword);
+                var hash = cryptoMD5.ComputeHash(bytes);
+                var md5 = BitConverter.ToString(hash)
+                  .Replace("-", String.Empty)
+                  .ToUpper();
+                admin.FPassword = md5; //加密後密碼
+            }
             db.SaveChanges();
-            string newPassword = admin.FPassword;
+            string newPassword = beforePassword;
             List<string> MailList = new List<string>();
             MailList.Add(vm.txtAccount);//新增收件人進去
             string Subject = "變更密碼";
@@ -238,7 +266,7 @@ namespace prjRehabilitation.Controllers
                 vm.Fphoto = photoName;
                 vm.photo.CopyTo(new FileStream(path, FileMode.Create));
                 db.Admins.Add(vm.admin);
-                db.SaveChanges();                
+                db.SaveChanges();
                 //-----qrcode生成及儲存-----
                 //長寬各150               
                 CCreateqrcode cqr = new CCreateqrcode();
@@ -276,7 +304,7 @@ namespace prjRehabilitation.Controllers
                     var imageData = Convert.ToBase64String(image);
                     var htmlBody = $"<html><body><p>你好，你的QR code如下，請妥善保管，謝謝。</p><img src='data:image/jpeg;base64,{imageData}' /></body></html>";
                     var body = htmlBody;
-                    sendmail.SendByGmail(sendto,body,subject);
+                    sendmail.SendByGmail(sendto, body, subject);
                 }//------mail finish------
 
                 return Content("註冊成功!請至信箱查看QR code");

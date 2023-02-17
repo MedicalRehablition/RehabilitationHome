@@ -13,6 +13,9 @@
         <form asp-action="Edit" enctype="multipart/form-data">
 
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <input asp-for="Fid" type="hidden"  value="@Model.Fid "class="form-control" />
+
             <input  type="hidden" asp-for="FPhoto"/>
             <div class="form-group col">
                 <label asp-for="photo" class="control-label">照片</label>
@@ -85,7 +88,7 @@
 
 @section Scripts{
         <script>
-
+            
              $("#photo").change(function () {
                     //當檔案改變後，做一些事
                     readURL(this);   // this代表<input id="imgInp">

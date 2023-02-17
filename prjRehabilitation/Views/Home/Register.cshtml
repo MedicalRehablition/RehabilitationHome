@@ -4,8 +4,6 @@
     ViewData["Title"] = "Register";
     Layout = "_Layout";
 }
-
-<h1>Register</h1>
 <h4>註冊帳號</h4>
 <hr />
 
@@ -87,7 +85,7 @@
 
 
 <div>
-    <a asp-action="Login">返回登入</a>
+    <a asp-action="Index">返回主頁</a>
 </div>
 
 @section Scripts {
@@ -140,13 +138,13 @@
 
         })
         $("#Demobtn").on("click", function () {
-            $("#txtName").attr("Value", "吳帥哥");
-            $("#txtemail").attr("Value", "a0983760928@gmail.com");
+            $("#txtName").attr("Value", "張淑親");
+            $("#txtemail").attr("Value", "girl5380@hotmail.com");
             $("#txtPhone").attr("Value", "0983274924");
             $("#txtPassword").attr("Value", "l3nita8a");
             $("#txtAddress").attr("Value", "台中市南屯區黎明路2段200號");
-            $("#txtPatientName").attr("Value", "吳靜");
-            $("#txtPatientNum").attr("Value", "A227621546");
+            $("#txtPatientName").attr("Value", "李阿祥");
+            
         })
     </script>
 

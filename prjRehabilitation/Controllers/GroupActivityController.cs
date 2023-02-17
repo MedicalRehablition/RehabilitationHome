@@ -41,7 +41,7 @@ namespace prjRehabilitation.Controllers
         public IActionResult List()
         {
             dbClassContext db = new dbClassContext();
-            List<TGroupActivity> gaList = db.TGroupActivities.Where(_ => _.FDeleteBool == true).ToList();
+            List<TGroupActivity> gaList = db.TGroupActivities.Where(_ => _.FDeleteBool == true).OrderByDescending(_=>_.FGroupActivityId).ToList();
 
             List<CGroupActivityViewModel> gavmList = new List<CGroupActivityViewModel>();
 

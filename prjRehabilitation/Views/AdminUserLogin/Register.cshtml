@@ -10,6 +10,10 @@
 
 <hr />
 <form enctype="multipart/form-data" asp-action="Register" name="userRegister">
+    <div class="alert-autocloseable-warning" id="shippingmsgbox" hidden role="alert">
+        <div class="alert-autocloseable-warning" id="shippingmsgText">
+        </div>
+    </div>
     <div class="row">
         <div class="col-md-6 mb-4">
             <div class="form-outline">
@@ -47,7 +51,7 @@
             </div>
 
             <div class="form-check form-check-inline">
-                <input asp-for ="FSex"class="form-check-input" asp-for="FBirth" type="radio" id="otherGender"
+                <input asp-for="FSex" class="form-check-input" asp-for="FBirth" type="radio" id="otherGender"
                        value="其他" />
                 <label class="form-check-label" for="otherGender">其他</label>
             </div>
@@ -59,24 +63,24 @@
         <div class="col-md-6 mb-4 pb-2">
             <div class="form-outline">
                 <label class="form-label" for="emailAddress">信箱</label>
-                <input asp-for="FEmail"type="email" id="emailAddress" class="form-control form-control-lg" />
+                <input asp-for="FEmail" type="email" id="emailAddress" class="form-control form-control-lg" />
             </div>
         </div>
         <div class="col-md-6 mb-4 pb-2">
             <div class="form-outline">
                 <label class="form-label" for="phoneNumber">密碼</label>
-                <input asp-for ="FPassword" type="password" id="phoneNumber" class="form-control form-control-lg" />
+                <input asp-for="FPassword" type="password" id="password" class="form-control form-control-lg" />
             </div>
         </div>
     </div>
     <div class="row">
         <div class="col-12">
             <label asp-for="FRank" class="control-label">職級</label>
-            <select  asp-for="FRank"class="form-select" aria-label="Default select example">
-                    <option value="1">經理</option>
-                    <option value="2">副理</option>
-                    <option value="3">員工</option>
-                </select>
+            <select asp-for="FRank" class="form-select" aria-label="Default select example">
+                <option value="主任">主任</option>
+                <option value="醫事人員">醫事人員</option>
+                <option value="專任管理員">專任管理員</option>
+            </select>
         </div>
     </div>
     <div>
@@ -87,7 +91,11 @@
     <div class="mt-4 pt-2">
         <input class="btn btn-primary btn-lg" type="button" value="確認" id="subbtn" />
     </div>
- </form>
+    <div class="mt-4 pt-2">
+        <input class="btn btn-primary btn-lg" type="button" value="Demo" id="Demobtn" />
+    </div>
+
+</form>
 
 
 <div>
@@ -98,20 +106,35 @@
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
-<script>
-    let subbtn = document.querySelector("#subbtn");
-    subbtn.addEventListener("click", function (event) {
-        //event.preventDefault();
-        let xhr = new XMLHttpRequest();
-        xhr.addEventListener("load", function () {
-            alert(xhr.responseText);
-                window.location.href = "/AdminUserLogin/Login";
+    <script>
+        let subbtn = document.querySelector("#subbtn");
+        const txtName = document.querySelector("#lastName");
+        const txtemailAddress = document.querySelector("#emailAddress");
+        const txtpassword = document.querySelector("#password");
+        $("#Demobtn").on("click", function () {
+            $("#lastName").attr("value", "吳品")
+            $("#emailAddress").attr("value", "a0983760928@gmail.com")
+            $("#password").attr("value", "l3nita8a")
         })
-        const Data = new FormData(document.userRegister);
-        xhr.open("POST", "@Url.Content("/AdminUserLogin/AccountAlive")");
-        xhr.send(Data);
+        subbtn.addEventListener("click", function (event) {
+            //event.preventDefault();
+            let xhr = new XMLHttpRequest();
+            xhr.addEventListener("load", function () {
+                if (xhr.responseText == "註冊成功!請至信箱查看QR code") {
+                    $('.alert-autocloseable-warning').attr("hidden", false);
+                    $('.alert-autocloseable-warning').delay(2000).fadeOut("slow", function () {
+                        $('.alert-autocloseable-warning').attr("hidden", true);
+                        $('.alert-autocloseable-warning').removeAttr("style");
+                    });
+                    $('#shippingmsgText').text(xhr.responseText);
+                    setTimeout('location.href="/AdminUserLogin/List"', 2000);
+                }
+            })
+            const Data = new FormData(document.userRegister);
+            xhr.open("POST", "@Url.Content("/AdminUserLogin/AccountAlive")");
+            xhr.send(Data);
 
-    })
+        })
     </script>
 
     }

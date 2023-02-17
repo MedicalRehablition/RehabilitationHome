@@ -11,11 +11,11 @@ namespace prjRehabilitation.Models.Lin
             IQueryable<DiseaseList> q;
             if (search.All(char.IsAscii))
             {
-                q = db.DiseaseLists.Where(x => x.IdDisease.Contains(search));
+                q = db.DiseaseLists.Where(x => x.IdDisease.Contains(search)).Take(100);
             }
             else
             {
-                q = db.DiseaseLists.Where(x => x.DiseaseChineseName.Contains(search));
+                q = db.DiseaseLists.Where(x => x.DiseaseChineseName.Contains(search)).Take(100);
             }
             var list = new List<VMDisease>();
             foreach (var c in q.ToList())

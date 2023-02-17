@@ -12,7 +12,7 @@
 
 <div class="layout">
     <h1>新增住民</h1>
-    <h4></h4>
+    <button class="btn btn-outline-info" onclick="demo()">Demo</button>
     <hr />
     <form asp-action="Create_F" id ="FormP" name="FormP" enctype="multipart/form-data">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -308,6 +308,22 @@
 </div>
 @section Scripts{
     <script>
+        function demo(){
+            $("#fName").val("李阿祥");
+            $("#fPhone").val("0939667931");
+            $("#fCountry").val("台灣");
+            $("#fAddressPermanent").val("雲林縣虎尾鎮望安路11號");
+            $("#fAddressResidential").val("台北市大安區長興街92號111房");
+            $("#emerCaller1_FEmergencyName").val("張淑卿");
+            $("#emerCaller1_Frelation").val("夫妻");
+            $("#emerCaller1_FPhone").val("0919667158");
+            $("#emerCaller2_FEmergencyName").val("李安雅");
+            $("#emerCaller2_Frelation").val("父女");
+            $("#emerCaller2_FPhone").val("0918777168");
+            $("#fHos").val("士林新光醫院");
+            $("#fGrantType").val("台北市長照A型補助");
+        }
+
         $(document).ready(function() {
             var date = new Date();
 
