@@ -3,10 +3,10 @@
 </style>
 
 <div class="container">
-    <div id="result">i am result</div>
-    <button id="btnclick"> 按</button>
+    <div id="result" style="display:none">  am result</div>
+    <button id="btnclick" style="display:none" > 按</button>
     <hr />
-    <video id="video" autoplay style="width:300px"></video>
+    <video id="video" autoplay style="width:500px" class="border border-info border-3 rounded-2"></video>
     <canvas id="canvas" style="display:none"></canvas>
 
 </div>
@@ -35,6 +35,7 @@
         //固定時間執行掃描
 
         timego();
+        $("#btnclick").on("click",scan);//測試用
 
         //說明：
         //1.建立一個funcion scan做掃描
