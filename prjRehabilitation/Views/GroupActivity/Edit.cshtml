@@ -230,7 +230,7 @@
             <div class="form-group">
                 <input type="submit" id="submitButtonForAjax" value="送出" class="btn btn-primary" />
               
-                @Html.ActionLink("刪除", "delete", new {  id=Model.cgavm.FGroupActivityId },new{@class="btn btn-danger"})
+                @Html.ActionLink("刪除", "delete", new {  id=Model.cgavm.FGroupActivityId },new{@class="btn btn-danger white" , style="color:white;"} )
             </div>
         </form>
     </div>
@@ -354,7 +354,7 @@
                                                             <div class="card-body">
                                                                         <div class="row">
                                                                                     <label class="h5 badge bg-primary rounded cardIDandName col" id="${this.id}">${this.value}</label>
-                                                                                    <input type="button" id="${this.id}-removeCard" class="btn btn-danger col-1" value="刪除"/>
+                                                                                            <input type="button" id="${this.id}-removeCard" class="btn btn-danger col-1" style="color:white;" value="刪除"/>
                                                                         </div>
                                                                         <div class="row " style="background-color:lightgray">
                                                                     <div class="col-4">
