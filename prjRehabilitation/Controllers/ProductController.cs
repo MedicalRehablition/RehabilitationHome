@@ -210,6 +210,7 @@ namespace prjRehabilitation.Controllers
         }
         public IActionResult Delete(int id)
         {
+            ResetCart(); //刪除商品後重置購物車，不然cookie會爛掉
             (new ProductCRUD()).Delete(id);
             return RedirectToAction("List_B");
         }
