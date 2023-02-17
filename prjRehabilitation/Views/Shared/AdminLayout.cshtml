@@ -1,10 +1,10 @@
 ﻿
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
-   
+
 <head>
     <style>
-        .text-white2{
+        .text-white2 {
             border: none;
             /* padding: 18px 18px 18px 19px; */
             text-transform: capitalize;
@@ -93,15 +93,11 @@
                     <!-- ============================================================== -->
                     <a class="navbar-brand" href="/Home/index">
                         <!-- Logo icon -->
-                        <b class="logo-icon">
-                            <!-- Dark Logo icon -->
-                            <img src="~/AdminBootstrap/pluginsAdminlayout/images/logo-icon.png" alt="homepage" />
-                        </b>
                         <!--End Logo icon -->
                         <!-- Logo text -->
                         <span class="logo-text">
                             <!-- dark Logo text -->
-                            <img src="~/AdminBootstrap/pluginsAdminlayout/images/logo-text.png" alt="homepage" />
+                            <img src="~/img/logo/careBIG.png" alt="homepage" height="50%" width="90%"/>
                         </span>
                     </a>
                     <!-- ============================================================== -->
@@ -228,10 +224,10 @@
                             @* <a class="sidebar-link waves-effect waves-dark sidebar-link" href="profile.html" aria-expanded="false">*@
                             <a class="sidebar-link waves-effect waves-dark sidebar-link LoginA" asp-area="" asp-controller="AdminUserLogin" asp-action="Login">
                                 <i class="fa fa-download" aria-hidden="true"></i>
-                                <span class="hide-menu LoginSpan" >登入</span>
+                                <span class="hide-menu LoginSpan">登入</span>
                             </a>
                         </li>
-                        
+
                         <li class="sidebar-item">
                             @* <a class="sidebar-link waves-effect waves-dark sidebar-link" href="profile.html" aria-expanded="false">*@
                             <a class="sidebar-link waves-effect waves-dark sidebar-link" asp-area="" asp-controller="User" asp-action="UserList">
@@ -282,7 +278,7 @@
             <!-- footer -->
             <!-- ============================================================== -->
             <footer class="footer text-center">
-               此套版為教學使用,無商業利益,如侵犯著作權,請告知 <a href="https://www.wrappixel.com/">wrappixel.com</a>
+                此套版為教學使用,無商業利益,如侵犯著作權,請告知 <a href="https://www.wrappixel.com/">wrappixel.com</a>
             </footer>
             <!-- ============================================================== -->
             <!-- End footer -->
@@ -332,10 +328,10 @@
                 const AdminUserImg = document.querySelector(".AdminUserImg");
                 $(".LoginSpan").text("登出")
                 debugger
-                span.innerText = User.fName+User.fRank
+                span.innerText = User.fName + User.fRank
                 $(".AdminUserImg").attr("src", "/images/" + User.fphoto)
-                }
-            
+            }
+
         }
         GetUser();
         //==========清除使用者=========================
