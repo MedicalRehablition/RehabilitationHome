@@ -68,7 +68,7 @@ namespace prjRehabilitation.Controllers.Api
                     Dictionary<string, string> _ = new Dictionary<string, string>
                     {
                         { "fid", getResidentID.Fid.ToString() },
-                        { "fName", getResidentID.FName },
+                        { "fName", getResidentID.FName+"(出院)" },
                         { "date", getLastDate.FirstOrDefault().Date }
                     };
                     return Json(new List<Dictionary<string, string>>() { _ });
@@ -88,7 +88,7 @@ namespace prjRehabilitation.Controllers.Api
             Dictionary<string, string> ___ = new Dictionary<string, string>   //都沒登入時
                     {
                         { "fid", "noLogin" },
-                        { "fName", "並未登入" },
+                        { "fName", "並未登入或無相關住民" },
                         { "date", DateTime.Today.AddDays(-28).ToString("yyyy-MM-dd") }  //
                     };
             return Json(new List<Dictionary<string, string>>() { ___ });

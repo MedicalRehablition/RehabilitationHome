@@ -36,7 +36,7 @@
 
             <div class="form-group">
                 <label asp-for="cgavm.FEventType" class="control-label"></label>
-                <select asp-for="cgavm.FEventType" asp-items="@(new SelectList(Model.GroupActivityType))" class="form-control form-select shadow-none  border-top col-md-6"></select>
+                <select asp-for="cgavm.FEventType" id="groupactivityEventTypeID" asp-items="@(new SelectList(Model.GroupActivityType))" class="form-control form-select shadow-none  border-top col-md-6"></select>
                 <span asp-validation-for="cgavm.FEventType" class="text-danger"></span>
             </div>
             <div class="row">
@@ -438,31 +438,32 @@
 
 
         document.querySelector("#demoPress").addEventListener("click",function(){
+            document.querySelector("#groupactivityEventTypeID").value = "護理衛教";
             document.querySelector("#formDate").value = "2023-02-24";
             document.querySelector("#startTime").value = "09:40";
             document.querySelector("#endTime").value = "11:45";
             document.querySelector("#groupName").value = "愛心餅乾碰出來";
-            document.querySelector("#className").value = "烹飪活動";
+            document.querySelector("#className").value = "烹飪大師照過來";
             document.querySelector("#goal").value = "學習如何正確的碰出餅乾";
-            document.querySelector("#location").value = "17F烹飪教室";
+            document.querySelector("#location").value = "烹飪教室";
             document.querySelector("#peopleCount").value = 5;
-            document.querySelector("#FProcessID").innerHTML = 5;
-            document.querySelector("#FAchievementID").innerHTML = 5;
+            document.querySelector("#FProcessID").innerHTML = "一開始準備材料\r\n在老師專業帶領下，精算時間，烘烤\r\n製成成品\r\n然後包裝\r\n再抓一些量分給大家享用。";
+            document.querySelector("#FAchievementID").innerHTML = "製成愛心餅乾25包\r\n並留下一些量大家分食。";
             document.querySelector("#EventType").insertAdjacentHTML("beforeend", `
 
                                         <div class="row">
                                 <div class="col">
                                                     <select class="mt-2  form-select shadow-none  border-top" name="cgavm.TGroupActivityClassThemes[${classThemeCount++}].FClassThemeId">
-                                    <option  value="1">衛生習慣  </option>
-                                <option value="2">居家清潔  </option>
-                        <option value="3">飲食起居  </option>
+                        <option  value="1">衛生習慣  </option>
+                        <option value="2">居家清潔  </option>
+                        <option  selected="selected" value="3">飲食起居  </option>
                         <option value="4">認知能力  </option>
                         <option value="5">體能表現  </option>
                         <option value="6">人際互動  </option>
-                                <option selected="selected" value="7">烹飪能力  </option>
+                        <option value="7">烹飪能力  </option>
                         <option value="8">休閒安排  </option>
                         <option value="9">財務管理  </option>
-                                <option value="10">健康促進  </option>
+                        <option value="10">健康促進  </option>
                         </select>
                                 </div>
                                 <div class="col-2" style="text-align: center;position: relative;   " onclick="this.parentElement.remove()">
