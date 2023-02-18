@@ -14173,7 +14173,7 @@ select.form-select.form-control-line {
             .sidebar-nav ul .sidebar-item .sidebar-link i {
                 font-style: normal;
                 width: 35px;
-                line-height: 20px;
+                /*line-height: 20px;*/
                 font-size: 23px;
                 color: #54667a;
                 text-align: center;
