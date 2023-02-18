@@ -7,6 +7,11 @@
 }
 
 
+<style>
+    label {
+        font-size: 16px;
+    }
+</style>
 
 
 
@@ -410,7 +415,7 @@
                 html += `<div class='col-3'><label class='col-form-label'>編號</label><input id='disease${count_disease}.ID_Disease'  name='disease${count_disease}.ID_Disease' class='form-control'  value="${id} " /></div>`;
                 html += `<div class='col-6'><label class='col-form-label'>疾病中文名稱</label><input  name='disease${count_disease}.DiseaseChineseName'  id='disease${count_disease}.DiseaseChineseName'  class='form-control' value="${name}"/></div>`;
                 html += `<div class='col'><br>`;
-                html += `<input type="button" class='btn btn-danger' style="color:white;" id='${count_disease}' onclick='disease_delete()' value="刪除">`;
+                html += `<input type="button" class='white btn btn-danger' style="color:white;" id='${count_disease}' onclick='disease_delete()' value="刪除">`;
                 html += "</div> </div>";
                 div.innerHTML += html;
 
@@ -429,7 +434,7 @@
                 html += `<div class='col-3'><label class='col-form-label'>編號</label><input id='disease${count_disease}.ID_Disease'  name='disease${count_disease}.ID_Disease' class='form-control'   " /></div>`;
                 html += `<div class='col-6'><label class='col-form-label'>疾病中文名稱</label><input  name='disease${count_disease}.DiseaseChineseName'  id='disease${count_disease}.DiseaseChineseName'  class='form-control' /></div>`;
                 html += `<div class='col'><br>`;
-                html += `<input type="button" class='btn btn-danger' style="color:white;" id='${count_disease}' onclick='disease_delete()' value="刪除">`;
+                html += `<input type="button" class='white btn btn-danger' style="color:white;" id='${count_disease}' onclick='disease_delete()' value="刪除">`;
                 html += "</div> </div>";
                 div.innerHTML += html;
         }
