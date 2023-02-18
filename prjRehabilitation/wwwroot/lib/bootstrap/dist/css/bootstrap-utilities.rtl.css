@@ -660,7 +660,7 @@
 }
 
 .justify-content-end {
-  justify-content: flex-end !important;
+  justify-content: center;
 }
 
 .justify-content-center {

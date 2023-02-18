@@ -145,8 +145,8 @@ h1, h2, h3, h4, h5, h6 {
 p {
     font-family: "Muli",sans-serif;
     color: #10285d;
-    font-size: 16px;
-    line-height: 30px;
+    font-size: 35px;
+    line-height: 70px;
     margin-bottom: 15px;
     font-weight: normal
 }
@@ -2609,8 +2609,9 @@ hr {
     .header-area .main-header .main-menu ul li a {
         color: #102039;
         font-weight: 600;
-        padding-top:10px;
-        padding:5px;
+        padding-top: 10px;
+        padding-right: 100px;
+        
         display: block;
         font-size: x-large;
         -webkit-transition: .3s;
@@ -2802,7 +2803,7 @@ hr {
 
 .slider-area {
     margin-top: -1px;
-    background-image: url('../img/img0000.jfif');
+    background-image: url('../img/gallery/981459-Kimi-no-Na-Wa-clear-sky.png');
     background-repeat: repeat;
     background-position: center center;
     background-size: cover
@@ -2978,7 +2979,7 @@ hr {
 }
 
 .about-area .about-caption p {
-    font-size: 16px;
+    font-size: 35px;
     color: #64676c;
     line-height: 1.6;
     margin-bottom: 35px;

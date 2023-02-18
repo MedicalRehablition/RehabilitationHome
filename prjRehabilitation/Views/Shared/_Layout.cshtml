@@ -128,13 +128,13 @@
                             </div>
                         </div>
                         <div class="col-xl-10 col-lg-10 col-md-10">
-                            <div class="menu-main d-flex align-items-center justify-content-end">
+                            <div class="menu-main d-flex align-items-center" style="justify-content: center;">
                                 <!-- Main-menu -->
                                 <div class="main-menu f-right d-none d-lg-block">
                                     <nav>
                                         <ul id="navigation">
                                             <li>
-                                                <a href="blog.html" class="MyFamily" style="display:none;">我的家人</a>
+                                                <a  class="nav-link text-dark MyFamily" style="display:none;">我的家人</a>
                                                 <ul class="submenu">
                                                     <li>
                                                         <a class="nav-link text-dark" asp-area="" asp-controller="UserInformation" asp-action="PersonInfomation">個人資料</a>
@@ -145,11 +145,6 @@
 
 
                                                 </ul>
-                                            </li>
-                                            <li>
-                                                <button type="button" class="Loginbtn" data-toggle="modal" data-target="#exampleModalCenter" id="textbtn">
-                                                    <i class="fa-solid fa-user" style="color:black;font-size: x-large;">登入</i>
-                                                </button>
                                             </li>
                                             <li>
                                                 <a class="nav-link text-dark" asp-area="" asp-controller="Product" asp-action="List">甜心小舖</a>
@@ -182,7 +177,7 @@
 
                                             </li>
                                             <li>
-                                                <a href="blog.html">Blog</a>
+                                                <a>Blog</a>
                                                 <ul class="submenu">
                                                     <li>
                                                         <a class="nav-link text-dark" asp-area="" asp-controller="Forum" asp-action="Index">交流版</a>
@@ -191,6 +186,11 @@
                                                         <a class="nav-link text-dark" asp-area="" asp-controller="Forum" asp-action="OfficialPost">康家Blog</a>
                                                     </li>
                                                 </ul>
+                                            </li>
+                                            <li>
+                                                <button type="button" class="Loginbtn" data-toggle="modal" data-target="#exampleModalCenter" id="textbtn">
+                                                    <i class="fa-solid fa-user" style="color:black;font-size: x-large;">登入</i>
+                                                </button>
                                             </li>
                                             <li>
                                                 <a class="nav-link text-dark Logoutbtn" style="display:none;" asp-controller="Home" asp-action="Index">登出</a>
@@ -428,7 +428,7 @@
         //=================清除使用者=================================
         const btn = document.querySelector(".Logoutbtn")
         btn.addEventListener("click", function () {
-            debugger
+           
             const xhr = new XMLHttpRequest();
             xhr.addEventListener("load", function () {
                 if (xhr.responseText == "清除session") {
