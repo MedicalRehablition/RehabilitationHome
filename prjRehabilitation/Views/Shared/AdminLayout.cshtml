@@ -4,6 +4,7 @@
 
 <head>
     <style>
+        *{font-size:1.1rem;}
         .text-white2 {
             border: none;
             /* padding: 18px 18px 18px 19px; */
@@ -97,7 +98,7 @@
                         <!-- Logo text -->
                         <span class="logo-text">
                             <!-- dark Logo text -->
-                            <img src="~/img/logo/careBIG.png" alt="homepage" height="50%" width="90%" />
+                            <img src="~/img/logo/careBIG.png" alt="homepage" style="width:100%"/>
                         </span>
                     </a>
                     <!-- ============================================================== -->
@@ -128,8 +129,7 @@
                         <li>
                             <a class="profile-pic" href="#">
                                 <!-- ===========================照片隨便放的================================ -->
-                                <img src="~/images/emtyMan.jpg" alt="user-img" width="36"
-                                     class="img-circle AdminUserImg">
+                                <img src="~/images/emtyMan.jpg" alt="user-img" width="36px" class="img-circle AdminUserImg">
                                 <span class="text-white2 font-medium AdminID AdminUserName">你好,歡迎你</span>
                             </a>
                         </li>
@@ -146,12 +146,12 @@
         <!-- ============================================================== -->
         <!-- Left Sidebar - style you can find in sidebar.scss  -->
         <!-- ============================================================== -->
-        <aside class="left-sidebar" data-sidebarbg="skin6" style="background-color:cornsilk">
+        <aside class="left-sidebar" data-sidebarbg="skin6" style="">
             <!-- Sidebar scroll-->
             <div class="scroll-sidebar">
                 <!-- Sidebar navigation-->
-                <nav class="sidebar-nav" style="font-size: xx-large;font-family: cursive;">
-                    <ul id="sidebarnav"style="background-color:cornsilk">
+                <nav class="sidebar-nav"@* style="font-size: xx-large;font-family: cursive;"*@>
+                    <ul id="sidebarnav"style="">
                         <!-- User Profile-->
                         <li class="sidebar-item">
                             <a class="sidebar-link waves-effect waves-dark sidebar-link" asp-controller="Forum" asp-action="List" aria-expanded="false">
@@ -258,7 +258,7 @@
             <!-- ============================================================== -->
             <!-- Container fluid  -->
             <!-- ============================================================== -->
-            <div class="container">
+            <div class="container-fluid">
                 <main role="main" class="pb-2">
                     @RenderBody()
                 </main>
