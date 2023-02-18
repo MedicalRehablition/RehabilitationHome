@@ -87,31 +87,31 @@
 @section Scripts{
     <script>
         let logbtn = document.querySelector("#logbtn");
-        let Account = document.querySelector("#txtAccount");
-        console.log(Account);
-        let Password = document.querySelector("#txtPassword");
-        const div1 = document.getElementById('div1');
-        const span = document.createElement('span');
-        span.innerText = '請不要空白';
-        span.style.color = 'red';
-        span.style.display = 'none';
-        txtAccount.addEventListener('blur', () => {
-            if (txtAccount.value === '') {
-                // 如果文字方塊內容為空，顯示提示信息
-                span.style.display = 'inline';
-                div1.appendChild(span);
-            } else {
-                // 否則隱藏提示信息
-                span.style.display = 'none';
-            }
-        });
+        //let Account = document.querySelector("#txtAccount");
+        //console.log(Account);
+        //let Password = document.querySelector("#txtPassword");
+        //const div1 = document.getElementById('div1');
+        //const span = document.createElement('span');
+        //span.innerText = '請不要空白';
+        //span.style.color = 'red';
+        //span.style.display = 'none';
+        //txtAccount.addEventListener('blur', () => {
+        //    if (txtAccount.value === '') {
+        //        // 如果文字方塊內容為空，顯示提示信息
+        //        span.style.display = 'inline';
+        //        div1.appendChild(span);
+        //    } else {
+        //        // 否則隱藏提示信息
+        //        span.style.display = 'none';
+        //    }
+        //});
         $("#Demobtn").on("click", function () {
-            $("#txtAccount").attr("value", "careyou@hotmail.com")
-            $("#txtPassword").attr("value", "11111111")
+            $("#txtAccount").val( "careyou@hotmail.com")
+            $("#txtPassword").val( "11111111")
         })
           $("#Demobtn2").on("click", function () {
-            $("#txtAccount").attr("value", "girl5380@hotmail.com")
-            $("#txtPassword").attr("value", "l3nita8a")
+            $("#txtAccount").val("girl5380@hotmail.com")
+            $("#txtPassword").val( "l3nita8a")
         })
         logbtn.addEventListener("click", function (event) {
 

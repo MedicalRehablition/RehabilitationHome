@@ -142,10 +142,10 @@ h1, h2, h3, h4, h5, h6 {
     text-transform: normal;
 }
 
-p {
+p {  /*¸Ó¦ºªºp*/
     font-family: "Muli",sans-serif;
     color: #10285d;
-    font-size: 35px;
+    /*font-size: 35px;*/
     /*line-height: 20px;*/
     margin-bottom: 15px;
     font-weight: normal
@@ -389,10 +389,10 @@ hr {
 .btn i
 {
     color: #ffffff;
-    font-size: 13px;
+    /*font-size: 13px;*/
     font-weight: 500;
     position: relative;
-    left: 26px;
+    /*left: 26px;*/
     -webkit-transition: .4s;
     -moz-transition: .4s;
     -o-transition: .4s;
@@ -400,7 +400,7 @@ hr {
 }
 
 .btn:hover i {
-    left: 30px
+    /*left: 30px*/
 }
 
 .btn:hover {
@@ -2254,7 +2254,7 @@ hr {
 }
 
 .section-padding30 {
-    padding-top: 195px;
+    /*padding-top: 195px;*/
     padding-bottom: 180px
 }
 
@@ -2432,7 +2432,7 @@ hr {
 }
 
 .section-tittle span {
-    font-size: 18px;
+    /*font-size: 18px;*/
     font-weight: 700;
     margin-bottom: 22px;
     color: #396cf0;
@@ -2467,7 +2467,7 @@ hr {
 }
 
 .section-tittle h2 {
-    font-size: 50px;
+    /*font-size: 50px;*/
     display: block;
     color: #030431;
     font-weight: 800
@@ -2475,7 +2475,7 @@ hr {
 
 @media only screen and (min-width: 576px) and (max-width: 767px) {
     .section-tittle h2 {
-        font-size: 31px;
+        /*font-size: 31px;*/
         text-align: center
     }
 }
@@ -2483,7 +2483,7 @@ hr {
 @media (max-width: 575px) {
     .section-tittle h2 {
         text-align: left;
-        font-size: 27px
+        /*font-size: 27px*/
     }
 }
 
@@ -2566,7 +2566,7 @@ hr {
 
 @media only screen and (min-width: 1200px) and (max-width: 1600px) {
     .header-area .main-header {
-        padding: 0px 30px
+        /*padding: 0px 30px*/
     }
 }
 
@@ -2584,13 +2584,13 @@ hr {
 
 @media only screen and (min-width: 576px) and (max-width: 767px) {
     .header-area .main-header {
-        padding: 22px 20px
+        /*padding: 22px 20px*/
     }
 }
 
 @media (max-width: 575px) {
     .header-area .main-header {
-        padding: 22px 14px
+        /*padding: 22px 14px*/
     }
 }
 
@@ -2609,11 +2609,11 @@ hr {
     .header-area .main-header .main-menu ul li a {
         color: #102039;
         font-weight: 600;
-        padding-top: 10px;
-        padding-right: 100px;
+        /*padding-top: 10px;*/
+        /*padding-right: 100px;*/
         
         display: block;
-        font-size: x-large;
+        /*font-size: x-large;*/
         -webkit-transition: .3s;
         -moz-transition: .3s;
         -o-transition: .3s;
@@ -2814,7 +2814,7 @@ hr {
     }
 
         .slider-area .hero__caption span {
-            font-size: 18px;
+            /*font-size: 18px;*/
             font-family: "Muli",sans-serif;
             font-weight: 600;
             margin-bottom: 35px;
@@ -2857,7 +2857,7 @@ hr {
 }
 
 .slider-area .hero__caption h1 {
-    font-size: 70px;
+    /*font-size: 70px;*/
     font-weight: 900;
     margin-bottom: 14px;
     color: #102039;
@@ -2868,28 +2868,28 @@ hr {
 
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
     .slider-area .hero__caption h1 {
-        font-size: 70px;
+        /*font-size: 70px;*/
         line-height: 1.2
     }
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
     .slider-area .hero__caption h1 {
-        font-size: 50px;
+        /*font-size: 50px;*/
         line-height: 1.2
     }
 }
 
 @media only screen and (min-width: 576px) and (max-width: 767px) {
     .slider-area .hero__caption h1 {
-        font-size: 35px;
+        /*font-size: 35px;*/
         line-height: 1.4
     }
 }
 
 @media (max-width: 575px) {
     .slider-area .hero__caption h1 {
-        font-size: 29px;
+        /*font-size: 29px;*/
         line-height: 1.5
     }
 }
@@ -2899,7 +2899,7 @@ hr {
 }
 
 .slider-area .hero__caption p {
-    font-size: 18px;
+    /*font-size: 18px;*/
     color: #212025;
     font-family: "Muli",sans-serif;
     margin-bottom: 50px;
@@ -2979,7 +2979,7 @@ hr {
 }
 
 .about-area .about-caption p {
-    font-size: 35px;
+    /*font-size: 35px;*/
     color: #64676c;
     line-height: 1.6;
     margin-bottom: 35px;
@@ -3188,7 +3188,7 @@ hr {
 }
 
 .department_area .dept_main_info .dept_info h3 {
-    font-size: 25px;
+    /*font-size: 25px;*/
     line-height: 35px;
     color: #fff;
     font-weight: 600;
@@ -3197,7 +3197,7 @@ hr {
 
 @media (max-width: 767px) {
     .department_area .dept_main_info .dept_info h3 {
-        font-size: 20px
+        /*font-size: 20px*/
     }
 }
 
@@ -3960,7 +3960,7 @@ hr {
 
     .team-area .single-team .team-caption span {
         color: #a5a5a5;
-        font-size: 14px;
+        /*font-size: 14px;*/
         font-weight: 300;
         font-family: "Muli",sans-serif;
         display: block;
@@ -4075,7 +4075,7 @@ hr {
 .footer-area .footer-top .single-footer-caption .footer-tittle h4 {
     color: #fff;
     font-family: "Muli",sans-serif;
-    font-size: 18px;
+    /*font-size: 18px;*/
     margin-bottom: 38px;
     font-weight: 500;
     text-transform: uppercase
@@ -4290,7 +4290,7 @@ hr {
     margin-bottom: 16px;
     color: #5191ff;
     position: relative;
-    font-size: 14px
+    /*font-size: 14px*/
 }
 
     .home_blog-area .single-blogs .blogs-cap .date-info span::before {
@@ -4308,7 +4308,7 @@ hr {
 .home_blog-area .single-blogs .blogs-cap .date-info p {
     display: inline-block;
     color: #aebccb;
-    font-size: 14px
+    /*font-size: 14px*/
 }
 
 .home_blog-area .single-blogs .blogs-cap h4 a {
@@ -4342,7 +4342,7 @@ hr {
 
 .home_blog-area .single-blogs .blogs-cap .read-more1 {
     color: #c4c4c4;
-    font-size: 16px;
+    /*font-size: 16px;*/
     font-weight: 500
 }
 
