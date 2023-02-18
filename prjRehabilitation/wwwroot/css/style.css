@@ -2099,13 +2099,13 @@ hr {
 
 .section-padding2 {
     padding-top: 200px;
-    padding-bottom: 200px
+    padding-bottom: 260px
 }
 
 @media only screen and (min-width: 1200px) and (max-width: 1600px) {
     .section-padding2 {
         padding-top: 200px;
-        padding-bottom: 200px
+        padding-bottom: 260px
     }
 }
 
