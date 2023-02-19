@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using prjRehabilitation.ViewModel.Lin;
+using System.Linq;
 using static Microsoft.Extensions.Logging.EventSource.LoggingEventSource;
 
 namespace prjRehabilitation.Models.Lin
@@ -145,10 +146,11 @@ namespace prjRehabilitation.Models.Lin
                 //降冪排列，優先顯示最新的文章
                 q = db.TOfficialPosts.Where(x => x.FStatus != false).OrderByDescending(x => x.FPostId).Skip(page * 5).Take(5);
             }
-
+            
             foreach (var c in q.ToList())
             {
                 var post = new VMNewPost();
+                post.FComment= db.TPostComments.Where(x => x.FPostId == c.FPostId).Count();
                 post.fofficialPost = c;
                 string newtag = "";
                 if (c.FTag != null)
@@ -259,10 +261,10 @@ namespace prjRehabilitation.Models.Lin
             var list = new List<VMNewPost>();
             IEnumerable<TOfficialPost> q;
             q = db.TOfficialPosts.Where(x => x.FStatus != false).OrderByDescending(x => x.FDate);
-
             foreach (var c in q.ToList())
             {
                 var post = new VMNewPost();
+                post.FComment = db.TPostComments.Where(x => x.FPostId == c.FPostId).Count();
                 post.fofficialPost = c;
                 string newtag = "";
                 if (c.FTag != null)
@@ -324,8 +326,9 @@ namespace prjRehabilitation.Models.Lin
 
             try
             {
-                q = db.TOfficialPosts.OrderBy(x => x.FPostId).First();
-
+                q = db.TOfficialPosts.OrderBy(x => x.FPostId).Where(x=>x.FPostId>id&&x.FStatus!=false).FirstOrDefault();
+                if (q == null)
+                    q = db.TOfficialPosts.Where(x => x.FPostId == id).First();
             }
             catch
             {

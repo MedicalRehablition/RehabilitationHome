@@ -22,7 +22,7 @@
 
 <div class="layout">
     <h1>編輯住民資料</h1>
-
+        <button class="btn btn-outline-primary" onclick="download()">下載轉介單</button>
     <hr />
     <form asp-action="Create_F" id="form1" enctype="multipart/form-data">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -335,6 +335,13 @@
 </div>
 
     <script>
+        async function download(){
+            const id = @Model.fid;
+            const response = await fetch(`@Url.Content("~/Download/WriteFile?id=${id}")`);
+            const data = await response.json();
+            console.log(data.path);
+            location.href = `@Url.Content("~/word/${data.path}.docx")`;
+        } 
         $("#fCheckin").change(function () {
             var checkin = $("#fCheckin").val()
 

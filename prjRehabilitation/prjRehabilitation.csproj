@@ -24,6 +24,7 @@
     <None Include="Views\Forum\OfficialPost.cshtml" />
     <None Include="Views\Forum\PostDetail.cshtml" />
     <None Include="Views\Forum\PostEdit.cshtml" />
+    <None Include="Views\Patients\Create_F.cshtml" />
     <None Include="Views\Patients\Edit.cshtml" />
     <None Include="Views\Patients\Empty.cshtml" />
     <None Include="Views\Patients\form.cshtml" />
@@ -31,6 +32,7 @@
     <None Include="Views\Patients\layout.cshtml" />
     <None Include="Views\Patients\List.cshtml" />
     <None Include="Views\Patients\patients.cshtml" />
+    <None Include="Views\Product\Cart.cshtml" />
     <None Include="Views\Product\Create.cshtml" />
     <None Include="Views\Product\CreateOrder.cshtml" />
     <None Include="Views\Product\Edit.cshtml" />
@@ -40,6 +42,7 @@
     <None Include="Views\Product\ok.cshtml" />
     <None Include="Views\Product\orders.cshtml" />
     <None Include="Views\Product\pay.cshtml" />
+    <None Include="wwwroot\word\慢性精神病患社區復健轉介醫囑單及申請書.docx" />
   </ItemGroup>
 
   <ItemGroup>
@@ -53,6 +56,7 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.12" />
+    <PackageReference Include="TemplateEngine.Docx" Version="1.1.5" />
     <PackageReference Include="ZXing.Net" Version="0.16.8" />
     <PackageReference Include="ZXing.Net.Bindings.Windows.Compatibility" Version="0.16.10" />
   </ItemGroup>

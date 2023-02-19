@@ -39,6 +39,8 @@ namespace prjRehabilitation.ViewModel.Lin
             get { return fofficialPost.FTag; }
             set { fofficialPost.FTag = value; }
         }
+        public int? FComment
+        {get; set; }
         public bool type_QA { get; set; }
         public bool type_技術 { get; set; }
         public bool type_復健 { get; set; }

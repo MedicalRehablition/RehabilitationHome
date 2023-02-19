@@ -35,8 +35,6 @@
                 <div class="navigation-top">
                     <div class="d-sm-flex justify-content-between text-center">
                         <p class="like-info">
-                            <span class="align-middle"><i class="fa fa-heart"></i></span> Lily and 4
-                            people like this
                         </p>
                         <div class="col-sm-4 text-center my-2 my-sm-0">
                             <!-- <p class="comment-count"><span class="align-middle"><i class="fa fa-comment"></i></span> 06 Comments</p> -->
@@ -200,8 +198,9 @@
         }
         async function getPrePost(){
             console.log("prePost");
-            var idd = document.getElementById("postId").value;
-            const response = await fetch(`@Url.Content("~/Forum/getPrePost?${idd}")`)
+            var idd = @Model.FPostId;
+
+            const response = await fetch(`@Url.Content("~/Forum/getPrePost?id=${idd}")`)
             const x = await response.json();
     
             console.log(x);
@@ -216,10 +215,9 @@
 
         }
         async function getNextPost() {
-            var idd = document.getElementById("postId").value;
+            var idd =@Model.FPostId;
 
-
-            const response = await fetch(`@Url.Content("~/Forum/getNextPost?${idd}")`)
+            const response = await fetch(`@Url.Content("~/Forum/getNextPost?id=${idd}")`)
             const x = await response.json();
 
             console.log(x);
@@ -246,6 +244,7 @@
                 const main = x.fMain;
                 const date = x.fDate;
                 const id = x.fPostId;
+                const comment = x.fComment;
                 var tag = x.fTag;
                 return `<article class="blog_item  gray-bg">
                                                         <div class="blog_details">
@@ -258,7 +257,7 @@
                                                             </p>
                                                             <ul class="blog-info-link">
                                                                 <li><a href="#"><i class="fa fa-user"></i>${tag}</a></li>
-                                                                <li><a href="#"><i class="fa fa-comments"></i> 03 Comments</a></li>
+                                                                <li><a href="#"><i class="fa fa-comments"></i>${comment}則留言</a></li>
                                                             </ul>
                                                         </div>
                                                  </article>
@@ -305,6 +304,7 @@
                 const main = x.fMain;
                 const date = x.fDate;
                 const id = x.fPostId;
+                const comment = x.fComment;
                 var tag = x.fTag;
                 return `<article class="blog_item  gray-bg">
                                                                 <div class="blog_details">
@@ -317,7 +317,7 @@
                                                                     </p>
                                                                     <ul class="blog-info-link">
                                                                         <li><a href="#"><i class="fa fa-user"></i>${tag}</a></li>
-                                                                        <li><a href="#"><i class="fa fa-comments"></i> 03 Comments</a></li>
+                                                                        <li><a href="#"><i class="fa fa-comments"></i>${comment}則留言</a></li>
                                                                     </ul>
                                                                 </div>
                                                          </article>
