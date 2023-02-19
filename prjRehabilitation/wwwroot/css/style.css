@@ -2611,7 +2611,7 @@ hr {
         font-weight: 600;
         /*padding-top: 10px;*/
         /*padding-right: 100px;*/
-        
+        margin-right:50px;
         display: block;
         /*font-size: x-large;*/
         -webkit-transition: .3s;

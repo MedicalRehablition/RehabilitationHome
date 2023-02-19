@@ -10,7 +10,6 @@
     <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/prjRehabilitation.styles.css" asp-append-version="true" />
-
     <!-- CSS here -->
     @*<link rel="stylesheet" href="~/css/owl.carousel.min.css">*@
     <link rel="stylesheet" href="~/css/slicknav.css">
@@ -119,14 +118,33 @@
 
         a, p, p > * {
             font-size: 1.2rem;
+            text-decoration: none;
+            font-weight: bold;
         }
 
         span {
             font-size: 1.5rem;
         }
         /**{font-size:1rem;}*/
-        .noWrap{
+        .noWrap {
             white-space: nowrap;
+            margin-right: 100px;
+        }
+
+        #bot {
+            background: black;
+            height: 50px;
+            width: 50px;
+            right: 31px;
+            bottom: 18px;
+            position: fixed;
+            color: #fff;
+            font-size: 20px;
+            text-align: center;
+            border-radius: 50%;
+            line-height: 48px;
+            border: 2px solid transparent;
+            box-shadow: 0 0 10px 3px rgb(108 98 98 / 20%);
         }
     </style>
     @await RenderSectionAsync("StylesIndex", required: false)
@@ -148,9 +166,6 @@
                             <div class="menu-main d-flex align-items-center  justify-content-end" style="">
                                 <!-- Main-menu -->
                                 <div class="main-menu f-right d-none d-lg-block">
-
-
-
                                     <!--
                                         <ul class="btn-group" role="group" >
                                             <a class="btn btn-primary   " asp-area="" asp-controller="Product" asp-action="List">甜心小舖</a>
@@ -167,21 +182,12 @@
                                         </ul>
                                         -->
 
-                                    <ul id="navigation" class="btn-group btn-group-lg" role="group">
-                                        <a class="btn btn-outline-secondary header-right-btn f-right d-none d-lg-block" asp-area="" id=""></a>
-                                        <li class="btn-group btn-group-lg" role="group">
-                                            <a class=" text-dark MyFamily btn btn-outline-secondary  dropdown-toggle" asp-area="" data-bs-toggle="dropdown" aria-expanded="false" style="display:none;">我的家人</a>
-                                            <ul class="submenu">
-                                                <li><a class="dropdown-item text-dark" asp-area="" asp-controller="UserInformation" asp-action="PersonInfomation">個人資料</a></li>
-                                                <li><a class="dropdown-item text-dark" asp-area="" asp-controller="UserInformation" asp-action="GetUserPatient">家人資料</a></li>
-
-                                            </ul>
-                                        </li>
-                                        <a class="btn btn-outline-secondary text-dark noWrap" asp-area="" asp-controller="Product" asp-action="List">甜心小舖</a>
-                                        <a class="btn btn-outline-secondary text-dark noWrap" asp-area="" asp-controller="ChatBot" asp-action="Index">聊天</a>
-                                        <a class="btn btn-outline-secondary text-dark noWrap" asp-area="" asp-controller="Calendar" asp-action="List">行事曆</a>
+                                    <ul id="navigation" role="group">
+                                        <a class=" text-dark noWrap" asp-area="" asp-controller="Product" asp-action="List">甜心小舖</a>
+                                        <a class=" text-dark noWrap chat" asp-area="">聊天</a>
+                                        <a class=" text-dark noWrap" asp-area="" asp-controller="Calendar" asp-action="List">行事曆</a>
                                         <li class="btn-group btn-group-lg" role="group" id="treat">
-                                            <a class=" text-dark btn btn-outline-secondary  dropdown-toggle" asp-area="" asp-controller="Home" asp-action="Index" data-bs-toggle="dropdown" aria-expanded="false">治療活動紀錄</a>
+                                            <a class=" text-dark dropdown-toggle" asp-area="" asp-controller="Home" asp-action="Index" data-bs-toggle="dropdown" aria-expanded="false">治療活動紀錄</a>
                                             <ul class="submenu">
                                                 <li><a class="dropdown-item text-dark" asp-area="" asp-controller="Evaluate" asp-action="List">評估紀錄</a></li>
                                                 <li><a class="dropdown-item text-dark" asp-area="" asp-controller="Consult" asp-action="List">會談紀錄</a></li>
@@ -189,10 +195,18 @@
                                             </ul>
                                         </li>
                                         <li class="btn-group btn-group-lg" role="group">
-                                            <a class=" text-dark btn btn-outline-secondary  dropdown-toggle" asp-area="" data-bs-toggle="dropdown" aria-expanded="false">Blog</a>
+                                            <a class=" text-dark   dropdown-toggle" asp-area="" data-bs-toggle="dropdown" aria-expanded="false">Blog</a>
                                             <ul class="submenu">
                                                 <li><a class="dropdown-item text-dark" asp-area="" asp-controller="Forum" asp-action="Index">交流版</a></li>
                                                 <li><a class="dropdown-item text-dark" asp-area="" asp-controller="Forum" asp-action="OfficialPost">康家Blog</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="btn-group btn-group-lg" role="group">
+                                            <a class=" text-dark MyFamily dropdown-toggle" asp-area="" data-bs-toggle="dropdown" aria-expanded="false" style="display:none;">我的家人</a>
+                                            <ul class="submenu">
+                                                <li><a class="dropdown-item text-dark" asp-area="" asp-controller="UserInformation" asp-action="PersonInfomation">個人資料</a></li>
+                                                <li><a class="dropdown-item text-dark" asp-area="" asp-controller="UserInformation" asp-action="GetUserPatient">家人資料</a></li>
+
                                             </ul>
                                         </li>
 
@@ -200,7 +214,6 @@
                                             <i class="fa-solid fa-user" style="color:white;"></i>登入
                                         </a>
                                         <a class=" Logoutbtn btn btn-info noWrap" style=" display:none; color:white" asp-controller="Home" asp-action="Index">登出</a>
-                                        <a class="btn btn-outline-secondary header-right-btn f-right d-none d-lg-block noWrap" asp-area="" id="UserName"></a>
                                     </ul>
 
 
@@ -214,7 +227,7 @@
                     </div>
                 </div>
             </div>
-            </div>
+        </div>
     </header>
 
     @await RenderSectionAsync("DeadCessTitle", required: false)
@@ -319,14 +332,15 @@
                 </div>
             </div>
         </div>
-
     </div>
     <!-- Footer End-->
+
     <div id="back-top" style="display: block;">
-        <a title="Go to Top" href="#">
+        <a title="Go to Top" style="color:blanchedalmond" href="#">
             <i class="fas fa-level-up-alt"></i>
         </a>
     </div>
+
     <!-- Jquery Mobile Menu -->
     <script src="~/js/jquery.slicknav.min.js"></script>
     <script src="~/js/bootstrap.min.js"></script>
@@ -448,6 +462,9 @@
             xhr.send();
         })
 
+        $(".chat").on("click",function(){
+            window.open("https://webchat.botframework.com/embed/ReplyBot-botNew2?s=YyinLQUa6kk.yjpzXW4-D4pCx9qJGAtYSjRXyB9U6l96WWJxwIJausU");
+        })
     </script>
 </body>
 </html>
