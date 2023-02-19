@@ -12,9 +12,6 @@
         <div class="row">
             <div class="col-lg-8 mb-5 mb-lg-0">
                 <div class="blog_left_sidebar" id="div_article">
-
-
-
                 </div>
                 <nav class="blog-pagination justify-content-center d-flex">
                     <ul class="pagination">
@@ -43,7 +40,7 @@
 
                             <div class="form-group">
                                 <div class="input-group mb-3">
-                                    <input type="text" id="keyword" class="form-control" placeholder="Search Keyword" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Search Keyword'">
+                                    <input type="text" id="keyword" class="form-control" placeholder="關鍵字搜尋" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Search Keyword'">
                                     <div class="input-group-append">
                                     </div>
                                 </div>
@@ -166,6 +163,7 @@
                 const main = x.fMain;
                 const date = x.fDate;
                 const id = x.fPostId;
+                const comment = x.fComment;
                 var tag = x.fTag;
                 return `<article class="blog_item  gray-bg">
                                                         <div class="blog_details">
@@ -178,7 +176,7 @@
                                                             </p>
                                                             <ul class="blog-info-link">
                                                                 <li><a href="#"><i class="fa fa-user"></i>${tag}</a></li>
-                                                                <li><a href="#"><i class="fa fa-comments"></i> 03 Comments</a></li>
+                                                                <li><a href="#"><i class="fa fa-comments"></i>${comment}則留言</a></li>
                                                             </ul>
                                                         </div>
                                                  </article>
@@ -220,13 +218,14 @@
 
             const response = await fetch(`@Url.Content("~/Forum/SearchByTag?tag=${tag}")`)
             const data = await response.json();
-
             var html = data.map(x => {
                 console.log(x);
                 const title = x.fTitle;
                 const main = x.fMain;
                 const date = x.fDate;
                 const id = x.fPostId;
+                const comment = x.fComment;
+
                 var tag = x.fTag;
                 return `<article class="blog_item  gray-bg">
                                                         <div class="blog_details">
@@ -239,7 +238,7 @@
                                                             </p>
                                                             <ul class="blog-info-link">
                                                                 <li><a href="#"><i class="fa fa-user"></i>${tag}</a></li>
-                                                                <li><a href="#"><i class="fa fa-comments"></i> 03 Comments</a></li>
+                                                                        <li><a href="#"><i class="fa fa-comments"></i> ${comment}則留言</a></li>
                                                             </ul>
                                                         </div>
                                                  </article>
@@ -268,6 +267,8 @@
                 const title = x.fTitle;
                 const main = x.fMain;
                 const date = x.fDate;
+                const comment = x.fComment;
+
                 const id = x.fPostId;
                 var tag = x.fTag;
                 return `<article class="blog_item  gray-bg">
@@ -281,7 +282,8 @@
                                                     </p>
                                                     <ul class="blog-info-link">
                                                         <li><a href="#"><i class="fa fa-user"></i>${tag}</a></li>
-                                                        <li><a href="#"><i class="fa fa-comments"></i> 03 Comments</a></li>
+                                                                                                                                        <li><a href="#"><i class="fa fa-comments"></i> ${comment}則留言</a></li>
+
                                                     </ul>
                                                 </div>
                                          </article>
@@ -302,6 +304,8 @@
                         const main = x.fMain;
                         const date = x.fDate;
                         const id = x.fPostId;
+                         const comment = x.fComment;
+
                         var tag = x.fTag;
                         return `<article class="blog_item  gray-bg">
                                         <div class="blog_details">
@@ -314,7 +318,8 @@
                                             </p>
                                             <ul class="blog-info-link">
                                                 <li><a href="#"><i class="fa fa-user"></i>${tag}</a></li>
-                                                <li><a href="#"><i class="fa fa-comments"></i> 03 Comments</a></li>
+                                                                                                                                <li><a href="#"><i class="fa fa-comments"></i> ${comment}則留言</a></li>
+
                                             </ul>
                                         </div>
                                  </article>

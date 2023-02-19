@@ -10,6 +10,7 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
+        
         <form asp-action="Create" enctype="multipart/form-data">
             <div class="form-group col">
                 <label asp-for="photo" class="control-label">照片</label>
@@ -23,17 +24,17 @@
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <div class="form-group">
                         <label asp-for="FName" class="control-label"></label>
-                        <input name="FName" class="form-control" />
+                        <input name="FName" class="form-control" id="FName"/>
                         <span asp-validation-for="FName" class="text-danger"></span>
                     </div>
                     <div class="form-group">
                         <label asp-for="FQty" class="control-label"></label>
-                        <input asp-for="FQty" class="form-control" />
+                        <input asp-for="FQty" class="form-control" id="FQty" />
                         <span asp-validation-for="FQty" class="text-danger"></span>
                     </div>
                     <div class="form-group">
                         <label asp-for="FPrice" class="control-label"></label>
-                        <input asp-for="FPrice" class="form-control" />
+                        <input asp-for="FPrice" class="form-control" id="FPrice" />
                         <span asp-validation-for="FPrice" class="text-danger"></span>
                     </div>
                     <div class="form-group">
@@ -51,6 +52,7 @@
 
                     <div class="form-group">
                         <input type="submit" value="Create" class="btn btn-primary" />
+                    <button type="button" class="btn btn-success" style="color:white;" onclick="demo()">Demo</button>
                     </div>
             </div>
         </form>
@@ -63,7 +65,11 @@
 
 @section Scripts{
     <script>
-
+        function demo(){
+            $("#FName").val("蘇打餅乾(20片/包)");
+            $("#FQty").val("50");
+            $("#FPrice").val("150");
+        }
          $("#photo").change(function () {
                 //當檔案改變後，做一些事
                 readURL(this);   // this代表<input id="imgInp">
