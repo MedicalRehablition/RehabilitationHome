@@ -19,8 +19,18 @@
             overflow-x: hidden;
         }
 
-        .form-control {
+        .form-control, .form-select, .btn {
             height: auto;
+            font-size: 1.1rem;
+        }
+        .genric-btn{
+            font-size:inherit; /*解除限制讓他聽控樣式的父層*/
+        }
+        label {
+            margin-bottom: 0px;
+        }
+        .small{
+            font-size:inherit !important;
         }
     </style>
 }
@@ -33,7 +43,7 @@
         <div id="PersonalListPanel" class=" mt-3 form-group form-control" style=" background-color:gray;"><label style="color:white">與您相關的住民</label></div>
         <div class=" mt-3 form-group form-control" style=" background-color:gray;">
             <label style="color:white">會員互動</label><br />
-            <a asp-action="CalendarApplyVisitor" id="CalendarApplyVisitor" class="genric-btn primary e-large">申請會面住民</a>
+            <a asp-action="CalendarApplyVisitor" id="CalendarApplyVisitor" class="genric-btn primary e-large">申請會面</a>
         </div>
     </div>
     <div class="col">

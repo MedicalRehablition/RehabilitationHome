@@ -5,6 +5,27 @@
      if (!string.IsNullOrEmpty(ViewBag.getAdminSection)) { Layout = "AdminLayout"; }
 }
 
+@section Styles{
+    
+    <style>
+      
+
+        .form-control, .form-select, .btn {
+            height: auto;
+            font-size: 1.1rem;
+        }
+
+        .genric-btn {
+            font-size: inherit; /*解除限制讓他聽控樣式的父層*/
+        }
+
+        label {
+            margin-bottom: 0px;
+        }
+    </style>
+}
+
+
 <h1>會員申請會面</h1>
 
 <h4 id="newApplyVisitorID">申請表</h4>
@@ -80,14 +101,14 @@
                 <h5>按下申請後將會寄送 Email 到您信箱，請查收。</h5>
             </label>
             <div class="form-group">
-                <input type="submit" id="sendApply" value="送出申請" class="btn btn-primary" />
+                <input type="submit" id="sendApply" value="送出申請" class="btn btn-primary mt-1" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="List" class="btn btn-info small mt-2">返回</a>
+    <a asp-action="List" class="btn btn-info small mt-3" style="color:white">返回</a>
 </div>
 
 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">

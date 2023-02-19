@@ -5,6 +5,22 @@
     if (!string.IsNullOrEmpty(ViewBag.getAdminSection)) { Layout = "AdminLayout"; }
 }
 
+@section Styles{
+
+<style>   
+    .form-control, .form-select, .btn {
+            height: auto;
+            font-size: 1.1rem;
+        }
+        .genric-btn{
+            font-size:inherit; /*解除限制讓他聽控樣式的父層*/
+        }
+        label {
+            margin-bottom: 0px;
+        }
+    </style>
+}
+
 <h1>行事曆-會員申請審核頁</h1>
 
 <p>

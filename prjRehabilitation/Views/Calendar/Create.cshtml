@@ -11,6 +11,19 @@
 		.hiddenAdvanced {
 			display: none;
 		}
+
+		.form-control, .form-select, .btn {
+			height: auto;
+			font-size: 1.1rem;
+		}
+
+		.genric-btn {
+			font-size: inherit; /*解除限制讓他聽控樣式的父層*/
+		}
+
+		label {
+			margin-bottom: 0px;
+		}
 	</style>
 }
 
@@ -68,7 +81,7 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<input type="submit" value="新增" class="mt-2 btn btn-primary" />
+				<input type="submit" value="新增" class="mt-3 btn btn-primary" />
 			</div>
 		</form>
 	</div>
@@ -78,7 +91,7 @@
 
 
 <div>
-	<a asp-action="List" class="btn btn-info small">返回</a>
+	<a asp-action="List" class="btn btn-info small" style="color:white">返回</a>
 </div>
 
 
