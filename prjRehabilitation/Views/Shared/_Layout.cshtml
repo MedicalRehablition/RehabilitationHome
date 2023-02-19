@@ -105,7 +105,10 @@
         #UserName {
             font-weight: bold
         }
-
+        a{
+            text-decoration-line:none;
+            padding-right:1em;
+        }
         .p1 {
             margin-top: 0;
             margin-bottom: 0rem;
@@ -126,7 +129,7 @@
     @await RenderSectionAsync("StylesIndex", required: false)
 </head>
 <body>
-    <!--大標題-->
+
     <header>
         <div class="header-area">
             <div class="main-header header-sticky" style="">
@@ -141,7 +144,7 @@
                         <div class="col-8">
                             <div class="menu-main d-flex align-items-center  justify-content-end" style="">
                                 <!-- Main-menu -->
-                            <div class="main-menu f-right d-none d-lg-block">
+                                <div class="main-menu f-right d-none d-lg-block">
                                     <nav>
                                         <ul id="navigation">
                                             <li>
@@ -153,8 +156,6 @@
                                                     <li>
                                                         <a class="text-dark" asp-area="" asp-controller="UserInformation" asp-action="GetUserPatient">家人資料</a>
                                                     </li>
-
-
                                                 </ul>
                                             </li>
                                             <li>
@@ -166,8 +167,11 @@
                                             <li>
                                                 <a class=" text-dark" asp-area="" asp-controller="Calendar" asp-action="List">行事曆</a>
                                             </li>
-                                         @*   <li>
-                                                <a class="nav-link text-dark" asp-area="" asp-controller="AdminUserLogin" asp-action="Login">後臺管理系統</a>
+                                            <li>
+                                                <a class=" text-dark" asp-area="" asp-controller="Forum" asp-action="OfficialPost">康家Blog</a>
+                                            </li>
+                                            @*   <li>
+                                            <a class="nav-link text-dark" asp-area="" asp-controller="AdminUserLogin" asp-action="Login">後臺管理系統</a>
                                             </li>*@
                                             <li class="nav-item" id="treat">
                                                 <a class=" text-dark" asp-area="" asp-controller="Home" asp-action="Index">治療活動紀錄</a>
@@ -181,25 +185,11 @@
                                                     <li>
                                                         <a class=" text-dark" asp-area="" asp-controller="GroupActivityForCustomer" asp-action="List">活動紀錄</a>
                                                     </li>
-
                                                 </ul>
-                                            </li>
-                                            <li>
 
                                             </li>
                                             <li>
-                                                <a>Blog</a>
-                                                <ul class="submenu">
-                                                    <li>
-                                                        <a class=" text-dark" asp-area="" asp-controller="Forum" asp-action="Index">交流版</a>
-                                                    </li>
-                                                    <li>
-                                                        <a class=" text-dark" asp-area="" asp-controller="Forum" asp-action="OfficialPost">康家Blog</a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li>
-                                                <button class="Loginbtn btn btn-success" style="color:white;" data-toggle="modal" data-target="#exampleModalCenter" id="textbtn" >
+                                                <button class="Loginbtn btn btn-info" style="color:white" data-toggle="modal" data-target="#exampleModalCenter" id="textbtn">
                                                     <i class="fa-solid fa-user" style="color:white;">@*<label style="color:white"></label>*@</i>登入
                                                 </button>
                                             </li>
@@ -214,15 +204,13 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- Mobile Menu -->
-                        <div class="col-12">
-                            <div class="mobile_menu d-block d-lg-none"></div>
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
+
     </header>
+
 
     @await RenderSectionAsync("DeadCessTitle", required: false)
     <div class="alert-autocloseable-warning" id="shippingmsgbox" hidden role="alert">
@@ -240,7 +228,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLongTitle">登入帳號</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color: red;">
+                        <button type="button" class="btn  close" style="box-shadow:none; color:red; " data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
