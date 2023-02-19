@@ -32,7 +32,6 @@
     <None Include="Views\Patients\layout.cshtml" />
     <None Include="Views\Patients\List.cshtml" />
     <None Include="Views\Patients\patients.cshtml" />
-    <None Include="Views\Product\Cart.cshtml" />
     <None Include="Views\Product\Create.cshtml" />
     <None Include="Views\Product\CreateOrder.cshtml" />
     <None Include="Views\Product\Edit.cshtml" />

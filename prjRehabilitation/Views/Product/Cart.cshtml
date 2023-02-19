@@ -8,6 +8,10 @@
     span {
         font-size: 1.2em;
     }
+
+    #mycanvas {
+        cursor: pointer;
+    }
 </style>
 <br />
 <a class="genric-btn primary-border radius e-large " href="@Url.Content("~/Product/List")">繼續購物</a>
@@ -177,23 +181,88 @@
                 <label class="form-check-label" for="paypal">PayPal</label>
                 </div>*@
             </div>
-
             <hr class="my-4">
+            <div class="row">
+                    <div class="col-2">
+                          <canvas class="" id="mycanvas" width='90' height='40'>
+                        您的瀏覽器不支援canvas，請換個瀏覽器試試
+                        </canvas>
+                    </div>
+                    <div class="col-4">
+                        <input id="password" type="text" class="form-control  col" placeholder="請輸入驗證碼">
+                    </div>
+            </div>
 
             <button class="w-100 btn btn-primary btn-lg" type="button" onclick="CreateOrder()">繼續付款</button>
+
         </form>
         <img id="load"  src="~/img/201212131559535.gif" hidden/>
     </div>
 </div>
 
+
 @section Scripts{
     <script src="~/js/taiwan_districts.js"></script>
 
     <script>
+        var pass;
         checkMoney();
+        clickChange(); //產生驗證碼
         $("#city").change(loadtown);
         $("#town").change(displayzip);
+        function rand() {
+            var str = "abcdefghijklmnopqrstuvwxyz0123456789";
+            var arr = str.split("");
+            var validate = "";
+            var ranNum;
+            for (var i = 0; i < 4; i++) {
+                ranNum = Math.floor(Math.random() * 36);   //隨機數在[0,35]之間
+                validate += arr[ranNum];
+            }
+            pass = validate;
+            return validate;
+        }
 
+        /*干擾線的隨機x坐標值*/
+        function lineX() {
+            var ranLineX = Math.floor(Math.random() * 90);
+            return ranLineX;
+        }
+
+        /*干擾線的隨機y坐標值*/
+        function lineY() {
+            var ranLineY = Math.floor(Math.random() * 40);
+            return ranLineY;
+        }
+
+        function clickChange() {
+            var mycanvas = document.getElementById('mycanvas');
+            var cxt = mycanvas.getContext('2d');
+            cxt.fillStyle = '#000';
+            cxt.fillRect(0, 0, 90, 40);
+
+            /*生成干擾線20條*/
+            for (var j = 0; j < 20; j++) {
+                cxt.strokeStyle = '#fff';
+                cxt.beginPath();    //若省略beginPath，則每點選一次驗證碼會累積干擾線的條數
+                cxt.moveTo(lineX(), lineY());
+                cxt.lineTo(lineX(), lineY());
+                cxt.lineWidth = 0.5;
+                cxt.closePath();
+                cxt.stroke();
+            }
+
+            cxt.fillStyle = 'red';
+            cxt.font = 'bold 20px Arial';
+            cxt.fillText(rand(), 25, 25);   //把rand()生成的隨機數文字填充到canvas中
+        }
+
+
+        /*點選驗證碼更換*/
+        mycanvas.onclick = function (e) {
+            e.preventDefault();   //阻止滑鼠點選發生默認的行為
+            clickChange();
+        };
         function demo(){
             $("#FName").val("張淑卿");
             $("#FEmail").val("girl5380@hotmail.com");
@@ -204,6 +273,10 @@
         }
 
         async function CreateOrder(){
+            if(pass!=$("#password").val()) {
+                clickChange();
+                return alert("驗證碼錯誤");
+            }
             var address = $("#address").val();
             if(address==""){
                 alert("請確實填寫買家資訊");
