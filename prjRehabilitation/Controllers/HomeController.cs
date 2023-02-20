@@ -93,9 +93,9 @@ namespace prjRehabilitation.Controllers
             MailList.Add(vm.txtAccount);//新增收件人進去
             string Subject = "變更密碼";
             string Body = ">>>>>>";
-            Body += "<a href = https://localhost:7164/Home/ResetPassword>點我重設密碼</a>";
+            Body += $"<a href = https://localhost:7164/Home/ResetPassword?txtAccount={vm.txtAccount}>點我重設密碼</a>";
             MailMessage msg = new MailMessage();
-            msg.From = new MailAddress("yeeee880726@gmail.com", "測試郵件", System.Text.Encoding.UTF8);
+            msg.From = new MailAddress("yeeee880726@gmail.com", "關心康復之家", System.Text.Encoding.UTF8);
             msg.To.Add(string.Join(",", MailList.ToArray()));//收件人
             msg.Subject = Subject; //主旨
             msg.SubjectEncoding = System.Text.Encoding.UTF8;
@@ -143,9 +143,13 @@ namespace prjRehabilitation.Controllers
             //db.SaveChanges();
             return RedirectToAction("index");
         }
-        public IActionResult ResetPassword()
+        public IActionResult ResetPassword(CLoginViewModel vm)
         {
-            return View();
+            dbClassContext db = new dbClassContext();
+            Customer customer = db.Customers.FirstOrDefault(t => t.FEmail == vm.txtAccount);
+            CCustomerViewModel c = new CCustomerViewModel();
+            c.Customer = customer;
+            return View(c);
         }
         [HttpPost]
         public IActionResult ResetPassword(CCustomerViewModel vm)
