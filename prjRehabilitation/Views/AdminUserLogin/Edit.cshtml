@@ -4,7 +4,13 @@
     ViewData["Title"] = "Edit";
     Layout = "AdminLayout";
 }
-
+@section Styles{
+    <style>
+        h6,.form-control{ 
+            font-size:inherit;
+        }
+    </style>
+}
 
 <h1>編輯員工資料</h1>
 <hr />
@@ -21,11 +27,11 @@
                         @{
                             if (Model.Fphoto != null)
                             {
-                                                <img class="rounded-circle border border-primary Aimg" src="~/images/@Model.Fphoto" alt="Admin" width="300" height="300" />
+                                                            <img class="rounded-circle border border-primary Aimg" src="~/images/@Model.Fphoto" alt="Admin" width="300" height="300" />
                             }
                             else
                             {
-                                                <img class="rounded-circle border border-primary Aimg" src="~/images/imageDefault.png" width="300" height="300" />
+                                                            <img class="rounded-circle border border-primary Aimg" src="~/images/imageDefault.png" width="300" height="300" />
                             }
                         }
                     </div>
@@ -42,11 +48,11 @@
                         @{
                             if (Model.Fphoto != null)
                             {
-                                                <img class=" border border-primary img" src="~/images/@Model.FQrcode" alt="無QRcode" width="150" height="150" />
+                                                            <img class=" border border-primary img" src="~/images/@Model.FQrcode" alt="無QRcode" width="150" height="150" />
                             }
                             else
                             {
-                                                <img class=" border border-primary img" src="~/images/imageDefault.png" width="150" height="150" />
+                                                            <img class=" border border-primary img" src="~/images/imageDefault.png" width="150" height="150" />
                             }
                         }
                     </div>
@@ -58,8 +64,8 @@
                 <div class="card-body">
                     <div class="form-group">
                         <div class="row">
-                            <div cla ss="col-sm-3">
-                                <h6 class="mb-0">姓名</h6>
+                            <div class="col-12">
+                                <label asp-for="FName" class="control-label"></label>
                             </div>
                             <div class="col-sm-9 text-secondary">
                                 <input asp-for="FName" class="form-control" />
@@ -67,7 +73,7 @@
                         </div>
                         <hr>
                         <div class="row">
-                            <div cla ss="col-sm-3">
+                            <div class="col-12">
                                 <label asp-for="FPassword" class="control-label"></label>
                             </div>
                             <div class="col-sm-9 text-secondary">
