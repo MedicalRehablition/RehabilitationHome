@@ -21,7 +21,7 @@
         }
 
         body, .small, .badge {
-            font-size: 1rem; /*解開束縛而已*/
+            font-size: inherit; /*解開束縛而已*/
         }
     </style>
 }
@@ -333,7 +333,7 @@
                                                                                 <div class="row">
                                                                                             <label class="h5 badge bg-primary rounded cardIDandName col" id="${this.id}">${this.value}</label>
                                                                                             <input type="hidden" value="${this.id}" name="cgavm.TPersonalPerformances[${TPersonalPerformancesCount}].FResidentId" />
-                                                                                            <input type="button" id="${this.id}-removeCard" class="btn btn-danger col-1" value="刪除"/>
+                                                                                            <input type="button" id="${this.id}-removeCard" class="btn btn-danger col-1" style="color:white;" value="刪除"/>
                                                                                 </div>
                                                                                 <div class="row " style="background-color:lightgray">
                                                                             <div class="col-4">
