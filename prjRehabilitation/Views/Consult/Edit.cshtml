@@ -9,7 +9,34 @@
 }
 
 @*<h1></h1>*@
+@section Styles{
 
+    <style>
+
+        .form-control, .form-select, .btn {
+            height: auto;
+            font-size: 1.1rem;
+        }
+
+        .genric-btn {
+            font-size: inherit; /*解除限制讓他聽控樣式的父層*/
+        }
+
+        label {
+            margin-bottom: 0px;
+        }
+
+        .small, th {
+            font-size: inherit !important;
+        }
+
+
+
+        span {
+            font-size: inherit;
+        }
+    </style>
+}
 <style>
     textarea {
         width: 300px;
@@ -95,7 +122,7 @@
 </div>
 
 <div>
-    <a href="/Consult/DateList/@Model.PatinetId" class="cancel">取消修改作業</a>
+    <a href="/Consult/DateList/@Model.PatinetId" class="btn btn-success mt-3 cancel" style="color:white;">取消修改作業</a>
 </div>
 
 @section Scripts {

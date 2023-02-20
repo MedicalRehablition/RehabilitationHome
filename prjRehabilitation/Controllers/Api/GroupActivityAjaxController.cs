@@ -68,7 +68,7 @@ namespace prjRehabilitation.Controllers.Api
                     Dictionary<string, string> _ = new Dictionary<string, string>
                     {
                         { "fid", getResidentID.Fid.ToString() },
-                        { "fName", getResidentID.FName+"(出院)" },
+                        { "fName",   getResidentID.Status == true ? getResidentID.FName : getResidentID.FName+"(出院)" },
                         { "date", getLastDate.FirstOrDefault().Date }
                     };
                     return Json(new List<Dictionary<string, string>>() { _ });
