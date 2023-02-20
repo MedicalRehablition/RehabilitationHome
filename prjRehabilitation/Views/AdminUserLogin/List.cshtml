@@ -4,9 +4,14 @@
     ViewData["Title"] = "List";
     Layout = "AdminLayout";
 }
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
 <style>
-    a {
-        color: black;
+    .btn {
+        color: antiquewhite;
+        border-radius: 20%;
+        
     }
 </style>
 <h1>員工列表</h1>
@@ -15,7 +20,7 @@
     <input type="submit" class="btn btn-primary" value="查詢" />
 </form>
 <div class="divider d-flex align-items-center my-4">
-    <a asp-action="Register">新增員工</a>
+    <a asp-action="Register"><i class="fa-solid fa-user"></i>新增員工</a>
 </div>
 
 <table class="table">
@@ -97,6 +102,6 @@
 </table>
 @section Scripts{
     <script>
-     
+
     </script>
 }
