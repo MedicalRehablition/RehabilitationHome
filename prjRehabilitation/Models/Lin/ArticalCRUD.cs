@@ -186,6 +186,7 @@ namespace prjRehabilitation.Models.Lin
                 }
                 var post = new VMNewPost();
                 post.fofficialPost = c;
+                post.FComment = db.TPostComments.Where(x => x.FPostId == c.FPostId).Count();
                 string newtag = "";
                 if (c.FTag != null)
                 {
