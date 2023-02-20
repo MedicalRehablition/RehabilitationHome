@@ -31,30 +31,24 @@
         span {
             font-size: inherit;
         }
+
+        textarea {
+            width: 300px;
+            height: 200px;
+            resize: none;
+            overflow-x: visible;
+            overflow-y: visible;
+        }
+
+        .lastEvaluate {
+            /*border: solid 1px red;*/
+            font-weight: bold;
+            font-style: italic;
+            /*background-color:lightcyan;*/
+        }
     </style>
 }
 
-<style>
-    .try {
-        border: dashed red 2px;
-    }
-
-    textarea {
-        width: 300px;
-        height: 150px;
-        resize: none;
-        overflow-x: visible;
-        overflow-y: visible;
-    }
-
-    .lastEvaluate {
-        /*border: solid 1px red;*/
-        font-weight: bold;
-        font-style: italic;
-        /*background-color:lightcyan;*/
-    }
-
-</style>
 
 <h1>新增會談作業</h1>
 
@@ -105,22 +99,22 @@
                     </div>
                     <div class="form-group">
                         <label asp-for="Assessment" class="control-label"></label>
-                        <textarea asp-for="Assessment" class="form-control"></textarea>
+                        <textarea asp-for="Assessment" class="form-control" style="height:130px"></textarea>
                         <span asp-validation-for="Assessment" class="text-danger"></span>
                     </div>
                     <div class="form-group">
                         <label asp-for="Result" class="control-label"></label>
-                        <textarea asp-for="Result" class="form-control"></textarea>
+                        <textarea asp-for="Result" class="form-control" style="height:130px"></textarea>
                         <span asp-validation-for="Result" class="text-danger"></span>
                     </div>
                 </div>
-
-
-                <div class="form-group">
-                    <input type="submit" value="新增會談資料" class="btn btn-primary" />
-                </div>
-                <div>
-                    <button type="button" id="demo" class="btn btn-sm btn-info" style="color:white;">產生範例</button>
+                <div class="d-flex justify-content-between">
+                    <div class="form-group">
+                        <input type="submit" value="新增會談資料" class="btn btn-primary" />
+                    </div>
+                    <div>
+                        <button type="button" id="demo" class="btn btn-sm btn-info rounded-2" style="color:white;">產生範例</button>
+                    </div>
                 </div>
             </div>
         </form>
@@ -141,14 +135,13 @@
         var evalulist = [];
         @for (int i = 0; i < Model.Typeevaluate.Count(); i++)
         {
-            <text>evalulist.push(@Model.Typeevaluate[i]);</text>
+            <text>evalulist.push(@Model.Typeevaluate[i]); </text>
         };
-         $.each(evalulist, function (index, value)
-        {
+        $.each(evalulist, function (index, value) {
             $("#lbl" + value).addClass("lastEvaluate");
             //document.querySelector('"#lbl" + value').className = 'lastEvaluate';
         });
-        
+
         $("#demo").click(function () {
             $("#Summary").text("了解住民情緒狀態及飲食量較低原因。");
             $("#Assessment").text("住民表示自己最近出現妄想，以為在外有一位小三，因此覺得很對不起太太，所以離開家裡想去找謝小姐，但都找不到，因為身上沒錢，所以餓肚子好幾天了");

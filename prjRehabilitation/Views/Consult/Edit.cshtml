@@ -40,7 +40,7 @@
 <style>
     textarea {
         width: 300px;
-        height: 150px;
+        height: 200px;
         resize: none;
         overflow-x: visible;
         overflow-y: visible;
@@ -104,12 +104,12 @@
                     </div>
                     <div class="form-group">
                         <label asp-for="Assessment" class="control-label"></label>
-                        <textarea asp-for="Assessment" class="form-control cust"></textarea>
+                        <textarea asp-for="Assessment" class="form-control cust" style="height:130px"></textarea>
                         <span asp-validation-for="Assessment" class="text-danger"></span>
                     </div>
                     <div class="form-group">
                         <label asp-for="Result" class="control-label"></label>
-                        <textarea asp-for="Result" class="form-control cust"></textarea>
+                        <textarea asp-for="Result" class="form-control cust" style="height:130px"></textarea>
                         <span asp-validation-for="Result" class="text-danger"></span>
                     </div>
                 </div>

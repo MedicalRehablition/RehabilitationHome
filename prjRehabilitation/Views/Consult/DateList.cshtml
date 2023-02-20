@@ -15,53 +15,55 @@
 <p class="employee">
     <a href="/Consult/Create/@ptid">新增會談紀錄</a>
 </p>
-<table class="table table-striped table-hover">
-    <thead>
-        <tr>
-            <th>
-                序號
-            </th>
+<div style="height:400px">
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th>
+                    序號
+                </th>
 
-            <th>
-                @Html.DisplayNameFor(model => model.Date)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Summary)
-            </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Date)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Summary)
+                </th>
 
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @{
-            int count = 0;
-            foreach (var item in Model)
-            {
-                count++;
-                <tr id="onlysee">
-                    <td>
-                        @count
-                    </td>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                int count = 0;
+                foreach (var item in Model)
+                {
+                    count++;
+                    <tr id="onlysee">
+                        <td>
+                            @count
+                        </td>
 
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Date)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Summary)
-                    </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Date)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Summary)
+                        </td>
 
-                    <td class="employee">
-                        @Html.ActionLink("編輯", "Edit", new {  id=item.FConsultId}) |
-                        @Html.ActionLink("刪除", "Delete","Consult", new {  id=item.FConsultId },new{onclick = "return confirm('確定要刪除嗎')"})
-                    </td>
-                     <td class="customer">
-                        @Html.ActionLink("檢視", "Edit", new {  id=item.FConsultId})                         
-                    </td>
-                </tr>
+                        <td class="employee">
+                            @Html.ActionLink("編輯", "Edit", new {  id=item.FConsultId}) |
+                            @Html.ActionLink("刪除", "Delete","Consult", new {  id=item.FConsultId },new{onclick = "return confirm('確定要刪除嗎')"})
+                        </td>
+                        <td class="customer">
+                            @Html.ActionLink("檢視", "Edit", new {  id=item.FConsultId})
+                        </td>
+                    </tr>
+                }
             }
-        }
-    </tbody>
-</table>
+        </tbody>
+    </table>
+</div>
 <p class="employee">
     <a href="/Consult/List">回列表</a>
 </p>
@@ -72,7 +74,7 @@
         //debugger;
         if (set == "customer") {
             $(".employee").hide();
-        }else {
+        } else {
             $(".customer").hide();
         };
 

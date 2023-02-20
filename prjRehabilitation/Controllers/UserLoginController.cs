@@ -144,7 +144,7 @@ namespace prjRehabilitation.Controllers
                         }
                         db.SaveChanges();
                         //呼叫寄信把QRpic寄給會員
-                        Gmail sendmail = new Gmail();
+                        CSendmal sendmail = new CSendmal();
                         string root = _environment.WebRootPath;
                         string imagePath = Path.Combine(root, "images", $"{qrname}");
                         var sendto = $"{vm.FEmail}";

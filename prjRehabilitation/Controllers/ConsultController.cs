@@ -122,7 +122,7 @@ namespace prjRehabilitation.Controllers
             string json = HttpContext.Session.GetString(CDictionary.SK_ADMIN_User);
             string jsonc = HttpContext.Session.GetString(CDictionary.SK_CUSTOMER_User);
             ViewBag.setting = "";
-            if (jsonc != null)
+            if (jsonc != null&& json==null)
             {
                 ViewBag.setting = "customer";
             }

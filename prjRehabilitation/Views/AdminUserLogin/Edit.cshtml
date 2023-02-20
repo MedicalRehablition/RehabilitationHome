@@ -6,8 +6,8 @@
 }
 @section Styles{
     <style>
-        h6,.form-control{ 
-            font-size:inherit;
+        h6, .form-control {
+            font-size: inherit;
         }
     </style>
 }
@@ -27,11 +27,11 @@
                         @{
                             if (Model.Fphoto != null)
                             {
-                                                            <img class="rounded-circle border border-primary Aimg" src="~/images/@Model.Fphoto" alt="Admin" width="300" height="300" />
+                                <img class="rounded-circle border border-primary Aimg" src="~/images/@Model.Fphoto" alt="Admin" width="300" height="300" />
                             }
                             else
                             {
-                                                            <img class="rounded-circle border border-primary Aimg" src="~/images/imageDefault.png" width="300" height="300" />
+                                <img class="rounded-circle border border-primary Aimg" src="~/images/imageDefault.png" width="300" height="300" />
                             }
                         }
                     </div>
@@ -48,15 +48,66 @@
                         @{
                             if (Model.Fphoto != null)
                             {
-                                                            <img class=" border border-primary img" src="~/images/@Model.FQrcode" alt="無QRcode" width="150" height="150" />
+                                <img class=" border border-primary img" src="~/images/@Model.FQrcode" alt="無QRcode" width="150" height="150" />
                             }
                             else
                             {
-                                                            <img class=" border border-primary img" src="~/images/imageDefault.png" width="150" height="150" />
+                                <img class=" border border-primary img" src="~/images/imageDefault.png" width="150" height="150" />
                             }
                         }
                     </div>
                 </div>
+            </div>
+            <div class="card">
+                <div class="card-body ">
+                    <div>
+                        <span>出勤查詢：</span>
+                        <select id="yyyy"></select>
+                        <span>年</span>
+                        <select id="mm">
+                            <option value="01" class="mm">1</option>
+                            <option value="02" class="mm">2</option>
+                            <option value="03" class="mm">3</option>
+                            <option value="04" class="mm">4</option>
+                            <option value="05" class="mm">5</option>
+                            <option value="06" class="mm">6</option>
+                            <option value="07" class="mm">7</option>
+                            <option value="08" class="mm">8</option>
+                            <option value="09" class="mm">9</option>
+                            <option value="10" class="mm">10</option>
+                            <option value="11" class="mm">11</option>
+                            <option value="12" class="mm">12</option>
+                        </select>
+                        <span>月</span>
+
+                    </div>
+                    <div class="gutters-sm">
+                        <div class="">
+                            <span>遲到：</span>
+                            <span id="lateduty">0</span>
+                            <span>天</span>
+                        </div>
+                        <div class="">
+                            <span>早退：</span>
+                            <span id="earlyduty">0</span>
+                            <span>天</span>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <div>
+                                <span>加班時數：</span>
+                                <span id="overh">0</span>
+                                <span>小時</span>
+                                <span id="overm">0</span>
+                                <span>分鐘</span>
+                            </div>
+                            <div>
+                                <button type="button" id="btnduty" class="btn btn-sm btn-primary rounded-2" style="width:auto">查詢</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
             </div>
         </div>
         <div class="col-md-8">
@@ -77,7 +128,7 @@
                                 <label asp-for="FPassword" class="control-label"></label>
                             </div>
                             <div class="col-sm-9 text-secondary">
-                                <input   asp-for="FPassword" class="form-control"/>
+                                <input asp-for="FPassword" class="form-control" />
                             </div>
                         </div>
                         <hr>
@@ -91,12 +142,12 @@
                         <div class="row">
                             <div class="col-12">
                                 <label asp-for="FRank" class="control-label">職級</label>
-                                            <select asp-for="FRank" class="form-select" aria-label="Default select example">
-                                                <option value="主任">主任</option>
-                                                <option value="醫事人員">醫事人員</option>
-                                                <option value="專任管理員">專任管理員</option>
-                                            </select>
-                               
+                                <select asp-for="FRank" class="form-select" aria-label="Default select example">
+                                    <option value="主任">主任</option>
+                                    <option value="醫事人員">醫事人員</option>
+                                    <option value="專任管理員">專任管理員</option>
+                                </select>
+
                             </div>
                         </div>
                         <hr>
@@ -167,14 +218,50 @@
         async function GetLoginUser() {
             const response = await fetch("@Url.Content("/AdminUserLogin/GetUserSession")");
             const User = await response.json();
-            
-            if(User.fRank!="主任"){
+
+            if (User.fRank != "主任") {
                 $(".form-select").attr("disabled", "disabled");
             }
-            
-        }
 
-                //$(".btn").on("click",Edit);
+        }
+        //-------------出勤----------------------
+        var selectElement = document.getElementById("yyyy");
+        var mmElement = document.getElementById("mm");
+
+        var currentYear = new Date().getFullYear();
+
+        for (var year = 2010; year <= currentYear; year++) {
+            var optionElement = document.createElement("option");
+            optionElement.value = year;
+            optionElement.text = year;
+            optionElement.classList.add("year");
+            selectElement.appendChild(optionElement);
+        };
+        var selectedIndex = currentYear - 2010; // 計算今年所在的索引
+        selectElement.selectedIndex = selectedIndex;
+
+        $("#btnduty").on("click", getduty);
+
+        function getduty() {
+            var data = selectElement.value + "-" + mmElement.value + "," + @Model.Fid;//1-4為年，5-6為月，7之後為員工id
+            $.ajax({
+                type: "POST",
+                url: '/Webcam/dutydays',
+                data: { DutyData: data },
+                success: function (result) {
+                    if (result != null) {
+                        $('#lateduty').text(`${result.lateduty}`);
+                        $('#earlyduty').text(`${result.earlyduty}`);
+                        $('#overh').text(`${result.overhimeH}`);
+                        $('#overm').text(`${result.overhimeM}`);
+                    };
+                }
+            });
+        }
+        //-------------出勤----------------------
+
+
+                                //$(".btn").on("click",Edit);
     </script>
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");

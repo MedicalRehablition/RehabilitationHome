@@ -2,6 +2,7 @@
 using prjRehabilitation.Models;
 using prjRehabilitation.ViewModel;
 using System.Drawing;
+using System.Globalization;
 using System.Net.NetworkInformation;
 
 namespace prjRehabilitation.Controllers
@@ -87,7 +88,64 @@ namespace prjRehabilitation.Controllers
             return Json(null);
 
         }
+        public IActionResult dutydays(string DutyData)
+        {
+            var data = DutyData;
+            string[] dutyall = DutyData.Split(",");
+            string dutyOn = "09-05-00";
+            string dutyOff = "17-00-00";
+            int lateDay = 0;                        // 遲到的天數
+            int lateLeave = 0;                      //早退的天數
+            TimeSpan overtime = TimeSpan.Zero;      //總加班時數(timespan類型)            
 
+            string yearmonth = dutyall[0]; //2023-02           
+            int emp = Convert.ToInt32(dutyall[1]);   //找員工id
+
+            dbClassContext db = new dbClassContext();
+            //var day = db.EmployeeDuties.Where(o => o.Employeeid == emp && o.Onduty.Substring(0, 6) == yearmonth).ToList();
+            var query = from d in db.EmployeeDuties
+                        where d.Employeeid == emp
+                              && d.Onduty.Substring(0, 7) == yearmonth
+                        select d;
+            List<EmployeeDuty> result = query.ToList();
+
+            foreach (var i in result)
+            {
+                if (i.Onduty != null) //計算遲到
+                {
+                    if (string.Compare(i.Onduty.Substring(11), dutyOn) > 0)
+                    {
+                        lateDay += 1;
+                    }
+                }
+                if (i.Offduty != null)//計算早退
+                {
+                    if (string.Compare(i.Offduty.Substring(11), dutyOff) < 0)
+                    {
+                        lateLeave += 1;
+                    }
+                }
+                if (i.Onduty != null && i.Offduty != null) //加班時間
+                {
+                    DateTime startTime = DateTime.ParseExact(i.Onduty, "yyyy-MM-dd-HH-mm-ss", CultureInfo.InvariantCulture);
+                    DateTime endTime = DateTime.ParseExact(i.Offduty, "yyyy-MM-dd-HH-mm-ss", CultureInfo.InvariantCulture);
+                    TimeSpan standardWorkTime = TimeSpan.FromHours(8); //一天工時8小時
+                    TimeSpan workTime = endTime - startTime - standardWorkTime; // 一天加班的時間
+
+                    if (workTime > TimeSpan.Zero) //如果工時大於8小時
+                    {
+                        overtime += workTime;
+                    };
+
+                };
+            };
+            CDutycount dc = new CDutycount();  //把資訊丟到class
+            dc.lateduty = lateDay; //遲到天數
+            dc.earlyduty = lateLeave;//早退天數
+            dc.overhimeH = overtime.Hours;//總加班時
+            dc.overhimeM = overtime.Minutes;//總加班分
+            return Json(dc);
+        }
     }
 }
 // Substring(抓取起始字串index(int),抓的字串長度(int)):指定抓取起點與抓取長度常用Substring(Int32, Int32)
