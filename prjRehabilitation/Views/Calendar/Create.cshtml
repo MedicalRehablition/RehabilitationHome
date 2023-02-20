@@ -37,12 +37,12 @@
 			<div asp-validation-summary="ModelOnly" class="text-danger"></div>
 			<div class="form-group">
 				<label asp-for="date" class="control-label"></label>
-				<input asp-for="date" type="date" class="form-control" id="calendarDate"/>
+				<input asp-for="date" type="date" class="form-control" id="calendarDate" />
 				<span asp-validation-for="date" class="text-danger"></span>
 			</div>
 			<div class="form-group">
 				<label asp-for="eventName" class="control-label"></label>
-				<input asp-for="eventName" class="form-control" id="eventNameID"/>
+				<input asp-for="eventName" class="form-control" id="eventNameID" />
 				<span asp-validation-for="eventName" class="text-danger"></span>
 			</div>
 
@@ -59,18 +59,18 @@
 			<div class="row">
 				<div class="col">
 					<label asp-for="fRecorder" class="control-label"></label>
-					<input asp-for="fRecorder" class="form-control" readonly/>
+					<input asp-for="fRecorder" class="form-control" readonly />
 					<span asp-validation-for="content" class="text-danger"></span>
 				</div>
 				<div class="col">
 					<label asp-for="fRecorderDate" class="control-label"></label>
-					<input asp-for="fRecorderDate" class="form-control" readonly/>
+					<input asp-for="fRecorderDate" class="form-control" readonly />
 					<span asp-validation-for="content" class="text-danger"></span>
 				</div>
 				<div class="col">
-                    <label asp-for="FVisualHierarchy" class="control-label"></label>(0為全可視)
+					<label asp-for="FVisualHierarchy" class="control-label"></label>(0為全可視)
 					<select asp-for="FVisualHierarchy" class="form-control">
-						<option >0(公開)</option>
+						<option>0(公開)</option>
 						@for (int FVisualHierarchyI = 1; FVisualHierarchyI < 15; FVisualHierarchyI++)
 						{
 							<option selected>@FVisualHierarchyI</option>
@@ -102,8 +102,9 @@
 	@*<label class="control-label" style="h4">進階內容</label>*@
 
 	<div id="calendarAdvanced" class="col-6 hiddenAdvanced">
-		<textarea class="form-control " style="height:250px"></textarea>
-
+		<textarea class="form-control " style="height:250px" id="TextAreaAdvanced"></textarea>
+		<input type="button" id="advButton" class="btn btn-primary" value="確定" />
+		<textarea class="form-control " style="height:250px" id="TextAreaAdvanced2"></textarea>
 	</div>
 </div>
 
@@ -130,6 +131,67 @@
 			document.querySelector("#contentID").innerHTML = "可讓全體家屬一起會談，互相認識，順便看看住民";
 
 		});
+
+		const ADVtext = document.querySelector("#TextAreaAdvanced");
+		const ADVbutton = document.querySelector("#advButton");
+		const ADVtext2 = document.querySelector("#TextAreaAdvanced2");
+
+		//ADVbutton.addEventListener("click", function () {
+		//	ADVtext2.value = "";
+		//	let getHalfType = toASCII(ADVtext.value);
+		//	const getTrim = getHalfType.split(" ");
+		//	let result = "";
+		//	for (var getTrimINTrim of getTrim) {
+
+		//		if (getTrimINTrim == "") { continue; }
+		//		result += getTrimINTrim;
+		//	}
+
+		//	console.log(result);
+
+		//	const arrayTo = result.split("~").length > result.split("-").length ? result.split("~") : result.split("-");
+		//	let getResultArray = [];
+
+		//	for (var getDayAndTime of arrayTo) {
+
+		//		let getDay = getDayAndTime.split("/")[0] + "-" + getDayAndTime.split("/")[1].substring(0, 2);
+		//		getResultArray.push(getDay);
+		//		let getSplit = getDayAndTime.split(":")[0];
+		//		let getTime = getSplit.substring(getSplit.length-2) + ":" + getDayAndTime.split(":")[1];
+		//		getResultArray.push(getTime);
+
+		//	}
+
+		//	console.log(getResultArray);
+
+
+			
+		//	for(var getResultDayAndTime of getResultArray ){
+				
+					
+		//		ADVtext2.value += getResultDayAndTime+"\r\n";
+		//	}
+
+
+		//});
+
+
+		function toASCII(chars) {
+			var ascii = '';
+			for (var i = 0, l = chars.length; i < l; i++) {
+				var c = chars[i].charCodeAt(0);
+
+				// make sure we only convert half-full width char
+				if (c >= 0xFF00 && c <= 0xFFEF) {
+					c = 0xFF & (c + 0x20);
+				}
+
+				ascii += String.fromCharCode(c);
+			}
+
+			return ascii;
+		}
+
 	</script>
 }
 
