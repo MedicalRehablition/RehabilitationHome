@@ -1,7 +1,10 @@
-﻿using Commerce.Models;
+﻿
+using Commerce.Models;
 using Commerce.Service;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Formatters;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.Extensions.Caching.Memory;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -41,6 +44,7 @@ namespace prjRehabilitation.Controllers
 
         private string GetReturnValue(ICommerce service, SendToNewebPayIn inModel)
         {
+
             switch (inModel.PayOption)
             {
                 case "newbPay":
@@ -56,13 +60,14 @@ namespace prjRehabilitation.Controllers
             }
         }
 
-        public IActionResult Index(int? price,string email)
+        public IActionResult Index(int? price,string email,string url)
         {
             ViewData["MerchantOrderNo"] = DateTime.Now.ToString("yyyyMMddHHmmss");  //訂單編號
             ViewData["ExpireDate"] = DateTime.Now.AddDays(3).ToString("yyyyMMdd"); //繳費有效期限
             ViewData["Amt"] = price;
             ViewData["ItemDesc"] = "關心康復之家住民手做愛心商品";
             ViewData["Email"] = email;
+            ViewData["ReturnURL"] = url;
             return View();
         }
 

@@ -10,20 +10,21 @@ using System.Threading.Tasks;
 using System.Web;
 using Commerce.Models;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Build.Framework;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
+using static System.Net.WebRequestMethods;
 
 namespace Commerce.Service
 {
     public class ECPayService : ICommerce
     {
         public IConfiguration Config { get; set; }
-
         public ECPayService()
         {
             Config = new ConfigurationBuilder().AddJsonFile("appSettings.json").Build();
         }
-
+        
         public string GetCallBack(SendToNewebPayIn inModel)
         {
             var orderId = Guid.NewGuid().ToString().Replace("-", "").Substring(0, 20);
@@ -67,14 +68,14 @@ namespace Commerce.Service
                 { "ReturnURL",  $"{Config.GetSection("HostURL").Value}/Notify/CallbackNotify?option=ECPay"},
 
                 //付款完成後導頁
-                { "OrderResultURL", $"https://localhost:7164/Product/ok"},
+                { "OrderResultURL", "https://localhost:7164/Product/ok"},
 
 
                 //付款方式為 ATM 時，當使用者於綠界操作結束時，綠界回傳 虛擬帳號資訊至 此URL
                 { "PaymentInfoURL",$"{Config.GetSection("HostURL").Value}/Home/CallbackCustomer?option=ECPay"},
 
                 //付款方式為 ATM 時，當使用者於綠界操作結束時，綠界會轉址至 此URL。
-                { "ClientRedirectURL",  $"{Config.GetSection("HostURL").Value}/Home/CallbackCustomer?option=ECPay"},
+                { "ClientRedirectURL",  "https://localhost:7164/Product/ok"},
 
                 //特店編號， 2000132 測試綠界編號
                 { "MerchantID",  "3002599"},
