@@ -27,7 +27,7 @@
                         </h1>
                         <ul class="blog-info-link mt-3 mb-4">
                             <li><a href="#"><i class="fa fa-user"></i>@Model.FTag</a></li>
-                            <li><a href="#"><i class="fa fa-comments"></i> 03 Comments</a></li>
+                            <li><a href="#" id="comment"><i class="fa fa-comments"></i> 03 Comments</a></li>
                         </ul>
                         <article id="article">@Html.Raw(Model.FContent)</article>
                     </div>
@@ -91,30 +91,25 @@
 
                 </div>
                 <div class="comment-form">
-                    <h4>留下你的看法</h4>
+                    <h4>發布留言</h4>
                     <form class="form-contact comment_form" action="#" id="commentForm" name="commentForm">
                         <input  type="hidden" asp-for="FPostId" value="@Model.FPostId"/>
                         <div class="row">
                             <div class="col-12">
                                 <div class="form-group">
-                                    <textarea class="form-control w-100" name = "FContent" id="FContent" cols="30" rows="9" placeholder="Write Comment"></textarea>
+                                    <textarea class="form-control w-100" name = "FContent" id="FContent" cols="30" rows="9" placeholder="留下你的看法"></textarea>
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <input class="form-control" name="FName" id="FName" type="text" placeholder="Name">
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <input class="form-control" name="FEmail" id="FEmail" type="email" placeholder="Email">
+                                    <input class="form-control" name="FName" id="FName" type="text" placeholder="暱稱">
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
                         </div>
                     </form>
-                    <button type="button" onclick="postComment()" class="button button-contactForm btn_1 boxed-btn">Post Comment</button>
+                    <button type="button" onclick="postComment()" class="button button-contactForm btn_1 boxed-btn">發布留言</button>
 
                 </div>
             </div>
@@ -384,10 +379,12 @@
                                          `;
             })
             if(count!=0&&count<10){
-               document.getElementById("commentNum").innerHTML = `0${count} Comments`
+                document.getElementById("commentNum").innerHTML = `${count} 則留言`
+                document.getElementById("comment").innerHTML = `${count} 則留言`
             }
             else{
-                document.getElementById("commentNum").innerHTML = `${count} Comments`
+                document.getElementById("commentNum").innerHTML = `${count} 則留言`
+                document.getElementById("comment").innerHTML = `${count} 則留言`
             }
             document.getElementById("comments-area").innerHTML += html.join("");
             //加載完把讀取動畫關掉
