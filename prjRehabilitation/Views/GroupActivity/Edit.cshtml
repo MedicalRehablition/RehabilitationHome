@@ -9,8 +9,9 @@
 
 @section Styles{
     <style>
-        .form-control {
+        .form-control,.form-select,.btn {
             height: auto;
+            font-size: inherit;
         }
 
         .card > .card-body > .row * {
@@ -18,7 +19,7 @@
         }
 
         body, .small, .badge {
-            font-size: 1rem; /*解開束縛而已*/
+            font-size: inherit; /*解開束縛而已*/
         }
     </style>
 }
@@ -237,7 +238,7 @@
 </div>
 <br />
 <div>
-    <a asp-action="List">回列表</a>
+    <a asp-action="List" class="btn btn-success" style="color:white;">回列表</a>
 </div>
 
 @section Scripts {

@@ -4,6 +4,36 @@
     ViewData["Title"] = "Register";
     Layout = "AdminLayout";
 }
+
+@section Styles{
+
+    <style>
+
+        .form-control, .form-select, .btn {
+            height: auto;
+            font-size: 1.1rem;
+        }
+
+        .genric-btn {
+            font-size: inherit; /*解除限制讓他聽控樣式的父層*/
+        }
+
+        label {
+            margin-bottom: 0px;
+        }
+
+        .small, th {
+            font-size: inherit !important;
+        }
+
+
+
+        span {
+            font-size: inherit;
+        }
+    </style>
+}
+
 <style>
     .try {
         border: dashed red 2px;
@@ -90,7 +120,7 @@
                     <input type="submit" value="新增會談資料" class="btn btn-primary" />
                 </div>
                 <div>
-                    <button type="button" id="demo" class="btn btn-sm btn-info">產生範例</button>
+                    <button type="button" id="demo" class="btn btn-sm btn-info" style="color:white;">產生範例</button>
                 </div>
             </div>
         </form>
@@ -98,7 +128,7 @@
 </div>
 
 <div>
-    <a asp-action="List">取消新增作業</a>
+    <a asp-action="List" class="btn btn-success mt-3" style="color:white;">取消新增作業</a>
 </div>
 
 @section Scripts {

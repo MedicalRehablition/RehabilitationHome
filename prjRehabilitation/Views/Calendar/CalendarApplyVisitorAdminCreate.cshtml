@@ -5,6 +5,23 @@
     Layout = "AdminLayout";
 }
 
+@section Styles{
+    <style>
+        .form-control, .form-select, .btn {
+            height: auto;
+            font-size: inherit;
+        }
+
+        .card > .card-body > .row * {
+            margin: 2px 0px;
+        }
+
+        body, .small, .badge {
+            font-size: inherit; /*解開束縛而已*/
+        }
+    </style>
+}
+
 <h1>行事曆會面申請(後端)</h1>
 
 <h4>申請表</h4>
@@ -104,13 +121,13 @@
                 <span asp-validation-for="FAdminId" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="新增" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="CalendarApplyCensorList">Back to List</a>
+    <a asp-action="CalendarApplyCensorList"class="btn btn-success" style="color:white;">返回</a>
 </div>
 
