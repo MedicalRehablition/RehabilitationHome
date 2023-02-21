@@ -53,7 +53,7 @@
     }
 </style>
 
-<h4 class="custtitle m-t-10">編輯作業</h4>
+<h1 class="custtitle m-t-10">編輯作業</h1>
 <hr />
 <div class="row">
     <div class="col-md-9">
@@ -61,68 +61,82 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="row">
                 <div class="col-3 col-md-3">
-                    <label>主題</label><br/>
-                    <input type="checkbox" id="1" name="Typeconsult" value="1" class="chcust">
-                    <label for="1" id="lbl1">衛生習慣</label><br />
-                    <input type="checkbox" id="2" name="Typeconsult" value="2" class="chcust">
-                    <label for="2" id="lbl2">居家清潔</label><br />
-                    <input type="checkbox" id="3" name="Typeconsult" value="3" class="chcust">
-                    <label for="3" id="lbl3">飲食起居</label><br />
-                    <input type="checkbox" id="4" name="Typeconsult" value="4" class="chcust">
-                    <label for="4" id="lbl4">認知能力</label><br />
-                    <input type="checkbox" id="5" name="Typeconsult" value="5" class="chcust">
-                    <label for="5" id="lbl5">體能表現</label><br />
-                    <input type="checkbox" id="6" name="Typeconsult" value="6" class="chcust">
-                    <label for="6" id="lbl6">人際互動</label><br />
-                    <input type="checkbox" id="7" name="Typeconsult" value="7" class="chcust">
-                    <label for="7" id="lbl7">烹飪能力</label><br />
-                    <input type="checkbox" id="8" name="Typeconsult" value="8" class="chcust">
-                    <label for="8" id="lbl8">休閒安排</label><br />
-                    <input type="checkbox" id="9" name="Typeconsult" value="9" class="chcust">
-                    <label for="9" id="lbl9">財務管理</label><br />
-                    <input type="checkbox" id="10" name="Typeconsult" value="10" class="chcust">
-                    <label for="10" id="lbl10">健康促進</label><br />
-                </div>  @*checkbox*@
-                <div class="col col-md-9">
-                    <div class="form-group">
-                        <input type="hidden" name="FConsultId" value="@Model.FConsultId">
+                    <div class="card">
+                        <div class="card-body p-20">
+                            <div class="text-center border border-info border-3 rounded-3">
+                                <div class="fw-bold fs-6 m-t-10 m-b-10">評估項目</div>
+                                <input type="checkbox" id="1" name="Typeconsult" value="1" class="chcust">
+                                <label for="1" id="lbl1">衛生習慣</label><br />
+                                <input type="checkbox" id="2" name="Typeconsult" value="2" class="chcust">
+                                <label for="2" id="lbl2">居家清潔</label><br />
+                                <input type="checkbox" id="3" name="Typeconsult" value="3" class="chcust">
+                                <label for="3" id="lbl3">飲食起居</label><br />
+                                <input type="checkbox" id="4" name="Typeconsult" value="4" class="chcust">
+                                <label for="4" id="lbl4">認知能力</label><br />
+                                <input type="checkbox" id="5" name="Typeconsult" value="5" class="chcust">
+                                <label for="5" id="lbl5">體能表現</label><br />
+                                <input type="checkbox" id="6" name="Typeconsult" value="6" class="chcust">
+                                <label for="6" id="lbl6">人際互動</label><br />
+                                <input type="checkbox" id="7" name="Typeconsult" value="7" class="chcust">
+                                <label for="7" id="lbl7">烹飪能力</label><br />
+                                <input type="checkbox" id="8" name="Typeconsult" value="8" class="chcust">
+                                <label for="8" id="lbl8">休閒安排</label><br />
+                                <input type="checkbox" id="9" name="Typeconsult" value="9" class="chcust">
+                                <label for="9" id="lbl9">財務管理</label><br />
+                                <input type="checkbox" id="10" name="Typeconsult" value="10" class="chcust">
+                                <label for="10" id="lbl10">健康促進</label><br />
+                            </div>
+                        </div>
                     </div>
-                    <div class="form-group">
-
-                        <input type="hidden" name="PatinetId" value="@Model.PatinetId">
-
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="Date" class="control-label"></label>
-                        <input type="date" asp-for="Date" class="form-control cust" />
-                        <span asp-validation-for="Date" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="Summary" class="control-label"></label>
-                        <textarea asp-for="Summary" class="form-control cust"></textarea>
-                        <span asp-validation-for="Summary" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="Assessment" class="control-label"></label>
-                        <textarea asp-for="Assessment" class="form-control cust" style="height:130px"></textarea>
-                        <span asp-validation-for="Assessment" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="Result" class="control-label"></label>
-                        <textarea asp-for="Result" class="form-control cust" style="height:130px"></textarea>
-                        <span asp-validation-for="Result" class="text-danger"></span>
+                    <div class="m-t-40">
+                        <div class="form-group employee">
+                            <input type="submit" value="存檔" class="btn btn-primary col-12" />
+                        </div>
+                        <div>
+                            <a href="/Consult/DateList/@Model.PatinetId" class="btn btn-success mt-1 cancel col-12" style="color:white;">取消修改作業</a>
+                        </div>
                     </div>
                 </div>
+                <div class="col col-md-9">
+                    <div class="card">
+                        <div class="card-body p-20">
+                            <div class="border border-info border-3 rounded-3 p-15 p-t-0">
+                                <div class="fw-bold fs-6 m-t-10 m-b-10 text-center">評估內容</div>
+                                <div class="form-group">
+                                    <input type="hidden" name="FConsultId" value="@Model.FConsultId">
+                                </div>
+                                <div class="form-group">
+                                    <input type="hidden" name="PatinetId" value="@Model.PatinetId">
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="Date" class="control-label"></label>
+                                    <input type="date" asp-for="Date" class="form-control cust border border-info" />
+                                    <span asp-validation-for="Date" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="Summary" class="control-label"></label>
+                                    <textarea asp-for="Summary" class="form-control cust border border-info"></textarea>
+                                    <span asp-validation-for="Summary" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="Assessment" class="control-label"></label>
+                                    <textarea asp-for="Assessment" class="form-control cust border border-info" style="height:130px"></textarea>
+                                    <span asp-validation-for="Assessment" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="Result" class="control-label"></label>
+                                    <textarea asp-for="Result" class="form-control cust border border-info" style="height:130px"></textarea>
+                                    <span asp-validation-for="Result" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
             </div>
-            <div class="form-group employee">
-                <input type="submit" value="存檔" class="btn btn-primary" />
-            </div>
+
         </form>
     </div>
-</div>
-
-<div>
-    <a href="/Consult/DateList/@Model.PatinetId" class="btn btn-success mt-3 cancel" style="color:white;">取消修改作業</a>
 </div>
 
 @section Scripts {
