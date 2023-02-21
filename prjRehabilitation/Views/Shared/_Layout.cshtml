@@ -146,6 +146,87 @@
             border: 2px solid transparent;
             box-shadow: 0 0 10px 3px rgb(108 98 98 / 20%);
         }
+
+        .contact-bot.action {
+            background-color: #00AEAE;
+            color: white;
+            position: fixed;
+            display: inline;
+            max-width: 200px;
+            max-height: 40px;
+            bottom: 0px;
+            right: 50px;
+            font-size: 20px;
+            letter-spacing: 3px;
+            text-align: center;
+            padding: 5px 10px 5px 10px;
+            z-index: 997;
+            transition: 1.5s all;
+        }
+        .contact-bot {
+            background-color: white;
+            color: white;
+            position: fixed;
+            display: inline;
+            max-width: 0px;
+            max-height: 0px;
+            bottom: 0px;
+            right: 50px;
+            font-size: 20px;
+            letter-spacing: 3px;
+            text-align: center;
+            padding: 5px 10px 5px 10px;
+            z-index: 997;
+            transition: 1s all;
+        }
+        .contact-bot.action:hover {
+                color: white;
+            }
+        .div-bot {
+            background-color: white;
+            color: black;
+            position: fixed;
+            display: inline;
+            max-width: 0px;
+            max-height: 0px;
+            bottom: 0px;
+            right: 50px;
+            font-size: 20px;
+            text-align: right;
+            z-index: 998;
+            transition: 0.5s all;
+        }
+        .div-bot.action {
+                max-width: 1000px;
+                max-height: 1000px;
+                bottom: 0px;
+                right: 50px;
+                font-size: 20px;
+                letter-spacing: 3px;
+                text-align: right;
+                padding: 5px 10px 5px 10px;
+                z-index: 998;
+                transition: 0.5s all;
+                box-shadow: 5px 3px 12px #ADADAD;
+            }
+        .div-bot iframe {
+                min-width: 0px;
+                width: 100%;
+                min-height: 0px;
+                transition: 0.5s all;
+            } 
+        .div-bot.action iframe {
+                min-width: 400px;
+                width: 100%;
+                min-height: 500px;
+                transition: 0.5s all;
+            }  
+        .div-bot.action span {
+                cursor: pointer;
+            } 
+        .div-bot.action span:hover {
+                    color: crimson;
+                }
     </style>
     @await RenderSectionAsync("StylesIndex", required: false)
 </head>
@@ -231,6 +312,10 @@
     </header>
 
     @await RenderSectionAsync("DeadCessTitle", required: false)
+    <span id="bot-close" class="contact-bot action" style="cursor:pointer;"><i class="fas fa-comments"></i> 數位客服</span>
+    <div id="bot-open" class="div-bot ">
+        <span style=""><i class="far fa-times-circle"></i></span>
+    </div>
     <div class="alert-autocloseable-warning" id="shippingmsgbox" hidden role="alert">
         <div class="alert-autocloseable-warning" id="shippingmsgText">
         </div>
@@ -337,12 +422,11 @@
     </div>
     <!-- Footer End-->
 
-    <div id="back-top" style="display: block;">
+    <div id="back-top" style="display: block;bottom:100px">
         <a title="Go to Top" style="color:blanchedalmond" href="#">
             <i class="fas fa-level-up-alt"></i>
         </a>
     </div>
-
     <!-- Jquery Mobile Menu -->
     <script src="~/js/jquery.slicknav.min.js"></script>
     <script src="~/js/bootstrap.min.js"></script>
@@ -466,6 +550,24 @@
 
         $(".chat").on("click",function(){
             window.open("https://webchat.botframework.com/embed/ReplyBot-botNew2?s=YyinLQUa6kk.yjpzXW4-D4pCx9qJGAtYSjRXyB9U6l96WWJxwIJausU");
+        })
+        $("#bot-close").click(function () {
+            //todo 發布前解鎖
+            debugger
+            $("#bot-open").append("<iframe id='botadd'src = 'https://webchat.botframework.com/embed/ReplyBot-botNew2?s=YyinLQUa6kk.yjpzXW4-D4pCx9qJGAtYSjRXyB9U6l96WWJxwIJausU'</iframe>")
+                //<iframe src = "https://webchat.botframework.com/embed/ReplyBot-botNew2?s=YyinLQUa6kk.yjpzXW4-D4pCx9qJGAtYSjRXyB9U6l96WWJxwIJausU" style = "height: 502px; max-height: 502px;"> </iframe>
+
+            setTimeout(function () {
+                $("#bot-close").removeClass("action");
+                $("#bot-open").addClass("action");
+            }, 200);
+        })
+        $("#bot-open span").click(function () {
+            $("#bot-open").removeClass("action");
+            $("#bot-close").addClass("action");
+            setTimeout(function () {
+                $("#botadd").remove();
+            }, 1500);
         })
     </script>
 </body>
