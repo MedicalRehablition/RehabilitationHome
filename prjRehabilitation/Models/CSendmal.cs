@@ -12,7 +12,7 @@ namespace prjRehabilitation.Models
             {
                 // 使用 Google Mail Server 發信
                 string GoogleID = "yeee880726@gmail.com"; //Google 發信帳號
-                string TempPwd = "dkyzsdpffgrgount"; //應用程式密碼
+                string TempPwd = "dkyzsdpffgrgount"; //應用程式密碼dkyzsdpffgrgount
                 string ReceiveMail = email; //接收信箱
 
                 string SmtpServer = "smtp.gmail.com";

@@ -4,16 +4,12 @@
     ViewData["Title"] = "DateList";
     var cc = Model.Where(x => x.PatinetId != null).FirstOrDefault(x => x.PatinetId != null)?.PatinetId;
     var ptid = ViewBag.ptid;
-    
-        Layout = "AdminLayout";
-    
+
+    Layout = "_Layout";
+
 }
 
 <h1>@ViewBag.name 會談紀錄</h1>
-
-<p class="employee">
-    <a href="/Consult/Create/@ptid">新增會談紀錄</a>
-</p>
 <div style="height:400px">
     <table class="table table-striped table-hover">
         <thead>
@@ -49,24 +45,19 @@
                         <td>
                             @Html.DisplayFor(modelItem => item.Summary)
                         </td>
-
-                        <td class="employee">
-                            @Html.ActionLink("編輯", "Edit", new {  id=item.FConsultId}) |
-                            @Html.ActionLink("刪除", "Delete","Consult", new {  id=item.FConsultId },new{onclick = "return confirm('確定要刪除嗎')"})
-                        </td>                       
+                        <td class="customer">
+                            @Html.ActionLink("檢視", "viewCustomer", new {  id=item.FConsultId})
+                        </td>
                     </tr>
                 }
             }
         </tbody>
     </table>
 </div>
-<p class="employee">
-    <a href="/Consult/List">回列表</a>
-</p>
 
 @section Scripts {
     <script>
-       
+
 
     </script>
 }
