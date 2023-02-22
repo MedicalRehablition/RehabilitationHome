@@ -16,7 +16,7 @@
 <div class="container">
     <div class="row">
         <div>
-            <a class="btn btn-outline-success col-2" onclick="create_f()" style="margin:10px; margin-left:50px">
+            <a class="btn btn-outline-info col-2" onclick="create_f()" style="margin:10px; margin-left:50px">
                 返回檢視院內住民
             </a>
         </div>
@@ -45,7 +45,7 @@
                                     <h4 class="title mb-0">@Html.DisplayFor(modelItem=>item.fName)</h4>
 
                                     <a class="btn  btn-primary " onclick="edit(@item.fid)"  id="@item.fid">查看資料</a>
-                                    @Html.ActionLink("回院", "Recover", new { id=item.fid },new { @class="btn btn-danger",onclick = "return confirm('是否回院？ 提醒：住民結案後資料將轉移至入住住民。')"})
+                                    @Html.ActionLink("回院", "Recover", new { id=item.fid },new { @class="btn btn-danger",@style="color:white;",onclick = "return confirm('是否回院？ 提醒：住民結案後資料將轉移至入住住民。')"})
                                 </div>
                             </div>
                         </div>

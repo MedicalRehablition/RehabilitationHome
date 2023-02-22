@@ -94,7 +94,7 @@ namespace prjRehabilitation.Models.Lin
         }
         public object GetProducts() {
             dbClassContext db = new dbClassContext();
-            var data= db.Products.OrderByDescending(x=>x.FStatus).ToList();
+            var data= db.Products.OrderByDescending(x=>x.FStatus).OrderByDescending(x=>x.FType).ToList();
             List <CProductViewModel> list = new List< CProductViewModel >();
 
             foreach (var c in data)
