@@ -93,7 +93,7 @@
                             <input type="submit" value="新增會談資料" class="btn btn-primary col-12" />
                         </div>
                         <div>
-                            <a asp-action="List" class="btn btn-success mt-1 col-12" style="color:white;">取消新增作業</a>
+                            <a href="/Consult/DateList/@Model.PatinetId" class="btn btn-success mt-1 cancel col-12" style="color:white;">取消新增作業</a>
                         </div>
                         <div>
                             <button type="button" id="demo" class="btn btn-sm btn-info rounded-2 m-t-20" style="color:white;">產生範例</button>
@@ -110,22 +110,22 @@
                                 </div>
                                 <div class="form-group">
                                     <label asp-for="Date" class="control-label"></label>
-                                    <input type="date" asp-for="Date" class="form-control border border-info" />
+                                    <input type="date" asp-for="Date" class="form-control" />
                                     <span asp-validation-for="Date" class="text-danger"></span>
                                 </div>
                                 <div class="form-group">
                                     <label asp-for="Summary" class="control-label"></label>
-                                    <textarea asp-for="Summary" class="form-control border border-info"></textarea>
+                                    <textarea asp-for="Summary" class="form-control "></textarea>
                                     <span asp-validation-for="Summary" class="text-danger"></span>
                                 </div>
                                 <div class="form-group">
                                     <label asp-for="Assessment" class="control-label"></label>
-                                    <textarea asp-for="Assessment" class="form-control border border-info" style="height:130px"></textarea>
+                                    <textarea asp-for="Assessment" class="form-control " style="height:130px"></textarea>
                                     <span asp-validation-for="Assessment" class="text-danger"></span>
                                 </div>
                                 <div class="form-group">
                                     <label asp-for="Result" class="control-label"></label>
-                                    <textarea asp-for="Result" class="form-control border border-info" style="height:130px"></textarea>
+                                    <textarea asp-for="Result" class="form-control " style="height:130px"></textarea>
                                     <span asp-validation-for="Result" class="text-danger"></span>
                                 </div>
                             </div>

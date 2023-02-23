@@ -122,7 +122,7 @@ namespace prjRehabilitation.Controllers
                     else
                     {
                         return Content("此住民已綁定會員資料");
-                    }
+                    };
                     //---------qrcode生成及儲存-----
                     CCreateqrcode cqr = new CCreateqrcode();
                     string emp = "c" + vm.Customer.Fid; //圖片要存的內容
@@ -141,8 +141,9 @@ namespace prjRehabilitation.Controllers
                             {
                                 stream.CopyTo(fileStream);
                             }
-                        }
+                        };
                         db.SaveChanges();
+                    };
                         //呼叫寄信把QRpic寄給會員
                         CSendmal sendmail = new CSendmal();
                         string root = _environment.WebRootPath;
@@ -160,7 +161,6 @@ namespace prjRehabilitation.Controllers
                             var body = htmlBody;
                             sendmail.SendByGmail(sendto, body, subject);
                         }//------mail------
-                    }
                     return Content("註冊成功!");
                 }
                 return Content("無此住民或資料輸入錯誤");

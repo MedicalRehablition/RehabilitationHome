@@ -31,7 +31,7 @@ namespace prjRehabilitation.Controllers
                     CPatientsViewModel patient = new CPatientsViewModel();
                     patient.Patient = c;
                     List.Add(patient);
-                   
+
                 }
                 return View(List);
             }
@@ -41,25 +41,13 @@ namespace prjRehabilitation.Controllers
                 var pin = db.PatientInfos.FirstOrDefault(t => t.FCustomerid == customer.Fid);
                 if (pin != null)
                 {
-                    return RedirectToAction("DateList", "Consult", new { @id = pin.Fid });
+                    return RedirectToAction("DateListCustomer", "Consult", new { @id = pin.Fid });
                 };
             };
             return RedirectToAction("Index", "Home"); //其他狀況一律回主頁
         }
         public IActionResult DateList(int? id)
         {
-            //-------custoer setting-----
-            string json = HttpContext.Session.GetString(CDictionary.SK_ADMIN_User);
-            string jsonc = HttpContext.Session.GetString(CDictionary.SK_CUSTOMER_User); 
-            ViewBag.setting = "";
-            if (jsonc != null)
-            {
-                ViewBag.setting = "customer";
-            }else if (json != null)
-            {
-                ViewBag.setting = "emp";
-            }
-
             dbClassContext db = new dbClassContext();
             IEnumerable<Consultation> datas = null;
             datas = db.Consultations.Where(c => c.PatinetId == id.Value).ToList();
@@ -77,6 +65,63 @@ namespace prjRehabilitation.Controllers
             ViewBag.name = ptname?.Patient?.FName;
             ViewBag.ptid = id;
             return View(list);
+        }
+        public IActionResult ListCustomer(CKeywordViewModel vm)
+        {
+            string jsonc = HttpContext.Session.GetString(CDictionary.SK_CUSTOMER_User);  //得到訪客的session
+            dbClassContext db = new dbClassContext();           
+            if (!string.IsNullOrEmpty(jsonc))//家屬有登入
+            {
+                Customer customer = JsonSerializer.Deserialize<Customer>(jsonc);
+                var pin = db.PatientInfos.FirstOrDefault(t => t.FCustomerid == customer.Fid);
+                if (pin != null)
+                {
+                    return RedirectToAction("DateListCustomer", "Consult", new { @id = pin.Fid });
+                };
+            };
+            return RedirectToAction("Index", "Home"); //其他狀況一律回主頁
+        }
+
+        public IActionResult DateListCustomer(int? id)
+        {
+            string jsonc = HttpContext.Session.GetString(CDictionary.SK_CUSTOMER_User);                     
+            dbClassContext db = new dbClassContext();
+            IEnumerable<Consultation> datas = null;
+            datas = db.Consultations.Where(c => c.PatinetId == id.Value).ToList();
+
+            List<CConsultationViewModel> list = new List<CConsultationViewModel>();
+            foreach (var c in datas)
+            {
+                CConsultationViewModel consultation = new CConsultationViewModel();
+                consultation.Consult = c;
+                list.Add(consultation);
+            }
+            var pin = db.PatientInfos.FirstOrDefault(t => t.Fid == id);
+            CPatientsViewModel ptname = new CPatientsViewModel();
+            ptname.Patient = pin != null ? pin : new PatientInfo();
+            ViewBag.name = ptname?.Patient?.FName;
+            ViewBag.ptid = id;
+            return View(list);
+        }
+        public ActionResult viewCustomer(int? id)
+        {
+            dbClassContext db = new dbClassContext();
+            Consultation consult = db.Consultations.FirstOrDefault(t => t.FConsultId == id);      //'查詢'頁面輸入的資料到Tptient去撈資料，並放到CProductViewMode
+            CConsultationViewModel vm = new CConsultationViewModel();
+            vm.Consult = consult;
+            //-----------chechbox呈現
+            var q = (from cc in db.CounsultTypeRecords
+                     where cc.FConsultId == id
+                     select cc.TypeNameId).ToList();
+            vm.Typeconsult = q;
+            //------抓這個月內的評估資料------
+            DateTime getday = DateTime.Parse(consult.Date);
+            string getFront30 = getday.AddDays(-30).ToString("yyyy-MM-dd");
+            vm.Typeevaluate = (from e in db.功能評估s
+                               join p in db.功能評估個表s on e.F功能評估Id equals p.F功能評估Id
+                               where (e.Fid == consult.PatinetId && string.Compare(e.F日期, getFront30) >= 0)
+                               select p.F評估項目).ToList();
+            return View(vm);
         }
         public ActionResult Create(int? id)
         {
